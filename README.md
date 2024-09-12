@@ -1,1 +1,1 @@
-- Run "npm i" in each folder "BackEnd"/"FrontEnt" to install all libraries
+- Run "npm i" in each folder "BackEnd"/"FrontEnd" to install all libraries

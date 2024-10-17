@@ -1,0 +1,18 @@
+/*Mobile*/
+@media (max-width: 46.1875em) {
+    .header-search__category{
+        margin-top: 15px;
+    }
+}
+
+/* Tablet */
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em){
+    .header-bottom__navigator{
+        margin-right: 20px !important;
+    }
+}
+
+/* PC */
+@media only screen and (min-width: 64em){
+
+}

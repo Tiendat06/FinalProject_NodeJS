@@ -1,0 +1,17 @@
+/*home-banner*/
+.home-banner{
+    position: relative;
+    height: 650px;
+    overflow: hidden;
+}
+
+.header-banner__item{
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.home-banner__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 1px solid var(--para-text);
+}

@@ -1,5 +1,5 @@
 import {Routes, Route} from "react-router-dom";
-import {HomePage, ContactPage, AboutPage} from "../pages";
+import {HomePage, ContactPage, AboutPage} from "~/pages";
 
 function Body(){
     return (

@@ -4,6 +4,14 @@
 
 .header-top__left-email--icon{
     font-size: 16px;
+    cursor: pointer;
+    transition: linear .2s;
+}
+
+.header-top__left-email--icon:hover{
+    color: var(--btn-primary);
+    font-weight: bold;
+    font-size: 18px;
 }
 
 .header-top__left-email--mail{

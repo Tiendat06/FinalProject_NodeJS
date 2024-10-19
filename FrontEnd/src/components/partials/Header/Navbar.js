@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import {useState} from "react";
 import styles from './Header.module.css';
 import stylesGrid from './HeaderGrid.module.css';
-import Button from '../../elements/Button';
+import Button from '~/components/elements/Button';
 
 function Navbar() {
 
@@ -45,7 +45,7 @@ function Navbar() {
                             <div className={clsx(styles["header-top__middle"])}></div>
                             <div className={clsx("d-flex align-items-center", styles['header-top__right-account'])}>
                                 <i className={clsx("fa-solid fa-user mr-15", styles['header-top__left-email--icon'])}></i>
-                                <p className={clsx('mb-0')} style={{cursor: "pointer"}}>Login</p>
+                                <p className={clsx('mb-0 link-underline')} style={{cursor: "pointer"}}>Login</p>
                             </div>
                         </div>
                     </div>

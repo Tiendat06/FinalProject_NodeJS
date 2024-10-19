@@ -196,3 +196,47 @@
     box-shadow: none;
     border: 2px solid var(--btn-primary);
 }
+
+.login-modal__separate{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 0 15px 0;
+}
+
+.login-modal__line{
+    height: 1px;
+    background-color: var(--para-text);
+}
+
+.login-modal__btn-gg-img{
+    width: 25px;
+    margin-right: 15px;
+    transition: transform ease-in-out .3s;
+}
+
+.login-modal__btn-gg{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--btn-primary);
+}
+
+.login-modal__btn-gg:hover{
+    background-color: var(--btn-primary);
+}
+
+.login-modal__btn-gg:hover .login-modal__btn-gg-img{
+    transform: rotate(360deg);
+}
+
+.login-modal__btn-gg:hover .login-modal__btn-gg-text{
+    color: #ffffff;
+}
+
+.login-modal__btn-gg-text{
+    color: var(--btn-primary);
+
+}

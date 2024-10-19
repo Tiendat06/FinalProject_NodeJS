@@ -181,8 +181,16 @@ function Navbar() {
                                                 style={{fontSize: 12}}>Forgot password?</span></Link>
                                         </div>
                                     </div>
-                                    <button type="button" className={clsx(styles['login-modal__btn'], 'btn mt-4')}>Login
-                                    </button>
+                                    <button type="button" className={clsx(styles['login-modal__btn'], 'btn mt-4')}>Login</button>
+                                        <div className={clsx(styles["login-modal__separate"])}>
+                                            <div className={clsx(styles["login-modal__line"], 'col-lg-4 col-md-4 col-sm-4')}></div>
+                                            <p className={clsx(styles["login-modal__line-text"], 'mb-0 text-center col-lg-4 col-md-4 col-sm-4')}>or you can</p>
+                                            <div className={clsx(styles["login-modal__line"], 'col-lg-4 col-md-4 col-sm-4')}></div>
+                                        </div>
+                                        <button className={clsx(styles['login-modal__btn-gg'], 'btn')}>
+                                            <img className={clsx(styles['login-modal__btn-gg-img'])} src="/img/icon/google-icon.png" alt=""/>
+                                            <p className={clsx(styles['login-modal__btn-gg-text'], 'mb-0')}>Login with Google</p>
+                                        </button>
                                 </div>
                             </div>
                                 :

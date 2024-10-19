@@ -1,13 +1,16 @@
 import {Link} from 'react-router-dom'
 import clsx from 'clsx'
 import {useState} from "react";
+
 import styles from './Header.module.css';
 import stylesGrid from './HeaderGrid.module.css';
 import Button from '~/components/elements/Button';
+import Modal from '~/components/elements/Modal';
 
 function Navbar() {
 
     let [search, setSearch] = useState('');
+    let [isLogin, setIsLogin] = useState(true);
 
     let onclickCategory = () => {
         let listCategory = document.querySelector(`.${styles['header-search__left-list--inner']}`)
@@ -45,7 +48,7 @@ function Navbar() {
                             <div className={clsx(styles["header-top__middle"])}></div>
                             <div className={clsx("d-flex align-items-center", styles['header-top__right-account'])}>
                                 <i className={clsx("fa-solid fa-user mr-15", styles['header-top__left-email--icon'])}></i>
-                                <p className={clsx('mb-0 link-underline')} style={{cursor: "pointer"}}>Login</p>
+                                <p className={clsx('mb-0 link-underline header-top__login-btn')} data-bs-toggle='modal' data-bs-target='#login-modal' style={{cursor: "pointer"}}>Login</p>
                             </div>
                         </div>
                     </div>
@@ -122,7 +125,7 @@ function Navbar() {
                         </div>
                         <div className="col-lg-8 col-md-7 col-sm-12 d-flex">
                             <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search products..." type="text" className={clsx('col-lg-10 col-md-9 col-sm-9', styles['header-search__middle-inp'])} id=""/>
-                            <Button label="SEARCH" className={clsx('btn btn-success col-lg-2 col-md-3 col-sm-3', styles['header-search__middle-btn'])} />
+                            <Button label="SEARCH" className={clsx('btn btn-danger col-lg-2 col-md-3 col-sm-3', styles['header-search__middle-btn'])} />
                         </div>
                         <div className="col-lg-2 col-md-2 col-sm-0">
                             <img className={clsx(styles['header-search__right-shipper'])} src="/img/logo/shipper.png"
@@ -131,6 +134,134 @@ function Navbar() {
                     </div>
                 </div>
             </header>
+            <Modal
+                id='login-modal'
+                closeClassName='d-none'
+                isStatic={true}
+                modalContentClassName={`${styles['login-modal__content']}`}
+                modalFooterClassName="d-none"
+                modalHeaderClassName="d-none"
+                content={(
+                    <div className='modal-form overflow-hidden'>
+                        <div className="modal-slide d-flex">
+                            {isLogin ?
+                                <div className="login-form col-lg-12 col-md-12 col-sm-12">
+                                    <button onClick={() => setIsLogin(true)}
+                                            style={{float: "right", fontSize: 12}} type="button" className="btn-close"
+                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <h2 className='mb-0 mt-3'>Login</h2>
+                                    <p className='mb-4'>Do not have an account yet?
+                                        <a onClick={() => setIsLogin(false)} className={clsx(styles['sign-up__btn'])}
+                                           style={{textDecoration: "underline", cursor: "pointer"}}> Sign up</a>
+                                    </p>
+                                    <div className="form-group mt-3">
+                                    <div className="form-group">
+                                        <label htmlFor="phone" className="login-modal__email"><p className="mb-0">Phone
+                                            number</p>
+                                        </label>
+                                        <input type="text" id="phone" placeholder='Enter phone number...'
+                                               className={clsx(styles["login-input__phone"], 'form-control')}/>
+                                    </div>
+                                    <div className="form-group mt-3">
+                                        <label htmlFor="pwd" className="login-modal__email"><p
+                                            className="mb-0">Password</p>
+                                        </label>
+                                        <input type="password" id="pwd" placeholder='Enter password...'
+                                               className={clsx(styles["login-input__password"], 'form-control')}/>
+                                    </div>
+                                    <div className="form-group mt-3 d-flex align-items-center justify-content-between">
+                                        <div className="form-group d-flex align-items-center">
+                                            <input type="checkbox" name="" id="remember"/>
+                                            <label htmlFor="remember" className="login-modal__remember ml-5"><span
+                                                style={{fontSize: 12}}>Remember me</span></label>
+                                        </div>
+                                        <div className="form-group d-flex align-items-center">
+                                            <Link to='/' htmlFor="remember"
+                                                  className="login-modal__remember link-underline ml-5"><span
+                                                style={{fontSize: 12}}>Forgot password?</span></Link>
+                                        </div>
+                                    </div>
+                                    <button type="button" className={clsx(styles['login-modal__btn'], 'btn mt-4')}>Login
+                                    </button>
+                                </div>
+                            </div>
+                                :
+                                <div className="register-form col-lg-12 col-md-12 col-sm-12">
+                                    <button onClick={() => setIsLogin(true)}
+                                        style={{float: "right", fontSize: 12}} type="button" className="btn-close"
+                                        data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <h2 className='mb-0 mt-3'>Register</h2>
+                                    <p className='mb-4'>Have an account yet?
+                                        <a onClick={() => setIsLogin(true)} className={clsx(styles['sign-in__btn'])}
+                                           style={{textDecoration: "underline", cursor: "pointer"}}> Sign in</a>
+                                    </p>
+                                    <div className="form-group">
+                                        <div className="form-group mt-3">
+                                            <label htmlFor="fullname" className="login-modal__fullname"><p
+                                                className="mb-0">Full name</p></label>
+                                            <input type="text" id="fullname" placeholder='Enter full name...'
+                                                   className={clsx(styles["login-input__phone"], 'form-control')}/>
+                                        </div>
+                                        <div className="form-group mt-3">
+                                            <label htmlFor="phone" className="login-modal__email"><p
+                                                className="mb-0">Phone number</p>
+                                            </label>
+                                            <input type="text" id="phone" placeholder='Enter email...'
+                                                   className={clsx(styles["login-input__phone"], 'form-control')}/>
+                                        </div>
+                                        <div className="form-group mt-3">
+                                            <label htmlFor="pwd" className="login-modal__email"><p
+                                                className="mb-0">Password</p>
+                                            </label>
+                                            <input type="text" id="pwd" placeholder='Enter password...'
+                                                   className={clsx(styles["login-input__password"], 'form-control')}/>
+                                        </div>
+                                        <div className="form-group mt-3">
+                                            <label htmlFor="gender" className="login-modal__email"><p
+                                                className="mb-0">Gender</p>
+                                            </label>
+                                            <select name="" id="gender"
+                                                    className={clsx(styles["login-input__password"], 'form-select')}>
+                                                <option value="">--Choose gender--</option>
+                                                <option value="">Male</option>
+                                                <option value="">Female</option>
+                                            </select>
+                                        </div>
+                                        <div className="form-group mt-3">
+                                            <label htmlFor="email" className="login-modal__email"><p
+                                                className="mb-0">Email</p>
+                                            </label>
+                                            <input type="email" id="email" placeholder='Enter email...'
+                                                   className={clsx(styles["login-input__password"], 'form-control')}/>
+                                        </div>
+                                        <div className="form-group mt-3">
+                                            <label htmlFor="address" className="login-modal__email"><p
+                                                className="mb-0">Address</p>
+                                            </label>
+                                            <input type="text" id="address" placeholder='Enter address...'
+                                                   className={clsx(styles["login-input__password"], 'form-control')}/>
+                                        </div>
+                                        <div className="form-group mt-3 d-flex align-items-center">
+                                            <div className="form-group d-flex align-items-center">
+                                                <input required type="checkbox" name="" id="remember"/>
+                                                <label htmlFor="remember" className="login-modal__remember ml-5">
+                                                    <span style={{fontSize: 12}}>I agree the
+                                                        <a href='#'
+                                                           className="login-modal__remember link-underline ml-5">
+                                                            <span style={{fontSize: 12, textDecoration: "underline"}}>Term and Conditions</span></a>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <button type="button"
+                                                className={clsx(styles['login-modal__btn'], 'btn mt-3')}>Register
+                                        </button>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                )}/>
         </nav>
     );
 }

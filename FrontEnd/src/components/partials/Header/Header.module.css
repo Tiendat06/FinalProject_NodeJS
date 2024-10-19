@@ -35,18 +35,10 @@
     height: calc(var(--navbar-height) + var(--navbar-height));
 }
 
-.header-bottom__row{
-
-}
-
 .header-bottom__img{
     width: 100px;
     height: 100px;
     cursor: pointer;
-}
-
-.header-bottom__list{
-
 }
 
 .header-bottom__navigator-link{
@@ -56,10 +48,6 @@
 
 .header-bottom__navigator-link:hover, .header-bottom__navigator-link:focus{
     color: var(--btn-primary) !important;
-}
-
-.header-bottom__list{
-
 }
 
 .header-bottom__phone{
@@ -173,4 +161,38 @@
 .header-bottom__mobile-icon{
     font-size: 30px;
     cursor: pointer;
+}
+
+/*login modal*/
+.login-modal__content{
+    padding: 30px;
+}
+
+.sign-up__btn, .sign-in__btn{
+    color: var(--btn-primary);
+}
+
+.login-modal__btn{
+    background-color: #ffffff;
+    color: var(--btn-primary);
+    border: 1px solid var(--btn-primary);
+    transition: ease-in-out .3s;
+    /*float: right;*/
+    width: 100%;
+    letter-spacing: 2px;
+    /*padding: 15px;*/
+}
+
+.login-modal__btn:hover{
+    background-color: var(--btn-primary);
+    color: #ffffff;
+}
+
+.login-input__phone, .login-input__password{
+    border-width: 2px;
+}
+
+.login-input__phone:focus, .login-input__password:focus{
+    box-shadow: none;
+    border: 2px solid var(--btn-primary);
 }

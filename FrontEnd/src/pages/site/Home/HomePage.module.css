@@ -152,10 +152,10 @@
 }
 
 .home-discount__img{
-    width: 49%;
+    /*width: 49%;*/
     height: 350px;
     object-fit: cover;
-    border: 1px solid var(--para-text);
+    /*border: 1px solid var(--para-text);*/
 }
 
 /*home top*/

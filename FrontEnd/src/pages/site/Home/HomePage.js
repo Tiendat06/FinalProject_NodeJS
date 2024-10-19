@@ -163,7 +163,7 @@ function HomePage(){
             <section className={clsx(styles["home-featured"])}>
                 <h2 className={clsx('text-center')}>Typical Product</h2>
                 <div className={clsx(styles['home-new__middle'])}></div>
-                <ul className={clsx(styles["home-featured__category"])}>
+                <ul className={clsx(styles["home-featured__category"], 'flex-wrap')}>
                     <Link data-filter="*" className={clsx(styles["home-featured__category-item"],'link-underline')}>All</Link>
                     <Link data-filter=".laptop" className={clsx(styles["home-featured__category-item"],'link-underline')}>Laptop</Link>
                     <Link data-filter=".mobile" className={clsx(styles["home-featured__category-item"],'link-underline')}>Mobile</Link>
@@ -336,14 +336,14 @@ function HomePage(){
             </section>
 
             <section className={clsx(styles['home-discount'])}>
-                <div className={clsx(styles["home-discount__list"])}>
-                    <img src="/img/customer/home/sell-off-1.jpg" className={clsx(styles['home-discount__img'])} alt=""/>
-                    <img src="/img/customer/home/sell-off-2.png" className={clsx(styles['home-discount__img'])} alt=""/>
+                <div className={clsx(styles["home-discount__list"], 'flex-wrap')}>
+                    <img src="/img/customer/home/sell-off-1.jpg" className={clsx(styles['home-discount__img'], 'p-2 col-lg-6 col-md-6 col-sm-12')} alt=""/>
+                    <img src="/img/customer/home/sell-off-2.png" className={clsx(styles['home-discount__img'], 'p-2 col-lg-6 col-md-6 col-sm-12')} alt=""/>
                 </div>
             </section>
 
-            <section className="home-top d-flex">
-                <div className="col-lg-4 col-md-4 col-sm-6">
+            <section className="home-top d-flex flex-wrap">
+                <div className="col-lg-4 col-md-4 col-sm-12">
                     <h2 className="">Top Rated</h2>
                     <div className={clsx(styles['home-new__middle'], 'mb-4')} style={{marginRight: "auto", marginLeft: 0}}></div>
                     <OwlCarousel
@@ -439,7 +439,7 @@ function HomePage(){
 
                     </OwlCarousel>
                 </div>
-                <div className="col-lg-4 col-md-4 col-sm-6">
+                <div className="col-lg-4 col-md-4 col-sm-12">
                     <h2>Top Viewed</h2>
                     <div className={clsx(styles['home-new__middle'], 'mb-4')}
                          style={{marginRight: "auto", marginLeft: 0}}></div>
@@ -536,7 +536,7 @@ function HomePage(){
 
                     </OwlCarousel>
                 </div>
-                <div className="col-lg-4 col-md-4 col-sm-6">
+                <div className="col-lg-4 col-md-4 col-sm-12">
                     <h2>Top Selling</h2>
                     <div className={clsx(styles['home-new__middle'], 'mb-4')}
                          style={{marginRight: "auto", marginLeft: 0}}></div>

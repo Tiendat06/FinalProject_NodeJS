@@ -6,7 +6,9 @@
 :root{
   --navbar-height: 60px;
   --para-text: #787878;
-  --btn-primary: #7fad39;
+  --btn-primary: #D10024;
+  --bg-item: #f5f5f5;
+  --bg-item-2: #f3f6fb;
 }
 
 body {
@@ -51,7 +53,7 @@ a {
   transition: all 500ms ease 0s;
   text-decoration: none;
   outline: 0 solid transparent;
-  /*color: #fbf5f5;*/
+  color: var(--para-text);
   font-weight: 600;
   font-size: 16px;
 }
@@ -63,6 +65,21 @@ a:hover, a:focus {
   color: #000000;
   font-weight: 600;
   /*font-size: 16px;*/
+}
+
+.link-underline:hover::after, .link-underline:focus::after{
+  width: 100%;
+  color: var(--btn-primary);
+}
+
+.link-underline::after{
+  content: "";
+  display: block;
+  width: 0%;
+  height: 2px;
+  background-color: #D10024;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
 }
 
 ul,
@@ -78,7 +95,6 @@ img {
   height: auto;
   max-width: 100%;
 }
-
 
 /* Spacing */
 .mt-15 {
@@ -173,6 +189,8 @@ img {
 .height-800 {
   height: 800px !important;
 }
+
+/*Carousel*/
 
 /*Responsive general*/
 /*Mobile*/
@@ -371,5 +389,19 @@ img {
   .g-sm-5,
   .gy-sm-5 {
     --bs-gutter-y: 3rem;
+  }
+}
+
+/*key frames*/
+
+@keyframes rotateInOut {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }

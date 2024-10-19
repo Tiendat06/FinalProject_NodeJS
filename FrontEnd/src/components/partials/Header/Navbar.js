@@ -62,16 +62,16 @@ function Navbar() {
                         <div className="col-lg-6 col-sm-0 col-md-9">
                             <ul className={clsx('d-flex col-sm-0', styles['header-bottom__list'])}>
                                 <li className={clsx(styles['header-bottom__navigator'], 'mr-50', stylesGrid['header-bottom__navigator'])}>
-                                    <Link className={clsx(styles['header-bottom__navigator-link'])} to='/'>HOME</Link>
+                                    <Link className={clsx(styles['header-bottom__navigator-link'], 'link-underline')} to='/'>HOME</Link>
                                 </li>
                                 <li className={clsx(styles['header-bottom__navigator'], 'mr-50', stylesGrid['header-bottom__navigator'])}>
-                                    <Link className={clsx(styles['header-bottom__navigator-link'])} to='/shop'>SHOP</Link>
+                                    <Link className={clsx(styles['header-bottom__navigator-link'], 'link-underline')} to='/shop'>SHOP</Link>
                                 </li>
                                 <li className={clsx(styles['header-bottom__navigator'], 'mr-50', stylesGrid['header-bottom__navigator'])}>
-                                    <Link className={clsx(styles['header-bottom__navigator-link'])} to='/about'>ABOUT</Link>
+                                    <Link className={clsx(styles['header-bottom__navigator-link'], 'link-underline')} to='/about'>ABOUT</Link>
                                 </li>
                                 <li className={clsx(styles['header-bottom__navigator'], 'mr-50', stylesGrid['header-bottom__navigator'])}>
-                                    <Link className={clsx(styles['header-bottom__navigator-link'])} to='/contact'>CONTACT</Link>
+                                    <Link className={clsx(styles['header-bottom__navigator-link'], 'link-underline')} to='/contact'>CONTACT</Link>
                                 </li>
                             </ul>
                         </div>
@@ -114,9 +114,9 @@ function Navbar() {
                                 <div className={clsx(styles['header-search__left-list--inner'])}>
                                     <div className={clsx(styles['header-search__left-item'])}>Laptop</div>
                                     <div className={clsx(styles['header-search__left-item'])}>Mobile</div>
-                                    <div className={clsx(styles['header-search__left-item'])}>Headphone</div>
-                                    <div className={clsx(styles['header-search__left-item'])}>RAM</div>
-                                    <div className={clsx(styles['header-search__left-item'])}>ROM</div>
+                                    <div className={clsx(styles['header-search__left-item'])}>Loudspeaker</div>
+                                    <div className={clsx(styles['header-search__left-item'])}>Mouse</div>
+                                    <div className={clsx(styles['header-search__left-item'])}>Keyboard</div>
                                 </div>
                             </div>
                         </div>

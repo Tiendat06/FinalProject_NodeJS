@@ -1,0 +1,111 @@
+/*shop filter department*/
+.shop-filter__department-item__para{
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+
+.shop-filter__department-item__para:hover, .shop-filter__department-item__para:focus{
+    color: var(--btn-primary);
+    cursor: pointer;
+}
+
+.choose .shop-filter__department-item__para{
+    color: var(--btn-primary);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/*shop-filter price*/
+.form-range::-webkit-slider-thumb {
+    background: var(--btn-primary);
+    transition: background-color 0.3s;
+}
+
+.form-range::-moz-range-thumb {
+    background: var(--btn-primary);
+    transition: background-color 0.3s;
+}
+
+.shop-filter__price-text{
+    color: var(--btn-primary);
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/*shop filter top*/
+.shop-filter__rated-item{
+    margin-bottom: 20px;
+}
+
+.shop-filter__rated-img--outer{
+    border-radius: 10px;
+    padding: 15px;
+    margin: 0 30px 0 0;
+    background-color: var(--bg-item-2);
+}
+
+.shop-filter__rated-img{
+    height: 100px;
+    object-fit: contain;
+}
+
+.nav-icon{
+    font-size: 16px;
+}
+
+/*shop list*/
+.shop-list__item{
+    padding: 10px 15px 10px 15px;
+}
+
+.shop-list__item-img{
+    height: 100%;
+    object-fit: contain;
+}
+
+.shop-list__item-img--outer{
+    padding: 40px;
+    background-color: var(--bg-item-2);
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+.shop-list__item-img--outer:hover .shop-list__item-list{
+    /*transition: ease-in-out .3s;*/
+    bottom: 15px;
+}
+
+.shop-list__item-list{
+    position: absolute;
+    justify-content: center;
+    bottom: -50px;
+    left: 0;
+    transition: ease-in-out .3s
+}
+
+.shop-list__item-list--icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px 0 10px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid var(--bg-item);
+    background-color: #ffffff;
+    border-radius: 50%;
+    transition: linear .3s;
+}
+
+.shop-list__item-list--icon:hover{
+    cursor: pointer;
+    background-color: var(--btn-primary);
+}
+
+.shop-list__item-list--icon:hover i{
+    color: #ffffff;
+    transform: rotate(3600deg);
+    transition: transform linear .2s;
+}

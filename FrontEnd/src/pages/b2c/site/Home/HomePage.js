@@ -4,9 +4,10 @@ import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import OwlCarousel from 'react-owl-carousel';
 import mixitup from 'mixitup';
+import {useEffect, useRef} from "react";
+import 'react-bootstrap'
 
 import styles from './HomePage.module.css';
-import {useEffect, useRef} from "react";
 
 function HomePage(){
 

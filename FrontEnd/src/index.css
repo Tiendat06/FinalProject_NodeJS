@@ -190,7 +190,23 @@ img {
   height: 800px !important;
 }
 
-/*Carousel*/
+/*Owl Carousel*/
+.owl-nav{
+  float: right;
+}
+
+.nav-icon{
+  font-size: 16px;
+  padding: 5px 10px 5px 10px;
+  background-color: var(--bg-item);
+  border-radius: 10px;
+  color: #000000;
+  margin-right: 10px;
+}
+
+.nav-icon:hover{
+  filter: brightness(90%);
+}
 
 /*Responsive general*/
 /*Mobile*/

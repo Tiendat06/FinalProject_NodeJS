@@ -4,8 +4,8 @@ import {useState} from "react";
 
 import styles from './Header.module.css';
 import stylesGrid from './HeaderGrid.module.css';
-import Button from '~/components/elements/Button';
-import Modal from '~/components/elements/Modal';
+import Button from '~/components/elements/Button/Button';
+import Modal from '~/components/elements/Modal/Modal';
 
 function Navbar() {
 
@@ -214,7 +214,7 @@ function Navbar() {
                                             <label htmlFor="phone" className="login-modal__email"><p
                                                 className="mb-0">Phone number</p>
                                             </label>
-                                            <input type="text" id="phone" placeholder='Enter email...'
+                                            <input type="text" id="phone" placeholder='Enter phone number...'
                                                    className={clsx(styles["login-input__phone"], 'form-control')}/>
                                         </div>
                                         <div className="form-group mt-3">

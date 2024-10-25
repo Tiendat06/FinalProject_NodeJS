@@ -1,13 +1,15 @@
 import styles from './ShopPage.module.css';
 import Pagination from '~/components/elements/Pagination/Pagination';
+import NiceSelect from "~/components/elements/NiceSelect/NiceSelect";
+
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
-
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
 import mixitup from "mixitup";
 import OwlCarousel from 'react-owl-carousel';
+import {selectOptions} from "@testing-library/user-event/dist/select-options";
 
 function ShopPage() {
     // owl carousel
@@ -57,6 +59,7 @@ function ShopPage() {
     const [pageCount, setPageCount] = useState(0);
     const [filteredData, setFilteredData] = useState(data);
     const [priceRange, setPriceRange] = useState(10);
+    const [isAscending, setIsAscending] = useState(true);
 
     useEffect(() => {
         const filtered = data.filter(item => item.price >= priceRange);
@@ -70,6 +73,13 @@ function ShopPage() {
         setCurrentItems(filteredData.slice(newOffset, newOffset + itemsPerPage));
     };
 
+    const [selectedOption, setSelectedOption] = useState('default');
+
+    const filterOptions = [
+        { value: 'default', label: 'Default' },
+        { value: 'price', label: 'Price' },
+        { value: 'name', label: 'Name' },
+    ];
     return (
         <>
             <div className="shop-filter col-lg-3 col-md-3 col-sm-12">
@@ -192,8 +202,20 @@ function ShopPage() {
             </div>
 
             <div className="shop-list col-lg-9 col-md-9 col-sm-12">
+                <div className={clsx(styles["shop-filter"], 'mb-3')}>
+                    <p className={clsx(styles['shop-filter__para'])}>Sort By:</p>
+                    <NiceSelect options={filterOptions} onChange={value => setSelectedOption(value)}/>
+                    <div onClick={() => setIsAscending(!isAscending)}>
+                        {isAscending &&
+                            <i className={clsx(styles['shop-filter__icon'], "fa-solid fa-arrow-up-wide-short")}></i>
+                        }
+                        {!isAscending &&
+                            <i className={clsx(styles['shop-filter__icon'], "fa-solid fa-arrow-down-wide-short")}></i>
+                        }
+                    </div>
+                </div>
                 <ul className={clsx(styles['shop-list--inner'], 'd-flex flex-wrap')}>
-                    {currentItems.map((item) => (
+                {currentItems.map((item) => (
                         <li key={item.id}
                             className={clsx(styles['shop-list__item'], `mix col-lg-4 col-md-4 col-sm-6 ${item.type}`)}>
                             <div className={clsx(styles['shop-list__item--inner'])}>

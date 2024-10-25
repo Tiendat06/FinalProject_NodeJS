@@ -54,6 +54,25 @@
 }
 
 /*shop list*/
+.shop-filter{
+    display: flex;
+    align-items: center;
+}
+
+.shop-filter__para{
+    font-size: 14px;
+    color: var(--para-text);
+    margin-right: 10px;
+    margin-bottom: 0;
+}
+
+.shop-filter__icon{
+    font-size: 16px;
+    margin-left: 10px;
+    cursor: pointer;
+    color: var(--para-text);
+}
+
 .shop-list__item{
     padding: 10px 15px 10px 15px;
 }

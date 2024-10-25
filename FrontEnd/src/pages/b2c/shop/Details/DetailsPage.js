@@ -1,4 +1,4 @@
-import styles from './Details.module.css';
+import styles from './DetailsPage.module.css';
 import SlickSlider from '~/components/elements/SlickSlider/SlickSlider';
 
 import {Link, useParams} from "react-router-dom";
@@ -370,6 +370,109 @@ function DetailsPage(){
                         </div>
                     }
                 </div>
+            </div>
+            <div className="col-lg-12 col-md-12 col-sm-12 mt-5">
+                <h4 className="text-center">Related Product</h4>
+                <div className={clsx(styles["details-related__middle"])}></div>
+                <ul className={clsx(styles['details-related__list'], 'd-flex flex-wrap')}>
+                    <li className={clsx(styles['details-related__item'], `mix col-lg-3 col-md-3 col-sm-6`)}>
+                        <div className={clsx(styles['details-related__item--inner'])}>
+                            <div className={clsx(styles['details-related__item-img--outer'])}>
+                                <img className={clsx(styles['details-related__item-img'])}
+                                     src="/img/customer/product/mobile/samsung-S23Ultra.png" alt=""/>
+                                <ul className={clsx(styles['details-related__item-list'], 'd-flex w-100 p-0')}>
+                                    <li className={clsx(styles['details-related__item-list--icon'])}>
+                                        <Link className="text-dark" to={`/details/1`}>
+                                            <i className="fa-solid fa-eye"></i>
+                                        </Link>
+                                    </li>
+                                    <li className={clsx(styles['details-related__item-list--icon'])}>
+                                        <Link to='/' className='text-dark'>
+                                            <i className="fa-solid fa-cart-shopping"></i>
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div className="details-related__item-info text-center mt-3">
+                                <p className="mb-0 text-dark">IPhone 11</p>
+                                <p className="text-dark" style={{fontWeight: "bold"}}>$300.000</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li className={clsx(styles['details-related__item'], `mix col-lg-3 col-md-3 col-sm-6`)}>
+                        <div className={clsx(styles['details-related__item--inner'])}>
+                            <div className={clsx(styles['details-related__item-img--outer'])}>
+                                <img className={clsx(styles['details-related__item-img'])}
+                                     src="/img/customer/product/mobile/samsung-S23Ultra.png" alt=""/>
+                                <ul className={clsx(styles['details-related__item-list'], 'd-flex w-100 p-0')}>
+                                    <li className={clsx(styles['details-related__item-list--icon'])}>
+                                        <Link className="text-dark" to={`/details/1`}>
+                                            <i className="fa-solid fa-eye"></i>
+                                        </Link>
+                                    </li>
+                                    <li className={clsx(styles['details-related__item-list--icon'])}>
+                                        <Link to='/' className='text-dark'>
+                                            <i className="fa-solid fa-cart-shopping"></i>
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div className="details-related__item-info text-center mt-3">
+                                <p className="mb-0 text-dark">IPhone 11</p>
+                                <p className="text-dark" style={{fontWeight: "bold"}}>$300.000</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li className={clsx(styles['details-related__item'], `mix col-lg-3 col-md-3 col-sm-6`)}>
+                        <div className={clsx(styles['details-related__item--inner'])}>
+                            <div className={clsx(styles['details-related__item-img--outer'])}>
+                                <img className={clsx(styles['details-related__item-img'])}
+                                     src="/img/customer/product/mobile/samsung-S23Ultra.png" alt=""/>
+                                <ul className={clsx(styles['details-related__item-list'], 'd-flex w-100 p-0')}>
+                                    <li className={clsx(styles['details-related__item-list--icon'])}>
+                                        <Link className="text-dark" to={`/details/1`}>
+                                            <i className="fa-solid fa-eye"></i>
+                                        </Link>
+                                    </li>
+                                    <li className={clsx(styles['details-related__item-list--icon'])}>
+                                        <Link to='/' className='text-dark'>
+                                            <i className="fa-solid fa-cart-shopping"></i>
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div className="details-related__item-info text-center mt-3">
+                                <p className="mb-0 text-dark">IPhone 11</p>
+                                <p className="text-dark" style={{fontWeight: "bold"}}>$300.000</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li className={clsx(styles['details-related__item'], `mix col-lg-3 col-md-3 col-sm-6`)}>
+                        <div className={clsx(styles['details-related__item--inner'])}>
+                            <div className={clsx(styles['details-related__item-img--outer'])}>
+                                <img className={clsx(styles['details-related__item-img'])}
+                                     src="/img/customer/product/mobile/samsung-S23Ultra.png" alt=""/>
+                                <ul className={clsx(styles['details-related__item-list'], 'd-flex w-100 p-0')}>
+                                    <li className={clsx(styles['details-related__item-list--icon'])}>
+                                        <Link className="text-dark" to={`/details/1`}>
+                                            <i className="fa-solid fa-eye"></i>
+                                        </Link>
+                                    </li>
+                                    <li className={clsx(styles['details-related__item-list--icon'])}>
+                                        <Link to='/' className='text-dark'>
+                                            <i className="fa-solid fa-cart-shopping"></i>
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div className="details-related__item-info text-center mt-3">
+                                <p className="mb-0 text-dark">IPhone 11</p>
+                                <p className="text-dark" style={{fontWeight: "bold"}}>$300.000</p>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
             </div>
         </>
     );

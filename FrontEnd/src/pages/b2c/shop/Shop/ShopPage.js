@@ -202,7 +202,7 @@ function ShopPage() {
                                          src={`${item.img}`} alt=""/>
                                     <ul className={clsx(styles['shop-list__item-list'], 'd-flex w-100 p-0')}>
                                         <li className={clsx(styles['shop-list__item-list--icon'])}>
-                                            <Link className="text-dark" to='/'>
+                                            <Link className="text-dark" to={`/details/${item.id}`}>
                                                 <i className="fa-solid fa-eye"></i>
                                             </Link>
                                         </li>

@@ -9,6 +9,7 @@
   --btn-primary: #D10024;
   --bg-item: #f5f5f5;
   --bg-item-2: #f3f6fb;
+  --border-slick: #E4E7ED;
 }
 
 body {
@@ -22,11 +23,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.disabled-highlight{
+  -webkit-user-select: none; /* Chrome, Safari, Opera */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* Internet Explorer/Edge */
+  user-select: none;
 }
 
 h1,

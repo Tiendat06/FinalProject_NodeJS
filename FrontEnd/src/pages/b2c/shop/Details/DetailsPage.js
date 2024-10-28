@@ -1,5 +1,5 @@
 import styles from './DetailsPage.module.css';
-import SlickSlider from '~/components/elements/SlickSlider/SlickSlider';
+import {SlickSlider} from '~/components/elements';
 
 import {Link, useParams} from "react-router-dom";
 import "slick-carousel/slick/slick.css";

@@ -1,5 +1,5 @@
 import {Routes, Route} from "react-router-dom";
-import {HomePage, ContactPage, AboutPage, ShopPage, DetailsPage, ProfilePage} from "~/pages";
+import {HomePage, ContactPage, AboutPage, ShopPage, DetailsPage, ProfilePage, CartPage} from "~/pages";
 
 function Body(){
     return (
@@ -11,7 +11,8 @@ function Body(){
                     <Route path="/about" element={<AboutPage />} />
                     <Route path="/contact" element={<ContactPage />} />
                     <Route path="/shop" element={<ShopPage />} />
-                    <Route path="/details/:id" element={<DetailsPage />} />
+                    <Route path="/shop/details/:id" element={<DetailsPage />} />
+                    <Route path="/shop/cart" element={<CartPage />} />
                     <Route path="/user/profile" element={<ProfilePage />} />
 
                     {/*b2b*/}

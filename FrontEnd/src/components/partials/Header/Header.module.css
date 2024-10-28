@@ -67,7 +67,8 @@
 
 .header-bottom__icon--notice{
     background-color: var(--btn-primary);
-    padding: 5px 10px 5px 10px;
+    padding: 2px 8px;
+    font-size: 12px;
     border-radius: 50%;
     font-weight: bold;
     color: #ffffff;

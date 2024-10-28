@@ -1,5 +1,5 @@
 
-function Modal({id='', title='', content='',
+function Modal({id='', title='', children='',
                    labelBtnSave='', labelBtnClose='',
                    closeClassName='', saveClassName='', modalTitleClassName='',
                    modalHeaderClassName='', modalFooterClassName='', modalContentClassName='',
@@ -15,7 +15,7 @@ function Modal({id='', title='', content='',
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className={`${modalBodyClassName} modal-body`}>
-                        {content}
+                        {children}
                     </div>
                     <div className={`${modalFooterClassName} modal-footer`}>
                         <button type="button" className={`${closeClassName}`} data-bs-dismiss="modal">{labelBtnClose}</button>

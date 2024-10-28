@@ -1,4 +1,6 @@
 
 :global(.nice-select){
     border: none;
+    padding-left: 0;
+    padding-right: 10px;
 }

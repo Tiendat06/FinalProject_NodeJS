@@ -53,7 +53,7 @@
     font-size: 16px;
 }
 
-/*shop list*/
+/*shop-filter*/
 .shop-filter{
     display: flex;
     align-items: center;
@@ -68,11 +68,12 @@
 
 .shop-filter__icon{
     font-size: 16px;
-    margin-left: 10px;
+    margin-left: 20px;
     cursor: pointer;
     color: var(--para-text);
 }
 
+/*shop list*/
 .shop-list__item{
     padding: 10px 15px 10px 15px;
 }
@@ -127,4 +128,11 @@
     color: #ffffff;
     transform: rotate(3600deg);
     transition: transform linear .2s;
+}
+
+
+.link-department{
+    color: var(--btn-primary);
+    font-weight: bold;
+    border-bottom: 2px solid var(--btn-primary);
 }

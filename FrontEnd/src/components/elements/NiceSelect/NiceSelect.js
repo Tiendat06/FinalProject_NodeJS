@@ -8,7 +8,7 @@ import clsx from "clsx";
 function NiceSelect({options, onChange}) {
     useEffect(() => {
         if (typeof $.fn.niceSelect !== "function") {
-            console.error("Nice Select khởi tạo sai cách!");
+            console.error("Restrict mode force Nice Select!");
             return;
         }
         $('select').niceSelect();

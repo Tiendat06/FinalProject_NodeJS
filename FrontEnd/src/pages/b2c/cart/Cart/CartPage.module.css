@@ -1,5 +1,17 @@
 
 /*cart table*/
+.cart{
+    overflow: scroll;
+}
+
+.cart-table{
+    width: 1300px;
+}
+
+.cart::-webkit-scrollbar{
+    display: none;
+}
+
 .cart-title{
     font-size: 20px;
     padding-bottom: 20px;
@@ -160,7 +172,6 @@
 
 .cart-payment__btn--inner{
     background-color: var(--btn-primary);
-    color: #ffffff;
     outline: none;
     width: 100%;
     font-size: 16px;
@@ -171,7 +182,14 @@
     transition: background-color ease-in-out .3s;
 }
 
+.cart-payment__btn--inner a{
+    color: #ffffff;
+}
+
+.cart-payment__btn--inner:hover a{
+    color: var(--btn-primary);
+}
+
 .cart-payment__btn--inner:hover{
     background-color: #ffffff;
-    color: var(--btn-primary);
 }

@@ -1,5 +1,7 @@
 import styles from './DetailsPage.module.css';
+import stylesGrid from './DetailsPageGrid.module.css';
 import {SlickSlider} from '~/components/elements';
+import {FormatUSDCurrency} from "~/utils"
 
 import {Link, useParams} from "react-router-dom";
 import "slick-carousel/slick/slick.css";
@@ -9,6 +11,7 @@ import {Fragment, useLayoutEffect, useState} from "react";
 
 function DetailsPage(){
     const {id} = useParams();
+    console.log(id);
     const [detailsImg, setDetailsImg] = useState('/img/customer/product/mobile/iphone11.png');
     const [quantity, setQuantity] = useState(1);
     const [navTabItem, setNavTabItem] = useState(1);
@@ -21,8 +24,8 @@ function DetailsPage(){
 
     return (
         <>
-            <div className="col-lg-12 col-md-12 col-sm-12 d-flex">
-                <div className="col-lg-2 col-md-2 col-sm-2 d-flex justify-content-center">
+            <div className={clsx(stylesGrid['details'], "col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap")}>
+                <div className="col-lg-2 col-md-5 col-sm-5 d-flex justify-content-center">
                     <SlickSlider>
                         <div className={clsx(styles["details-slick__item"])}>
                             <img className={clsx(styles['details-slick__img'])}
@@ -41,13 +44,13 @@ function DetailsPage(){
                         </div>
                     </SlickSlider>
                 </div>
-                <div className="col-lg-5 col-md-5 col-sm-5">
+                <div className="col-lg-5 col-md-7 col-sm-7">
                     <div className={clsx(styles["details-item"])}>
                         <img className={clsx(styles['details-item__img'])} src={`${detailsImg}`} alt=""/>
                     </div>
                 </div>
-                <div className="col-lg-5 col-md-5 col-sm-5">
-                    <div className={clsx(styles["details-info"])}>
+                <div className="col-lg-5 col-md-12 col-sm-12">
+                    <div className={clsx(styles["details-info"], stylesGrid['details-info'])}>
                         <h2 className={clsx(styles['details-info__title'])}>IPhone 11</h2>
                         <div className={clsx(styles["details-info__rating"])}>
                             <div className={clsx(styles["details-info__icon"])}>
@@ -61,7 +64,7 @@ function DetailsPage(){
                                 reviews</a>
                         </div>
                         <div className={clsx(styles["details-info__budget"])}>
-                            <h3 className={clsx(styles['details-info__price'], 'mb-0')}>$300.000</h3>
+                            <h3 className={clsx(styles['details-info__price'], 'mb-0')}><FormatUSDCurrency price={300} /></h3>
                             <p className={clsx(styles['details-info__status'], 'mb-0')}>IN STOCK (18 remaining)</p>
                         </div>
                         <div className={clsx(styles["details-info__text"])}>
@@ -76,7 +79,7 @@ function DetailsPage(){
                                 className="form-group col-lg-5 col-md-5 col-sm-5 d-flex align-items-center justify-content-between mb-3">
                                 <label className={clsx(styles['details-info__choice-label'])}
                                        htmlFor="color-details">COLOR</label>
-                                <select name="" className={clsx(styles["details-info__choice-select"], 'form-select')}
+                                <select name="" className={clsx(styles["details-info__choice-select"], 'form-select', stylesGrid['details-info__choice-select'])}
                                         id="color-details">
                                     <option value="red">RED</option>
                                     <option value="yellow">YELLOW</option>
@@ -87,7 +90,7 @@ function DetailsPage(){
                                 className="form-group col-lg-5 col-md-5 col-sm-5 d-flex align-items-center justify-content-between">
                                 <label className={clsx(styles['details-info__choice-label'])}
                                        htmlFor="quan-details">QUANTITY</label>
-                                <div className={clsx(styles["details-info__choice-group"])}>
+                                <div className={clsx(styles["details-info__choice-group"], stylesGrid['details-info__choice-group'])}>
                                     <i onClick={() => setQuantity(quantity => quantity - 1)}
                                        className={clsx("fa-solid fa-minus disabled-highlight", styles['details-info__choice-minus'])}></i>
                                     <input value={quantity}
@@ -112,13 +115,13 @@ function DetailsPage(){
             </div>
             <div className="col-lg-12 col-md-12 col-sm-12">
                 <div className={clsx(styles["details-more__header"])}>
-                    <div className={clsx(styles["details-more__line"], 'col-lg-4 col-md-3 col-sm-3')}></div>
-                    <div className={clsx(styles["details-more__title"], 'col-lg-4 col-md-6 col-sm-6')}>
+                    <div className={clsx(styles["details-more__line"], 'col-lg-4 col-md-3 col-sm-2')}></div>
+                    <div className={clsx(styles["details-more__title"], 'col-lg-4 col-md-6 col-sm-8')}>
                         <a onClick={() => setNavTabItem(1)} href='javascript:void(0)' className={clsx(styles['details-more__title-text'], `link-underline ${navTabItem === 1 && clsx(styles['details-click'])}`)}>Description</a>
                         <a onClick={() => setNavTabItem(2)} href='javascript:void(0)' className={clsx(styles['details-more__title-text'], `link-underline ${navTabItem === 2 && clsx(styles['details-click'])}`)}>Details</a>
                         <a onClick={() => setNavTabItem(3)} href='javascript:void(0)' className={clsx(styles['details-more__title-text'], `link-underline ${navTabItem === 3 && clsx(styles['details-click'])}`)}>Review</a>
                     </div>
-                    <div className={clsx(styles["details-more__line"], 'col-lg-4 col-md-3 col-sm-3')}></div>
+                    <div className={clsx(styles["details-more__line"], 'col-lg-4 col-md-3 col-sm-2')}></div>
                 </div>
 
                 <div className={clsx(styles["details-more__content"])}>
@@ -132,7 +135,7 @@ function DetailsPage(){
                     }
                     {navTabItem === 2 &&
                         <div className={clsx(styles["details-more__item"], 'd-flex justify-content-center')}>
-                            <div className={clsx(styles["details-more__item--inner"])}>
+                            <div className={clsx(styles["details-more__item--inner"], 'col-lg-5 col-md-8 col-sm-12')}>
                                 {/*<h5 className="text-center">Specifications</h5>*/}
                                 <div className={clsx(styles["details-more__item-list"])}>
                                     <div className={clsx(styles["details-more__item-list__item"])}>
@@ -172,8 +175,8 @@ function DetailsPage(){
                         </div>
                     }
                     {navTabItem === 3 &&
-                        <div className={clsx(styles["details-more__item"], 'd-flex')}>
-                            <div className={clsx(styles["details-more__item-rating"], 'col-lg-3 col-md-3 col-sm-12')}>
+                        <div className={clsx(styles["details-more__item"], 'd-flex flex-wrap')}>
+                            <div className={clsx(styles["details-more__item-rating"], 'col-lg-3 col-md-6 col-sm-12')}>
                                 <div className={clsx(styles["details-more__item-rating__total"])}>
                                 <h3 className={clsx(styles['details-more__item-rating__title'], 'mb-0 mr-15')}>4.5</h3>
                                     <div className={clsx(styles["details-more__item-rating__icon"])}>
@@ -334,7 +337,7 @@ function DetailsPage(){
                                     </div>
                                 </div>
                             </div>
-                            <div className={clsx(styles["details-more__item-submit"], 'col-lg-3 col-md-3 col-sm-12')}>
+                            <div className={clsx(styles["details-more__item-submit"], 'col-lg-3 col-md-12 col-sm-12')}>
                                 <div className="form-group">
                                     <div className="form-group mb-3">
                                         <input placeholder='Your Name' id='review-name' type="text"
@@ -364,7 +367,7 @@ function DetailsPage(){
                                             </Fragment>
                                         ))}
                                     </div>
-                                    <button className={clsx(styles["details-more__item-submit__btn"], 'btn')}>SUBMIT</button>
+                                    <button className={clsx(styles["details-more__item-submit__btn"], 'btn', stylesGrid['details-more__item-submit__btn'])}>SUBMIT</button>
                                 </div>
                             </div>
                         </div>
@@ -374,7 +377,7 @@ function DetailsPage(){
             <div className="col-lg-12 col-md-12 col-sm-12 mt-5">
                 <h4 className="text-center">Related Product</h4>
                 <div className={clsx(styles["details-related__middle"])}></div>
-                <ul className={clsx(styles['details-related__list'], 'd-flex flex-wrap')}>
+                <ul className={clsx(styles['details-related__list'], 'd-flex flex-wrap p-0')}>
                     <li className={clsx(styles['details-related__item'], `mix col-lg-3 col-md-3 col-sm-6`)}>
                         <div className={clsx(styles['details-related__item--inner'])}>
                             <div className={clsx(styles['details-related__item-img--outer'])}>
@@ -395,7 +398,7 @@ function DetailsPage(){
                             </div>
                             <div className="details-related__item-info text-center mt-3">
                                 <p className="mb-0 text-dark">IPhone 11</p>
-                                <p className="text-dark" style={{fontWeight: "bold"}}>$300.000</p>
+                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={300} /></p>
                             </div>
                         </div>
                     </li>
@@ -419,7 +422,7 @@ function DetailsPage(){
                             </div>
                             <div className="details-related__item-info text-center mt-3">
                                 <p className="mb-0 text-dark">IPhone 11</p>
-                                <p className="text-dark" style={{fontWeight: "bold"}}>$300.000</p>
+                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={300} /></p>
                             </div>
                         </div>
                     </li>
@@ -443,7 +446,7 @@ function DetailsPage(){
                             </div>
                             <div className="details-related__item-info text-center mt-3">
                                 <p className="mb-0 text-dark">IPhone 11</p>
-                                <p className="text-dark" style={{fontWeight: "bold"}}>$300.000</p>
+                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={300} /></p>
                             </div>
                         </div>
                     </li>
@@ -467,7 +470,7 @@ function DetailsPage(){
                             </div>
                             <div className="details-related__item-info text-center mt-3">
                                 <p className="mb-0 text-dark">IPhone 11</p>
-                                <p className="text-dark" style={{fontWeight: "bold"}}>$300.000</p>
+                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={300} /></p>
                             </div>
                         </div>
                     </li>

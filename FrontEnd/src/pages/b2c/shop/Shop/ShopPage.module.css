@@ -2,6 +2,8 @@
 .shop-filter__department-item__para{
     font-weight: normal;
     margin-bottom: 15px;
+    font-size: 16px;
+    color: var(--para-text);
 }
 
 .shop-filter__department-item__para:hover, .shop-filter__department-item__para:focus{

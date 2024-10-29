@@ -1,9 +1,11 @@
 import ReactPaginate from "react-paginate";
 import clsx from "clsx";
+import {memo} from "react";
 
 import styles from './Pagination.module.css';
 
 function Pagination({pageCount, handlePageChange}) {
+    console.log('re-render paginate');
     return (
         <>
             <ReactPaginate
@@ -29,4 +31,4 @@ function Pagination({pageCount, handlePageChange}) {
     )
 }
 
-export default Pagination;
+export default memo(Pagination);

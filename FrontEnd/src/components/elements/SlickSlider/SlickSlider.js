@@ -4,9 +4,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import clsx from "clsx";
-import {useRef} from "react";
 
 function SlickSlider({children}) {
+    // console.log('re-render');
     const CustomPrevArrow = (props) => {
         const { onClick } = props;
         return (

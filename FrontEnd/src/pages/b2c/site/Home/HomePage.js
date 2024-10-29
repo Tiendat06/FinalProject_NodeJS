@@ -8,6 +8,7 @@ import {useEffect, useRef} from "react";
 import 'react-bootstrap'
 
 import styles from './HomePage.module.css';
+import {FormatUSDCurrency} from '~/utils'
 
 function HomePage(){
 
@@ -189,7 +190,7 @@ function HomePage(){
                             </div>
                             <div className="home-featured__item-info text-center mt-3">
                                 <p className="mb-0 text-dark">Laptop IdeaPad Slim 3</p>
-                                <p className="text-dark" style={{fontWeight: "bold"}}>$300.000</p>
+                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={300} /></p>
                             </div>
                         </div>
                     </li>
@@ -209,7 +210,7 @@ function HomePage(){
                             </div>
                             <div className="home-featured__item-info text-center mt-3">
                                 <p className="mb-0 text-dark">Laptop AcerAspire 5</p>
-                                <p className="text-dark" style={{fontWeight: "bold"}}>$200.000</p>
+                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={200} /></p>
                             </div>
                         </div>
                     </li>
@@ -229,7 +230,7 @@ function HomePage(){
                             </div>
                             <div className="home-featured__item-info text-center mt-3">
                                 <p className="mb-0 text-dark">Mouse Razer Basilisk V3</p>
-                                <p className="text-dark" style={{fontWeight: "bold"}}>$300.000</p>
+                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={300} /></p>
                             </div>
                         </div>
                     </li>
@@ -249,7 +250,7 @@ function HomePage(){
                             </div>
                             <div className="home-featured__item-info text-center mt-3">
                                 <p className="mb-0 text-dark">Sound Maika</p>
-                                <p className="text-dark" style={{fontWeight: "bold"}}>$150.000</p>
+                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={150} /></p>
                             </div>
                         </div>
                     </li>
@@ -269,7 +270,7 @@ function HomePage(){
                             </div>
                             <div className="home-featured__item-info text-center mt-3">
                                 <p className="mb-0 text-dark">Keyboard Lenovo K200</p>
-                                <p className="text-dark" style={{fontWeight: "bold"}}>$100.000</p>
+                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={100} /></p>
                             </div>
                         </div>
                     </li>
@@ -289,7 +290,7 @@ function HomePage(){
                             </div>
                             <div className="home-featured__item-info text-center mt-3">
                                 <p className="mb-0 text-dark">Keyboard Lenovo K500</p>
-                                <p className="text-dark" style={{fontWeight: "bold"}}>$200.000</p>
+                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={200} /></p>
                             </div>
                         </div>
                     </li>
@@ -309,7 +310,7 @@ function HomePage(){
                             </div>
                             <div className="home-featured__item-info text-center mt-3">
                                 <p className="mb-0 text-dark">Iphone 11</p>
-                                <p className="text-dark" style={{fontWeight: "bold"}}>$150.000</p>
+                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={150} /></p>
                             </div>
                         </div>
                     </li>
@@ -329,7 +330,7 @@ function HomePage(){
                             </div>
                             <div className="home-featured__item-info text-center mt-3">
                                 <p className="mb-0 text-dark">Xiaomi Note 12</p>
-                                <p className="text-dark" style={{fontWeight: "bold"}}>$90.000</p>
+                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={90} /></p>
                             </div>
                         </div>
                     </li>
@@ -376,7 +377,7 @@ function HomePage(){
                                 </div>
                                 <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
                                     <p className="text-dark mb-0">Dell Inspiron 14</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}>$30.000</p>
+                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
                                 </div>
                             </Link>
                             <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
@@ -387,7 +388,7 @@ function HomePage(){
                                 </div>
                                 <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
                                     <p className="text-dark mb-0">Dell Inspiron 14</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}>$30.000</p>
+                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
                                 </div>
                             </Link>
                             <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
@@ -398,7 +399,7 @@ function HomePage(){
                                 </div>
                                 <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
                                     <p className="text-dark mb-0">Dell Inspiron 14</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}>$30.000</p>
+                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
                                 </div>
                             </Link>
                         </div>
@@ -411,7 +412,7 @@ function HomePage(){
                                 </div>
                                 <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
                                     <p className="text-dark mb-0">Asus Vivobook S16</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}>$30.000</p>
+                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
                                 </div>
                             </Link>
                             <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
@@ -422,7 +423,7 @@ function HomePage(){
                                 </div>
                                 <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
                                     <p className="text-dark mb-0">Asus Vivobook S16</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}>$30.000</p>
+                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
                                 </div>
                             </Link>
                             <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
@@ -433,7 +434,7 @@ function HomePage(){
                                 </div>
                                 <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
                                     <p className="text-dark mb-0">Asus Vivobook S16</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}>$30.000</p>
+                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
                                 </div>
                             </Link>
                         </div>
@@ -473,7 +474,7 @@ function HomePage(){
                                 </div>
                                 <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
                                     <p className="text-dark mb-0">IPhone 11</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}>$30.000</p>
+                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
                                 </div>
                             </Link>
                             <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
@@ -484,7 +485,7 @@ function HomePage(){
                                 </div>
                                 <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
                                     <p className="text-dark mb-0">IPhone 11</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}>$30.000</p>
+                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
                                 </div>
                             </Link>
                             <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
@@ -495,7 +496,7 @@ function HomePage(){
                                 </div>
                                 <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
                                     <p className="text-dark mb-0">IPhone 11</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}>$30.000</p>
+                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
                                 </div>
                             </Link>
                         </div>
@@ -508,7 +509,7 @@ function HomePage(){
                                 </div>
                                 <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
                                     <p className="text-dark mb-0">JBL Party Box 300</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}>$30.000</p>
+                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
                                 </div>
                             </Link>
                             <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
@@ -519,7 +520,7 @@ function HomePage(){
                                 </div>
                                 <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
                                     <p className="text-dark mb-0">JBL Party Box 300</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}>$30.000</p>
+                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
                                 </div>
                             </Link>
                             <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
@@ -530,7 +531,7 @@ function HomePage(){
                                 </div>
                                 <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
                                     <p className="text-dark mb-0">JBL Party Box 300</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}>$30.000</p>
+                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
                                 </div>
                             </Link>
                         </div>
@@ -570,7 +571,7 @@ function HomePage(){
                                 </div>
                                 <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
                                     <p className="text-dark mb-0">Asus ROG Eva Edition</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}>$30.000</p>
+                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
                                 </div>
                             </Link>
                             <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
@@ -581,7 +582,7 @@ function HomePage(){
                                 </div>
                                 <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
                                     <p className="text-dark mb-0">Asus ROG Eva Edition</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}>$30.000</p>
+                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
                                 </div>
                             </Link>
                             <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
@@ -592,7 +593,7 @@ function HomePage(){
                                 </div>
                                 <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
                                     <p className="text-dark mb-0">Asus ROG Eva Edition</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}>$30.000</p>
+                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
                                 </div>
                             </Link>
                         </div>
@@ -605,7 +606,7 @@ function HomePage(){
                                 </div>
                                 <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
                                     <p className="text-dark mb-0">Dragon G7</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}>$30.000</p>
+                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
                                 </div>
                             </Link>
                             <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
@@ -616,7 +617,7 @@ function HomePage(){
                                 </div>
                                 <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
                                     <p className="text-dark mb-0">Dragon G7</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}>$30.000</p>
+                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
                                 </div>
                             </Link>
                             <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
@@ -627,7 +628,7 @@ function HomePage(){
                                 </div>
                                 <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
                                     <p className="text-dark mb-0">Dragon G7</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}>$30.000</p>
+                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
                                 </div>
                             </Link>
                         </div>

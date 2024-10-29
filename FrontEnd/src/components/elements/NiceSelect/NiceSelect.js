@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import {useEffect, memo} from "react";
 import $ from 'jquery';
 import 'jquery-nice-select/js/jquery.nice-select';
 import 'jquery-nice-select/css/nice-select.css';
@@ -8,7 +8,7 @@ import clsx from "clsx";
 function NiceSelect({options, onChange}) {
     useEffect(() => {
         if (typeof $.fn.niceSelect !== "function") {
-            console.error("Restrict mode force Nice Select!");
+            // console.error("Restrict mode force Nice Select!");
             return;
         }
         $('select').niceSelect();
@@ -28,4 +28,4 @@ function NiceSelect({options, onChange}) {
     );
 }
 
-export default NiceSelect;
+export default memo(NiceSelect);

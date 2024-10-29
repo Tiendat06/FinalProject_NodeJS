@@ -1,3 +1,4 @@
+import {memo} from 'react';
 
 function Modal({id='', title='', children='',
                    labelBtnSave='', labelBtnClose='',
@@ -27,4 +28,4 @@ function Modal({id='', title='', children='',
     );
 }
 
-export default Modal;
+export default memo(Modal);

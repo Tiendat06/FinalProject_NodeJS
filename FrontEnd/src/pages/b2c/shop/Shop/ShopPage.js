@@ -1,9 +1,10 @@
 import styles from './ShopPage.module.css';
 import {Pagination, NiceSelect} from '~/components/elements';
+import {FormatUSDCurrency} from '~/utils'
 
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
-import { useEffect, useRef, useState } from "react";
+import {useCallback, useEffect, useState} from "react";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
 import OwlCarousel from 'react-owl-carousel';
@@ -62,10 +63,10 @@ function ShopPage() {
         setPageCount(Math.ceil(filtered.length / itemsPerPage));
         setCurrentItems(filtered.slice(0, itemsPerPage));
     }, [priceRange, data, itemType]);
-    const handlePageChange = (event) => {
+    const handlePageChange = useCallback((event) => {
         const newOffset = event.selected * itemsPerPage;
         setCurrentItems(filteredData.slice(newOffset, newOffset + itemsPerPage));
-    };
+    }, [])
 
     const [selectedOption, setSelectedOption] = useState('id');
     useEffect(() => {
@@ -80,45 +81,44 @@ function ShopPage() {
                     : b[selectedOption] - a[selectedOption];
             }
         });
-        console.log(isAscending);
         setData(sortedDataSelect);
     }, [selectedOption, isAscending]);
 
     return (
         <>
-            <div className="shop-filter col-lg-3 col-md-3 col-sm-12">
+            <div className="shop-filter col-lg-3 col-md-4 col-sm-12">
                 <div className="shop-filter__department">
                     <h4 className='mb-4'>Department</h4>
                     <ul className="shop-filter__department-list p-0">
                         <li data-filter="*" className={clsx("shop-filter__department-item d-flex")}>
-                            <a href='javascript:void(0)'
+                            <div
                                onClick={() => setItemType('all')}
-                               className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'all' && styles['link-department']}`)}>All</a>
+                               className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'all' && styles['link-department']}`)}>All</div>
                         </li>
                         <li data-filter=".laptop" className="shop-filter__department-item d-flex">
-                            <a href='javascript:void(0)'
+                            <div
                                onClick={() => setItemType('laptop')}
-                               className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'laptop' && styles['link-department']}`)}>Laptop</a>
+                               className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'laptop' && styles['link-department']}`)}>Laptop</div>
                         </li>
                         <li data-filter=".mobile" className="shop-filter__department-item d-flex">
-                            <a href='javascript:void(0)'
+                            <div
                                onClick={() => setItemType('mobile')}
-                               className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'mobile' && styles['link-department']}`)}>Mobile</a>
+                               className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'mobile' && styles['link-department']}`)}>Mobile</div>
                         </li>
                         <li data-filter=".sound" className="shop-filter__department-item d-flex">
-                            <a href='javascript:void(0)'
+                            <div
                                onClick={() => setItemType('sound')}
-                               className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'sound' && styles['link-department']}`)}>Loudspeaker</a>
+                               className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'sound' && styles['link-department']}`)}>Loudspeaker</div>
                         </li>
                         <li data-filter=".mouse" className="shop-filter__department-item d-flex">
-                            <a href='javascript:void(0)'
+                            <div
                                onClick={() => setItemType('mouse')}
-                               className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'mouse' && styles['link-department']}`)}>Mouse</a>
+                               className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'mouse' && styles['link-department']}`)}>Mouse</div>
                         </li>
                         <li data-filter=".keyboard" className="shop-filter__department-item d-flex">
-                            <a href='javascript:void(0)'
+                            <div
                                onClick={() => setItemType('keyboard')}
-                               className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'keyboard' && styles['link-department']}`)}>Keyboard</a>
+                               className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'keyboard' && styles['link-department']}`)}>Keyboard</div>
                         </li>
                     </ul>
                 </div>
@@ -128,7 +128,7 @@ function ShopPage() {
                     <input onChange={e => setPriceRange(Number(e.target.value))}
                            value={priceRange} type="range" step='1' min='10' max='1000'
                            className={clsx(styles["form-range"], 'form-range')} id="customRange1"/>
-                    <p className={clsx(styles['shop-filter__price-text'])}>${priceRange} - $1000</p>
+                    <p className={clsx(styles['shop-filter__price-text'])}><FormatUSDCurrency price={priceRange} /> - <FormatUSDCurrency price={1000} /></p>
                 </div>
 
                 <div className="shop-filter__latest mt-4">
@@ -146,7 +146,7 @@ function ShopPage() {
                                 </div>
                                 <div className={clsx(styles["shop-filter__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
                                     <p className="text-dark mb-0">Dell Inspiron 14</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}>$30.000</p>
+                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
                                 </div>
                             </Link>
                             <Link to='/' className={clsx(styles["shop-filter__rated-item"], 'd-flex')}>
@@ -157,7 +157,7 @@ function ShopPage() {
                                 </div>
                                 <div className={clsx(styles["shop-filter__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
                                     <p className="text-dark mb-0">Dell Inspiron 14</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}>$30.000</p>
+                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
                                 </div>
                             </Link>
                             <Link to='/' className={clsx(styles["shop-filter__rated-item"], 'd-flex')}>
@@ -168,7 +168,7 @@ function ShopPage() {
                                 </div>
                                 <div className={clsx(styles["shop-filter__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
                                     <p className="text-dark mb-0">Dell Inspiron 14</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}>$30.000</p>
+                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
                                 </div>
                             </Link>
                         </div>
@@ -181,7 +181,7 @@ function ShopPage() {
                                 </div>
                                 <div className={clsx(styles["shop-filter__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
                                     <p className="text-dark mb-0">Asus Vivobook S16</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}>$30.000</p>
+                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
                                 </div>
                             </Link>
                             <Link to='/' className={clsx(styles["shop-filter__rated-item"], 'd-flex')}>
@@ -192,7 +192,7 @@ function ShopPage() {
                                 </div>
                                 <div className={clsx(styles["shop-filter__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
                                     <p className="text-dark mb-0">Asus Vivobook S16</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}>$30.000</p>
+                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
                                 </div>
                             </Link>
                             <Link to='/' className={clsx(styles["shop-filter__rated-item"], 'd-flex')}>
@@ -203,7 +203,7 @@ function ShopPage() {
                                 </div>
                                 <div className={clsx(styles["shop-filter__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
                                     <p className="text-dark mb-0">Asus Vivobook S16</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}>$30.000</p>
+                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
                                 </div>
                             </Link>
                         </div>
@@ -211,10 +211,10 @@ function ShopPage() {
                 </div>
             </div>
 
-            <div className="shop-list col-lg-9 col-md-9 col-sm-12">
+            <div className="shop-list col-lg-9 col-md-8 col-sm-12">
                 <div className={clsx(styles["shop-filter"], 'mb-3')}>
                     <p className={clsx(styles['shop-filter__para'])}>Sort By:</p>
-                    <NiceSelect options={filterOptions} onChange={value => setSelectedOption(value)}/>
+                    <NiceSelect options={filterOptions} onChange={useCallback((value) => setSelectedOption(value),[])}/>
                     <div onClick={() => setIsAscending(!isAscending)}>
                         {isAscending &&
                             <i className={clsx(styles['shop-filter__icon'], "fa-solid fa-arrow-up-wide-short")}></i>
@@ -224,10 +224,10 @@ function ShopPage() {
                         }
                     </div>
                 </div>
-                <ul className={clsx(styles['shop-list--inner'], 'd-flex flex-wrap')}>
+                <ul className={clsx(styles['shop-list--inner'], 'd-flex flex-wrap p-0')}>
                     {currentItems.map((item) => (
                         <li key={item.id}
-                            className={clsx(styles['shop-list__item'], `mix col-lg-4 col-md-4 col-sm-6 ${item.type}`)}>
+                            className={clsx(styles['shop-list__item'], `mix col-lg-4 col-md-6 col-sm-6 ${item.type}`)}>
                             <div className={clsx(styles['shop-list__item--inner'])}>
                                 <div className={clsx(styles['shop-list__item-img--outer'])}>
                                     <img className={clsx(styles['shop-list__item-img'])}
@@ -247,7 +247,7 @@ function ShopPage() {
                                 </div>
                                 <div className="shop-list__item-info text-center mt-3">
                                     <p className="mb-0 text-dark">{item.name}</p>
-                                    <p className="text-dark" style={{fontWeight: "bold"}}>${item.price}</p>
+                                    <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={item.price} /></p>
                                 </div>
                             </div>
                         </li>

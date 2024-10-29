@@ -1,0 +1,34 @@
+/*Mobile*/
+@media (max-width: 46.1875em) {
+    .details{
+        margin-top: 30px;
+    }
+
+    .details-info{
+        margin-top: 60px;
+    }
+
+    .details-info__choice-select, .details-info__choice-group{
+        margin-left: 15px;
+    }
+
+    .details-more__item-submit__btn{
+        width: 100%;
+    }
+}
+
+/* Tablet */
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em){
+    .details-info{
+        margin-top: 60px;
+    }
+
+    .details-more__item-submit__btn{
+        width: 100%;
+    }
+}
+
+/* PC */
+@media only screen and (min-width: 64em){
+
+}

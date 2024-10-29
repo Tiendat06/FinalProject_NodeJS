@@ -1,0 +1,26 @@
+/*Mobile*/
+@media (max-width: 46.1875em) {
+    .cart-quantity--inner{
+        justify-content: start !important;
+    }
+
+    .cart-more__coupon-btn{
+        font-size: 10px;
+    }
+
+    .cart-payment{
+        margin-top: 30px;
+    }
+}
+
+/* Tablet */
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em){
+    .cart-payment{
+        margin-top: 30px;
+    }
+}
+
+/* PC */
+@media only screen and (min-width: 64em){
+
+}

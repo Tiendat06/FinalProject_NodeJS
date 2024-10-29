@@ -1,0 +1,113 @@
+/*checkout info*/
+.checkout-info__form{
+    padding: 10px;
+}
+
+.checkout-info__inp{
+    font-size: 14px;
+    color: var(--para-text);
+    padding: 10px;
+}
+
+.checkout-info__inp:focus{
+    outline: none;
+    box-shadow: none;
+    border: 1px solid var(--btn-primary);
+}
+
+/*checkout order*/
+.checkout-order{
+    padding: 40px 50px;
+    border: 1px solid var(--border-slick);
+}
+
+.checkout-order__title{
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkout-order__title p{
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.checkout-order__item{
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkout-order__ship{
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkout-order__totalBill-text{
+    font-size: 24px;
+    color: var(--btn-primary);
+    font-weight: bold;
+}
+
+.checkout-order__payment-method__form{
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.checkout-order__label{
+    padding: 5px;
+    width: 90%;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    color: var(--para-text);
+    font-weight: bold;
+    border: 2px solid var(--border-slick);
+}
+
+.checkout-order__label-focus{
+    border: 2px solid var(--btn-primary);
+    color: var(--btn-primary);
+}
+
+.checkout-order__img{
+    height: 30px;
+    width: 100%;
+    object-fit: contain;
+}
+
+.checkout-order__payment-method{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.checkout-order__payment-btn__text{
+    background-color: var(--btn-primary);
+    color: #ffffff;
+    letter-spacing: 2px;
+    font-weight: bold;
+    transition: background-color ease-in-out .3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkout-order__payment-btn__text span{
+    transform: translateX(10px);
+}
+
+.checkout-order__payment-btn__text:hover, .checkout-order__payment-btn__text:focus-visible, .checkout-order__payment-btn__text:active{
+    border: 1px solid var(--btn-primary);
+    color: var(--btn-primary);
+}
+
+.checkout-order__payment-btn__text i{
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 0.5s ease, transform 0.5s ease-in-out;;
+}
+
+.checkout-order__payment-btn__text:hover i{
+    opacity: 1;
+    transform: translateX(20px);
+}

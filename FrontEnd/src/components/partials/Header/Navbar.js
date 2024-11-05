@@ -10,14 +10,10 @@ function Navbar() {
 
     let [search, setSearch] = useState('');
     let [isLogin, setIsLogin] = useState(true);
+    const [isCategoryClicked, setIsCategoryClicked] = useState(false);
 
     let onclickCategory = () => {
-        let listCategory = document.querySelector(`.${styles['header-search__left-list--inner']}`)
-        if(listCategory.classList.contains(`${styles['header-search__left-list--down']}`)){
-            listCategory.classList.remove(`${styles['header-search__left-list--down']}`);
-        } else{
-            listCategory.classList.add(`${styles['header-search__left-list--down']}`);
-        }
+        setIsCategoryClicked(!isCategoryClicked);
     }
 
     return (
@@ -113,7 +109,7 @@ function Navbar() {
                                 </p>
                             </div>
                             <div style={{zIndex: 3}} className={clsx("position-absolute header-search__left-list", styles['header-search__left-list'])}>
-                                <div className={clsx(styles['header-search__left-list--inner'])}>
+                                <div className={clsx(styles['header-search__left-list--inner'], isCategoryClicked ? styles['header-search__left-list--down']: undefined)}>
                                     <div className={clsx(styles['header-search__left-item'])}>Laptop</div>
                                     <div className={clsx(styles['header-search__left-item'])}>Mobile</div>
                                     <div className={clsx(styles['header-search__left-item'])}>Loudspeaker</div>

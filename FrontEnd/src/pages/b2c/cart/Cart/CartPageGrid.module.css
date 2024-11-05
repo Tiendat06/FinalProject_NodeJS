@@ -22,5 +22,7 @@
 
 /* PC */
 @media only screen and (min-width: 64em){
-
+    .cart-more__delivery-options__items{
+        margin-right: 30px !important;
+    }
 }

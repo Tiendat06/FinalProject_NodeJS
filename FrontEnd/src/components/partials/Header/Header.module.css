@@ -36,9 +36,10 @@
 }
 
 .header-bottom__img{
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     cursor: pointer;
+    object-fit: contain;
 }
 
 .header-bottom__navigator-link{

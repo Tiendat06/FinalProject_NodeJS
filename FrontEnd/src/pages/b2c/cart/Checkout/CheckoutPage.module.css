@@ -15,6 +15,25 @@
     border: 1px solid var(--btn-primary);
 }
 
+.checkout-info__btn-back{
+    width: 100%;
+    background-color: var(--btn-primary);
+    color: #ffffff;
+    outline: none;
+    border: none;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 10px;
+    transition: background-color ease-in-out .3s;
+    text-align: center;
+}
+
+.checkout-info__btn-back:hover{
+    background-color: #ffffff;
+    color: var(--btn-primary);
+    border: 1px solid var(--btn-primary);
+}
+
 /*checkout order*/
 .checkout-order{
     padding: 40px 50px;

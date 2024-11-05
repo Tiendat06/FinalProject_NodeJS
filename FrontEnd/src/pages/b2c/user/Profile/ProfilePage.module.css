@@ -1,0 +1,80 @@
+/*Profile resume*/
+.profile-resume{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 5px;
+    justify-content: space-evenly;
+    cursor: pointer;
+}
+
+.profile-resume__img{
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-resume__img-item{
+    width: 100%;
+}
+
+.profile-resume__name-text, .profile-resume__name-phone{
+    font-size: 14px;
+}
+
+.profile-resume__name-text{
+    color: #000000;
+    font-weight: bold;
+}
+
+/*Profile-category*/
+
+.profile-category{
+    padding-left: 0;
+    margin-top: 10px;
+    overflow: hidden;
+    max-height: 500px;
+    transition: max-height ease-in-out .5s;
+}
+
+.profile-resume--click{
+    max-height: 0px !important;
+}
+
+.profile-item{
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.profile-item:hover{
+    background-color: var(--bg-item);
+}
+
+.profile-item--click{
+    background-color: var(--bg-item);
+}
+
+.profile-item__icon{
+    padding: 5px;
+    text-align: center;
+}
+
+.profile-item__icon-item{
+    object-fit: contain;
+    font-size: 16px;
+    color: var(--para-text);
+}
+
+.profile-item__para{
+    margin-bottom: 0;
+    font-size: 14px;
+}
+
+/*profile content*/
+.profile-content{
+    padding-left: 20px;
+}

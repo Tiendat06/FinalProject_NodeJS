@@ -1,0 +1,129 @@
+/*profile add*/
+.profile-address__add{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--btn-primary);
+    background-color: #ffffff;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 5px;
+    padding: 5px 0;
+    transition: background-color ease-in-out .3s;
+}
+
+.profile-address__add:hover{
+    background-color: var(--btn-primary);
+}
+
+.profile-address__add:hover i, .profile-address__add:hover .profile-address__add-text{
+    color: #ffffff;
+}
+
+.profile-address__add i{
+    color: var(--btn-primary);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.profile-address__add-text{
+    margin-bottom: 0;
+    margin-left: 10px;
+    color: var(--btn-primary);
+}
+
+/*profile address list*/
+.profile-address__list{
+    padding-left: 0;
+}
+
+.profile-address__item{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 15px;
+    border: 1px solid var(--border-slick);
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.profile-address__item-info{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.profile-address__item-name{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.profile-address__item-name p{
+    font-size: 14px;
+    margin-bottom: 0;
+    margin-right: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.profile-address__item-text{
+    font-size: 12px;
+    margin-bottom: 0;
+    margin-top: 5px;
+}
+
+.profile-address__item-name span{
+    font-size: 8px;
+}
+
+.profile-address__item-btn span{
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--para-text);
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.profile-address__item-btn button{
+    outline: none;
+    border: 1px solid var(--btn-primary);
+    background-color: #ffffff;
+    color: var(--btn-primary);
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    transition: background-color ease-in-out .3s;
+}
+
+.profile-address__item-btn button:hover{
+    background-color: var(--btn-primary);
+    color: #ffffff;
+}
+
+/*Modal*/
+.profile-address__save-btn{
+    border: 1px solid var(--btn-primary);
+    color: var(--btn-primary);
+}
+
+.profile-address__save-btn:hover, .profile-address__save-btn:focus{
+    background-color: var(--btn-primary);
+    color: #ffffff;
+}
+
+.profile-address__label-form{
+    font-size: 14px;
+    margin-bottom: 5px;
+    margin-top: 15px;
+    color: var(--para-text);
+}
+
+.profile-address__inp-form{
+    font-size: 14px;
+}
+
+.profile-address__inp-form:focus{
+    box-shadow: none;
+    border: 1px solid var(--btn-primary);
+}

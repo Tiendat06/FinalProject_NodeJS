@@ -1,0 +1,55 @@
+.profile-favorite-list__item{
+    padding: 10px 15px 10px 15px;
+}
+
+.profile-favorite-list__item-img{
+    height: 100%;
+    object-fit: contain;
+}
+
+.profile-favorite-list__item-img--outer{
+    padding: 40px;
+    background-color: var(--bg-item-2);
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-favorite-list__item-img--outer:hover .profile-favorite-list__item-list{
+    /*transition: ease-in-out .3s;*/
+    bottom: 15px;
+}
+
+.profile-favorite-list__item-list{
+    position: absolute;
+    justify-content: center;
+    bottom: -50px;
+    left: 0;
+    transition: ease-in-out .3s
+}
+
+.profile-favorite-list__item-list--icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px 0 10px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid var(--bg-item);
+    background-color: #ffffff;
+    border-radius: 50%;
+    transition: linear .3s;
+}
+
+.profile-favorite-list__item-list--icon:hover{
+    cursor: pointer;
+    background-color: var(--btn-primary);
+}
+
+.profile-favorite-list__item-list--icon:hover i{
+    color: #ffffff;
+    transform: rotate(3600deg);
+    transition: transform linear .2s;
+}

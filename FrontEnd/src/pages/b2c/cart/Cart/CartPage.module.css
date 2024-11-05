@@ -114,6 +114,35 @@
     margin-left: 10px;
 }
 
+.cart-more__delivery-options__items{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 0 20px 0;
+    padding: 10px;
+    border: 2px solid var(--border-slick);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.cart-more__delivery-options__text{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cart-more__delivery-options__text p{
+    margin-bottom: 0;
+    margin-right: 10px;
+}
+
+.cart-more__delivery-options__price p{
+    margin-bottom: 0;
+}
+
+.cart-more__delivery-options__items--choose{
+    border: 2px solid var(--btn-primary);
+}
+
 .cart-more__coupon-inp{
     padding: 10px;
     width: 255px;

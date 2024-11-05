@@ -390,6 +390,12 @@ function DetailsPage(){
                                         </Link>
                                     </li>
                                     <li className={clsx(styles['details-related__item-list--icon'])}>
+                                        <Link className="text-dark" to={`/`}>
+                                            <i className="fa-solid fa-heart"></i>
+                                        </Link>
+                                    </li>
+
+                                    <li className={clsx(styles['details-related__item-list--icon'])}>
                                         <Link to='/' className='text-dark'>
                                             <i className="fa-solid fa-cart-shopping"></i>
                                         </Link>
@@ -398,7 +404,8 @@ function DetailsPage(){
                             </div>
                             <div className="details-related__item-info text-center mt-3">
                                 <p className="mb-0 text-dark">IPhone 11</p>
-                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={300} /></p>
+                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={300}/>
+                                </p>
                             </div>
                         </div>
                     </li>
@@ -414,6 +421,11 @@ function DetailsPage(){
                                         </Link>
                                     </li>
                                     <li className={clsx(styles['details-related__item-list--icon'])}>
+                                        <Link className="text-dark" to={`/`}>
+                                            <i className="fa-solid fa-heart"></i>
+                                        </Link>
+                                    </li>
+                                    <li className={clsx(styles['details-related__item-list--icon'])}>
                                         <Link to='/' className='text-dark'>
                                             <i className="fa-solid fa-cart-shopping"></i>
                                         </Link>
@@ -422,7 +434,8 @@ function DetailsPage(){
                             </div>
                             <div className="details-related__item-info text-center mt-3">
                                 <p className="mb-0 text-dark">IPhone 11</p>
-                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={300} /></p>
+                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={300}/>
+                                </p>
                             </div>
                         </div>
                     </li>
@@ -438,6 +451,11 @@ function DetailsPage(){
                                         </Link>
                                     </li>
                                     <li className={clsx(styles['details-related__item-list--icon'])}>
+                                        <Link className="text-dark" to={`/`}>
+                                            <i className="fa-solid fa-heart"></i>
+                                        </Link>
+                                    </li>
+                                    <li className={clsx(styles['details-related__item-list--icon'])}>
                                         <Link to='/' className='text-dark'>
                                             <i className="fa-solid fa-cart-shopping"></i>
                                         </Link>
@@ -446,7 +464,8 @@ function DetailsPage(){
                             </div>
                             <div className="details-related__item-info text-center mt-3">
                                 <p className="mb-0 text-dark">IPhone 11</p>
-                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={300} /></p>
+                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={300}/>
+                                </p>
                             </div>
                         </div>
                     </li>
@@ -462,6 +481,11 @@ function DetailsPage(){
                                         </Link>
                                     </li>
                                     <li className={clsx(styles['details-related__item-list--icon'])}>
+                                        <Link className="text-dark" to={`/`}>
+                                            <i className="fa-solid fa-heart"></i>
+                                        </Link>
+                                    </li>
+                                    <li className={clsx(styles['details-related__item-list--icon'])}>
                                         <Link to='/' className='text-dark'>
                                             <i className="fa-solid fa-cart-shopping"></i>
                                         </Link>
@@ -470,7 +494,8 @@ function DetailsPage(){
                             </div>
                             <div className="details-related__item-info text-center mt-3">
                                 <p className="mb-0 text-dark">IPhone 11</p>
-                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={300} /></p>
+                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={300}/>
+                                </p>
                             </div>
                         </div>
                     </li>

@@ -4,10 +4,12 @@ import {Modal, Pagination} from "~/components/elements";
 import {FormatUSDCurrency} from "~/utils";
 
 import clsx from "clsx";
-import {useCallback, useEffect, useMemo, useState} from "react";
+import {useCallback, useEffect, useMemo, useState, createContext} from "react";
 import {Link} from "react-router-dom";
 
 function CartPage(){
+    const standardShip = 6;
+    const expressShip = 10;
     const itemsPerPage = 4;
     const [items, setItems] = useState([
         { id: 1, name: "Laptop IdeaPad Slim 3", img: "/img/customer/product/laptop/lenovo-ideapadSlim3.png", price: 300, type: 'laptop', quantity: 3 },
@@ -23,6 +25,8 @@ function CartPage(){
     ]);
     const [currentPage, setCurrentPage] = useState(0);
     const [itemDeleted, setItemDeleted] = useState({});
+    const [shippingFees, setShippingFees] = useState(Number(sessionStorage.getItem('shippingFees')) || 6);
+    const [taxFees, setTaxFees] = useState(0.1);
     const setQuantity = (itemId, newQuantity) => {
         setItems(prevItems =>
             prevItems.map(item =>
@@ -32,10 +36,12 @@ function CartPage(){
             )
         );
     };
+
     const totalBill = useMemo(() => {
-        // console.log('Re-calculate');
-        return items.reduce((total, item) => total + (item['price'] * item['quantity']), 0);
-    }, [items])
+        const itemsTotal = items.reduce((total, item) => total + (item['price'] * item['quantity']), 0);
+        const taxTotal = itemsTotal * taxFees;
+        return itemsTotal + taxTotal + shippingFees;
+    }, [items, shippingFees, taxFees])
 
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
@@ -47,7 +53,7 @@ function CartPage(){
     }, [items, currentPage]);
     const handlePageChange = useCallback((event) => {
         setCurrentPage(event.selected);
-    }, [])
+    }, []);
 
     const [coupon, setCoupon] = useState('')
     const [couponsList, setCouponsList] = useState([
@@ -90,7 +96,8 @@ function CartPage(){
                                 </div>
                             </td>
                             <td className={clsx(styles["cart-quantity"], 'col-lg-1 col-md-1 col-sm-1 text-center pb-4 pt-4')}>
-                                <div className={clsx(stylesGrid['cart-quantity--inner'], "d-flex align-items-center justify-content-center h-100")}>
+                                <div
+                                    className={clsx(stylesGrid['cart-quantity--inner'], "d-flex align-items-center justify-content-center h-100")}>
                                     <div
                                         className="form-group col-lg-5 col-md-5 col-sm-5 d-flex align-items-center justify-content-between">
                                         <div className={clsx(styles["cart-quantity__group"])}>
@@ -139,6 +146,43 @@ function CartPage(){
                         </button>
                     </div>
 
+                    <div className="cart-more__delivery mt-5">
+                        <h6 className="mb-3">Delivery Options</h6>
+                        <div className={clsx(styles["cart-more__delivery-options"])}>
+                            <div onClick={() => {
+                                setShippingFees(standardShip);
+                                sessionStorage.setItem('shippingFees', standardShip.toString());
+                            }}
+                                 className={clsx(styles["cart-more__delivery-options__items"], stylesGrid['cart-more__delivery-options__items'],
+                                     (shippingFees === standardShip && styles['cart-more__delivery-options__items--choose']))}>
+
+                                <div className={clsx(styles["cart-more__delivery-options__text"])}>
+                                    <p>Standard</p>
+                                    <p>-</p>
+                                    <p>5 days</p>
+                                </div>
+                                <div className={clsx(styles["cart-more__delivery-options__price"])}>
+                                    <p><FormatUSDCurrency price={standardShip}/></p>
+                                </div>
+                            </div>
+                            <div onClick={() => {
+                                setShippingFees(expressShip);
+                                sessionStorage.setItem('shippingFees', expressShip.toString());
+                            }}
+                                 className={clsx(styles["cart-more__delivery-options__items"], stylesGrid['cart-more__delivery-options__items'],
+                                     (shippingFees === expressShip && styles['cart-more__delivery-options__items--choose']))}>
+                                <div className={clsx(styles["cart-more__delivery-options__text"])}>
+                                    <p>Express</p>
+                                    <p>-</p>
+                                    <p>2 days</p>
+                                </div>
+                                <div className={clsx(styles["cart-more__delivery-options__price"])}>
+                                    <p><FormatUSDCurrency price={expressShip}/></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div className="cart-more__coupon mt-5">
                         <h6 className="mb-3">Discount Coupon</h6>
                         <div className="form-group d-flex align-items-center">
@@ -146,14 +190,16 @@ function CartPage(){
                                    value={coupon}
                                    onChange={e => setCoupon(e.target.value)}
                                    className={clsx(styles['cart-more__coupon-inp'])}/>
-                            <button onClick={onClickAddCoupon} className={clsx(styles["cart-more__coupon-btn"], stylesGrid['cart-more__coupon-btn'])}>APPLY
+                            <button onClick={onClickAddCoupon}
+                                    className={clsx(styles["cart-more__coupon-btn"], stylesGrid['cart-more__coupon-btn'])}>APPLY
                                 COUPON
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div className={clsx(styles['cart-payment'], stylesGrid['cart-payment'], 'col-lg-6 col-md-12 col-sm-12')}>
+                <div
+                    className={clsx(styles['cart-payment'], stylesGrid['cart-payment'], 'col-lg-6 col-md-12 col-sm-12')}>
                     <div className={clsx(styles["cart-payment__info"])}>
                         <h4 className="mb-0">Cart Total</h4>
                         <div className={clsx(styles["cart-payment__coupon"], 'mt-4')}>
@@ -166,8 +212,13 @@ function CartPage(){
                             </div>
                         </div>
                         <div className={clsx(styles["cart-payment__coupon"], 'mt-4')}>
+                            <p className={clsx(styles['cart-payment__para'])}>Tax</p>
+                            <p className={clsx(styles['cart-payment__para'], styles['cart-payment__item'])}>{(taxFees * 100).toFixed(0)}%</p>
+                        </div>
+                        <div className={clsx(styles["cart-payment__coupon"], 'mt-4')}>
                             <p className={clsx(styles['cart-payment__para'])}>Shipping</p>
-                            <p className={clsx(styles['cart-payment__para'], styles['cart-payment__item'])}>FREE</p>
+                            <p className={clsx(styles['cart-payment__para'], styles['cart-payment__item'])}>{shippingFees !== 0 ?
+                                <FormatUSDCurrency price={shippingFees}/> : 'FREE'}</p>
                         </div>
                         <div className={clsx(styles["cart-payment__coupon"], 'mt-4')}>
                             <p className={clsx(styles['cart-payment__para'])}>Total</p>

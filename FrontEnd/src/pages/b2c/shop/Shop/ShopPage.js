@@ -4,7 +4,7 @@ import {FormatUSDCurrency} from '~/utils'
 
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
-import {useCallback, useEffect, useState} from "react";
+import {useCallback, useEffect, useLayoutEffect, useState} from "react";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
 import OwlCarousel from 'react-owl-carousel';
@@ -54,7 +54,7 @@ function ShopPage() {
     const [isAscending, setIsAscending] = useState(true);
     const [filteredData, setFilteredData] = useState(data);
     const [itemType, setItemType] = useState("all");
-    useEffect(() => {
+    useLayoutEffect(() => {
         let filtered = data.filter(item => (item['price'] >= priceRange));
         if(itemType !== 'all'){
             filtered = filtered.filter(item => item['type'] === itemType);
@@ -239,6 +239,11 @@ function ShopPage() {
                                             </Link>
                                         </li>
                                         <li className={clsx(styles['shop-list__item-list--icon'])}>
+                                            <Link className="text-dark" to='/'>
+                                                <i className="fa-solid fa-heart"></i>
+                                            </Link>
+                                        </li>
+                                        <li className={clsx(styles['shop-list__item-list--icon'])}>
                                             <Link to='/' className='text-dark'>
                                                 <i className="fa-solid fa-cart-shopping"></i>
                                             </Link>
@@ -247,7 +252,8 @@ function ShopPage() {
                                 </div>
                                 <div className="shop-list__item-info text-center mt-3">
                                     <p className="mb-0 text-dark">{item.name}</p>
-                                    <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={item.price} /></p>
+                                    <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency
+                                        price={item.price}/></p>
                                 </div>
                             </div>
                         </li>

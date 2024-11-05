@@ -6,7 +6,7 @@ import ShopPage from '~/pages/b2c/shop/Shop/ShopPage';
 import DetailsPage from "~/pages/b2c/shop/Details/DetailsPage";
 import CartPage from "~/pages/b2c/cart/Cart/CartPage";
 import CheckoutPage from "~/pages/b2c/cart/Checkout/CheckoutPage";
-import ProfilePage from "~/pages/b2c/user/profile/ProfilePage";
+import ProfilePage from "~/pages/b2c/user/Profile/ProfilePage";
 
 // b2b
 

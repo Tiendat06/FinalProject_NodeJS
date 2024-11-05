@@ -1,0 +1,113 @@
+/*profile voucher*/
+.profile-voucher__list{
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+}
+
+.profile-voucher__item{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 10px 10px 0;
+    height: 150px;
+}
+
+.profile-voucher__item-img{
+    background-color: var(--bg-item-2);
+    padding: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border: 2px solid var(--border-slick);
+    border-right: 2px dashed var(--border-slick);
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.profile-voucher__item-img::before, .profile-voucher__item-img::after{
+    content: '';
+    position: absolute;
+    top: -1.5px;
+    z-index: 2;
+    right: -1.5px;
+    width: 10px;
+    height: 10px;
+    background-color: #ffffff;
+    border-top: 2px solid #ffffff;
+    border-right: 2px solid #ffffff;
+    border-bottom: 2px solid var(--border-slick);
+    border-left: 2px solid var(--border-slick);
+    border-bottom-left-radius: 50%;
+}
+
+.profile-voucher__item-img::after{
+    top: unset;
+    bottom: -1.5px;
+    border-top: 2px solid var(--border-slick);
+    border-bottom: 2px solid #ffffff;
+    border-bottom-left-radius: unset;
+    border-top-left-radius: 50%;
+}
+
+.profile-voucher__item-img--inner{
+    width: 100%;
+    object-fit: contain;
+}
+
+.profile-voucher__item-info{
+    background-color: var(--bg-item-2);
+    position: relative;
+    border: 2px solid var(--border-slick);
+    border-left: unset;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.profile-voucher__item-info::before, .profile-voucher__item-info::after{
+    content: '';
+    position: absolute;
+    top: -1.5px;
+    z-index: 2;
+    left: -1.5px;
+    width: 10px;
+    height: 10px;
+    background-color: #ffffff;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid var(--border-slick);
+    border-bottom: 2px solid var(--border-slick);
+    border-bottom-right-radius: 50%;
+}
+
+.profile-voucher__item-info::after{
+    top: unset;
+    bottom: -1.5px;
+    border-top: 2px solid var(--border-slick);
+    border-bottom: 2px solid #ffffff;
+    border-bottom-right-radius: unset;
+    border-top-right-radius: 50%;
+}
+
+.profile-voucher__item-info p{
+    font-size: 12px;
+    padding-left: 20px;
+}
+
+.profile-voucher__item-details{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-right: 20px;
+}
+
+.profile-voucher__item-details img{
+    margin-top: 5px;
+    font-size: 16px;
+    height: 25px;
+    color: var(--btn-primary);
+    cursor: pointer;
+}

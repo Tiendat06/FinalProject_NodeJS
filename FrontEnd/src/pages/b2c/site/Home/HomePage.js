@@ -184,6 +184,10 @@ function HomePage(){
                                         <Link className="text-dark" to='/'><i className="fa-solid fa-eye"></i></Link>
                                     </li>
                                     <li className={clsx(styles['home-featured__item-list--icon'])}>
+                                        <Link className="text-dark" to='/'><i
+                                            className="fa-solid fa-heart"></i></Link>
+                                    </li>
+                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
                                         <Link to='/' className='text-dark'><i className="fa-solid fa-cart-shopping"></i></Link>
                                     </li>
                                 </ul>
@@ -202,6 +206,10 @@ function HomePage(){
                                 <ul className={clsx(styles['home-featured__item-list'], 'd-flex w-100 p-0')}>
                                     <li className={clsx(styles['home-featured__item-list--icon'])}>
                                         <Link className="text-dark" to='/'><i className="fa-solid fa-eye"></i></Link>
+                                    </li>
+                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
+                                        <Link className="text-dark" to='/'><i
+                                            className="fa-solid fa-heart"></i></Link>
                                     </li>
                                     <li className={clsx(styles['home-featured__item-list--icon'])}>
                                         <Link to='/' className='text-dark'><i className="fa-solid fa-cart-shopping"></i></Link>
@@ -224,6 +232,10 @@ function HomePage(){
                                         <Link className="text-dark" to='/'><i className="fa-solid fa-eye"></i></Link>
                                     </li>
                                     <li className={clsx(styles['home-featured__item-list--icon'])}>
+                                        <Link className="text-dark" to='/'><i
+                                            className="fa-solid fa-heart"></i></Link>
+                                    </li>
+                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
                                         <Link to='/' className='text-dark'><i className="fa-solid fa-cart-shopping"></i></Link>
                                     </li>
                                 </ul>
@@ -242,6 +254,10 @@ function HomePage(){
                                 <ul className={clsx(styles['home-featured__item-list'], 'd-flex w-100 p-0')}>
                                     <li className={clsx(styles['home-featured__item-list--icon'])}>
                                         <Link className="text-dark" to='/'><i className="fa-solid fa-eye"></i></Link>
+                                    </li>
+                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
+                                        <Link className="text-dark" to='/'><i
+                                            className="fa-solid fa-heart"></i></Link>
                                     </li>
                                     <li className={clsx(styles['home-featured__item-list--icon'])}>
                                         <Link to='/' className='text-dark'><i className="fa-solid fa-cart-shopping"></i></Link>
@@ -264,6 +280,10 @@ function HomePage(){
                                         <Link className="text-dark" to='/'><i className="fa-solid fa-eye"></i></Link>
                                     </li>
                                     <li className={clsx(styles['home-featured__item-list--icon'])}>
+                                        <Link className="text-dark" to='/'><i
+                                            className="fa-solid fa-heart"></i></Link>
+                                    </li>
+                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
                                         <Link to='/' className='text-dark'><i className="fa-solid fa-cart-shopping"></i></Link>
                                     </li>
                                 </ul>
@@ -282,6 +302,10 @@ function HomePage(){
                                 <ul className={clsx(styles['home-featured__item-list'], 'd-flex w-100 p-0')}>
                                     <li className={clsx(styles['home-featured__item-list--icon'])}>
                                         <Link className="text-dark" to='/'><i className="fa-solid fa-eye"></i></Link>
+                                    </li>
+                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
+                                        <Link className="text-dark" to='/'><i
+                                            className="fa-solid fa-heart"></i></Link>
                                     </li>
                                     <li className={clsx(styles['home-featured__item-list--icon'])}>
                                         <Link to='/' className='text-dark'><i className="fa-solid fa-cart-shopping"></i></Link>
@@ -304,6 +328,10 @@ function HomePage(){
                                         <Link className="text-dark" to='/'><i className="fa-solid fa-eye"></i></Link>
                                     </li>
                                     <li className={clsx(styles['home-featured__item-list--icon'])}>
+                                        <Link className="text-dark" to='/'><i
+                                            className="fa-solid fa-heart"></i></Link>
+                                    </li>
+                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
                                         <Link to='/' className='text-dark'><i className="fa-solid fa-cart-shopping"></i></Link>
                                     </li>
                                 </ul>
@@ -322,6 +350,10 @@ function HomePage(){
                                 <ul className={clsx(styles['home-featured__item-list'], 'd-flex w-100 p-0')}>
                                     <li className={clsx(styles['home-featured__item-list--icon'])}>
                                         <Link className="text-dark" to='/'><i className="fa-solid fa-eye"></i></Link>
+                                    </li>
+                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
+                                        <Link className="text-dark" to='/'><i
+                                            className="fa-solid fa-heart"></i></Link>
                                     </li>
                                     <li className={clsx(styles['home-featured__item-list--icon'])}>
                                         <Link to='/' className='text-dark'><i className="fa-solid fa-cart-shopping"></i></Link>

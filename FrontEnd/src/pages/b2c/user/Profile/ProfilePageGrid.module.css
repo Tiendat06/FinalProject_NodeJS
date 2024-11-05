@@ -1,0 +1,38 @@
+/*Mobile*/
+@media (max-width: 46.1875em) {
+    .profile-info{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: start;
+    }
+
+    .profile-resume{
+        justify-content: start;
+    }
+
+    .profile-content{
+        padding-left: 0;
+    }
+}
+
+/* Tablet */
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em){
+    .profile-info{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: start;
+    }
+
+    .profile-resume{
+        justify-content: start;
+    }
+
+    .profile-content{
+        padding-left: 0;
+    }
+}
+
+/* PC */
+@media only screen and (min-width: 64em){
+
+}

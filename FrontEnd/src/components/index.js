@@ -1,6 +1,12 @@
-import Header from './partials/Header/Header';
-import Footer from './partials/Footer/Footer';
+import Header from '~/components/partials/b2c/Header/Header';
+import Footer from '~/components/partials/b2c/Footer/Footer';
 import Body from './Body';
-import Navbar from './partials/Header/Navbar';
+import Navbar from '~/components/partials/b2c/Header/Navbar';
+
+import DashboardHeader from "~/components/partials/b2b/Header/DashboardHeader";
+import DashboardFooter from "~/components/partials/b2b/Footer/DashboardFooter";
+import DashboardSidebar from "~/components/partials/b2b/Sidebar/DashboardSidebar";
 
 export {Header, Footer, Body, Navbar};
+
+export {DashboardHeader, DashboardFooter, DashboardSidebar};

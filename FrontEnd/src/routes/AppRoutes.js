@@ -1,4 +1,20 @@
-import {AboutPage, CartPage, CheckoutPage, ContactPage, DetailsPage, HomePage, ProfilePage, ShopPage} from "~/pages";
+import {
+    AboutPage,
+    CartPage,
+    CheckoutPage,
+    ContactPage,
+    DetailsPage,
+    HomePage,
+    ProfilePage,
+    ShopPage
+} from "~/pages";
+import {
+    DashboardManageUserPage,
+    DashboardHomePage,
+    DashboardManageAccountPage,
+    DashboardManageOrderPage,
+    DashboardManageProductPage
+} from "~/pages";
 import { Routes, Route } from "react-router-dom";
 
 function AppRoutes() {
@@ -17,6 +33,11 @@ function AppRoutes() {
             <Route path="/user/profile" element={<ProfilePage />} />
 
             {/* b2b */}
+            <Route path='/dashboard' element={<DashboardHomePage />} />
+            <Route path='/dashboard/user' element={<DashboardManageUserPage />} />
+            <Route path='/dashboard/account' element={<DashboardManageAccountPage />} />
+            <Route path='/dashboard/product' element={<DashboardManageProductPage />} />
+            <Route path='/dashboard/order' element={<DashboardManageOrderPage />} />
         </Routes>
     );
 }

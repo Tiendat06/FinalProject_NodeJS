@@ -5,13 +5,16 @@ import {BrowserRouter as Router} from "react-router-dom";
 import {GlobalStyles} from './components/elements';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {DashboardProvider} from "./context/DashboardContext";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
       <GlobalStyles>
           <Router>
-              <App />
+              <DashboardProvider>
+                  <App />
+              </DashboardProvider>
           </Router>
       </GlobalStyles>
   </React.StrictMode>

@@ -1,13 +1,16 @@
 // import logo from './logo.svg';
 import './App.css';
-import {Header, Body, Footer} from './components';
+import {Header, Body, Footer, DashboardHeader, DashboardFooter} from './components';
+import {useDashboardContext} from "~/context/DashboardContext";
 
 function App() {
-  return (
+    const {currentLocation} = useDashboardContext();
+
+    return (
       <>
-          <Header />
+          {!currentLocation.startsWith('/dashboard') && <Header />}
           <Body />
-          <Footer />
+          {!currentLocation.startsWith('/dashboard') && <Footer />}
       </>
   );
 }

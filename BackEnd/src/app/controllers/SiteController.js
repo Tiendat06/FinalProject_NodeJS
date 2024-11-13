@@ -7,7 +7,7 @@ class SiteController{
         let data = siteService.index();
         res.json({
             "status": 200,
-            "message": "Home Page",
+            "message": "DashboardHome Page",
             "data": data
         })
     }

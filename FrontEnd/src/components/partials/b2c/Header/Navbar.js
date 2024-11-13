@@ -66,7 +66,7 @@ function Navbar() {
                                     <Link className={clsx(styles['header-bottom__navigator-link'], 'link-underline')} to='/shop'>SHOP</Link>
                                 </li>
                                 <li className={clsx(styles['header-bottom__navigator'], 'mr-50', stylesGrid['header-bottom__navigator'])}>
-                                    <Link className={clsx(styles['header-bottom__navigator-link'], 'link-underline')} to='/about'>ABOUT</Link>
+                                    <Link className={clsx(styles['header-bottom__navigator-link'], 'link-underline')} to='/dashboard'>ADMIN</Link>
                                 </li>
                                 <li className={clsx(styles['header-bottom__navigator'], 'mr-50', stylesGrid['header-bottom__navigator'])}>
                                     <Link className={clsx(styles['header-bottom__navigator-link'], 'link-underline')} to='/contact'>CONTACT</Link>

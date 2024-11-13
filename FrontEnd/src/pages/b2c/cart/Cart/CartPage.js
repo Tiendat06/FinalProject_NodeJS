@@ -4,7 +4,7 @@ import {Modal, Pagination} from "~/components/elements";
 import {FormatUSDCurrency} from "~/utils";
 
 import clsx from "clsx";
-import {useCallback, useEffect, useMemo, useState, createContext} from "react";
+import {useCallback, useEffect, useMemo, useState, useLayoutEffect} from "react";
 import {Link} from "react-router-dom";
 
 function CartPage(){
@@ -45,7 +45,7 @@ function CartPage(){
 
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
-    useEffect(() => {
+    useLayoutEffect(() => {
         // setPageCount(Math.ceil(items.length / itemsPerPage));
         // setCurrentItems(items.slice(0, itemsPerPage));
         setPageCount(Math.ceil(items.length / itemsPerPage));

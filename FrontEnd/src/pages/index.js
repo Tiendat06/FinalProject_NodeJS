@@ -9,5 +9,12 @@ import CheckoutPage from "~/pages/b2c/cart/Checkout/CheckoutPage";
 import ProfilePage from "~/pages/b2c/user/Profile/ProfilePage";
 
 // b2b
+import DashboardManageUserPage from "~/pages/b2b/user/DashboardManageUser/DashboardManageUserPage";
+import DashboardManageAccountPage from "~/pages/b2b/account/DashboardManageAccount/DashboardManageAccountPage";
+import DashboardManageProductPage from "~/pages/b2b/product/DashboardManageProduct/DashboardManageProductPage";
+import DashboardManageOrderPage from "~/pages/b2b/order/DashboardManageOrder/DashboardManageOrderPage";
+import DashboardHomePage from "~/pages/b2b/site/DashboardHome/DashboardHomePage";
 
-export {HomePage, AboutPage, ContactPage, ShopPage, DetailsPage, ProfilePage, CartPage, CheckoutPage}
+export {HomePage, AboutPage, ContactPage, ShopPage, DetailsPage, ProfilePage, CartPage, CheckoutPage};
+
+export {DashboardManageUserPage, DashboardHomePage, DashboardManageAccountPage, DashboardManageProductPage, DashboardManageOrderPage};

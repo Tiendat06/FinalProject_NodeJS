@@ -5,8 +5,18 @@
 
 :root{
   --navbar-height: 60px;
+  --header-height: 80px;
+  --success-color: #22c55e;
+  --success-color-2-rgb: 113, 221, 55;
+  --orange-color: #ff5200;
+  --secondary-color: #cbd5e1;
+  --primary-color:#2377fc;
+  --black-color: #000000;
+  --bg-admin: #eff4f8;
+  --bg-admin-2: #eff4f9;
   --para-text: #787878;
   --btn-primary: #D10024;
+  --btn-primary-rgb: 209, 0, 36;
   --bg-item: #f5f5f5;
   --bg-item-2: #f3f6fb;
   --border-slick: #E4E7ED;
@@ -101,6 +111,13 @@ ol li {
 img {
   height: auto;
   max-width: 100%;
+}
+
+table{
+  /*border-collapse: separate;*/
+  /*border-spacing: 0;*/
+  /*border-radius: 8px;*/
+  /*overflow: hidden;*/
 }
 
 /* Spacing */

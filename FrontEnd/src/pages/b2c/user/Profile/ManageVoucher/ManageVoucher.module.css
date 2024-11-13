@@ -42,7 +42,7 @@
 
 .profile-voucher__item-img::after{
     top: unset;
-    bottom: -1.5px;
+    bottom: -2.5px;
     border-top: 2px solid var(--border-slick);
     border-bottom: 2px solid #ffffff;
     border-bottom-left-radius: unset;
@@ -85,7 +85,7 @@
 
 .profile-voucher__item-info::after{
     top: unset;
-    bottom: -1.5px;
+    bottom: -2.5px;
     border-top: 2px solid var(--border-slick);
     border-bottom: 2px solid #ffffff;
     border-bottom-right-radius: unset;

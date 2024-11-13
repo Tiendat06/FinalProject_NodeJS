@@ -1,0 +1,142 @@
+.manage-user__table-title{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.manage-user__table-title p{
+    font-weight: 500;
+    letter-spacing: 1px;
+    font-size: 20px;
+}
+
+.manage-user__table-page{
+    color: #000000;
+}
+
+.user-table{
+    padding: 25px;
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+}
+
+/*manage user list*/
+.manage-user__table-list{
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+}
+
+.manage-user__table-item{
+    padding: 5px 30px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.manage-user__table-item p{
+    margin-bottom: 0;
+    font-size: 14px;
+    color: var(--para-text);
+}
+
+.manage-user__table-item i{
+    color: var(--para-text);
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+.manage-user__table-item:hover p, .manage-user__table-item:hover i{
+    color: var(--btn-primary);
+}
+
+.manage-user__table-item--choose{
+    box-shadow: 2px 2px 10px rgba(var(--btn-primary-rgb), 0.5);
+    background-color: var(--btn-primary);
+}
+
+.manage-user__table-item--choose:hover p, .manage-user__table-item--choose:hover i{
+    color: #ffffff;
+}
+
+.manage-user__table-item--choose p, .manage-user__table-item--choose i{
+    color: #ffffff;
+}
+
+th{
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.user-table__text{
+    font-size: 12px;
+    margin-bottom: 0;
+}
+
+.user-table__action{
+    margin-bottom: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.user-table__action i{
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.user-table__action-trash{
+    color: var(--btn-primary);
+}
+
+.user-table__action-edit{
+    margin-right: 20px;
+    color: var(--primary-color);
+}
+
+.table-manage{
+    overflow: scroll;
+}
+
+.table-manage::-webkit-scrollbar{
+    display: none;
+}
+
+/*Modal*/
+.edit-modal__label{
+    font-size: 12px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    color: var(--para-text);
+}
+
+.edit-modal__inp{
+    font-size: 12px;
+}
+
+.edit-modal__inp:focus{
+    box-shadow: none;
+    outline: none;
+    border: 1px solid var(--btn-primary);
+}
+
+.user-table__btn{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+    margin-bottom: 15px;
+}
+
+.user-table__btn button{
+    background-color: var(--btn-primary);
+    color: #ffffff;
+}
+
+.user-table__btn button:hover{
+    color: var(--btn-primary);
+    background-color: #ffffff;
+    border: 1px solid var(--btn-primary);
+}

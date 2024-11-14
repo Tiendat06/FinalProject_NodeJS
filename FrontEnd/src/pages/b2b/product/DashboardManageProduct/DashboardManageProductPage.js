@@ -22,15 +22,15 @@ function DashboardManageProductPage() {
         { id: 9, name: "Lenovo K310", img: "/img/customer/product/keyboard/kb-lenovoK310.png", import_price:200, price: 300, type: 'keyboard', quantity: 100, desc: 'This is from VN', date_created: new Date('2024-11-13') },
         { id: 10, name: "Logitech M650", img: "/img/customer/product/mouse/mouse-logitechM650.png", import_price:200, price: 200, type: 'mouse', quantity: 100, desc: 'This is from VN', date_created: new Date('2024-11-13') },
     ];
-    const [userData, setUserData] = useState(rawData);
+    const [productData, setProductData] = useState(rawData);
     const [currentPage, setCurrentPage] = useState(0);
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
 
     useLayoutEffect(() => {
-        setPageCount(Math.ceil(userData.length / itemsPerPage));
-        setCurrentItems(userData.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage));
-    }, [userData, currentPage]);
+        setPageCount(Math.ceil(productData.length / itemsPerPage));
+        setCurrentItems(productData.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage));
+    }, [productData, currentPage]);
     const handlePageChange = useCallback((event) => {
         setCurrentPage(event.selected);
     }, []);
@@ -67,10 +67,10 @@ function DashboardManageProductPage() {
                             <i className="fa-solid fa-gears"></i>
                             <p>Manage Order</p>
                         </Link>
-                        <Link onClick={() => setDashBoardSubLink('manageOrderTracking')} to='/dashboard/order-tracking'
+                        <Link onClick={() => setDashBoardSubLink('manageCoupon')} to='/dashboard/coupon'
                               className={clsx(styles["manage-user__table-item"])}>
-                            <i className="fa-solid fa-gears"></i>
-                            <p>Order Tracking</p>
+                            <i className="fa-solid fa-ticket"></i>
+                            <p>Manage Coupon</p>
                         </Link>
                     </ul>
                     <div className="card-body">
@@ -203,10 +203,9 @@ function DashboardManageProductPage() {
                     </div>
                     <div className="form-group">
                         <label className={clsx(styles['edit-modal__label'])} htmlFor="desc-edit">DESCRIPTION</label>
-                        <textarea placeholder='Enter description' onChange={e => handleChangeTempData({birthday: e.target.value})}
+                        <textarea value={tempData.desc} placeholder='Enter description' onChange={e => handleChangeTempData({desc: e.target.value})}
                                   className={clsx(styles['edit-modal__inp'], 'form-control')}
                                   name="" id="desc-edit" cols="30" rows="5">
-                            {tempData.desc}
                         </textarea>
                     </div>
                 </div>
@@ -270,7 +269,7 @@ function DashboardManageProductPage() {
                     </div>
                     <div className="form-group">
                         <label className={clsx(styles['edit-modal__label'])} htmlFor="desc-add">DESCRIPTION</label>
-                        <textarea placeholder='Enter description' onChange={e => handleChangeTempData({birthday: e.target.value})}
+                        <textarea placeholder='Enter description' onChange={e => handleChangeTempData({desc: e.target.value})}
                                   className={clsx(styles['edit-modal__inp'], 'form-control')}
                                   name="" id="desc-add" cols="30" rows="5">
                         </textarea>

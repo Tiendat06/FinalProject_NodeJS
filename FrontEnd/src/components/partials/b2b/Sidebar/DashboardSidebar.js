@@ -73,7 +73,7 @@ function DashboardSidebar() {
                                 <i className="fa-solid fa-cart-shopping"></i>
                                 <span className='col-md-0'>Order Settings</span>
                             </div>
-                            <ul style={{maxHeight: (dashboardLinkItems === 'orderSettings' ? 500: 0)}}
+                            <ul style={{maxHeight: (dashboardLinkItems === 'orderSettings' ? 500 : 0)}}
                                 className={clsx(styles["sidebar-content__all-item__list"])}>
                                 <li onClick={() => setDashBoardSubLink('manageProduct')}
                                     className={clsx(styles["sidebar-content__all-item__list-item"], 'mt-0')}>
@@ -84,15 +84,6 @@ function DashboardSidebar() {
                                         <span>Manage Product</span>
                                     </Link>
                                 </li>
-                                <li onClick={() => setDashBoardSubLink('manageOrderTracking')}
-                                    className={clsx(styles["sidebar-content__all-item__list-item"])}>
-                                    <Link
-                                        className={clsx(dashBoardSubLink === 'manageOrderTracking' && styles["sidebar-content__all-item__list-item--choose"])}
-                                        to='/dashboard/order-tracking'>
-                                        <i className="fa-solid fa-users"></i>
-                                        <span>Order Tracking</span>
-                                    </Link>
-                                </li>
                                 <li onClick={() => setDashBoardSubLink('manageOrder')}
                                     className={clsx(styles["sidebar-content__all-item__list-item"])}>
                                     <Link
@@ -100,6 +91,15 @@ function DashboardSidebar() {
                                         to='/dashboard/order'>
                                         <i className="fa-solid fa-cart-shopping"></i>
                                         <span>Manage Order</span>
+                                    </Link>
+                                </li>
+                                <li onClick={() => setDashBoardSubLink('manageCoupon')}
+                                    className={clsx(styles["sidebar-content__all-item__list-item"])}>
+                                    <Link
+                                        className={clsx(dashBoardSubLink === 'manageCoupon' && styles["sidebar-content__all-item__list-item--choose"])}
+                                        to='/dashboard/coupon'>
+                                        <i className="fa-solid fa-ticket"></i>
+                                        <span>Manage Coupon</span>
                                     </Link>
                                 </li>
                             </ul>

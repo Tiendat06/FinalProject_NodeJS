@@ -13,8 +13,9 @@ import DashboardManageUserPage from "~/pages/b2b/user/DashboardManageUser/Dashbo
 import DashboardManageAccountPage from "~/pages/b2b/account/DashboardManageAccount/DashboardManageAccountPage";
 import DashboardManageProductPage from "~/pages/b2b/product/DashboardManageProduct/DashboardManageProductPage";
 import DashboardManageOrderPage from "~/pages/b2b/order/DashboardManageOrder/DashboardManageOrderPage";
+import DashboardManageCouponPage from "~/pages/b2b/coupon/DashboardManageCoupon/DashboardManageCouponPage";
 import DashboardHomePage from "~/pages/b2b/site/DashboardHome/DashboardHomePage";
 
 export {HomePage, AboutPage, ContactPage, ShopPage, DetailsPage, ProfilePage, CartPage, CheckoutPage};
 
-export {DashboardManageUserPage, DashboardHomePage, DashboardManageAccountPage, DashboardManageProductPage, DashboardManageOrderPage};
+export {DashboardManageUserPage, DashboardHomePage, DashboardManageAccountPage, DashboardManageProductPage, DashboardManageOrderPage, DashboardManageCouponPage};

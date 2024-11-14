@@ -13,6 +13,7 @@ import {
     DashboardHomePage,
     DashboardManageAccountPage,
     DashboardManageOrderPage,
+    DashboardManageCouponPage,
     DashboardManageProductPage
 } from "~/pages";
 import { Routes, Route } from "react-router-dom";
@@ -38,6 +39,7 @@ function AppRoutes() {
             <Route path='/dashboard/account' element={<DashboardManageAccountPage />} />
             <Route path='/dashboard/product' element={<DashboardManageProductPage />} />
             <Route path='/dashboard/order' element={<DashboardManageOrderPage />} />
+            <Route path='/dashboard/coupon' element={<DashboardManageCouponPage />} />
         </Routes>
     );
 }

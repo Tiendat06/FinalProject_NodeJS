@@ -31,7 +31,7 @@ function Navbar() {
 
                             <div className="header-top__left-para d-flex align-items-center col-md-0 col-sm-0">
                                 {/*<i className="fa-solid fa-truck"></i>*/}
-                                <p className="header-top__left-info mb-0 ml-15">Shopping Mall of D&P Co</p>
+                                <p className="header-top__left-info mb-0 ml-15">Shopping Mall of DPQ Co</p>
                             </div>
                         </div>
                         <div

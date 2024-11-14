@@ -11,11 +11,11 @@ function DashboardManageCouponPage() {
 
     const itemsPerPage = 10;
     const rawData = [
-        {id: 1, name: 'HAPPY10', discount: 10, point: 100, desc: 'Discount 10%'},
-        {id: 2, name: 'HAPPY20', discount: 20, point: 200, desc: 'Discount 20%'},
-        {id: 3, name: 'HAPPY30', discount: 30, point: 300, desc: 'Discount 30%'},
-        {id: 4, name: 'HAPPY40', discount: 40, point: 400, desc: 'Discount 40%'},
-        {id: 5, name: 'HAPPY50', discount: 50, point: 500, desc: 'Discount 50%'},
+        {id: 1, name: 'HAPPY10', discount: 10, point: 100, date_expired: new Date('2024-11-14'), desc: 'Discount 10%'},
+        {id: 2, name: 'HAPPY20', discount: 20, point: 200, date_expired: new Date('2024-11-14'), desc: 'Discount 20%'},
+        {id: 3, name: 'HAPPY30', discount: 30, point: 300, date_expired: new Date('2024-11-14'), desc: 'Discount 30%'},
+        {id: 4, name: 'HAPPY40', discount: 40, point: 400, date_expired: new Date('2024-11-14'), desc: 'Discount 40%'},
+        {id: 5, name: 'HAPPY50', discount: 50, point: 500, date_expired: new Date('2024-11-14'), desc: 'Discount 50%'},
     ];
     const [couponData, setCouponData] = useState(rawData);
     const [currentPage, setCurrentPage] = useState(0);
@@ -35,7 +35,7 @@ function DashboardManageCouponPage() {
     const handleChangeTempData = (data) => {
         const key = Object.keys(data)[0];
         let value = data[key];
-        if (key === 'birthday'){
+        if (key === 'date_expired'){
             value = new Date(value);
         }
         setTempData({
@@ -80,14 +80,15 @@ function DashboardManageCouponPage() {
                             <div className={clsx(styles["table-manage"])}>
                                 <table className="table table-hover table-bordered">
                                     <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>NAME</th>
-                                            <th>DISCOUNT</th>
-                                            <th>POINT</th>
-                                            <th>DESCRIPTION</th>
-                                            <th>ACTION</th>
-                                        </tr>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>NAME</th>
+                                        <th>DISCOUNT</th>
+                                        <th>POINT</th>
+                                        <th>DATE EXPIRED</th>
+                                        <th>DESCRIPTION</th>
+                                        <th>ACTION</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
                                     {currentItems.map((item, index) => (
@@ -103,6 +104,9 @@ function DashboardManageCouponPage() {
                                             </td>
                                             <td>
                                                 <p className={clsx(styles['user-table__text'])}>{item.point}</p>
+                                            </td>
+                                            <td>
+                                                <p className={clsx(styles['user-table__text'])}>{ConvertDateString(item.date_expired)}</p>
                                             </td>
                                             <td>
                                                 <p className={clsx(styles['user-table__text'])}>{item.desc}</p>
@@ -138,7 +142,8 @@ function DashboardManageCouponPage() {
             >
                 <div className="form-group">
                     <div className="form-group">
-                        <label className={clsx(styles['edit-modal__label'], 'mt-0')} htmlFor="name-edit">COUPON NAME</label>
+                        <label className={clsx(styles['edit-modal__label'], 'mt-0')} htmlFor="name-edit">COUPON
+                            NAME</label>
                         <input onChange={e => handleChangeTempData({name: e.target.value})}
                                type="text"
                                id='name-edit'
@@ -163,8 +168,17 @@ function DashboardManageCouponPage() {
                                className={clsx(styles['edit-modal__inp'], 'form-control')} value={tempData.point}/>
                     </div>
                     <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'])} htmlFor="date-edit">DATE EXPIRED</label>
+                        <input onChange={e => handleChangeTempData({date_expired: e.target.value})}
+                               type="date"
+                               id='date-edit'
+                               placeholder='Enter date expired'
+                               className={clsx(styles['edit-modal__inp'], 'form-control')} value={ConvertDateString(tempData.date_expired)}/>
+                    </div>
+                    <div className="form-group">
                         <label className={clsx(styles['edit-modal__label'])} htmlFor="desc-edit">DESCRIPTION</label>
-                        <textarea value={tempData.desc} placeholder='Enter description' onChange={e => handleChangeTempData({desc: e.target.value})}
+                        <textarea value={tempData.desc} placeholder='Enter description'
+                                  onChange={e => handleChangeTempData({desc: e.target.value})}
                                   className={clsx(styles['edit-modal__inp'], 'form-control')}
                                   name="" id="desc-edit" cols="30" rows="5">
                         </textarea>
@@ -182,12 +196,13 @@ function DashboardManageCouponPage() {
             >
                 <div className="form-group">
                     <div className="form-group">
-                        <label className={clsx(styles['edit-modal__label'], 'mt-0')} htmlFor="name-add">COUPON NAME</label>
+                        <label className={clsx(styles['edit-modal__label'], 'mt-0')} htmlFor="name-add">COUPON
+                            NAME</label>
                         <input onChange={e => handleChangeTempData({name: e.target.value})}
                                type="text"
                                id='name-add'
                                placeholder='Enter coupon name'
-                               className={clsx(styles['edit-modal__inp'], 'form-control')} />
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}/>
                     </div>
                     <div className="form-group">
                         <label className={clsx(styles['edit-modal__label'])} htmlFor="discount-add">DISCOUNT</label>
@@ -195,7 +210,7 @@ function DashboardManageCouponPage() {
                                type='number'
                                id='discount-add'
                                placeholder='Enter discount'
-                               className={clsx(styles['edit-modal__inp'], 'form-control')} />
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}/>
                     </div>
                     <div className="form-group">
                         <label className={clsx(styles['edit-modal__label'])} htmlFor="point-add">POINT</label>
@@ -203,11 +218,20 @@ function DashboardManageCouponPage() {
                                type="number"
                                id='point-add'
                                placeholder='Enter point'
-                               className={clsx(styles['edit-modal__inp'], 'form-control')} />
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}/>
+                    </div>
+                    <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'])} htmlFor="date-add">DATE EXPIRED</label>
+                        <input onChange={e => handleChangeTempData({date_expired: e.target.value})}
+                               type="date"
+                               id='date-add'
+                               placeholder='Enter date expired'
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}/>
                     </div>
                     <div className="form-group">
                         <label className={clsx(styles['edit-modal__label'])} htmlFor="desc-add">DESCRIPTION</label>
-                        <textarea placeholder='Enter description' onChange={e => handleChangeTempData({desc: e.target.value})}
+                        <textarea placeholder='Enter description'
+                                  onChange={e => handleChangeTempData({desc: e.target.value})}
                                   className={clsx(styles['edit-modal__inp'], 'form-control')}
                                   name="" id="desc-add" cols="30" rows="5">
                         </textarea>

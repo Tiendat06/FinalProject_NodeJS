@@ -1,19 +1,89 @@
 import {Link} from 'react-router-dom'
 import clsx from 'clsx'
-import {useState} from "react";
+import {useLayoutEffect, useState} from "react";
 
 import styles from './Header.module.css';
 import stylesGrid from './HeaderGrid.module.css';
 import {Button, Modal} from '~/components/elements';
+import {useShoppingContext} from "~/context/ShoppingContext";
 
 function Navbar() {
-
     let [search, setSearch] = useState('');
     let [isLogin, setIsLogin] = useState(true);
     const [isCategoryClicked, setIsCategoryClicked] = useState(false);
+    const [logInformation, setLogInformation] = useState({});
+    const [logMessage, setLogMessage] = useState(null);
+    const {userData, setUserData} = useShoppingContext();
 
+    useLayoutEffect(() => {
+        const user = JSON.parse(localStorage.getItem('userData'));
+        if(user){
+            setUserData(user);
+        }
+    }, []);
+
+    let handleIsLogin = (data) => {
+       setIsLogin(data);
+       setLogMessage(null);
+    }
+    let handleLogInformation = (data) => {
+        const key = Object.keys(data)[0];
+        let value = data[key];
+        if (key === 'birthday'){
+            value = new Date(value);
+        }
+        setLogInformation({
+            ...logInformation,
+            [key]: value
+        });
+    }
     let onclickCategory = () => {
         setIsCategoryClicked(!isCategoryClicked);
+    }
+
+    let onClickLoginOrRegister = (route) => {
+        const api_url = process.env.REACT_APP_API_URL;
+        fetch(`${api_url}/log/${route}`, {
+            method: 'POST',
+            body: JSON.stringify(logInformation),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include'
+        })
+            .then(response => response.json())
+            .then(data => {
+                // console.log(data);
+                const error = data.error;
+                const msg = data.msg;
+                if(error) setLogMessage(error);
+                else {
+                    localStorage.setItem('userData', JSON.stringify(data.userData));
+                    setUserData(data.userData);
+                    setLogMessage(msg);
+                }
+            })
+            .catch(error => console.log(error));
+    }
+    let onClickLogout = () => {
+        localStorage.removeItem("userData");
+        const api_url = process.env.REACT_APP_API_URL;
+        fetch(`${api_url}/log/logout`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include'
+        })
+            .then(response => response.json())
+            .then(data => {
+                setLogMessage(data.msg);
+                setUserData({});
+                // setTimeout(() => {
+                //     window.location.reload();
+                // }, 2000)
+            })
+            .catch(error => console.log(error));
     }
 
     return (
@@ -43,7 +113,28 @@ function Navbar() {
                             <div className={clsx(styles["header-top__middle"])}></div>
                             <div className={clsx("d-flex align-items-center", styles['header-top__right-account'])}>
                                 <i className={clsx("fa-solid fa-user mr-15", styles['header-top__left-email--icon'])}></i>
-                                <p className={clsx('mb-0 link-underline header-top__login-btn')} data-bs-toggle='modal' data-bs-target='#login-modal' style={{cursor: "pointer"}}>Login</p>
+                                {userData.fullName ?
+                                    <>
+                                        <p className={clsx('mb-0 link-underline header-top__login-btn')}
+                                           style={{cursor: "pointer"}}>
+                                            <Link style={{fontWeight: "500"}} to='/user/profile'>
+                                                {userData.fullName}
+                                            </Link>
+                                        </p>
+                                        <p className='mb-0 ml-5 mr-5'>/</p>
+                                        <p data-bs-toggle='modal' data-bs-target='#logout-modal' className={clsx('mb-0 link-underline header-top__login-btn')}
+                                           style={{cursor: "pointer"}}>
+                                            <p className='mb-0' style={{fontWeight: "500"}}>
+                                                Logout
+                                            </p>
+                                        </p>
+                                    </>
+                                    :
+                                    <p className={clsx('mb-0 link-underline header-top__login-btn')}
+                                       data-bs-toggle='modal'
+                                       data-bs-target='#login-modal' style={{cursor: "pointer"}}>Login
+                                    </p>
+                                }
                             </div>
                         </div>
                     </div>
@@ -54,7 +145,7 @@ function Navbar() {
                     <div className="row h-100 align-items-center header-bottom__row">
                         <div className="col-lg-2 col-sm-6 col-md-2">
                             <Link to='/'>
-                                <img className={clsx(styles['header-bottom__img'])} src="/img/logo/logo.png" alt=""/>
+                            <img className={clsx(styles['header-bottom__img'])} src="/img/logo/logo.png" alt=""/>
                             </Link>
                         </div>
                         <div className="col-lg-6 col-sm-0 col-md-9">
@@ -65,12 +156,14 @@ function Navbar() {
                                 <li className={clsx(styles['header-bottom__navigator'], 'mr-50', stylesGrid['header-bottom__navigator'])}>
                                     <Link className={clsx(styles['header-bottom__navigator-link'], 'link-underline')} to='/shop'>SHOP</Link>
                                 </li>
+                                {userData.role_id === 'ROL0000001' &&
                                 <li className={clsx(styles['header-bottom__navigator'], 'mr-50', stylesGrid['header-bottom__navigator'])}>
                                     <Link className={clsx(styles['header-bottom__navigator-link'], 'link-underline')} to='/dashboard'>ADMIN</Link>
                                 </li>
-                                <li className={clsx(styles['header-bottom__navigator'], 'mr-50', stylesGrid['header-bottom__navigator'])}>
-                                    <Link className={clsx(styles['header-bottom__navigator-link'], 'link-underline')} to='/contact'>CONTACT</Link>
-                                </li>
+                                }
+                                {/*<li className={clsx(styles['header-bottom__navigator'], 'mr-50', stylesGrid['header-bottom__navigator'])}>*/}
+                                {/*    <Link className={clsx(styles['header-bottom__navigator-link'], 'link-underline')} to='/contact'>LOGOUT</Link>*/}
+                                {/*</li>*/}
                             </ul>
                         </div>
                         <div className="col-lg-4 col-sm-6 col-md-1 d-flex">
@@ -145,7 +238,7 @@ function Navbar() {
                                         data-bs-dismiss="modal" aria-label="Close"></button>
                                 <h2 className='mb-0 mt-3'>Login</h2>
                                 <p className='mb-4'>Do not have an account yet?
-                                    <a onClick={() => setIsLogin(false)} className={clsx(styles['sign-up__btn'])}
+                                    <a onClick={() => handleIsLogin(false)} className={clsx(styles['sign-up__btn'])}
                                        style={{textDecoration: "underline", cursor: "pointer"}}> Sign up</a>
                                 </p>
                                 <div className="form-group mt-3">
@@ -153,14 +246,14 @@ function Navbar() {
                                         <label htmlFor="phone" className="login-modal__email"><p className="mb-0">Phone
                                             number</p>
                                         </label>
-                                        <input type="text" id="phone" placeholder='Enter phone number...'
+                                        <input name='phone' onChange={(e) => handleLogInformation({phone: e.target.value})} type="text" id="phone" placeholder='Enter phone number...'
                                                className={clsx(styles["login-input__phone"], 'form-control')}/>
                                     </div>
                                     <div className="form-group mt-3">
                                         <label htmlFor="pwd" className="login-modal__email"><p
                                             className="mb-0">Password</p>
                                         </label>
-                                        <input type="password" id="pwd" placeholder='Enter password...'
+                                        <input name='password' onChange={(e) => handleLogInformation({password: e.target.value})} type="password" id="pwd" placeholder='Enter password...'
                                                className={clsx(styles["login-input__password"], 'form-control')}/>
                                     </div>
                                     <div className="form-group mt-3 d-flex align-items-center justify-content-between">
@@ -175,7 +268,12 @@ function Navbar() {
                                                 style={{fontSize: 12}}>Forgot password?</span></Link>
                                         </div>
                                     </div>
-                                    <button type="button"
+                                    {logMessage &&
+                                    <div className="alert alert-danger p-2 mt-3 mb-0">
+                                        <p style={{fontSize: 14}} className='mb-0 text-center'>{logMessage}</p>
+                                    </div>
+                                    }
+                                    <button onClick={() => onClickLoginOrRegister('login')} type="button"
                                             className={clsx(styles['login-modal__btn'], 'btn mt-4')}>Login
                                     </button>
                                     <div className={clsx(styles["login-modal__separate"])}>
@@ -201,53 +299,67 @@ function Navbar() {
                                         data-bs-dismiss="modal" aria-label="Close"></button>
                                 <h2 className='mb-0 mt-3'>Register</h2>
                                 <p className='mb-4'>Have an account yet?
-                                    <a onClick={() => setIsLogin(true)} className={clsx(styles['sign-in__btn'])}
+                                    <a onClick={() => handleIsLogin(true)} className={clsx(styles['sign-in__btn'])}
                                        style={{textDecoration: "underline", cursor: "pointer"}}> Sign in</a>
                                 </p>
                                 <div className="form-group">
                                     <div className="form-group mt-3">
                                         <label htmlFor="fullname" className="login-modal__fullname"><p
                                             className="mb-0">Full name</p></label>
-                                        <input type="text" id="fullname" placeholder='Enter full name...'
+                                        <input name='fullName'
+                                            onChange={(e) => handleLogInformation({fullName: e.target.value})} type="text" id="fullname" placeholder='Enter full name...'
                                                className={clsx(styles["login-input__phone"], 'form-control')}/>
                                     </div>
                                     <div className="form-group mt-3">
                                         <label htmlFor="phone" className="login-modal__email"><p
                                             className="mb-0">Phone number</p>
                                         </label>
-                                        <input type="text" id="phone" placeholder='Enter phone number...'
+                                        <input name='phone'
+                                            onChange={(e) => handleLogInformation({phone: e.target.value})} type="text" id="phone" placeholder='Enter phone number...'
                                                className={clsx(styles["login-input__phone"], 'form-control')}/>
                                     </div>
                                     <div className="form-group mt-3">
                                         <label htmlFor="pwd" className="login-modal__email"><p
                                             className="mb-0">Password</p>
                                         </label>
-                                        <input type="text" id="pwd" placeholder='Enter password...'
+                                        <input name='password'
+                                            onChange={(e) => handleLogInformation({password: e.target.value})} type="text" id="pwd" placeholder='Enter password...'
+                                               className={clsx(styles["login-input__password"], 'form-control')}/>
+                                    </div>
+                                    <div className="form-group mt-3">
+                                        <label htmlFor="dob" className="login-modal__email"><p
+                                            className="mb-0">Birthday</p>
+                                        </label>
+                                        <input name='dob'
+                                            onChange={(e) => handleLogInformation({birthday: e.target.value})} type="date" id="dob" placeholder='Enter birthday...'
                                                className={clsx(styles["login-input__password"], 'form-control')}/>
                                     </div>
                                     <div className="form-group mt-3">
                                         <label htmlFor="gender" className="login-modal__email"><p
                                             className="mb-0">Gender</p>
                                         </label>
-                                        <select name="" id="gender"
+                                        <select name='gender'
+                                            onChange={(e) => handleLogInformation({gender: e.target.value})} id="gender"
                                                 className={clsx(styles["login-input__password"], 'form-select')}>
                                             <option value="">--Choose gender--</option>
-                                            <option value="">Male</option>
-                                            <option value="">Female</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
                                         </select>
                                     </div>
                                     <div className="form-group mt-3">
                                         <label htmlFor="email" className="login-modal__email"><p
                                             className="mb-0">Email</p>
                                         </label>
-                                        <input type="email" id="email" placeholder='Enter email...'
+                                        <input name='email'
+                                            onChange={(e) => handleLogInformation({email: e.target.value})} type="email" id="email" placeholder='Enter email...'
                                                className={clsx(styles["login-input__password"], 'form-control')}/>
                                     </div>
                                     <div className="form-group mt-3">
                                         <label htmlFor="address" className="login-modal__email"><p
                                             className="mb-0">Address</p>
                                         </label>
-                                        <input type="text" id="address" placeholder='Enter address...'
+                                        <input name='address'
+                                            onChange={(e) => handleLogInformation({address: e.target.value})} type="text" id="address" placeholder='Enter address...'
                                                className={clsx(styles["login-input__password"], 'form-control')}/>
                                     </div>
                                     <div className="form-group mt-3 d-flex align-items-center">
@@ -262,12 +374,36 @@ function Navbar() {
                                             </label>
                                         </div>
                                     </div>
-                                    <button type="button"
+                                    {logMessage &&
+                                        <div className="alert alert-danger p-2 mt-3 mb-0">
+                                            <p style={{fontSize: 14}} className='mb-0 text-center'>{logMessage}</p>
+                                        </div>
+                                    }
+                                    <button onClick={() => onClickLoginOrRegister('register')} type="button"
                                             className={clsx(styles['login-modal__btn'], 'btn mt-3')}>Register
                                     </button>
                                 </div>
                             </div>
                         }
+                    </div>
+                </div>
+            </Modal>
+
+            <Modal
+                id='logout-modal'
+                closeClassName='d-none'
+                modalTypeClassName='modal-sm'
+                modalBodyClassName='danger-bg__shop'
+                modalFooterClassName="d-none"
+                modalHeaderClassName="d-none"
+            >
+                <div className="logout">
+                    <div className="text-center">
+                        <img width='200' src="/img/general/danger-zone.gif" alt=""/>
+                    </div>
+                    <p className='mb-0 text-center'>Are you sure to logout?</p>
+                    <div className="text-center mt-2">
+                        <button data-bs-dismiss="modal" onClick={onClickLogout} className="btn btn-danger">Logout</button>
                     </div>
                 </div>
             </Modal>

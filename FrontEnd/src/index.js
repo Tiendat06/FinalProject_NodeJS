@@ -6,15 +6,18 @@ import {GlobalStyles} from './components/elements';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {DashboardProvider} from "./context/DashboardContext";
+import {ShoppingProvider} from "~/context/ShoppingContext";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
       <GlobalStyles>
           <Router>
-              <DashboardProvider>
-                  <App />
-              </DashboardProvider>
+              <ShoppingProvider>
+                  <DashboardProvider>
+                      <App />
+                  </DashboardProvider>
+              </ShoppingProvider>
           </Router>
       </GlobalStyles>
   </React.StrictMode>

@@ -11,10 +11,19 @@ const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
 const cloudinary = require('cloudinary');
 const multer = require("multer");
+const flash = require("connect-flash");
+const {rateLimit} = require('express-rate-limit');
+const cookieParser = require("cookie-parser");
+const cors = require('cors');
+const corsOptions = {
+    origin: 'http://localhost:5000',
+    credentials: true, // Allows cookies and authentication header
+};
+
 dotenv.config();
 
 // connect to DB, no DB now, do not open the comment below
-// db.connect();
+db.connect();
 
 // cloudinary
 cloudinary.v2.config({
@@ -40,6 +49,20 @@ app.use(session({
         secure: false,
         maxAge: 60 * 60 * 1000 // 1h
     }
+}));
+
+app.use(cookieParser());
+
+app.use(cors(corsOptions));
+
+app.use(flash());
+
+app.use(rateLimit({
+    windowMs: 15 * 60 * 1000,
+    limit: 100,
+    standardHeaders: 'draft-7',
+    legacyHeaders: false,
+    message: "Too many requests !!"
 }));
 
 // rest method api

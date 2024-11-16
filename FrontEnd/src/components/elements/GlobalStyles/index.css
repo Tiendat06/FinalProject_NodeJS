@@ -39,6 +39,10 @@ code {
     monospace;
 }
 
+.danger-bg__shop{
+    background-color: #fcfcfb;
+}
+
 .disabled-highlight{
   -webkit-user-select: none; /* Chrome, Safari, Opera */
   -moz-user-select: none;    /* Firefox */

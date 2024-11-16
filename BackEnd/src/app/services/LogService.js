@@ -34,9 +34,9 @@ class LogService {
                             sameSite: 'strict',
                             maxAge: 24 * 60 * 60 * 1000 // 1 day
                         });
-
-                        const returnObject = {...userData.toObject(), role_id: accountData.role_id};
-                        console.log(returnObject);
+                        const role = await roleRepository.getRoleByRoleId(accountData.role_id);
+                        const returnObject = {...userData.toObject(), role_name: role.role_name};
+                        // console.log(returnObject);
                         return res.status(200).json({
                             status: true,
                             msg: 'Login Successfully !',

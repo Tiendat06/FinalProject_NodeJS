@@ -53,7 +53,7 @@ function Navbar() {
         })
             .then(response => response.json())
             .then(data => {
-                // console.log(data);
+                console.log(data);
                 const error = data.error;
                 const msg = data.msg;
                 if(error) setLogMessage(error);
@@ -156,7 +156,7 @@ function Navbar() {
                                 <li className={clsx(styles['header-bottom__navigator'], 'mr-50', stylesGrid['header-bottom__navigator'])}>
                                     <Link className={clsx(styles['header-bottom__navigator-link'], 'link-underline')} to='/shop'>SHOP</Link>
                                 </li>
-                                {userData.role_id === 'ROL0000001' &&
+                                {userData.role_name === 'Admin' &&
                                 <li className={clsx(styles['header-bottom__navigator'], 'mr-50', stylesGrid['header-bottom__navigator'])}>
                                     <Link className={clsx(styles['header-bottom__navigator-link'], 'link-underline')} to='/dashboard'>ADMIN</Link>
                                 </li>

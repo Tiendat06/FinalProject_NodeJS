@@ -11,7 +11,7 @@ class AccountRepository {
     }
 
     getAccountByUserId = (user_id) => {
-        return Account.findOne({user_id})
+        return Account.findOne({user_id, is_ban: false, deleted: false})
             .then(value => {
                 return value;
             })

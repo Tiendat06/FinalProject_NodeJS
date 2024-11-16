@@ -11,7 +11,7 @@ class UserRepository {
     }
 
     getUserByPhone = (phone) => {
-        return User.findOne({phone})
+        return User.findOne({phone, deleted: false})
             .then(value => {
                 return value;
             })
@@ -19,7 +19,7 @@ class UserRepository {
     }
 
     getUserByEmail = (email) => {
-        return User.findOne({email})
+        return User.findOne({email, deleted: false})
             .then(value => {
                 return value;
             })

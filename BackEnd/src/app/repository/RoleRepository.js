@@ -9,6 +9,14 @@ class RoleRepository {
             })
             .catch(err => console.log(err));
     }
+
+    getRoleByRoleId = (role_id) => {
+        return Role.findById(role_id)
+            .then((role) => {
+                return role;
+            })
+            .catch(err => console.log(err));
+    }
 }
 
 module.exports = new RoleRepository;

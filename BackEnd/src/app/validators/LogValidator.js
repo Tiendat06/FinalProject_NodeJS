@@ -34,9 +34,17 @@ register_POST = [
     check('address')
         .trim()
         .notEmpty().withMessage('Please enter address'),
+];
+
+emailValidator = [
+    check('email')
+        .trim()
+        .notEmpty().withMessage('Please enter email !')
+        .isEmail().withMessage('Invalid email format !'),
 ]
 
 module.exports = {
     login_POST,
-    register_POST
+    register_POST,
+    emailValidator
 }

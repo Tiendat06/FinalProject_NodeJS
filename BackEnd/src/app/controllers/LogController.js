@@ -12,6 +12,11 @@ class LogController {
         return await logService.registerAccount(req, res);
     }
 
+    // [POST] /log/forgot-password
+    forgot_password = async (req, res, next) => {
+        return await logService.forgotPassword(req, res);
+    }
+
     // [POST] /log/logout
     logout = (req, res) => {
         res.clearCookie('token');

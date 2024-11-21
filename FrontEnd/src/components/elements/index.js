@@ -6,5 +6,6 @@ import SlickSlider from './SlickSlider/SlickSlider';
 import GlobalStyles from './GlobalStyles/GlobalStyles';
 import LineChart from "~/components/elements/LineChart/LineChart";
 import BarChart from "~/components/elements/BarChart/BarChart";
+import Loading from "~/components/elements/Loading/Loading";
 
-export {Button, Modal, NiceSelect, Pagination, SlickSlider, GlobalStyles, LineChart, BarChart};
+export {Button, Modal, NiceSelect, Pagination, SlickSlider, GlobalStyles, LineChart, BarChart, Loading};

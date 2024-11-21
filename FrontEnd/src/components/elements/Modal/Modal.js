@@ -1,14 +1,30 @@
-import {memo} from 'react';
+import { useState, useEffect, memo } from 'react';
 
-function Modal({id='', title='', children='',
-                   labelBtnSave='', labelBtnClose='',
-                   closeClassName='', saveClassName='', modalTitleClassName='',
-                   modalHeaderClassName='', modalFooterClassName='', modalContentClassName='',
-                   modalTypeClassName='', modalBodyClassName='', isStatic= false}) {
+function Modal({ id = '', title = '', children = '',
+                   labelBtnSave = '', labelBtnClose = '',
+                   closeClassName = '', saveClassName = '', modalTitleClassName = '',
+                   modalHeaderClassName = '', modalFooterClassName = '', modalContentClassName = '',
+                   modalBodyClassName = '', modalTypeClassName = '', isStatic = false }) {
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    useEffect(() => {
+        const modalElement = document.getElementById(id);
+        const handleShow = () => setIsOpen(true);
+        const handleHide = () => setIsOpen(false);
+
+        modalElement?.addEventListener('shown.bs.modal', handleShow);
+        modalElement?.addEventListener('hidden.bs.modal', handleHide);
+
+        return () => {
+            modalElement?.removeEventListener('shown.bs.modal', handleShow);
+            modalElement?.removeEventListener('hidden.bs.modal', handleHide);
+        };
+    }, [id]);
+
     return (
-        <div className="modal fade" id={id} tabIndex="-1" aria-labelledby="exampleModalLabel"
-             data-bs-backdrop={isStatic? 'static' : undefined}
-             aria-hidden="true">
+        <div className="modal fade" id={id} tabIndex="-1" aria-hidden={isOpen ? 'false' : 'true'}
+             data-bs-backdrop={isStatic ? 'static' : undefined}>
             <div className={`modal-dialog ${modalTypeClassName}`}>
                 <div className={`${modalContentClassName} modal-content`}>
                     <div className={`${modalHeaderClassName} modal-header`}>

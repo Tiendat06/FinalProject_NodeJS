@@ -29,6 +29,20 @@ class LogMiddleWare {
         req.flash('error', error);
         next();
     }
+
+    forgot_password = async (req, res, next) => {
+        const result = validationResult(req);
+        const {email} = req.body;
+        let error = '';
+
+        if(!result.isEmpty()){
+            error = result.array()[0].msg;
+        } else if(!await userRepository.getUserByEmail(email)) {
+            error = 'Email is not exists';
+        }
+        req.flash('error', error);
+        next();
+    }
 }
 
 module.exports = new LogMiddleWare;

@@ -1,13 +1,15 @@
 import styles from './MyAccount.module.css';
 import styleGrid from './MyAccountGrid.module.css';
 import clsx from "clsx";
-import {useState, useReducer, useLayoutEffect} from "react";
+import {useState, useReducer, useLayoutEffect, useEffect} from "react";
 import reducer, {initState} from "./reducers/reducer";
 import {setDay} from './actions/actions';
-import {Modal} from "~/components/elements";
+import {Loading, Modal} from "~/components/elements";
+import {useShoppingContext} from "~/context/ShoppingContext";
+const $ = require('jquery');
 
 function MyAccount() {
-    const userData = JSON.parse(localStorage.getItem("userData"));
+    const {userData, setUserData} = useShoppingContext();
     const date = new Date(userData.birthday);
     const [state, dispatch] = useReducer(reducer, initState);
     const { days } = state;
@@ -20,7 +22,9 @@ function MyAccount() {
         name: userData.fullName,
         email: userData.email,
         phoneNumber: userData.phone,
-        gender: userData.gender
+        gender: userData.gender,
+        profile_image: userData.profile_image,
+        img_file: ''
     });
 
     const [hidePassword, setHidePassword] = useState({
@@ -59,30 +63,71 @@ function MyAccount() {
         })
     }
 
-    useLayoutEffect(() => {
-        const api_url = process.env.REACT_APP_API_URL;
-        const user = JSON.parse(localStorage.getItem("userData"));
-        const user_id = user._id;
-        const birthday = new Date(Date.UTC(year, month - 1, day));
-        const newUserProfile = {
-            ...profile,
-            birthday
+    useEffect(() => {
+        return () => {
+            URL.revokeObjectURL(profile.profile_image);
         }
-        // console.log(user_id);
+    }, [profile]);
+
+    const handleProfileImg = (e) => {
+        const img = e.target.files[0];
+        console.log(img)
+        setProfile({
+            ...profile,
+            profile_image: URL.createObjectURL(img),
+            img_file: img,
+        })
+    }
+
+    // BE
+    const saveChangeUpdateProfile = () => {
+        $('.spinner-border').removeClass('d-none');
+        $('.btn-save').html('Loading...');
+
+        const api_url = process.env.REACT_APP_API_URL;
+        const user_id = userData._id;
+        const birthday = new Date(Date.UTC(year, month - 1, day));
+
+        const formData = new FormData();
+        formData.append('name', profile.name);
+        formData.append('email', profile.email);
+        formData.append('phoneNumber', profile.phoneNumber);
+        formData.append('gender', profile.gender);
+        formData.append('birthday', birthday);
+        formData.append('img_file', profile.img_file);
+
         fetch(`${api_url}/user/profile/${user_id}`, {
             method: 'PUT',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(newUserProfile),
+            body: formData,
             credentials: 'include'
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+                if(data.status === true){
+                    const userLocalData = JSON.parse(localStorage.getItem("userData"));
+                    const newUserLocalData = {
+                        ...userLocalData,
+                        birthday,
+                        fullName: profile.name,
+                        email: profile.email,
+                        gender: profile.gender,
+                        phone: profile.phoneNumber,
+                        profile_image: data.profile_image,
+                    }
+                    setUserData(() => newUserLocalData);
+                }
+                $('.alert').removeClass('d-none');
+                $('.alert-text').html(data.msg);
+                $('.spinner-border').addClass('d-none');
+                $('.btn-save').html('Save Change');
+
+                setTimeout(() => {
+                    $('.alert').addClass('d-none')
+                    $('.alert-text').html('')
+                }, 5000);
             })
             .catch(err => console.error(err))
-    }, []);
+    }
 
     return (
         <div className="profile-account">
@@ -93,12 +138,15 @@ function MyAccount() {
                     <div className={clsx(styles["profile-account__personal-main"], styleGrid['profile-account__personal-main'])}>
                         <div
                             className={clsx(styles["profile-account__personal-img"], 'col-lg-3 col-md-3 col-sm-3 mb-3')}>
-                            <img className={clsx(styles['profile-account__personal-img--inner'])}
-                                 src="/img/customer/profile/profile-img-test.jpg" alt="" srcSet=""/>
+                            <label htmlFor="profile-img">
+                                <img className={clsx(styles['profile-account__personal-img--inner'])}
+                                     src={profile.profile_image} alt="" srcSet=""/>
+                            </label>
+                            <input onChange={handleProfileImg} id='profile-img' hidden type="file"/>
                         </div>
                         <div
                             className={clsx(styles["profile-account__personal-info"], 'col-lg-9 col-md-9 col-sm-9 w-100')}>
-                            <div className={clsx(styles['profile-account__personal-group'], "form-group")}>
+                        <div className={clsx(styles['profile-account__personal-group'], "form-group")}>
                                 <label className={clsx(styles['profile-account__personal-label'])} htmlFor="fullname">Full name</label>
                                 <input value={profile.name} onChange={e => handleProfile({name: e.target.value})} type="text" name="" id="fullname"
                                        className={clsx(styles['profile-account__name-inp'])}
@@ -170,8 +218,15 @@ function MyAccount() {
                                 </p>
                             </div>
                         </div>
-                        <div className={clsx(styles["profile-account__personal-btn"], 'mt-5')}>
-                            <button className={clsx(styles["profile-account__personal-btn__item"])}>Save Change</button>
+                        <div className="alert alert-primary mt-4 p-2 d-none w-100">
+                            <p style={{fontSize: 14}} className='mb-0 text-center alert-text'></p>
+                        </div>
+                        <div className={clsx(styles["profile-account__personal-btn"], 'mt-4')}>
+                            <button onClick={saveChangeUpdateProfile}
+                                    className={clsx(styles["profile-account__personal-btn__item"])}>
+                                <Loading spinnerClassName='d-none spinner-load' />
+                                <span className='btn-save'>Save Change</span>
+                            </button>
                         </div>
                     </div>
                 </div>

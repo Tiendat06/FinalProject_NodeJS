@@ -11,6 +11,7 @@ const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
 const cloudinary = require('cloudinary');
 const multer = require("multer");
+const bodyParser = require('body-parser');
 const flash = require("connect-flash");
 const {rateLimit} = require('express-rate-limit');
 const cookieParser = require("cookie-parser");
@@ -37,6 +38,8 @@ cloudinary.v2.config({
 app.use(express.urlencoded({
     extended: true,
 }));
+// app.use(bodyParser.urlencoded({ extended: true }));
+
 // JSON API
 app.use(express.json());
 

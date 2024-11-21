@@ -16,9 +16,8 @@ function Navbar() {
     const {userData, setUserData} = useShoppingContext();
 
     useLayoutEffect(() => {
-        const user = JSON.parse(localStorage.getItem('userData'));
-        if(user){
-            setUserData(user);
+        if(JSON.parse(localStorage.getItem('userData'))){
+            setUserData(JSON.parse(localStorage.getItem('userData')));
         }
     }, []);
 
@@ -53,15 +52,17 @@ function Navbar() {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+
                 const error = data.error;
                 const msg = data.msg;
-                if(error) setLogMessage(error);
-                else {
+                const status = data.status;
+                // if(error) setLogMessage(error);
+                if(status) {
                     localStorage.setItem('userData', JSON.stringify(data.userData));
                     setUserData(data.userData);
                     setLogMessage(msg);
                 }
+                setLogMessage(msg);
             })
             .catch(error => console.log(error));
     }

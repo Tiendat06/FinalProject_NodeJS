@@ -1,23 +1,27 @@
 import styles from './MyAccount.module.css';
 import styleGrid from './MyAccountGrid.module.css';
 import clsx from "clsx";
-import {useState, useReducer} from "react";
+import {useState, useReducer, useLayoutEffect} from "react";
 import reducer, {initState} from "./reducers/reducer";
+import {setDay} from './actions/actions';
 import {Modal} from "~/components/elements";
 
 function MyAccount() {
-
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const date = new Date(userData.birthday);
     const [state, dispatch] = useReducer(reducer, initState);
     const { days } = state;
 
-    const [day, setDay] = useState(1);
-    const [month, setMonth] = useState(1);
-    const [year, setYear] = useState(2024);
-    const [gender, setGender] = useState('male');
+    const [day, setDays] = useState(Number(date.getUTCDate()));
+    const [month, setMonth] = useState(Number(date.getUTCMonth() + 1));
+    const [year, setYear] = useState(Number(date.getUTCFullYear()));
 
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
+    const [profile, setProfile] = useState({
+        name: userData.fullName,
+        email: userData.email,
+        phoneNumber: userData.phone,
+        gender: userData.gender
+    });
 
     const [hidePassword, setHidePassword] = useState({
         currentPwd: true,
@@ -46,6 +50,40 @@ function MyAccount() {
         console.log('re-render year');
     };
 
+    const handleProfile = (data) => {
+        const key = Object.keys(data)[0];
+        let value = data[key];
+        setProfile({
+            ...profile,
+            [key]: value,
+        })
+    }
+
+    useLayoutEffect(() => {
+        const api_url = process.env.REACT_APP_API_URL;
+        const user = JSON.parse(localStorage.getItem("userData"));
+        const user_id = user._id;
+        const birthday = new Date(Date.UTC(year, month - 1, day));
+        const newUserProfile = {
+            ...profile,
+            birthday
+        }
+        // console.log(user_id);
+        fetch(`${api_url}/user/profile/${user_id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(newUserProfile),
+            credentials: 'include'
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(err => console.error(err))
+    }, []);
+
     return (
         <div className="profile-account">
             <h5 style={{fontWeight: "normal"}}>Account Information</h5>
@@ -62,19 +100,19 @@ function MyAccount() {
                             className={clsx(styles["profile-account__personal-info"], 'col-lg-9 col-md-9 col-sm-9 w-100')}>
                             <div className={clsx(styles['profile-account__personal-group'], "form-group")}>
                                 <label className={clsx(styles['profile-account__personal-label'])} htmlFor="fullname">Full name</label>
-                                <input value={name} onChange={e => setName(e.target.value)} type="text" name="" id="fullname"
+                                <input value={profile.name} onChange={e => handleProfile({name: e.target.value})} type="text" name="" id="fullname"
                                        className={clsx(styles['profile-account__name-inp'])}
                                        placeholder='Enter full name'/>
                             </div>
                             <div className={clsx(styles['profile-account__personal-group'], "form-group")}>
                                 <label className={clsx(styles['profile-account__personal-label'])} htmlFor="phonenumber">Phone number</label>
-                                <input value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)} type="text" name="" id="phonenumber"
+                                <input value={profile.phoneNumber} onChange={e => handleProfile({phone: e.target.value})} type="text" name="" id="phonenumber"
                                        className={clsx(styles['profile-account__name-inp'])}
                                        placeholder='Enter phone number'/>
                             </div>
                             <div className={clsx(styles['profile-account__personal-group'], "form-group")}>
                                 <label className={clsx(styles['profile-account__personal-label'])} htmlFor="email">Email</label>
-                                <input value={email} onChange={e => setEmail(e.target.value)} type="text" name="" id="email"
+                                <input value={profile.email} onChange={e => handleProfile({email: e.target.value})} type="text" name="" id="email"
                                        className={clsx(styles['profile-account__name-inp'])}
                                        placeholder='Enter email'/>
                             </div>
@@ -85,7 +123,7 @@ function MyAccount() {
                             <label className={clsx(styles['profile-account__personal-more__label'], 'col-lg-3 col-md-3 col-sm-12')} htmlFor="">Date of
                                 Birth</label>
                             <div className={clsx(styleGrid['profile-account__personal-more__date'], "col-lg-9 col-md-9 col-sm-12 d-flex justify-content-end")}>
-                                <select value={day}  onChange={e => setDay(Number(e.target.value))}
+                                <select value={day}  onChange={e => setDays(Number(e.target.value))}
                                         className={clsx(styles['profile-account__personal-select'])} name="" id="">
                                     {days.map((item, index) => (
                                         <option key={index} value={item}>{item}</option>
@@ -122,13 +160,13 @@ function MyAccount() {
                                 className={clsx(styles['profile-account__personal-more__form'], "form-group col-lg-9 col-md-9 col-sm-12 d-flex justify-content-end")}>
                                 <p style={{fontSize: 14}}
                                    className={clsx(styles["profile-account__personal-more__label-gender"], 'w-50 mb-0 justify-content-end d-flex align-items-center')}>
-                                    <span onClick={() => setGender('male')}
-                                          className={clsx(gender === 'male' && clsx(styles['profile-account__personal-more__label-span']))}>Male</span>
+                                    <span onClick={() => handleProfile({gender: 'Male'})}
+                                          className={clsx(profile.gender === 'Male' && clsx(styles['profile-account__personal-more__label-span']))}>Male</span>
                                 </p>
                                 <p style={{fontSize: 14}}
                                    className={clsx(styles["profile-account__personal-more__label-gender"], 'w-50 mb-0 justify-content-end d-flex align-items-center')}>
-                                    <span onClick={() => setGender('female')}
-                                          className={clsx(gender === 'female' && (styles['profile-account__personal-more__label-span']))}>Female</span>
+                                    <span onClick={() => handleProfile({gender: 'Female'})}
+                                          className={clsx(profile.gender === 'Female' && (styles['profile-account__personal-more__label-span']))}>Female</span>
                                 </p>
                             </div>
                         </div>

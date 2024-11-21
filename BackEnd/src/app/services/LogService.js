@@ -66,7 +66,7 @@ class LogService {
             if(error.length === 0) {
                 const {fullName, phone, password, birthday, gender, email, address} = req.body;
                 const hashPassword = bcrypt.hashSync(password, 10);
-                const role_id = await roleRepository.getRoleByRoleName('Customer');
+                const role = await roleRepository.getRoleByRoleName('Customer');
 
                 const userJson = {
                     fullName, email, gender, phone, birthday,
@@ -76,7 +76,7 @@ class LogService {
                 const user_id = userResult[0]._id;
 
                 const accountJson = {
-                    user_id, role_id,
+                    user_id, role_id: role._id,
                     password: hashPassword
                 }
                 const accountResult = await accountRepository.insertAccountRegister(accountJson);
@@ -99,7 +99,7 @@ class LogService {
             console.log(err.message);
             return res.status(400).json({
                 status: false,
-                msg: 'Register Failed !'
+                msg: err.message
             });
         }
     }

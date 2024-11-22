@@ -10,4 +10,6 @@ router.post('/register', logValidator.register_POST, logMiddleWare.register, log
 
 router.post('/logout', logController.logout);
 
+router.post('/forgot-password', logValidator.emailValidator, logMiddleWare.forgot_password, logController.forgot_password)
+
 module.exports = router;

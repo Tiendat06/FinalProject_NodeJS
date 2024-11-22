@@ -1,11 +1,13 @@
 import {Link} from 'react-router-dom'
 import clsx from 'clsx'
-import {useLayoutEffect, useState} from "react";
+import {useEffect, useLayoutEffect, useState} from "react";
 
 import styles from './Header.module.css';
 import stylesGrid from './HeaderGrid.module.css';
 import {Button, Modal} from '~/components/elements';
 import {useShoppingContext} from "~/context/ShoppingContext";
+import {Loading} from "~/components/elements";
+import $ from "jquery";
 
 function Navbar() {
     let [search, setSearch] = useState('');
@@ -14,13 +16,6 @@ function Navbar() {
     const [logInformation, setLogInformation] = useState({});
     const [logMessage, setLogMessage] = useState(null);
     const {userData, setUserData} = useShoppingContext();
-
-    useLayoutEffect(() => {
-        const user = JSON.parse(localStorage.getItem('userData'));
-        if(user){
-            setUserData(user);
-        }
-    }, []);
 
     let handleIsLogin = (data) => {
        setIsLogin(data);
@@ -53,15 +48,12 @@ function Navbar() {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
-                const error = data.error;
+                // console.log(data)
                 const msg = data.msg;
-                if(error) setLogMessage(error);
-                else {
-                    localStorage.setItem('userData', JSON.stringify(data.userData));
-                    setUserData(data.userData);
-                    setLogMessage(msg);
-                }
+                const status = data.status;
+                // if(error) setLogMessage(error);
+                if(route === 'login') setUserData(() => data.userData);
+                setLogMessage(msg);
             })
             .catch(error => console.log(error));
     }
@@ -77,11 +69,31 @@ function Navbar() {
         })
             .then(response => response.json())
             .then(data => {
-                setLogMessage(data.msg);
+                // setLogMessage(data.msg);
                 setUserData({});
-                // setTimeout(() => {
-                //     window.location.reload();
-                // }, 2000)
+            })
+            .catch(error => console.log(error));
+    }
+
+    let onClickForgotPassword = () => {
+        $('.spinner-load').removeClass('d-none');
+        $('.btn-save').html('Loading...');
+        const api_url = process.env.REACT_APP_API_URL;
+        console.log(logInformation.email)
+
+        fetch(`${api_url}/log/forgot-password`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({email: logInformation.email}),
+        })
+            .then(response => response.json())
+            .then(data => {
+                const msg = data.msg;
+                setLogMessage(msg);
+                $('.spinner-load').addClass('d-none');
+                $('.btn-save').html('Send mail');
             })
             .catch(error => console.log(error));
     }
@@ -263,9 +275,9 @@ function Navbar() {
                                                 style={{fontSize: 12}}>Remember me</span></label>
                                         </div>
                                         <div className="form-group d-flex align-items-center">
-                                            <Link to='/' htmlFor="remember"
+                                            <div data-bs-toggle='modal' data-bs-target='#forgot-password-modal' data-bs-dismiss="modal"
                                                   className="login-modal__remember link-underline ml-5"><span
-                                                style={{fontSize: 12}}>Forgot password?</span></Link>
+                                                style={{fontSize: 12, cursor: "pointer"}}>Forgot password?</span></div>
                                         </div>
                                     </div>
                                     {logMessage &&
@@ -403,7 +415,41 @@ function Navbar() {
                     </div>
                     <p className='mb-0 text-center'>Are you sure to logout?</p>
                     <div className="text-center mt-2">
-                        <button data-bs-dismiss="modal" onClick={onClickLogout} className="btn btn-danger">Logout</button>
+                        <button data-bs-dismiss="modal" onClick={onClickLogout} className="btn btn-danger"><Link className='text-light' to='/'>Logout</Link></button>
+                    </div>
+                </div>
+            </Modal>
+
+            <Modal
+                id='forgot-password-modal'
+                closeClassName='d-none'
+                isStatic={true}
+                modalContentClassName={`${styles['login-modal__content']}`}
+                modalFooterClassName="d-none"
+                modalHeaderClassName="d-none" >
+                <div className="login-form col-lg-12 col-md-12 col-sm-12">
+                    <button onClick={() => setIsLogin(true)}
+                            style={{float: "right", fontSize: 12}} type="button" className="btn-close"
+                            data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h2 className='mb-0 mt-3'>Forgot password</h2>
+                    <div className="form-group mt-3">
+                        <div className="form-group">
+                            <label htmlFor="email" className="login-modal__email"><p className="mb-0">Email</p>
+                            </label>
+                            <input name='email' onChange={(e) => handleLogInformation({email: e.target.value})}
+                                   type="email" id="email" placeholder='Enter email...'
+                                   className={clsx(styles["login-input__phone"], 'form-control')}/>
+                        </div>
+                        {logMessage &&
+                            <div className="alert alert-danger p-2 mt-3 mb-0">
+                                <p style={{fontSize: 14}} className='mb-0 text-center'>{logMessage}</p>
+                            </div>
+                        }
+                        <button type="button" onClick={onClickForgotPassword}
+                                className={clsx(styles['login-modal__btn'], 'btn mt-4')}>
+                            <Loading spinnerClassName='d-none spinner-load' />
+                            <span className='btn-save'>Send mail</span>
+                        </button>
                     </div>
                 </div>
             </Modal>

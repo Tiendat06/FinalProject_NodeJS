@@ -8,10 +8,12 @@ import ManageVoucher from "./ManageVoucher/ManageVoucher";
 
 import clsx from "clsx";
 import {useEffect, useState} from "react";
+import {useShoppingContext} from "~/context/ShoppingContext";
 
 function ProfilePage() {
     const [pageContent, setPageContent] = useState(() => sessionStorage.getItem('pageContentProfile') || 'myAccount');
     const [isCategoryClicked, setIsCategoryClicked] = useState(false);
+    const {userData, setUserData} = useShoppingContext();
 
     useEffect(() => {
         sessionStorage.setItem('pageContentProfile', pageContent);
@@ -31,8 +33,8 @@ function ProfilePage() {
                                  src="/img/customer/profile/profile-img-test.jpg" alt="" srcSet=""/>
                         </div>
                         <div className={clsx(styles["profile-resume__name"], 'col-lg-8 col-md-8 col-sm-8')}>
-                            <p className={clsx(styles["profile-resume__name-text"], 'mb-0')}>Jake Jason</p>
-                            <p className={clsx(styles["profile-resume__name-phone"], 'mb-0')}>0356779197</p>
+                            <p className={clsx(styles["profile-resume__name-text"], 'mb-0')}>{userData.fullName}</p>
+                            <p className={clsx(styles["profile-resume__name-phone"], 'mb-0')}>{userData.phone}</p>
                         </div>
                     </div>
                     <ul className={clsx(styles["profile-category"], 'col-lg-12 col-md-12 col-sm-12', (isCategoryClicked && (styles['profile-resume--click'])))}>

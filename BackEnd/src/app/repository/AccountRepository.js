@@ -17,6 +17,12 @@ class AccountRepository {
             })
             .catch(err => console.log(err));
     }
+
+    updateAccountById = ({_id, ...accountData}) => {
+        return Account.updateOne({_id}, {$set: accountData})
+            .then(value => value)
+            .catch(err => console.log(err));
+    }
 }
 
 module.exports = new AccountRepository;

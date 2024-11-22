@@ -4,6 +4,7 @@ const accountRepository = require('../repository/AccountRepository');
 const addressRepository = require('../repository/AddressRepository');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const mailer = require('nodemailer');
 
 class LogService {
 
@@ -66,7 +67,7 @@ class LogService {
             if(error.length === 0) {
                 const {fullName, phone, password, birthday, gender, email, address} = req.body;
                 const hashPassword = bcrypt.hashSync(password, 10);
-                const role_id = await roleRepository.getRoleByRoleName('Customer');
+                const role = await roleRepository.getRoleByRoleName('Customer');
 
                 const userJson = {
                     fullName, email, gender, phone, birthday,
@@ -76,7 +77,7 @@ class LogService {
                 const user_id = userResult[0]._id;
 
                 const accountJson = {
-                    user_id, role_id,
+                    user_id, role_id: role._id,
                     password: hashPassword
                 }
                 const accountResult = await accountRepository.insertAccountRegister(accountJson);
@@ -99,9 +100,87 @@ class LogService {
             console.log(err.message);
             return res.status(400).json({
                 status: false,
-                msg: 'Register Failed !'
+                msg: err.message
             });
         }
+    }
+
+    forgotPassword = async (req, res) => {
+        const error = req.flash('error');
+        try {
+            if(error.length !== 0) throw new Error(error[0]);
+            return this.sendMail(req, res)
+                .then(() => {
+                    return res.status(200).json({
+                        status: true,
+                        msg: 'Please check your email !'
+                    })
+                })
+                .catch(e => {
+                    throw new Error(e.message);
+                })
+        } catch (e) {
+            return res.status(400).json({
+                status: false,
+                msg: e.message
+            })
+        }
+    }
+
+    sendMail = async (req, res) => {
+        const {email} = req.body;
+
+        try {
+            const user = await userRepository.getUserByEmail(email);
+            if (!user) throw new Error('User is not exists !');
+            const user_id = user._id;
+            const account = await accountRepository.getAccountByUserId(user_id);
+            if(!account) throw new Error('User is not exits !');
+            const account_id = account._id;
+
+            const transporter = mailer.createTransport({
+                host: process.env.MAIL_SERVER,
+                port: process.env.MAIL_PORT,
+                secure: false,
+                auth: {
+                    user: process.env.MAIL_USERNAME,
+                    pass: process.env.MAIL_PASSWORD
+                }
+            })
+
+            const newPassword = this.generateRandomString(10);
+            const hashNewPassword = await bcrypt.hash(newPassword, 10);
+            const accountUpdateData = {
+                _id: account_id,
+                password: hashNewPassword
+            }
+            const passwordUpdate = await accountRepository.updateAccountById(accountUpdateData);
+            if(!passwordUpdate.acknowledged) throw new Error('Send mail failed !');
+
+            const mailOptions = {
+                from: process.env.MAIL_USERNAME,
+                to: email,
+                subject: 'Email Verification',
+                html: `<p>This code below is your new password:<br/> ${newPassword}</p>`,
+            }
+            await transporter.sendMail(mailOptions);
+
+        } catch (e) {
+            return res.status(400).json({
+                status: false,
+                msg: e.message
+            })
+        }
+    }
+
+    generateRandomString = (length) => {
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let result = '';
+        for (let i = 0; i < length; i++) {
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            result += characters[randomIndex];
+        }
+        return result;
     }
 }
 

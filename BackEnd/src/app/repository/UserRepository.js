@@ -10,6 +10,12 @@ class UserRepository {
             .catch(err => console.log(err));
     }
 
+    getUserById = (_id) => {
+        return User.findOne({_id, deleted: false})
+            .then(user => user)
+            .catch(err => console.log(err));
+    }
+
     getUserByPhone = (phone) => {
         return User.findOne({phone, deleted: false})
             .then(value => {
@@ -23,6 +29,12 @@ class UserRepository {
             .then(value => {
                 return value;
             })
+            .catch(err => console.log(err));
+    }
+
+    updateUserById = ({_id, ...userUpdate}) => {
+        return User.updateOne({_id, deleted: false}, {$set: userUpdate})
+            .then(value => value)
             .catch(err => console.log(err));
     }
 }

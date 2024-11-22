@@ -36,6 +36,7 @@ function Navbar() {
         setIsCategoryClicked(!isCategoryClicked);
     }
 
+    // BE
     let onClickLoginOrRegister = (route) => {
         const api_url = process.env.REACT_APP_API_URL;
         fetch(`${api_url}/log/${route}`, {
@@ -52,7 +53,7 @@ function Navbar() {
                 const msg = data.msg;
                 const status = data.status;
                 // if(error) setLogMessage(error);
-                if(route === 'login') setUserData(() => data.userData);
+                if(route === 'login' && status) setUserData(() => data.userData);
                 setLogMessage(msg);
             })
             .catch(error => console.log(error));
@@ -96,6 +97,25 @@ function Navbar() {
                 $('.btn-save').html('Send mail');
             })
             .catch(error => console.log(error));
+    }
+
+    let navigate = (url) => {
+        window.location.href = url;
+    }
+
+    let auth = async () => {
+        const api_url = process.env.REACT_APP_API_URL;
+        fetch(`${api_url}/log/googleOAuth`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                navigate(data.url);
+            })
+            .catch(e => console.error(e));
     }
 
     return (
@@ -296,7 +316,7 @@ function Navbar() {
                                         <div
                                             className={clsx(styles["login-modal__line"], 'col-lg-4 col-md-4 col-sm-4')}></div>
                                     </div>
-                                    <button className={clsx(styles['login-modal__btn-gg'], 'btn')}>
+                                    <button onClick={() => auth()} className={clsx(styles['login-modal__btn-gg'], 'btn')}>
                                         <img className={clsx(styles['login-modal__btn-gg-img'])}
                                              src="/img/icon/google-icon.png" alt=""/>
                                         <p className={clsx(styles['login-modal__btn-gg-text'], 'mb-0')}>Login with
@@ -434,10 +454,10 @@ function Navbar() {
                     <h2 className='mb-0 mt-3'>Forgot password</h2>
                     <div className="form-group mt-3">
                         <div className="form-group">
-                            <label htmlFor="email" className="login-modal__email"><p className="mb-0">Email</p>
+                            <label htmlFor="email-navbar" className="login-modal__email"><p className="mb-0">Email</p>
                             </label>
                             <input name='email' onChange={(e) => handleLogInformation({email: e.target.value})}
-                                   type="email" id="email" placeholder='Enter email...'
+                                   type="email" id="email-navbar" placeholder='Enter email...'
                                    className={clsx(styles["login-input__phone"], 'form-control')}/>
                         </div>
                         {logMessage &&

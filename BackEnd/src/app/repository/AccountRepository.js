@@ -23,6 +23,7 @@ class AccountRepository {
             .then(value => value)
             .catch(err => console.log(err));
     }
+
 }
 
 module.exports = new AccountRepository;

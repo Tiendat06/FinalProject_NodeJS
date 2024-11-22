@@ -1,4 +1,5 @@
 const siteService = require('../services/SiteService');
+const logService = require('../services/LogService');
 
 // const Account = require('../model/Account');
 // const Address = require('../model/Address');
@@ -23,13 +24,14 @@ class SiteController{
 
     // [GET] /
     index = (req, res, next) => {
-        let data = siteService.index();
-        res.json({
+        const data = siteService.index(req, res);
+        return res.json({
             "status": 200,
             "message": "DashboardHome Page",
             "data": data
         })
     }
+
 }
 
 module.exports = new SiteController;

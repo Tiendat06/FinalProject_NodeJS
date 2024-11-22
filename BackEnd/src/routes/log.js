@@ -12,4 +12,10 @@ router.post('/logout', logController.logout);
 
 router.post('/forgot-password', logValidator.emailValidator, logMiddleWare.forgot_password, logController.forgot_password)
 
+router.get('/googleOAuth', logController.get_sign_in_google);
+
+router.post('/googleOAuth', logController.sign_in_google);
+
+router.get('/get-user-data', logController.get_user_data)
+
 module.exports = router;

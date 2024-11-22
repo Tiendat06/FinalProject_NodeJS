@@ -37,6 +37,12 @@ class UserRepository {
             .then(value => value)
             .catch(err => console.log(err));
     }
+
+    hardDeleteById = (_id) => {
+        return User.deleteOne({_id, deleted: false})
+            .then(value => value)
+            .catch(err => console.log(err));
+    }
 }
 
 module.exports = new UserRepository;

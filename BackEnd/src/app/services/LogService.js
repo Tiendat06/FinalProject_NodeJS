@@ -254,7 +254,7 @@ class LogService {
                 const userAddData = {
                     fullName: name,
                     email,
-                    profile_image: picture
+                    // profile_image: picture
                 }
                 const userAdd = await userRepository.insertUserRegister(userAddData);
                 if(userAdd.length === 0) throw new Error('Authorize failed !');

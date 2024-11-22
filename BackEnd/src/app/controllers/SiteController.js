@@ -19,7 +19,7 @@ const siteService = require('../services/SiteService');
 // const UserCoupon = require('../model/UserCoupon');
 // const WishList = require('../model/WishList');
 
-class SiteController{
+class SiteController {
 
     // [GET] /
     index = (req, res, next) => {

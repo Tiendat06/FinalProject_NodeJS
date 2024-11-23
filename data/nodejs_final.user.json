@@ -1,0 +1,63 @@
+[{
+  "_id": {
+    "$oid": "674067eac35c263bdad6c769"
+  },
+  "fullName": "Nhi Thảo",
+  "email": "ryannguyen1905@gmail.com",
+  "gender": "Female",
+  "phone": "0147896325",
+  "profile_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732275174/NodeJS_FinalProject/user/peyklnj1sbaiygqr4c5k.png",
+  "deleted": false,
+  "birthday": {
+    "$date": "2024-11-22T00:00:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2024-11-22T11:15:54.284Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-22T11:32:54.558Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "fullName": "Jake Jason",
+  "email": "tadat290903@gmail.com",
+  "gender": "Male",
+  "birthday": {
+    "$date": "2024-10-28T00:00:00.000Z"
+  },
+  "phone": "0356779197",
+  "profile_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1709054146/cl0hmsqdjl1lwnahek0i.png",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-11-23T09:49:29.457Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-23T09:49:29.457Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6741a61d4ccb29381f082384"
+  },
+  "fullName": "Bob Johnson",
+  "email": "tiendat79197@gmail.com",
+  "gender": "Male",
+  "birthday": {
+    "$date": "2024-10-27T00:00:00.000Z"
+  },
+  "phone": "0369852147",
+  "profile_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1709054146/cl0hmsqdjl1lwnahek0i.png",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-11-23T09:53:33.868Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-23T09:53:33.868Z"
+  },
+  "__v": 0
+}]

@@ -26,6 +26,7 @@ function MyAccount() {
         profile_image: userData.profile_image,
         img_file: ''
     });
+    console.log(profile);
 
     const [hidePassword, setHidePassword] = useState({
         currentPwd: true,
@@ -140,7 +141,7 @@ function MyAccount() {
                             className={clsx(styles["profile-account__personal-img"], 'col-lg-3 col-md-3 col-sm-3 mb-3')}>
                             <label htmlFor="profile-img">
                                 <img className={clsx(styles['profile-account__personal-img--inner'])}
-                                     src={profile.profile_image} alt="" srcSet=""/>
+                                     src={profile.profile_image} alt="User Profile" srcSet=""/>
                             </label>
                             <input onChange={handleProfileImg} id='profile-img' hidden type="file"/>
                         </div>
@@ -154,7 +155,7 @@ function MyAccount() {
                             </div>
                             <div className={clsx(styles['profile-account__personal-group'], "form-group")}>
                                 <label className={clsx(styles['profile-account__personal-label'])} htmlFor="phonenumber">Phone number</label>
-                                <input value={profile.phoneNumber} onChange={e => handleProfile({phone: e.target.value})} type="text" name="" id="phonenumber"
+                                <input value={profile.phoneNumber} onChange={e => handleProfile({phoneNumber: e.target.value})} type="text" name="" id="phonenumber"
                                        className={clsx(styles['profile-account__name-inp'])}
                                        placeholder='Enter phone number'/>
                             </div>

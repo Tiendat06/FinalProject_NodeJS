@@ -4,8 +4,8 @@ class SiteMiddleWare{
     constructor(){}
 
     // [GET] /
-    index = (req, res, next) => {
-        siteController.index(req, res, next);
+    index = async (req, res, next) => {
+        await siteController.index(req, res, next);
     }
 }
 

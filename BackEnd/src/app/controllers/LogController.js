@@ -25,6 +25,22 @@ class LogController {
             msg: 'Wait for a seconds !',
         });
     }
+
+    // [POST] /log/googleOAuth
+    sign_in_google = async (req, res, next) => {
+        return await logService.signInGoogle(req, res);
+    }
+
+
+    // [GET] /log/googleOAuth
+    get_sign_in_google = async (req, res, next) => {
+        return await logService.getSignInGoogle(req, res);
+    }
+
+    // [GET] /log/get-user-data
+    get_user_data = async (req, res, next) => {
+        return await logService.getUserSession(req, res);
+    }
 }
 
 module.exports = new LogController;

@@ -1,0 +1,17 @@
+[
+  {
+    "status": "Pending"
+  },
+  {
+    "status": "Confirmed"
+  },
+  {
+    "status": "Shipping"
+  },
+  {
+    "status": "Delivered"
+  },
+  {
+    "status": "Cancel"
+  }
+]

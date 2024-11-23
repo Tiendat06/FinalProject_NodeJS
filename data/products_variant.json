@@ -1,0 +1,19 @@
+[
+  {
+  "product_id": "64b6e9b0f9a6c25d42a3cd77", 
+  "product_name": "Redmi 10 Power (Power Black, 8GB RAM, 128GB Storage)",
+  "product_color": "Power Black",
+  "variant_quantity": 50,
+  "product_image": "https://m.media-amazon.com/images/I/81eM15lVcJL._AC_UL800_.jpg",
+  "import_price": 12000,
+  "retail_price": 14000,
+  "variant_ROM": "128GB",
+  "variant_RAM": "8GB",
+  "variant_operation_system": "Android 11",
+  "variant_chipset": "Snapdragon 680",
+  "variant_graphic_card": "Adreno 610",
+  "variant_screen": "6.71-inch HD+ Display",
+  "variant_cpu": "Octa-core 2.4 GHz",
+  "variant_weight": "203g"
+}
+]

@@ -10,6 +10,7 @@
   "author": "TienDat, ThieuPhong, MinhQuoc",
   "license": "ISC",
   "dependencies": {
+    "backend": "file:",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.3",
     "cloudinary": "^2.4.0",

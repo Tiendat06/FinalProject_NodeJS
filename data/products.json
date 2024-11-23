@@ -1,0 +1,484 @@
+[{
+  "_id": {
+    "$oid": "674138636c0973f433b151a5"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "Redmi 10 Power",
+  "product_description": "The Redmi 10 Power offers a 6.7-inch FHD+ display, Snapdragon processor, and up to 8GB RAM. Its 5000mAh battery ensures long usage, while the 50MP camera captures stunning photos, making it ideal for everyday use.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151a6"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "OnePlus Nord CE 2 Lite 5G",
+  "product_description": "The OnePlus Nord CE 2 Lite 5G offers a 6.59-inch FHD+ display, Snapdragon 695 chipset, 6GB/8GB RAM, and a 5000mAh battery. Its 64MP primary camera delivers impressive photos, making it a great mid-range 5G option.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151a7"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "Samsung Galaxy M33 5G",
+  "product_description": "The Samsung Galaxy M33 5G features a 6.6-inch FHD+ display, Exynos 1280 chipset, 6GB/8GB RAM, and a 6000mAh battery. It offers a 50MP quad-camera setup, perfect for users looking for a solid mid-range 5G phone with great performance and battery life.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151a8"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "Realme Narzo 50A Prime",
+  "product_description": "The Realme Narzo 50A Prime comes with a 6.6-inch FHD+ display, MediaTek Helio G85 chipset, and up to 4GB RAM. It offers a 50MP triple-camera setup and a large 5000mAh battery, making it an excellent choice for budget-conscious users seeking performance and durability.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151a9"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "Redmi A1",
+  "product_description": "The Redmi A1 features a 6.52-inch HD+ display, MediaTek Helio A22 chipset, and 2GB/3GB RAM. It offers a 13MP dual-camera setup and a 5000mAh battery, providing excellent value for users seeking an affordable smartphone with essential features.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151aa"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "Redmi 10A",
+  "product_description": "The Redmi 10A features a 6.53-inch HD+ display, MediaTek Helio G25 chipset, and 3GB/4GB RAM. With a 13MP rear camera and a 5000mAh battery, it offers great value for those seeking a budget-friendly smartphone with decent performance and battery life.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151ab"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "OnePlus 11R 5G",
+  "product_description": "The OnePlus 11R 5G features a 6.74-inch FHD+ AMOLED display, Snapdragon 8+ Gen 1 chipset, up to 12GB RAM, and a 5000mAh battery. Its 50MP primary camera with Optical Image Stabilization (OIS) ensures sharp photos, while the 100W fast charging delivers rapid power-up.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151ac"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "OnePlus Nord 2T 5G",
+  "product_description": "The OnePlus Nord 2T 5G comes with a 6.43-inch FHD+ AMOLED display, MediaTek Dimensity 1300 chipset, up to 12GB RAM, and a 4500mAh battery. Its 50MP triple-camera setup with OIS ensures sharp photos, and its 80W SuperVOOC charging delivers rapid power-up.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151ad"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "iQOO Z6 Lite 5G by Vivo",
+  "product_description": "The iQOO Z6 Lite 5G features a 6.58-inch FHD+ display, Qualcomm Snapdragon 695 5G chipset, and up to 6GB RAM. It comes with a 50MP dual-camera setup, a 5000mAh battery, and supports 18W fast charging, offering solid performance and 5G connectivity at an affordable price.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151ae"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "Oppo A78 5G",
+  "product_description": "The Oppo A78 5G features a 6.56-inch HD+ display, MediaTek Dimensity 700 chipset, and up to 8GB RAM. With a 50MP dual-camera setup and a 5000mAh battery, it provides 5G connectivity, excellent performance, and long battery life, making it a solid choice for budget-conscious users.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151af"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "Samsung Galaxy M04",
+  "product_description": "The Samsung Galaxy M04 features a 6.5-inch HD+ display, MediaTek Helio P35 chipset, and up to 4GB RAM. It comes with a 13MP dual-camera setup and a 5000mAh battery, delivering excellent performance for everyday use, all while offering great value for budget-conscious users.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151b0"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "Redmi Note 11",
+  "product_description": "The Redmi Note 11 features a 6.43-inch FHD+ AMOLED display, Qualcomm Snapdragon 680 chipset, and up to 6GB RAM. It boasts a 50MP quad-camera setup, a 5000mAh battery, and 33W fast charging, offering a smooth user experience and excellent value for money.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151b1"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "Oppo F21s Pro",
+  "product_description": "The Oppo F21s Pro features a 6.43-inch FHD+ AMOLED display, Qualcomm Snapdragon 695 5G chipset, and up to 8GB RAM. It offers a 64MP triple-camera system, a 4500mAh battery, and supports 33W SuperVOOC fast charging, delivering excellent performance, stunning photos, and long-lasting power.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151b2"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "OPPO A74 5G",
+  "product_description": "The OPPO A74 5G features a 6.5-inch FHD+ display with a 90Hz refresh rate, Qualcomm Snapdragon 480 5G chipset, and up to 6GB RAM. It has a 48MP triple-camera setup, a 5000mAh battery, and supports 18W fast charging, providing excellent performance and 5G connectivity at an affordable price.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151b3"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "Samsung Galaxy M13",
+  "product_description": "The Samsung Galaxy M13 features a 6.6-inch FHD+ display, Exynos 850 chipset, and up to 4GB RAM. It comes with a 50MP triple-camera setup, a 5000mAh battery, and supports 15W fast charging, offering solid performance and a great multimedia experience for everyday users.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151b4"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "Realme Narzo 50 Pro 5G",
+  "product_description": "The Realme Narzo 50 Pro 5G features a 6.4-inch FHD+ AMOLED display, MediaTek Dimensity 920 5G chipset, and up to 6GB RAM. It comes with a 48MP triple-camera setup, a 5000mAh battery, and supports 33W Dart charging, delivering powerful performance, excellent display quality, and long-lasting power.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151b5"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "Redmi 9A Sport",
+  "product_description": "The Redmi 9A Sport features a 6.53-inch HD+ display, MediaTek Helio G25 chipset, and 2GB RAM. It comes with a 13MP single-camera setup, a 5000mAh battery, offering a great budget experience with long-lasting battery life and decent performance for daily tasks.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151b6"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "Realme Narzo 50i Prime",
+  "product_description": "The Realme Narzo 50i Prime features a 6.5-inch HD+ display, Unisoc T612 chipset, and 4GB RAM. It comes with an 8MP rear camera, a 5000mAh battery, offering solid performance for everyday tasks, long-lasting battery life, and a smooth viewing experience.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151b7"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "iQOO Neo 7 5G",
+  "product_description": "The iQOO Neo 7 5G features a 6.78-inch FHD+ AMOLED display with a 120Hz refresh rate, MediaTek Dimensity 8200 5G chipset, and up to 12GB RAM. It comes with a 50MP triple-camera setup, a 5000mAh battery, and supports 120W fast charging, delivering top-tier performance, display quality, and charging speed.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151b8"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "OnePlus 10R 5G",
+  "product_description": "The OnePlus 10R 5G features a 6.7-inch FHD+ AMOLED display with a 120Hz refresh rate, MediaTek Dimensity 8100 5G chipset, and up to 12GB RAM. It comes with a 50MP triple-camera setup, a 4500mAh battery, and supports 150W fast charging, delivering premium performance, an immersive display, and ultra-fast charging capabilities.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151b9"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "iQOO Z6 5G by vivo",
+  "product_description": "The iQOO Z6 5G features a 6.58-inch FHD+ display with a 120Hz refresh rate, Qualcomm Snapdragon 695 5G chipset, and up to 8GB RAM. It comes with a 50MP triple-camera setup, a 5000mAh battery, and supports 18W fast charging, offering strong performance, smooth visuals, and solid battery life for everyday use.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151ba"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "Samsung Galaxy S20 FE 5G",
+  "product_description": "The Samsung Galaxy S20 FE 5G features a 6.5-inch FHD+ Super AMOLED display with a 120Hz refresh rate, Qualcomm Snapdragon 865 chipset, and up to 8GB RAM. It comes with a 12MP triple-camera setup, a 4500mAh battery, and supports 25W fast charging, offering premium performance, an immersive display, and 5G connectivity.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151bb"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "Samsung Galaxy M53 5G",
+  "product_description": "The Samsung Galaxy M53 5G features a 6.7-inch FHD+ Super AMOLED Plus display with a 120Hz refresh rate, MediaTek Dimensity 900 5G chipset, and up to 8GB RAM. It comes with a 108MP quad-camera setup, a 5000mAh battery, and supports 25W fast charging, offering great performance, an immersive display, and powerful 5G connectivity.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151bc"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "Samsung Galaxy M32 Prime Edition",
+  "product_description": "The Samsung Galaxy M32 Prime Edition features a 6.4-inch FHD+ Super AMOLED display with a 90Hz refresh rate, MediaTek Helio G80 chipset, and 6GB RAM. It comes with a 64MP quad-camera setup, a 6000mAh battery, and supports 15W fast charging, providing strong performance, an immersive display, and long-lasting battery life for everyday use.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151bd"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "Samsung Galaxy S21 FE 5G",
+  "product_description": "The Samsung Galaxy S21 FE 5G features a 6.4-inch FHD+ Dynamic AMOLED 2X display with a 120Hz refresh rate, Qualcomm Snapdragon 888 chipset, and up to 8GB RAM. It comes with a 12MP triple-camera setup, a 4500mAh battery, and supports 25W fast charging, providing flagship-level performance, smooth visuals, and 5G connectivity.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151be"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "Samsung Galaxy A14 5G",
+  "product_description": "The Samsung Galaxy A14 5G features a 6.6-inch FHD+ PLS LCD display with a 90Hz refresh rate, MediaTek Dimensity 700 chipset, and 4GB RAM. It comes with a 50MP triple-camera setup, a 5000mAh battery, and supports 15W fast charging, delivering solid performance and 5G connectivity at an affordable price point.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151bf"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "Samsung Galaxy S23 Ultra 5G",
+  "product_description": "The Samsung Galaxy S23 Ultra 5G features a 6.8-inch Quad HD+ Dynamic AMOLED 2X display with a 120Hz refresh rate, Qualcomm Snapdragon 8 Gen 2 chipset, and up to 12GB RAM. It comes with a powerful 200MP quad-camera setup, a 5000mAh battery, and supports 45W fast charging, offering exceptional performance, stunning visuals, and top-tier 5G connectivity.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151c0"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "Samsung Galaxy S23 5G",
+  "product_description": "The Samsung Galaxy S23 5G features a 6.1-inch Dynamic AMOLED 2X display with a 120Hz refresh rate, Qualcomm Snapdragon 8 Gen 2 chipset, and up to 8GB RAM. It comes with a 50MP triple-camera setup, a 3900mAh battery, and supports 25W fast charging, delivering flagship performance, stunning display quality, and seamless 5G connectivity.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151c1"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "Samsung Galaxy S22 5G",
+  "product_description": "The Samsung Galaxy S22 5G features a 6.1-inch FHD+ Dynamic AMOLED 2X display with a 120Hz refresh rate, Qualcomm Snapdragon 8 Gen 1 chipset, and up to 8GB RAM. It comes with a 50MP triple-camera setup, a 3700mAh battery, and supports 25W fast charging, delivering premium performance, stunning visuals, and seamless 5G connectivity.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151c2"
+  },
+  "category_id": "673cb3eb652666000535468b",
+  "product_name": "Samsung Galaxy A23 5G",
+  "product_description": "The Samsung Galaxy A23 5G features a 6.6-inch FHD+ PLS LCD display with a 120Hz refresh rate, Qualcomm Snapdragon 695 chipset, and 4GB/6GB RAM options. It comes with a 50MP quad-camera setup, a 5000mAh battery, and supports 25W fast charging, offering solid performance, smooth display, and reliable 5G connectivity at an affordable price.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151c3"
+  },
+  "category_id": "673cb3eb652666000535468c",
+  "product_name": "DELL Latitude 5490 Core i5 7th Gen Laptop",
+  "product_description": "The DELL Latitude 5490 features a 14-inch FHD display, powered by an Intel Core i5 7th Gen processor, 8GB RAM, and a 512GB SSD. It offers excellent performance for business and personal use, along with a durable design, long battery life, and robust security features. Ideal for professionals who need reliability and speed for multitasking.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151c4"
+  },
+  "category_id": "673cb3eb652666000535468c",
+  "product_name": "HP Chromebook C640 10th Gen Intel Core i5 Thin & Light FHD Laptop",
+  "product_description": "The HP Chromebook C640 features a 14-inch FHD anti-glare display, powered by a 10th Gen Intel Core i5 processor, 8GB RAM, and a 128GB SSD. With its lightweight design, long battery life, and Chrome OS, it’s an excellent choice for students and professionals who need fast, secure, and efficient computing for everyday tasks, browsing, and productivity.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151c5"
+  },
+  "category_id": "673cb3eb652666000535468c",
+  "product_name": "Lenovo ThinkPad X260 High Performance 12.5 inch IPS Panel 1.5kg Laptop",
+  "product_description": "The Lenovo ThinkPad X260 is a high-performance 12.5-inch laptop featuring an IPS panel display. Powered by Intel Core i5 processors, 8GB RAM, and a 256GB SSD, it delivers excellent speed and reliability. Weighing just 1.5kg, it’s perfect for professionals who need a portable, durable, and powerful laptop for work, travel, and everyday tasks. The long battery life ensures all-day productivity.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151c6"
+  },
+  "category_id": "673cb3eb652666000535468c",
+  "product_name": "Lenovo ThinkPad T450 Intel Core i5-5300U 14 inches Business Laptop Computer",
+  "product_description": "The Lenovo ThinkPad T450 is a reliable 14-inch business laptop featuring an Intel Core i5-5300U processor, 8GB RAM, and a 256GB SSD. With its durable design and full-size keyboard, it’s built for professionals who need a portable device with robust performance. Ideal for multitasking and productivity, the ThinkPad T450 ensures smooth computing for work-related tasks and everyday use.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151c7"
+  },
+  "category_id": "673cb3eb652666000535468c",
+  "product_name": "HP Victus Gaming Latest FHD Gaming Laptop",
+  "product_description": "The HP Victus Gaming Laptop is equipped with the latest Intel Core i7 processor, NVIDIA GeForce GTX 1660 Ti graphics, 16GB RAM, and a 512GB SSD. With its 15.6-inch FHD display, it offers an immersive gaming experience with vibrant visuals and smooth gameplay. Designed for gamers, it ensures high performance and fast processing for even the most demanding games, along with a sleek and durable design for everyday use.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151c8"
+  },
+  "category_id": "673cb3eb652666000535468c",
+  "product_name": "HP Victus Gaming Latest FHD Gaming Laptop",
+  "product_description": "The HP Victus Gaming Laptop is equipped with the latest Intel Core i7 processor, NVIDIA GeForce GTX 1660 Ti graphics, 16GB RAM, and a 512GB SSD. With its 15.6-inch FHD display, it offers an immersive gaming experience with vibrant visuals and smooth gameplay. Designed for gamers, it ensures high performance and fast processing for even the most demanding games, along with a sleek and durable design for everyday use.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151c9"
+  },
+  "category_id": "673cb3eb652666000535468c",
+  "product_name": "Acer Aspire 5 Gaming Laptop Intel Core i5 12th gen",
+  "product_description": "The Acer Aspire 5 Gaming Laptop is powered by the latest Intel Core i5 12th generation processor, offering smooth multitasking and performance for gaming and productivity tasks. It features a 15.6-inch Full HD display, 8GB RAM, and a 512GB SSD, making it ideal for gaming enthusiasts and professionals. With its slim design, long-lasting battery life, and fast performance, the Aspire 5 is a perfect choice for both work and play.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151ca"
+  },
+  "category_id": "673cb3eb652666000535468c",
+  "product_name": "HP Pavilion FHD Gaming Laptop",
+  "product_description": "The HP Pavilion FHD Gaming Laptop is designed for high-performance gaming and multitasking. It is powered by an Intel Core i7 processor, 16GB RAM, and a 512GB SSD. The 15.6-inch Full HD display offers crisp visuals, while the NVIDIA GeForce GTX graphics ensure smooth gameplay. Ideal for gamers looking for powerful performance and a sleek design, the HP Pavilion is a perfect blend of speed, reliability, and style.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151cb"
+  },
+  "category_id": "673cb3eb652666000535468c",
+  "product_name": "ASUS TUF Gaming A15 Laptop",
+  "product_description": "The ASUS TUF Gaming A15 is built for performance with a powerful AMD Ryzen 7 5800H processor, NVIDIA GeForce RTX 3060 graphics, and a 15.6-inch Full HD display. Equipped with 16GB RAM and a 512GB SSD, it ensures fast load times and smooth gameplay. The durable design, enhanced cooling system, and military-grade build make it perfect for gamers who need a reliable machine for long sessions and heavy tasks.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151cc"
+  },
+  "category_id": "673cb3eb652666000535468c",
+  "product_name": "Lenovo Ideapad Gaming 3",
+  "product_description": "The Lenovo Ideapad Gaming 3 is a powerful gaming laptop designed to handle intensive tasks with ease. Powered by the AMD Ryzen 5 5600H processor and NVIDIA GeForce GTX 1650 graphics, it offers smooth gameplay and multitasking performance. Featuring a 15.6-inch Full HD display with a 120Hz refresh rate, 8GB RAM, and a 512GB SSD, this laptop delivers an immersive gaming experience and fast load times, all within a durable and sleek design.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151cd"
+  },
+  "category_id": "673cb3eb652666000535468d",
+  "product_name": "boAt Airdopes 141 Bluetooth Truly Wireless in Ear Earbuds",
+  "product_description": "The Lenovo Ideapad Gaming 3 is a powerful gaming laptop designed to handle intensive tasks with ease. Powered by the AMD Ryzen 5 5600H processor and NVIDIA GeForce GTX 1650 graphics, it offers smooth gameplay and multitasking performance. Featuring a 15.6-inch Full HD display with a 120Hz refresh rate, 8GB RAM, and a 512GB SSD, this laptop delivers an immersive gaming experience and fast load times, all within a durable and sleek design.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151ce"
+  },
+  "category_id": "673cb3eb652666000535468d",
+  "product_name": "JBL C100SI Wired In Ear Headphones",
+  "product_description": "The JBL C100SI offers premium sound quality with powerful bass and crystal-clear audio. Designed for comfort, these lightweight wired in-ear headphones include three sizes of ear tips to ensure a perfect fit. The built-in microphone with a universal button remote allows hands-free calling and easy music control. With a sleek design and iconic JBL sound, these headphones are perfect for music enthusiasts on the go.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151cf"
+  },
+  "category_id": "673cb3eb652666000535468d",
+  "product_name": "realme TechLife Buds T100 Bluetooth Truly Wireless in Ear Earbuds",
+  "product_description": "The realme TechLife Buds T100 deliver an immersive audio experience with 10mm dynamic bass drivers and Bluetooth v5.3 for seamless connectivity. With up to 28 hours of total playback, these earbuds are designed for extended use. Featuring AI ENC for clear calls and IPX5 water resistance, they are perfect for workouts and daily use. The Buds T100 also offer touch controls for effortless music and call management, along with a lightweight ergonomic design for maximum comfort.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "674138636c0973f433b151d0"
+  },
+  "category_id": "673cb3eb652666000535468d",
+  "product_name": "Noise Buds VS104 in-Ear Truly Wireless Earbuds",
+  "product_description": "The Noise Buds VS104 provide an enhanced audio experience with 13mm drivers for deep bass and crisp sound. With Bluetooth v5.2 connectivity, these earbuds ensure seamless pairing and stable connections. They offer up to 30 hours of playback time, making them perfect for long usage. The lightweight ergonomic design and IPX5 water resistance make them ideal for workouts and daily activities. Touch controls allow easy management of music, calls, and voice assistants, offering convenience at your fingertips.",
+  "createdAt": "2024-11-22T00:00:00Z",
+  "updatedAt": "2024-11-22T00:00:00Z",
+  "deleted": false
+}]

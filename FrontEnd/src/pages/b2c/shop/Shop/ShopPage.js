@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import OwlCarousel from 'react-owl-carousel';
 
 function ShopPage() {
+    const api_url = process.env.REACT_APP_API_URL;
     const itemsPerPage = 9;
     let options = {
         loop: true,
@@ -63,6 +64,7 @@ function ShopPage() {
         setPageCount(Math.ceil(filtered.length / itemsPerPage));
         setCurrentItems(filtered.slice(0, itemsPerPage));
     }, [priceRange, data, itemType]);
+
     const handlePageChange = useCallback((event) => {
         const newOffset = event.selected * itemsPerPage;
         setCurrentItems(filteredData.slice(newOffset, newOffset + itemsPerPage));
@@ -83,6 +85,31 @@ function ShopPage() {
         });
         setData(sortedDataSelect);
     }, [selectedOption, isAscending]);
+
+    // BE
+    // useEffect(() => {
+    //     fetch(`${api_url}/product`, {
+    //         method: 'GET',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         credentials: "include",
+    //     })
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             if(data.status) {
+    //                 setData(data.data);
+    //
+    //                 setFilteredData(data.data);
+    //                 setPageCount(Math.ceil(data['data'].length / itemsPerPage));
+    //                 setCurrentItems(data['data'].slice(0, itemsPerPage));
+    //             }
+    //             else window.location.href = '/';
+    //         })
+    //         .catch(error => console.log(error));
+    // }, [])
+    // console.log(data);
+    // console.log(filteredData);
 
     return (
         <>

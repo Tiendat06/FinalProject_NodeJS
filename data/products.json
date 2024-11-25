@@ -57,8 +57,8 @@
   "category_id": {
     "$oid" : "673cb3eb652666000535468b"
   },
-  "product_name": "Redmi A1",
-  "product_description": "The Redmi A1 features a 6.52-inch HD+ display, MediaTek Helio A22 chipset, and 2GB/3GB RAM. It offers a 13MP dual-camera setup and a 5000mAh battery, providing excellent value for users seeking an affordable smartphone with essential features.",
+  "product_name": "Xiaomi Redmi A1",
+  "product_description": "The Redmi A1 features a 6.52-inch Full HD+ display, MediaTek Helio A22 chipset, and 2GB/3GB RAM. It offers a 13MP dual-camera setup and a 5000mAh battery, providing excellent value for users seeking an affordable smartphone with essential features.",
   "createdAt": "2024-11-22T00:00:00Z",
   "updatedAt": "2024-11-22T00:00:00Z",
   "deleted": false
@@ -70,7 +70,7 @@
   "category_id": {
     "$oid" : "673cb3eb652666000535468b"
   },
-  "product_name": "Redmi 10A",
+  "product_name": "Xiaomi Redmi 10A",
   "product_description": "The Redmi 10A features a 6.53-inch HD+ display, MediaTek Helio G25 chipset, and 3GB/4GB RAM. With a 13MP rear camera and a 5000mAh battery, it offers great value for those seeking a budget-friendly smartphone with decent performance and battery life.",
   "createdAt": "2024-11-22T00:00:00Z",
   "updatedAt": "2024-11-22T00:00:00Z",

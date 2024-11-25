@@ -24,28 +24,6 @@ function HomePage(){
         top3Products: []
     });
 
-    // owl carousel
-    let options = {
-        loop: true,
-        margin: 25,
-        nav: false,
-        autoplay: true,
-        autoplayTimeout: 2500,
-        autoplayHoverPause: true,
-        smartSpeed: 800,
-        responsive: {
-            0: {
-                items: 1
-            },
-            600: {
-                items: 3
-            },
-            1000: {
-                items: 4
-            }
-        }
-    };
-
     // mixitup
     let containerRef = useRef(null);
     useEffect(() => {

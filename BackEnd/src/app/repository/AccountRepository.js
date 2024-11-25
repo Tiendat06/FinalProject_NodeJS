@@ -10,6 +10,12 @@ class AccountRepository {
             .catch(err => console.log(err));
     }
 
+    changePasswordByUserId = (user_id, password) => {
+        return Account.updateOne({user_id}, {$set: {password}})
+            .then(value => value)
+            .catch(err => console.log(err));
+    }
+
     getAccountByUserId = (user_id) => {
         return Account.findOne({user_id, is_ban: false, deleted: false})
             .then(value => {

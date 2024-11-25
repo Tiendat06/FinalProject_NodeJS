@@ -1,7 +1,7 @@
 import styles from './MyAccount.module.css';
 import styleGrid from './MyAccountGrid.module.css';
 import clsx from "clsx";
-import {useState, useReducer, useLayoutEffect, useEffect} from "react";
+import {useState, useReducer, useLayoutEffect, useEffect, useCallback} from "react";
 import reducer, {initState} from "./reducers/reducer";
 import {setDay} from './actions/actions';
 import {Loading, Modal} from "~/components/elements";
@@ -10,6 +10,9 @@ const $ = require('jquery');
 
 function MyAccount() {
     const {userData, setUserData} = useShoppingContext();
+    const api_url = process.env.REACT_APP_API_URL;
+
+    const user_id = userData._id;
     const date = new Date(userData.birthday);
     const [state, dispatch] = useReducer(reducer, initState);
     const { days } = state;
@@ -26,7 +29,13 @@ function MyAccount() {
         profile_image: userData.profile_image,
         img_file: ''
     });
-    // console.log(profile);
+    const [logMessage, setLogMessage] = useState('');
+
+    const [password, setPassword] = useState({
+        currentPassword: "",
+        newPassword: "",
+        confirmPassword: ""
+    });
 
     const [hidePassword, setHidePassword] = useState({
         currentPwd: true,
@@ -85,10 +94,7 @@ function MyAccount() {
         $('.spinner-border').removeClass('d-none');
         $('.btn-save').html('Loading...');
 
-        const api_url = process.env.REACT_APP_API_URL;
-        const user_id = userData._id;
         const birthday = new Date(Date.UTC(year, month - 1, day));
-
         const formData = new FormData();
         formData.append('name', profile.name);
         formData.append('email', profile.email);
@@ -129,6 +135,29 @@ function MyAccount() {
             })
             .catch(err => console.error(err))
     }
+
+    const handleChangePassword = useCallback(() => {
+        if(password.newPassword !== password.confirmPassword) {
+            setLogMessage('Confirm password is not correct !');
+            return;
+        }
+        fetch(`${api_url}/user/profile/change-password`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                ...password,
+                user_id
+            }),
+            credentials: 'include'
+        })
+            .then(response => response.json())
+            .then(data => {
+                setLogMessage(data.msg);
+            })
+            .catch(err => console.error(err))
+    }, [password]);
 
     return (
         <div className="profile-account">
@@ -282,6 +311,7 @@ function MyAccount() {
             <Modal
                 id='change-password'
                 title='Change password'
+                onClickLabelSave={handleChangePassword}
                 isStatic={true}
                 labelBtnSave='Save'
                 saveClassName={clsx(styles['profile-account__pwd-save'], 'btn')}
@@ -292,7 +322,9 @@ function MyAccount() {
                         <label className={clsx(styles['profile-account__pwd-label'])} htmlFor="current-pwd">Current
                             password</label>
                         <div className="position-relative">
-                            <input placeholder='Enter current password'
+                            <input value={password.currentPassword}
+                                   onChange={e => setPassword({...password, currentPassword: e.target.value})}
+                                   placeholder='Enter current password'
                                    type={hidePassword.currentPwd ? "password" : "text"}
                                    id='current-pwd'
                                    className={clsx(styles['profile-account__pwd-inp'], 'form-control')}/>
@@ -306,7 +338,9 @@ function MyAccount() {
                         <label className={clsx(styles['profile-account__pwd-label'])} htmlFor="new-pwd">New
                             password</label>
                         <div className="position-relative">
-                            <input placeholder='Enter new password'
+                            <input value={password.newPassword}
+                                   onChange={e => setPassword({...password, newPassword: e.target.value})}
+                                   placeholder='Enter new password'
                                    type={hidePassword.newPwd ? "password" : "text"}
                                    id='new-pwd'
                                    className={clsx(styles['profile-account__pwd-inp'], 'form-control')}/>
@@ -320,7 +354,9 @@ function MyAccount() {
                         <label className={clsx(styles['profile-account__pwd-label'])} htmlFor="confirm-pwd">Confirm
                             password</label>
                         <div className="position-relative">
-                            <input placeholder='Re-enter new password'
+                            <input value={password.confirmPassword}
+                                   onChange={e => setPassword({...password, confirmPassword: e.target.value})}
+                                   placeholder='Re-enter new password'
                                    type={hidePassword.confirmPwd ? "password" : "text"}
                                    id='confirm-pwd'
                                    className={clsx(styles['profile-account__pwd-inp'], 'form-control')}/>
@@ -330,6 +366,9 @@ function MyAccount() {
                             ></i>
                         </div>
                     </div>
+                </div>
+                <div className={clsx('alert alert-danger p-2 mt-2 mb-2', (!logMessage && 'd-none'))}>
+                    <p className='mb-0 text-center'>{logMessage}</p>
                 </div>
             </Modal>
 

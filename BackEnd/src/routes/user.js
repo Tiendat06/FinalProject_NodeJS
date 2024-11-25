@@ -9,4 +9,7 @@ const upload = require('../config/multer/multer');
 router.put('/profile/:id',upload.single('img_file'), checkLogin, userValidator.userProfileValidator,
     userMiddleWare.update_user_profile, userController.update_user_profile);
 
+router.post('/profile/change-password', checkLogin, userValidator.checkPassword,
+    userMiddleWare.user_change_password, userController.user_change_password);
+
 module.exports = router;

@@ -34,33 +34,25 @@ function ShopPage() {
         { value: 'product_name', label: 'Name' },
     ];
 
-    // Example for pagination
-    const rawData = [
-        { _id: 1, product_name: "Laptop IdeaPad Slim 3", product_img: "/img/customer/product/laptop/lenovo-ideapadSlim3.png", product_price: 300, category_id: {category_name: 'Laptop'} },
-        { _id: 2, product_name: "IPhone 11", product_img: "/img/customer/product/mobile/iphone11.png", product_price: 300, category_id: {category_name: 'Smartphone'} },
-        { _id: 3, product_name: "Loudspeaker Mini Xiaomi", product_img: "/img/customer/product/sound/sound-mini-siaomi.png", product_price: 300, category_id: {category_name: 'Headphone'} },
-        { _id: 4, product_name: "Laptop Microsoft Surface", product_img: "/img/customer/product/laptop/microsoft-surface.png", product_price: 400, category_id: {category_name: 'Laptop'} },
-        { _id: 5, product_name: "Laptop Vivobook 15", product_img: "/img/customer/product/laptop/asus-vivobook15.png", product_price: 300, category_id: {category_name: 'Laptop'} },
-        { _id: 6, product_name: "Laptop HP Pavilion 15", product_img: "/img/customer/product/laptop/hp-pavilion15.png", product_price: 300, category_id: {category_name: 'Laptop'} },
-        { _id: 8, product_name: "Samsung S23 Ultra", product_img: "/img/customer/product/mobile/samsung-S23Ultra.png", product_price: 300, category_id: {category_name: 'Smartphone'} },
-    ];
-
-    const [data, setData] = useState(rawData);
+    const [data, setData] = useState([{}]);
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [priceRange, setPriceRange] = useState(10);
     const [isAscending, setIsAscending] = useState(true);
-    const [filteredData, setFilteredData] = useState(rawData);
+    const [filteredData, setFilteredData] = useState([]);
     const [itemType, setItemType] = useState("all");
 
     useLayoutEffect(() => {
-        let filtered = data.filter(item => (item['product_price'] >= priceRange));
-        if(itemType !== 'all'){
-            filtered = filtered.filter(item => item['category_id']['category_name'] === itemType);
+        if(data && data.length > 0) {
+            let filtered = data.filter(item => (item['product_price'] >= priceRange));
+            console.log(filtered);
+            if(itemType !== 'all'){
+                filtered = filtered.filter(item => item['category_id']['category_name'] === itemType);
+            }
+            setFilteredData(filtered);
+            setPageCount(Math.ceil(filtered.length / itemsPerPage));
+            setCurrentItems(filtered.slice(0, itemsPerPage));
         }
-        setFilteredData(filtered);
-        setPageCount(Math.ceil(filtered.length / itemsPerPage));
-        setCurrentItems(filtered.slice(0, itemsPerPage));
     }, [priceRange, data, itemType]);
 
     const handlePageChange = useCallback((event) => {
@@ -95,15 +87,15 @@ function ShopPage() {
         })
             .then(response => response.json())
             .then(data => {
+                console.log(data);
                 if(data.status) {
-                    // console.log(data.data);
-                    // setData(data.data);
+                    console.log(data.data);
+                    setData(data.data);
                 }
                 else window.location.href = '/';
             })
             .catch(error => console.log(error));
     }, [])
-    // console.log(filteredData);
 
     return (
         <>
@@ -143,82 +135,82 @@ function ShopPage() {
                 </div>
 
                 <div className="shop-filter__latest mt-4">
-                    <h4 className="">Latest Product</h4>
+                    {/*<h4 className="">Latest Product</h4>*/}
                     <div className={clsx(styles['shop-filter__middle'], 'mb-4')}
                          style={{marginRight: "auto", marginLeft: 0}}></div>
-                    <OwlCarousel
-                        {...options}>
-                        <div className="shop-filter__rated-list">
-                            <Link to="/" className={clsx(styles["shop-filter__rated-item"], 'd-flex')}>
-                                <div
-                                    className={clsx(styles["shop-filter__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/laptop/dell-inspiron14.png" alt=""
-                                         className={clsx(styles["shop-filter__rated-img"])}/>
-                                </div>
-                                <div className={clsx(styles["shop-filter__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">Dell Inspiron 14</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
-                                </div>
-                            </Link>
-                            <Link to='/' className={clsx(styles["shop-filter__rated-item"], 'd-flex')}>
-                                <div
-                                    className={clsx(styles["shop-filter__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/laptop/dell-inspiron14.png" alt=""
-                                         className={clsx(styles["shop-filter__rated-img"])}/>
-                                </div>
-                                <div className={clsx(styles["shop-filter__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">Dell Inspiron 14</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
-                                </div>
-                            </Link>
-                            <Link to='/' className={clsx(styles["shop-filter__rated-item"], 'd-flex')}>
-                                <div
-                                    className={clsx(styles["shop-filter__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/laptop/dell-inspiron14.png" alt=""
-                                         className={clsx(styles["shop-filter__rated-img"])}/>
-                                </div>
-                                <div className={clsx(styles["shop-filter__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">Dell Inspiron 14</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
-                                </div>
-                            </Link>
-                        </div>
-                        <div className="shop-filter__rated-list">
-                            <Link to='/' className={clsx(styles["shop-filter__rated-item"], 'd-flex')}>
-                                <div
-                                    className={clsx(styles["shop-filter__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/laptop/asus-vivobookS16.png" alt=""
-                                         className={clsx(styles["shop-filter__rated-img"])}/>
-                                </div>
-                                <div className={clsx(styles["shop-filter__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">Asus Vivobook S16</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
-                                </div>
-                            </Link>
-                            <Link to='/' className={clsx(styles["shop-filter__rated-item"], 'd-flex')}>
-                                <div
-                                    className={clsx(styles["shop-filter__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/laptop/asus-vivobookS16.png" alt=""
-                                         className={clsx(styles["shop-filter__rated-img"])}/>
-                                </div>
-                                <div className={clsx(styles["shop-filter__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">Asus Vivobook S16</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
-                                </div>
-                            </Link>
-                            <Link to='/' className={clsx(styles["shop-filter__rated-item"], 'd-flex')}>
-                                <div
-                                    className={clsx(styles["shop-filter__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/laptop/asus-vivobookS16.png" alt=""
-                                         className={clsx(styles["shop-filter__rated-img"])}/>
-                                </div>
-                                <div className={clsx(styles["shop-filter__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">Asus Vivobook S16</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
-                                </div>
-                            </Link>
-                        </div>
-                    </OwlCarousel>
+                    {/*<OwlCarousel*/}
+                    {/*    {...options}>*/}
+                    {/*    <div className="shop-filter__rated-list">*/}
+                    {/*        <Link to="/" className={clsx(styles["shop-filter__rated-item"], 'd-flex')}>*/}
+                    {/*            <div*/}
+                    {/*                className={clsx(styles["shop-filter__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>*/}
+                    {/*                <img src="/img/customer/product/laptop/dell-inspiron14.png" alt=""*/}
+                    {/*                     className={clsx(styles["shop-filter__rated-img"])}/>*/}
+                    {/*            </div>*/}
+                    {/*            <div className={clsx(styles["shop-filter__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>*/}
+                    {/*                <p className="text-dark mb-0">Dell Inspiron 14</p>*/}
+                    {/*                <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>*/}
+                    {/*            </div>*/}
+                    {/*        </Link>*/}
+                    {/*        <Link to='/' className={clsx(styles["shop-filter__rated-item"], 'd-flex')}>*/}
+                    {/*            <div*/}
+                    {/*                className={clsx(styles["shop-filter__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>*/}
+                    {/*                <img src="/img/customer/product/laptop/dell-inspiron14.png" alt=""*/}
+                    {/*                     className={clsx(styles["shop-filter__rated-img"])}/>*/}
+                    {/*            </div>*/}
+                    {/*            <div className={clsx(styles["shop-filter__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>*/}
+                    {/*                <p className="text-dark mb-0">Dell Inspiron 14</p>*/}
+                    {/*                <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>*/}
+                    {/*            </div>*/}
+                    {/*        </Link>*/}
+                    {/*        <Link to='/' className={clsx(styles["shop-filter__rated-item"], 'd-flex')}>*/}
+                    {/*            <div*/}
+                    {/*                className={clsx(styles["shop-filter__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>*/}
+                    {/*                <img src="/img/customer/product/laptop/dell-inspiron14.png" alt=""*/}
+                    {/*                     className={clsx(styles["shop-filter__rated-img"])}/>*/}
+                    {/*            </div>*/}
+                    {/*            <div className={clsx(styles["shop-filter__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>*/}
+                    {/*                <p className="text-dark mb-0">Dell Inspiron 14</p>*/}
+                    {/*                <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>*/}
+                    {/*            </div>*/}
+                    {/*        </Link>*/}
+                    {/*    </div>*/}
+                    {/*    <div className="shop-filter__rated-list">*/}
+                    {/*        <Link to='/' className={clsx(styles["shop-filter__rated-item"], 'd-flex')}>*/}
+                    {/*            <div*/}
+                    {/*                className={clsx(styles["shop-filter__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>*/}
+                    {/*                <img src="/img/customer/product/laptop/asus-vivobookS16.png" alt=""*/}
+                    {/*                     className={clsx(styles["shop-filter__rated-img"])}/>*/}
+                    {/*            </div>*/}
+                    {/*            <div className={clsx(styles["shop-filter__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>*/}
+                    {/*                <p className="text-dark mb-0">Asus Vivobook S16</p>*/}
+                    {/*                <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>*/}
+                    {/*            </div>*/}
+                    {/*        </Link>*/}
+                    {/*        <Link to='/' className={clsx(styles["shop-filter__rated-item"], 'd-flex')}>*/}
+                    {/*            <div*/}
+                    {/*                className={clsx(styles["shop-filter__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>*/}
+                    {/*                <img src="/img/customer/product/laptop/asus-vivobookS16.png" alt=""*/}
+                    {/*                     className={clsx(styles["shop-filter__rated-img"])}/>*/}
+                    {/*            </div>*/}
+                    {/*            <div className={clsx(styles["shop-filter__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>*/}
+                    {/*                <p className="text-dark mb-0">Asus Vivobook S16</p>*/}
+                    {/*                <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>*/}
+                    {/*            </div>*/}
+                    {/*        </Link>*/}
+                    {/*        <Link to='/' className={clsx(styles["shop-filter__rated-item"], 'd-flex')}>*/}
+                    {/*            <div*/}
+                    {/*                className={clsx(styles["shop-filter__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>*/}
+                    {/*                <img src="/img/customer/product/laptop/asus-vivobookS16.png" alt=""*/}
+                    {/*                     className={clsx(styles["shop-filter__rated-img"])}/>*/}
+                    {/*            </div>*/}
+                    {/*            <div className={clsx(styles["shop-filter__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>*/}
+                    {/*                <p className="text-dark mb-0">Asus Vivobook S16</p>*/}
+                    {/*                <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>*/}
+                    {/*            </div>*/}
+                    {/*        </Link>*/}
+                    {/*    </div>*/}
+                    {/*</OwlCarousel>*/}
                 </div>
             </div>
 

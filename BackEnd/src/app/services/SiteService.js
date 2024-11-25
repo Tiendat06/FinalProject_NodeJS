@@ -1,12 +1,17 @@
-const {OAuth2Client} = require("google-auth-library");
+const productRepository = require('../repository/ProductRepository');
 
 class SiteService {
-    index = (req, res) => {
-        return [
-            {"id": 1, "name": "Jake", "age": 25},
-            {"id": 2, "name": "John", "age": 41},
-            {"id": 3, "name": "Doe", "age": 23},
-        ];
+    index = async (req, res) => {
+        const top5Products = await productRepository.getTopNProducts(5);
+        const top8Products = await productRepository.getTopNProducts(8);
+        const top3Products = await productRepository.getTopNProducts(3);
+
+        return res.status(200).json({
+            status: true,
+            top5Products,
+            top8Products,
+            top3Products
+        })
     }
 
 }

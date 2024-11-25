@@ -7,7 +7,6 @@ const ProductVariant = new Schema({
     product_color: {type: String},
     variant_quantity: {type: Number},
     product_image: {type: String},
-    import_price: {type: Number},
     retail_price: {type: Number},
     variant_ROM: {type: String, default: null},
     variant_RAM: {type: String, default: null},

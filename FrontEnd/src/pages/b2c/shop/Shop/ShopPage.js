@@ -87,28 +87,28 @@ function ShopPage() {
     }, [selectedOption, isAscending]);
 
     // BE
-    // useEffect(() => {
-    //     fetch(`${api_url}/product`, {
-    //         method: 'GET',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //         credentials: "include",
-    //     })
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             if(data.status) {
-    //                 setData(data.data);
-    //
-    //                 setFilteredData(data.data);
-    //                 setPageCount(Math.ceil(data['data'].length / itemsPerPage));
-    //                 setCurrentItems(data['data'].slice(0, itemsPerPage));
-    //             }
-    //             else window.location.href = '/';
-    //         })
-    //         .catch(error => console.log(error));
-    // }, [])
-    // console.log(data);
+    useEffect(() => {
+        fetch(`${api_url}/product`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: "include",
+        })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status) {
+                    setData(data.data);
+
+                    setFilteredData(data.data);
+                    setPageCount(Math.ceil(data['data'].length / itemsPerPage));
+                    setCurrentItems(data['data'].slice(0, itemsPerPage));
+                }
+                else window.location.href = '/';
+            })
+            .catch(error => console.log(error));
+    }, [])
+    console.log(data);
     // console.log(filteredData);
 
     return (

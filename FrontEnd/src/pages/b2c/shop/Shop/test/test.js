@@ -29,9 +29,9 @@ function ShopPage() {
         }
     };
     const filterOptions = [
-        { value: '_id', label: 'Default' },
-        { value: 'product_price', label: 'Price' },
-        { value: 'product_name', label: 'Name' },
+        { value: 'id', label: 'Default' },
+        { value: 'price', label: 'Price' },
+        { value: 'name', label: 'Name' },
     ];
 
     // Example for pagination
@@ -68,7 +68,7 @@ function ShopPage() {
         setCurrentItems(filteredData.slice(newOffset, newOffset + itemsPerPage));
     }, []);
 
-    const [selectedOption, setSelectedOption] = useState('_id');
+    const [selectedOption, setSelectedOption] = useState('id');
     useEffect(() => {
         const sortedDataSelect = [...data].sort((a, b) => {
             if (typeof a[selectedOption] === 'string') {
@@ -96,8 +96,8 @@ function ShopPage() {
             .then(response => response.json())
             .then(data => {
                 if(data.status) {
-                    // console.log(data.data);
-                    // setData(data.data);
+                    console.log(data.data);
+                    setData(data.data);
                 }
                 else window.location.href = '/';
             })
@@ -113,23 +113,23 @@ function ShopPage() {
                     <ul className="shop-filter__department-list p-0">
                         <li data-filter="*" className={clsx("shop-filter__department-item d-flex")}>
                             <div
-                               onClick={() => setItemType('all')}
-                               className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'all' && styles['link-department']}`)}>All</div>
+                                onClick={() => setItemType('all')}
+                                className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'all' && styles['link-department']}`)}>All</div>
                         </li>
                         <li data-filter=".laptop" className="shop-filter__department-item d-flex">
                             <div
-                               onClick={() => setItemType('Laptop')}
-                               className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'Laptop' && styles['link-department']}`)}>Laptop</div>
+                                onClick={() => setItemType('Laptop')}
+                                className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'Laptop' && styles['link-department']}`)}>Laptop</div>
                         </li>
                         <li data-filter=".mobile" className="shop-filter__department-item d-flex">
                             <div
-                               onClick={() => setItemType('Smartphone')}
-                               className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'Smartphone' && styles['link-department']}`)}>Mobile</div>
+                                onClick={() => setItemType('Smartphone')}
+                                className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'Smartphone' && styles['link-department']}`)}>Mobile</div>
                         </li>
                         <li data-filter=".sound" className="shop-filter__department-item d-flex">
                             <div
-                               onClick={() => setItemType('Headphone')}
-                               className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'Headphone' && styles['link-department']}`)}>Headphone</div>
+                                onClick={() => setItemType('Headphone')}
+                                className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'Headphone' && styles['link-department']}`)}>Headphone</div>
                         </li>
                     </ul>
                 </div>

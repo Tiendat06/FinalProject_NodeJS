@@ -4,14 +4,8 @@ const ProductVariant = require('../model/ProductVariant');
 class ProductRepository {
 
     getAllProducts = () => {
-        return ProductVariant.find()
-            .populate({
-                path: 'product_id',
-                populate: {
-                    path: 'category_id',
-                    model: 'ProductCategory'
-                }
-            })
+        return Product.find()
+            .populate('category_id')
             .then(products => products)
             .catch(err => console.log(err));
     }

@@ -154,12 +154,12 @@ function Navbar() {
                                             </Link>
                                         </p>
                                         <p className='mb-0 ml-5 mr-5'>/</p>
-                                        <p data-bs-toggle='modal' data-bs-target='#logout-modal' className={clsx('mb-0 link-underline header-top__login-btn')}
+                                        <div data-bs-toggle='modal' data-bs-target='#logout-modal' className={clsx('mb-0 link-underline header-top__login-btn')}
                                            style={{cursor: "pointer"}}>
                                             <p className='mb-0' style={{fontWeight: "500"}}>
                                                 Logout
                                             </p>
-                                        </p>
+                                        </div>
                                     </>
                                     :
                                     <p className={clsx('mb-0 link-underline header-top__login-btn')}

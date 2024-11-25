@@ -26,7 +26,7 @@ function MyAccount() {
         profile_image: userData.profile_image,
         img_file: ''
     });
-    console.log(profile);
+    // console.log(profile);
 
     const [hidePassword, setHidePassword] = useState({
         currentPwd: true,

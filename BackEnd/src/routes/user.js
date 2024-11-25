@@ -12,4 +12,6 @@ router.put('/profile/:id',upload.single('img_file'), checkLogin, userValidator.u
 router.post('/profile/change-password', checkLogin, userValidator.checkPassword,
     userMiddleWare.user_change_password, userController.user_change_password);
 
+router.get('/profile/coupon', checkLogin, userMiddleWare.user_coupon_list, userController.user_coupon_list)
+
 module.exports = router;

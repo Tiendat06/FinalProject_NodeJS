@@ -1,19 +1,932 @@
 [
   {
-  "product_id": "64b6e9b0f9a6c25d42a3cd77", 
-  "product_name": "Redmi 10 Power (Power Black, 8GB RAM, 128GB Storage)",
-  "product_color": "Power Black",
-  "variant_quantity": 50,
-  "product_image": "https://m.media-amazon.com/images/I/81eM15lVcJL._AC_UL800_.jpg",
-  "import_price": 12000,
-  "retail_price": 14000,
-  "variant_ROM": "128GB",
-  "variant_RAM": "8GB",
-  "variant_operation_system": "Android 11",
-  "variant_chipset": "Snapdragon 680",
-  "variant_graphic_card": "Adreno 610",
-  "variant_screen": "6.71-inch HD+ Display",
-  "variant_cpu": "Octa-core 2.4 GHz",
-  "variant_weight": "203g"
-}
+    "product_id": {
+      "$oid": "674138636c0973f433b151a5"
+    },
+    "product_name": "Redmi 10 Power",
+    "product_color": "Power Black",
+    "variant_quantity": 30,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732263674/NodeJS_FinalProject/products/phones/sttifuke2fubios76hrf.jpg",
+    "retail_price": 550,
+    "variant_ROM": "128GB",
+    "variant_RAM": "8GB",
+    "variant_operation_system": "Android 11",
+    "variant_chipset": "Snapdragon 680 Octa-core 2.4 GHz Adreno 610",
+    "variant_graphic_card": "",
+    "variant_screen": "6.71-inch HD+ Display",
+    "variant_cpu": "",
+    "variant_weight": "203g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151a5"
+    },
+    "product_name": "Redmi 10 Power",
+    "product_color": "Sporty Orange",
+    "variant_quantity": 20,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732373151/NodeJS_FinalProject/products/phones/ih2dxa07njzdxmodipl3.jpg",
+    "retail_price": 600,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 11",
+    "variant_chipset": "Snapdragon 680 Octa-core 2.4 GHz",
+    "variant_graphic_card": "Adreno 610",
+    "variant_screen": "6.71-inch HD+ Display",
+    "variant_cpu": "",
+    "variant_weight": "203g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151a6"
+    },
+    "product_name": "OnePlus Nord CE 2 Lite 5G",
+    "product_color": "Blue Tide",
+    "variant_quantity": 20,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732373151/NodeJS_FinalProject/products/phones/ih2dxa07njzdxmodipl3.jpg",
+    "retail_price": 256,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "6 GB",
+    "variant_operation_system": "Android 11",
+    "variant_chipset": "Snapdragon 695 5G",
+    "variant_graphic_card": "Adreno 619",
+    "variant_screen": "6.59-inch Full HD+ Display",
+    "variant_cpu": "",
+    "variant_weight": "203g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151a6"
+    },
+    "product_name": "OnePlus Nord CE 2 Lite 5G",
+    "product_color": "Blue Tide",
+    "variant_quantity": 20,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732373151/NodeJS_FinalProject/products/phones/ih2dxa07njzdxmodipl3.jpg",
+    "retail_price": 256,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 11",
+    "variant_chipset": "Snapdragon 695 5G",
+    "variant_graphic_card": "Adreno 619",
+    "variant_screen": "6.59-inch Full HD+ Display",
+    "variant_cpu": "",
+    "variant_weight": "203g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151a6"
+    },
+    "product_name": "OnePlus Nord CE 2 Lite 5G",
+    "product_color": "Black Dusk",
+    "variant_quantity": 20,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732374928/NodeJS_FinalProject/products/phones/ianonmpuibvtu9t8xag4.jpg",
+    "retail_price": 256,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "6 GB",
+    "variant_operation_system": "Android 11",
+    "variant_chipset": "Snapdragon 695 5G",
+    "variant_graphic_card": "Adreno 619",
+    "variant_screen": "6.59-inch Full HD+ Display",
+    "variant_cpu": "",
+    "variant_weight": "203g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151a6"
+    },
+    "product_name": "OnePlus Nord CE 2 Lite 5G",
+    "product_color": "Black Dusk",
+    "variant_quantity": 20,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732374928/NodeJS_FinalProject/products/phones/ianonmpuibvtu9t8xag4.jpg",
+    "retail_price": 260,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 11",
+    "variant_chipset": "Snapdragon 695 5G",
+    "variant_graphic_card": "Adreno 619",
+    "variant_screen": "6.59-inch Full HD+ Display",
+    "variant_cpu": "",
+    "variant_weight": "203g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151a6"
+    },
+    "product_name": "OnePlus Nord CE 2 Lite 5G",
+    "product_color": "Black Dusk",
+    "variant_quantity": 20,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732374928/NodeJS_FinalProject/products/phones/ianonmpuibvtu9t8xag4.jpg",
+    "import_price": 240,
+    "retail_price": 260,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 11",
+    "variant_chipset": "Snapdragon 695 5G",
+    "variant_graphic_card": "Adreno 619",
+    "variant_screen": "6.59-inch Full HD+ Display",
+    "variant_cpu": "",
+    "variant_weight": "203g"
+  },
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151a7"
+    },
+    "product_name": "Samsung Galaxy M33 5G",
+    "product_color": "Mystique Green",
+    "variant_quantity": 10,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732375504/NodeJS_FinalProject/products/phones/sjy6z8g7mxbjadz5fpdg.jpg",
+    "retail_price": 320,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "6 GB",
+    "variant_operation_system": "Android 11",
+    "variant_chipset": "Exynos 1280",
+    "variant_graphic_card": "",
+    "variant_screen": "6.6-inch Full HD+ (1080 x 2408 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "203g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151a7"
+    },
+    "product_name": "Samsung Galaxy M33 5G",
+    "product_color": "Mystique Green",
+    "variant_quantity": 10,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732375504/NodeJS_FinalProject/products/phones/sjy6z8g7mxbjadz5fpdg.jpg",
+    "retail_price": 320,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 11",
+    "variant_chipset": "Exynos 1280",
+    "variant_graphic_card": "",
+    "variant_screen": "6.6-inch Full HD+ (1080 x 2408 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "203g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151a7"
+    },
+    "product_name": "Samsung Galaxy M33 5G",
+    "product_color": "Emerald Brown",
+    "variant_quantity": 5,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732375894/NodeJS_FinalProject/products/phones/oiglziqdhl6iqauzcm7m.jpg",
+    "retail_price": 320,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "6 GB",
+    "variant_operation_system": "Android 11",
+    "variant_chipset": "Exynos 1280",
+    "variant_graphic_card": "",
+    "variant_screen": "6.6-inch Full HD+ (1080 x 2408 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "203g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151a7"
+    },
+    "product_name": "Samsung Galaxy M33 5G",
+    "product_color": "Emerald Brown",
+    "variant_quantity": 5,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732375894/NodeJS_FinalProject/products/phones/oiglziqdhl6iqauzcm7m.jpg",
+    "retail_price": 320,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 11",
+    "variant_chipset": "Exynos 1280",
+    "variant_graphic_card": "",
+    "variant_screen": "6.6-inch Full HD+ (1080 x 2408 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "203g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151a7"
+    },
+    "product_name": "Samsung Galaxy M33 5G",
+    "product_color": "Deep Ocean Blue",
+    "variant_quantity": 5,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732376675/NodeJS_FinalProject/products/phones/ovfbmy4vyon6lnxsf4ry.jpg",
+    "retail_price": 340,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "6 GB",
+    "variant_operation_system": "Android 11",
+    "variant_chipset": "Exynos 1280",
+    "variant_graphic_card": "",
+    "variant_screen": "6.6-inch Full HD+ (1080 x 2408 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "203g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151a7"
+    },
+    "product_name": "Samsung Galaxy M33 5G",
+    "product_color": "Deep Ocean Blue",
+    "variant_quantity": 5,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732376675/NodeJS_FinalProject/products/phones/ovfbmy4vyon6lnxsf4ry.jpg",
+    "retail_price": 340,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 11",
+    "variant_chipset": "Exynos 1280",
+    "variant_graphic_card": "",
+    "variant_screen": "6.6-inch Full HD+ (1080 x 2408 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "203g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151a8"
+    },
+    "product_name": "Realme Narzo 50A Prime",
+    "product_color": "Flash Black",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732377686/NodeJS_FinalProject/products/phones/etuprpamzpl9kxwvd6f1.jpg",
+    "retail_price": 140,
+    "variant_ROM": "64 GB",
+    "variant_RAM": "4 GB",
+    "variant_operation_system": "Android 11",
+    "variant_chipset": "Unisoc Tiger T612",
+    "variant_graphic_card": "",
+    "variant_screen": "6.6-inch Full HD+ (1080 x 2400 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "108g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151a8"
+    },
+    "product_name": "Realme Narzo 50A Prime",
+    "product_color": "Flash Blue",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732377978/NodeJS_FinalProject/products/phones/dqd7gimbiiopvp2hprp7.jpg",
+    "retail_price": 140,
+    "variant_ROM": "64 GB",
+    "variant_RAM": "4 GB",
+    "variant_operation_system": "Android 11",
+    "variant_chipset": "Unisoc Tiger T612",
+    "variant_graphic_card": "",
+    "variant_screen": "6.6-inch Full HD+ (1080 x 2400 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "108g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151a9"
+    },
+    "product_name": "Xiaomi Redmi A1",
+    "product_color": "Light Blue",
+    "variant_quantity": 20,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732378401/NodeJS_FinalProject/products/phones/g96gqpjdoskqeigwjbfu.jpg",
+    "retail_price": 100,
+    "variant_ROM": "32 GB",
+    "variant_RAM": "2 GB",
+    "variant_operation_system": "Android 12",
+    "variant_chipset": "MediaTek MT6761 (Helio A22)",
+    "variant_graphic_card": "IMG PowerVR GE8300",
+    "variant_screen": "6.52-inch Full HD+ (1080 x 2400 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "108g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151a9"
+    },
+    "product_name": "Xiaomi Redmi A1",
+    "product_color": "Black",
+    "variant_quantity": 20,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732378637/NodeJS_FinalProject/products/phones/jxxtveyjbehede2ihsgj.jpg",
+    "retail_price": 100,
+    "variant_ROM": "32 GB",
+    "variant_RAM": "2 GB",
+    "variant_operation_system": "Android 12",
+    "variant_chipset": "MediaTek MT6761 (Helio A22)",
+    "variant_graphic_card": "IMG PowerVR GE8300",
+    "variant_screen": "6.52-inch Full HD+ (1080 x 2400 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "108g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151a9"
+    },
+    "product_name": "Xiaomi Redmi A1",
+    "product_color": "Light Green",
+    "variant_quantity": 21,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732378911/NodeJS_FinalProject/products/phones/nwuyj5cjawu4yijs5oat.jpg",
+    "retail_price": 100,
+    "variant_ROM": "32 GB",
+    "variant_RAM": "2 GB",
+    "variant_operation_system": "Android 12",
+    "variant_chipset": "MediaTek MT6761 (Helio A22)",
+    "variant_graphic_card": "IMG PowerVR GE8300",
+    "variant_screen": "6.52-inch Full HD+ (1080 x 2400 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "108g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151aa"
+    },
+    "product_name": "Xiaomi Redmi 10A",
+    "product_color": "Charcoal Black",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732435757/NodeJS_FinalProject/products/phones/rouw74co6k5wmlcw8cce.jpg",
+    "retail_price": 120,
+    "variant_ROM": "64 GB",
+    "variant_RAM": "4 GB",
+    "variant_operation_system": "Android 12",
+    "variant_chipset": "MediaTek Helio G25",
+    "variant_graphic_card": "",
+    "variant_screen": "6.53-inch HD+ (1600 x 720 Pixels)",
+    "variant_cpu": "Octa-core CPU, up to 2.0GHz",
+    "variant_weight": "108g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151aa"
+    },
+    "product_name": "Xiaomi Redmi 10A",
+    "product_color": "Slate Grey",
+    "variant_quantity": 10,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732436082/NodeJS_FinalProject/products/phones/gfo9qqinqzugmgedtbwn.jpg",
+    "retail_price": 120,
+    "variant_ROM": "64 GB",
+    "variant_RAM": "4 GB",
+    "variant_operation_system": "Android 12",
+    "variant_chipset": "MediaTek Helio G25",
+    "variant_graphic_card": "",
+    "variant_screen": "6.53-inch HD+ (1600 x 720 Pixels)",
+    "variant_cpu": "Octa-core CPU, up to 2.0GHz",
+    "variant_weight": "108g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151aa"
+    },
+    "product_name": "Xiaomi Redmi 10A",
+    "product_color": "Sea Blue",
+    "variant_quantity": 10,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732436254/NodeJS_FinalProject/products/phones/c4quq0zuatga3oaq0yf8.jpg",
+    "retail_price": 120,
+    "variant_ROM": "64 GB",
+    "variant_RAM": "4 GB",
+    "variant_operation_system": "Android 12",
+    "variant_chipset": "MediaTek Helio G25",
+    "variant_graphic_card": "",
+    "variant_screen": "6.53-inch HD+ (1600 x 720 Pixels)",
+    "variant_cpu": "Octa-core CPU, up to 2.0GHz",
+    "variant_weight": "108g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151ab"
+    },
+    "product_name": "OnePlus 11R 5G",
+    "product_color": "Galactic Silver",
+    "variant_quantity": 20,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732436415/NodeJS_FinalProject/products/phones/wcxugixffrurystkwyrm.jpg",
+    "retail_price": 500,
+    "variant_ROM": "256 GB",
+    "variant_RAM": "16 GB",
+    "variant_operation_system": "Android 13, OxygenOS 13",
+    "variant_chipset": "Qualcomm SM8475 Snapdragon 8+ Gen 1",
+    "variant_graphic_card": "Adreno 730",
+    "variant_screen": "6.74-inch Fluid AMOLED (1240 x 2772 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "108g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151ab"
+    },
+    "product_name": "OnePlus 11R 5G",
+    "product_color": "Sonic Black",
+    "variant_quantity": 20,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732437568/NodeJS_FinalProject/products/phones/hcnqzb8dfp1wv1e8mhbp.jpg",
+    "retail_price": 500,
+    "variant_ROM": "256 GB",
+    "variant_RAM": "16 GB",
+    "variant_operation_system": "Android 13, OxygenOS 13",
+    "variant_chipset": "Qualcomm SM8475 Snapdragon 8+ Gen 1",
+    "variant_graphic_card": "Adreno 730",
+    "variant_screen": "6.74-inch Fluid AMOLED (1240 x 2772 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "108g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151ac"
+    },
+    "product_name": "OnePlus Nord 2T 5G",
+    "product_color": "Jade Fog",
+    "variant_quantity": 20,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732437739/NodeJS_FinalProject/products/phones/vusnbeblqsubtrwcrn7f.jpg",
+    "retail_price": 360,
+    "variant_ROM": "256 GB",
+    "variant_RAM": "12 GB",
+    "variant_operation_system": "Android 12, OxygenOS 12",
+    "variant_chipset": "Dimensity 1300",
+    "variant_graphic_card": "",
+    "variant_screen": "6.43-inch AMOLED (2400 x 1080 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "110g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151ac"
+    },
+    "product_name": "OnePlus Nord 2T 5G",
+    "product_color": "Gray Shadow",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732438418/NodeJS_FinalProject/products/phones/llbbyhe5bqhgmyyw4ojf.jpg",
+    "retail_price": 360,
+    "variant_ROM": "256 GB",
+    "variant_RAM": "12 GB",
+    "variant_operation_system": "Android 12, OxygenOS 12",
+    "variant_chipset": "Dimensity 1300",
+    "variant_graphic_card": "",
+    "variant_screen": "6.43-inch AMOLED (2400 x 1080 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "110g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151ad"
+    },
+    "product_name": "iQOO Z6 Lite 5G by Vivo",
+    "product_color": "Stellar Green",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732439031/NodeJS_FinalProject/products/phones/vgo6ktcyqknbvhxf47dk.jpg",
+    "retail_price": 185,
+    "variant_ROM": "64 GB",
+    "variant_RAM": "4 GB",
+    "variant_operation_system": "Android 12",
+    "variant_chipset": "Adreno 619",
+    "variant_graphic_card": "",
+    "variant_screen": "6.58-inch Full HD+ (1080 x 2408 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "110g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151ad"
+    },
+    "product_name": "iQOO Z6 Lite 5G by Vivo",
+    "product_color": "Mystic Night",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732441479/NodeJS_FinalProject/products/phones/wbr22tpbvlrazenewqbl.jpg",
+    "retail_price": 185,
+    "variant_ROM": "64 GB",
+    "variant_RAM": "4 GB",
+    "variant_operation_system": "Android 12",
+    "variant_chipset": "Adreno 619",
+    "variant_graphic_card": "",
+    "variant_screen": "6.58-inch Full HD+ (1080 x 2408 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "110g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151ae"
+    },
+    "product_name": "Oppo A78 5G",
+    "product_color": "Glowing Blue",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732441743/NodeJS_FinalProject/products/phones/akk22l2fhf28wcckz4if.jpg",
+    "retail_price": 185,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 12",
+    "variant_chipset": "MediaTek Dimensity 700",
+    "variant_graphic_card": "Mali-G57 MC2",
+    "variant_screen": "6.58-inch Full HD+ (720 x 1612 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "110g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151ae"
+    },
+    "product_name": "Oppo A78 5G",
+    "product_color": "Glowing Black",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732442145/NodeJS_FinalProject/products/phones/p2y2cuvcejbkuotxotxa.jpg",
+    "retail_price": 185,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 12",
+    "variant_chipset": "MediaTek Dimensity 700",
+    "variant_graphic_card": "Mali-G57 MC2",
+    "variant_screen": "6.58-inch Full HD+ (720 x 1612 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "110g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151af"
+    },
+    "product_name": "Samsung Galaxy M04",
+    "product_color": "Light Green",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732443088/NodeJS_FinalProject/products/phones/gvllsqppdoigdh0lk8ih.jpg",
+    "retail_price": 185,
+    "variant_ROM": "64 GB",
+    "variant_RAM": "4 GB",
+    "variant_operation_system": "Android 12",
+    "variant_chipset": "MediaTek Helio G35",
+    "variant_graphic_card": "",
+    "variant_screen": "6.5-inch Full HD+ (720 x 1612 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "100g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151af"
+    },
+    "product_name": "Samsung Galaxy M04",
+    "product_color": "Light Green",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732443088/NodeJS_FinalProject/products/phones/gvllsqppdoigdh0lk8ih.jpg",
+    "retail_price": 185,
+    "variant_ROM": "64 GB",
+    "variant_RAM": "4 GB",
+    "variant_operation_system": "Android 12",
+    "variant_chipset": "MediaTek Helio G35",
+    "variant_graphic_card": "",
+    "variant_screen": "6.5-inch Full HD+ (720 x 1612 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "100g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151af"
+    },
+    "product_name": "Samsung Galaxy M04",
+    "product_color": "Dark Blue",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732443407/NodeJS_FinalProject/products/phones/ewts0gk23w1rswmgib0v.jpg",
+    "retail_price": 185,
+    "variant_ROM": "64 GB",
+    "variant_RAM": "4 GB",
+    "variant_operation_system": "Android 12",
+    "variant_chipset": "MediaTek Helio G35",
+    "variant_graphic_card": "",
+    "variant_screen": "6.5-inch Full HD+ (720 x 1612 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "100g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151b0"
+    },
+    "product_name": "Redmi Note 11",
+    "product_color": "Space Black",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732443624/NodeJS_FinalProject/products/phones/hcjjklx1izh0y2htqsxt.jpg",
+    "retail_price": 185,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "6 GB",
+    "variant_operation_system": "Android 11",
+    "variant_chipset": "Snapdragon 680",
+    "variant_graphic_card": "",
+    "variant_screen": "6.5-inch AMOLED Full HD+ (1080 x 2400 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "100g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151b0"
+    },
+    "product_name": "Redmi Note 11",
+    "product_color": "Horizon Blue",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732443738/NodeJS_FinalProject/products/phones/r1yjnnwjxjjmnncfws8p.jpg",
+    "retail_price": 185,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "6 GB",
+    "variant_operation_system": "Android 11",
+    "variant_chipset": "Snapdragon 680",
+    "variant_graphic_card": "",
+    "variant_screen": "6.5-inch AMOLED Full HD+ (1080 x 2400 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "100g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151b1"
+    },
+    "product_name": "Oppo F21s Pro",
+    "product_color": "Dawnlight Gold",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732443980/NodeJS_FinalProject/products/phones/dczpq7rqw9zm8i0c0axu.jpg",
+    "retail_price": 340,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 12",
+    "variant_chipset": "Snapdragon 680",
+    "variant_graphic_card": "Adreno 610",
+    "variant_screen": "6.43-inch AMOLED Full HD+ (1080 x 2400 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "100g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151b1"
+    },
+    "product_name": "Oppo F21s Pro",
+    "product_color": "Starlight Black",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732444087/NodeJS_FinalProject/products/phones/bzt1tqjz5m39jcuk1wq9.jpg",
+    "retail_price": 340,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 12",
+    "variant_chipset": "Snapdragon 680",
+    "variant_graphic_card": "Adreno 610",
+    "variant_screen": "6.43-inch AMOLED Full HD+ (1080 x 2400 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "100g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151b2"
+    },
+    "product_name": "OPPO A74 5G",
+    "product_color": "Fantastic Purple",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732444261/NodeJS_FinalProject/products/phones/jcwmnmzkyqzlfybb1ivm.jpg",
+    "retail_price": 320,
+    "variant_ROM": "256 GB",
+    "variant_RAM": "6 GB",
+    "variant_operation_system": "Android 11",
+    "variant_chipset": "Snapdragon 480 5G",
+    "variant_graphic_card": "Adreno 619",
+    "variant_screen": "6.5-inch Full HD+ (1080 x 2400 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "100g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151b2"
+    },
+    "product_name": "OPPO A74 5G",
+    "product_color": "Fluid Black",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732444358/NodeJS_FinalProject/products/phones/qp4l0ynmn9f1harxb61x.jpg",
+    "retail_price": 320,
+    "variant_ROM": "256 GB",
+    "variant_RAM": "6 GB",
+    "variant_operation_system": "Android 11",
+    "variant_chipset": "Snapdragon 480 5G",
+    "variant_graphic_card": "Adreno 619",
+    "variant_screen": "6.5-inch Full HD+ (1080 x 2400 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "100g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151b3"
+    },
+    "product_name": "Samsung Galaxy M13",
+    "product_color": "Aqua Green",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732444576/NodeJS_FinalProject/products/phones/oas00jcd3c4vibxkpdgl.jpg",
+    "retail_price": 140,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "6 GB",
+    "variant_operation_system": "Android 11",
+    "variant_chipset": "Exynos 850",
+    "variant_graphic_card": "",
+    "variant_screen": "6.6-inch Full HD+ (1080 x 2400 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "100g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151b3"
+    },
+    "product_name": "Samsung Galaxy M13",
+    "product_color": "Midnight Blue",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732444694/NodeJS_FinalProject/products/phones/vjk5p7gsk3h18ul35e9u.jpg",
+    "retail_price": 140,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "6 GB",
+    "variant_operation_system": "Android 11",
+    "variant_chipset": "Exynos 850",
+    "variant_graphic_card": "",
+    "variant_screen": "6.6-inch Full HD+ (1080 x 2400 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "100g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151b3"
+    },
+    "product_name": "Samsung Galaxy M13",
+    "product_color": "Stardust Brown",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732444771/NodeJS_FinalProject/products/phones/caoyavarfluv4hnfz1pf.jpg",
+    "retail_price": 140,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "6 GB",
+    "variant_operation_system": "Android 11",
+    "variant_chipset": "Exynos 850",
+    "variant_graphic_card": "",
+    "variant_screen": "6.6-inch Full HD+ (1080 x 2400 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "100g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151b4"
+    },
+    "product_name": "Realme Narzo 50 Pro 5G",
+    "product_color": "Hyper Blue",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732444968/NodeJS_FinalProject/products/phones/geqfohzmvt3sufmqmgsj.jpg",
+    "retail_price": 170,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "6 GB",
+    "variant_operation_system": "Android 11",
+    "variant_chipset": "MediaTek Dimensity 920 5G",
+    "variant_graphic_card": "Mali-G68 MC4",
+    "variant_screen": "6.4-inch Super AMOLED Full HD+ (1080 x 2408 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "100g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151b4"
+    },
+    "product_name": "Realme Narzo 50 Pro 5G",
+    "product_color": "Hyper Black",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732445041/NodeJS_FinalProject/products/phones/x09ps6rnfyrvyuyvyvr6.jpg",
+    "retail_price": 170,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "6 GB",
+    "variant_operation_system": "Android 11",
+    "variant_chipset": "MediaTek Dimensity 920 5G",
+    "variant_graphic_card": "Mali-G68 MC4",
+    "variant_screen": "6.4-inch Super AMOLED Full HD+ (1080 x 2408 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "100g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151b5"
+    },
+    "product_name": "Redmi 9A Sport",
+    "product_color": "Coral Green",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732445250/NodeJS_FinalProject/products/phones/necduqfupkpbldmexcmx.jpg",
+    "retail_price": 130,
+    "variant_ROM": "32 GB",
+    "variant_RAM": "3 GB",
+    "variant_operation_system": "Android 10",
+    "variant_chipset": "MediaTek Helio G25",
+    "variant_graphic_card": "IMG PowerVR GE8320",
+    "variant_screen": "6.53-inch IPS LCD HD+ (720 x 1600 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "100g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151b5"
+    },
+    "product_name": "Redmi 9A Sport",
+    "product_color": "Carbon Black",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732445345/NodeJS_FinalProject/products/phones/kguc79mpgzhl8j569bju.jpg",
+    "retail_price": 130,
+    "variant_ROM": "32 GB",
+    "variant_RAM": "3 GB",
+    "variant_operation_system": "Android 10",
+    "variant_chipset": "MediaTek Helio G25",
+    "variant_graphic_card": "IMG PowerVR GE8320",
+    "variant_screen": "6.53-inch IPS LCD HD+ (720 x 1600 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "100g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151b6"
+    },
+    "product_name": "Realme Narzo 50i Prime",
+    "product_color": "Dark Blue",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732524684/NodeJS_FinalProject/products/phones/so44oeuqglzyawqqxiru.jpg",
+    "retail_price": 130,
+    "variant_ROM": "32 GB",
+    "variant_RAM": "4 GB",
+    "variant_operation_system": "Android 10",
+    "variant_chipset": "Unisoc T612",
+    "variant_graphic_card": "",
+    "variant_screen": "6.53-inch HD+ (720 x 1600 Pixels)",
+    "variant_cpu": "Octa-core Processor",
+    "variant_weight": "100g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151b6"
+    },
+    "product_name": "Realme Narzo 50i Prime",
+    "product_color": "Mint Green",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732524825/NodeJS_FinalProject/products/phones/vp465r8y88mj2jdtbuml.jpg",
+    "retail_price": 130,
+    "variant_ROM": "32 GB",
+    "variant_RAM": "4 GB",
+    "variant_operation_system": "Android 10",
+    "variant_chipset": "Unisoc T612",
+    "variant_graphic_card": "",
+    "variant_screen": "6.53-inch HD+ (720 x 1600 Pixels)",
+    "variant_cpu": "Octa-core Processor",
+    "variant_weight": "100g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151b7"
+    },
+    "product_name": "iQOO Neo 7 5G",
+    "product_color": "Frost Blue",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732525633/NodeJS_FinalProject/products/phones/bknm5jg8fp125hhjclmf.jpg",
+    "retail_price": 130,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 12, Origin OS Ocean",
+    "variant_chipset": "MediaTek Dimensity 9000+ (4 nm)",
+    "variant_graphic_card": "",
+    "variant_screen": "6.78-inch AMOLED E5 HD+ (1080 x 2400 pixels)",
+    "variant_cpu": "",
+    "variant_weight": "108g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151b7"
+    },
+    "product_name": "iQOO Neo 7 5G",
+    "product_color": "Interstellar Black",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732525760/NodeJS_FinalProject/products/phones/e7u6xbsgcqnnyryll7zq.jpg",
+    "retail_price": 130,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 12, Origin OS Ocean",
+    "variant_chipset": "MediaTek Dimensity 9000+ (4 nm)",
+    "variant_graphic_card": "",
+    "variant_screen": "6.78-inch AMOLED E5 HD+ (1080 x 2400 pixels)",
+    "variant_cpu": "",
+    "variant_weight": "108g"
+  }
 ]

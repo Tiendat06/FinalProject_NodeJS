@@ -7,6 +7,10 @@
   "product_color": "Power Black",
   "variant_quantity": 30,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732263674/NodeJS_FinalProject/products/phones/sttifuke2fubios76hrf.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 450,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 550,
   "variant_ROM": "128GB",
   "variant_RAM": "8GB",
@@ -26,6 +30,10 @@
   "product_color": "Sporty Orange",
   "variant_quantity": 20,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732373151/NodeJS_FinalProject/products/phones/ih2dxa07njzdxmodipl3.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 500,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 600,
   "variant_ROM": "128 GB",
   "variant_RAM": "8 GB",
@@ -45,6 +53,10 @@
   "product_color": "Blue Tide",
   "variant_quantity": 20,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732373151/NodeJS_FinalProject/products/phones/ih2dxa07njzdxmodipl3.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 236,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 256,
   "variant_ROM": "128 GB",
   "variant_RAM": "6 GB",
@@ -64,6 +76,10 @@
   "product_color": "Blue Tide",
   "variant_quantity": 20,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732373151/NodeJS_FinalProject/products/phones/ih2dxa07njzdxmodipl3.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 236,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 256,
   "variant_ROM": "128 GB",
   "variant_RAM": "8 GB",
@@ -83,6 +99,10 @@
   "product_color": "Black Dusk",
   "variant_quantity": 20,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732374928/NodeJS_FinalProject/products/phones/ianonmpuibvtu9t8xag4.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 236,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 256,
   "variant_ROM": "128 GB",
   "variant_RAM": "6 GB",
@@ -102,6 +122,10 @@
   "product_color": "Black Dusk",
   "variant_quantity": 20,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732374928/NodeJS_FinalProject/products/phones/ianonmpuibvtu9t8xag4.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 240,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 260,
   "variant_ROM": "128 GB",
   "variant_RAM": "8 GB",
@@ -140,6 +164,10 @@
   "product_color": "Mystique Green",
   "variant_quantity": 10,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732375504/NodeJS_FinalProject/products/phones/sjy6z8g7mxbjadz5fpdg.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 310,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 320,
   "variant_ROM": "128 GB",
   "variant_RAM": "6 GB",
@@ -159,6 +187,10 @@
   "product_color": "Mystique Green",
   "variant_quantity": 10,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732375504/NodeJS_FinalProject/products/phones/sjy6z8g7mxbjadz5fpdg.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 310,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 320,
   "variant_ROM": "128 GB",
   "variant_RAM": "8 GB",
@@ -178,6 +210,10 @@
   "product_color": "Emerald Brown",
   "variant_quantity": 5,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732375894/NodeJS_FinalProject/products/phones/oiglziqdhl6iqauzcm7m.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 310,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 320,
   "variant_ROM": "128 GB",
   "variant_RAM": "6 GB",
@@ -197,6 +233,10 @@
   "product_color": "Emerald Brown",
   "variant_quantity": 5,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732375894/NodeJS_FinalProject/products/phones/oiglziqdhl6iqauzcm7m.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 310,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 320,
   "variant_ROM": "128 GB",
   "variant_RAM": "8 GB",
@@ -216,6 +256,10 @@
   "product_color": "Deep Ocean Blue",
   "variant_quantity": 5,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732376675/NodeJS_FinalProject/products/phones/ovfbmy4vyon6lnxsf4ry.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 330,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 340,
   "variant_ROM": "128 GB",
   "variant_RAM": "6 GB",
@@ -235,6 +279,10 @@
   "product_color": "Deep Ocean Blue",
   "variant_quantity": 5,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732376675/NodeJS_FinalProject/products/phones/ovfbmy4vyon6lnxsf4ry.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 330,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 340,
   "variant_ROM": "128 GB",
   "variant_RAM": "8 GB",
@@ -254,6 +302,10 @@
   "product_color": "Flash Black",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732377686/NodeJS_FinalProject/products/phones/etuprpamzpl9kxwvd6f1.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 130,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 140,
   "variant_ROM": "64 GB",
   "variant_RAM": "4 GB",
@@ -273,6 +325,10 @@
   "product_color": "Flash Blue",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732377978/NodeJS_FinalProject/products/phones/dqd7gimbiiopvp2hprp7.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 130,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 140,
   "variant_ROM": "64 GB",
   "variant_RAM": "4 GB",
@@ -292,6 +348,10 @@
   "product_color": "Light Blue",
   "variant_quantity": 20,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732378401/NodeJS_FinalProject/products/phones/g96gqpjdoskqeigwjbfu.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 90,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 100,
   "variant_ROM": "32 GB",
   "variant_RAM": "2 GB",
@@ -311,6 +371,10 @@
   "product_color": "Black",
   "variant_quantity": 20,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732378637/NodeJS_FinalProject/products/phones/jxxtveyjbehede2ihsgj.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 90,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 100,
   "variant_ROM": "32 GB",
   "variant_RAM": "2 GB",
@@ -330,6 +394,10 @@
   "product_color": "Light Green",
   "variant_quantity": 21,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732378911/NodeJS_FinalProject/products/phones/nwuyj5cjawu4yijs5oat.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 90,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 100,
   "variant_ROM": "32 GB",
   "variant_RAM": "2 GB",
@@ -349,6 +417,10 @@
   "product_color": "Charcoal Black",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732435757/NodeJS_FinalProject/products/phones/rouw74co6k5wmlcw8cce.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 100,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 120,
   "variant_ROM": "64 GB",
   "variant_RAM": "4 GB",
@@ -368,6 +440,10 @@
   "product_color": "Slate Grey",
   "variant_quantity": 10,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732436082/NodeJS_FinalProject/products/phones/gfo9qqinqzugmgedtbwn.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 100,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 120,
   "variant_ROM": "64 GB",
   "variant_RAM": "4 GB",
@@ -387,6 +463,10 @@
   "product_color": "Sea Blue",
   "variant_quantity": 10,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732436254/NodeJS_FinalProject/products/phones/c4quq0zuatga3oaq0yf8.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 100,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 120,
   "variant_ROM": "64 GB",
   "variant_RAM": "4 GB",
@@ -406,6 +486,10 @@
   "product_color": "Galactic Silver",
   "variant_quantity": 20,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732436415/NodeJS_FinalProject/products/phones/wcxugixffrurystkwyrm.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 480,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 500,
   "variant_ROM": "256 GB",
   "variant_RAM": "16 GB",
@@ -425,6 +509,10 @@
   "product_color": "Sonic Black",
   "variant_quantity": 20,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732437568/NodeJS_FinalProject/products/phones/hcnqzb8dfp1wv1e8mhbp.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 480,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 500,
   "variant_ROM": "256 GB",
   "variant_RAM": "16 GB",
@@ -444,6 +532,10 @@
   "product_color": "Jade Fog",
   "variant_quantity": 20,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732437739/NodeJS_FinalProject/products/phones/vusnbeblqsubtrwcrn7f.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 340,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 360,
   "variant_ROM": "256 GB",
   "variant_RAM": "12 GB",
@@ -463,6 +555,10 @@
   "product_color": "Gray Shadow",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732438418/NodeJS_FinalProject/products/phones/llbbyhe5bqhgmyyw4ojf.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 340,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 360,
   "variant_ROM": "256 GB",
   "variant_RAM": "12 GB",
@@ -482,6 +578,10 @@
   "product_color": "Stellar Green",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732439031/NodeJS_FinalProject/products/phones/vgo6ktcyqknbvhxf47dk.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 165,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 185,
   "variant_ROM": "64 GB",
   "variant_RAM": "4 GB",
@@ -501,6 +601,10 @@
   "product_color": "Mystic Night",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732441479/NodeJS_FinalProject/products/phones/wbr22tpbvlrazenewqbl.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 165,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 185,
   "variant_ROM": "64 GB",
   "variant_RAM": "4 GB",
@@ -520,6 +624,10 @@
   "product_color": "Glowing Blue",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732441743/NodeJS_FinalProject/products/phones/akk22l2fhf28wcckz4if.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 165,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 185,
   "variant_ROM": "128 GB",
   "variant_RAM": "8 GB",
@@ -539,6 +647,10 @@
   "product_color": "Glowing Black",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732442145/NodeJS_FinalProject/products/phones/p2y2cuvcejbkuotxotxa.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 165,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 185,
   "variant_ROM": "128 GB",
   "variant_RAM": "8 GB",
@@ -558,6 +670,10 @@
   "product_color": "Light Green",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732443088/NodeJS_FinalProject/products/phones/gvllsqppdoigdh0lk8ih.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 165,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 185,
   "variant_ROM": "64 GB",
   "variant_RAM": "4 GB",
@@ -577,6 +693,10 @@
   "product_color": "Light Green",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732443088/NodeJS_FinalProject/products/phones/gvllsqppdoigdh0lk8ih.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 165,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 185,
   "variant_ROM": "64 GB",
   "variant_RAM": "4 GB",
@@ -596,6 +716,10 @@
   "product_color": "Dark Blue",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732443407/NodeJS_FinalProject/products/phones/ewts0gk23w1rswmgib0v.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 165,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 185,
   "variant_ROM": "64 GB",
   "variant_RAM": "4 GB",
@@ -615,6 +739,10 @@
   "product_color": "Space Black",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732443624/NodeJS_FinalProject/products/phones/hcjjklx1izh0y2htqsxt.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 165,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 185,
   "variant_ROM": "128 GB",
   "variant_RAM": "6 GB",
@@ -634,6 +762,10 @@
   "product_color": "Horizon Blue",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732443738/NodeJS_FinalProject/products/phones/r1yjnnwjxjjmnncfws8p.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 165,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 185,
   "variant_ROM": "128 GB",
   "variant_RAM": "6 GB",
@@ -653,6 +785,10 @@
   "product_color": "Dawnlight Gold",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732443980/NodeJS_FinalProject/products/phones/dczpq7rqw9zm8i0c0axu.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 320,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 340,
   "variant_ROM": "128 GB",
   "variant_RAM": "8 GB",
@@ -672,6 +808,10 @@
   "product_color": "Starlight Black",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732444087/NodeJS_FinalProject/products/phones/bzt1tqjz5m39jcuk1wq9.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 320,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 340,
   "variant_ROM": "128 GB",
   "variant_RAM": "8 GB",
@@ -691,6 +831,10 @@
   "product_color": "Fantastic Purple",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732444261/NodeJS_FinalProject/products/phones/jcwmnmzkyqzlfybb1ivm.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 300,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 320,
   "variant_ROM": "256 GB",
   "variant_RAM": "6 GB",
@@ -710,6 +854,10 @@
   "product_color": "Fluid Black",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732444358/NodeJS_FinalProject/products/phones/qp4l0ynmn9f1harxb61x.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 300,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 320,
   "variant_ROM": "256 GB",
   "variant_RAM": "6 GB",
@@ -729,6 +877,10 @@
   "product_color": "Aqua Green",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732444576/NodeJS_FinalProject/products/phones/oas00jcd3c4vibxkpdgl.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 120,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 140,
   "variant_ROM": "128 GB",
   "variant_RAM": "6 GB",
@@ -748,6 +900,10 @@
   "product_color": "Midnight Blue",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732444694/NodeJS_FinalProject/products/phones/vjk5p7gsk3h18ul35e9u.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 120,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 140,
   "variant_ROM": "128 GB",
   "variant_RAM": "6 GB",
@@ -767,6 +923,10 @@
   "product_color": "Stardust Brown",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732444771/NodeJS_FinalProject/products/phones/caoyavarfluv4hnfz1pf.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 120,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 140,
   "variant_ROM": "128 GB",
   "variant_RAM": "6 GB",
@@ -786,6 +946,10 @@
   "product_color": "Hyper Blue",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732444968/NodeJS_FinalProject/products/phones/geqfohzmvt3sufmqmgsj.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 150,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 170,
   "variant_ROM": "128 GB",
   "variant_RAM": "6 GB",
@@ -805,6 +969,10 @@
   "product_color": "Hyper Black",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732445041/NodeJS_FinalProject/products/phones/x09ps6rnfyrvyuyvyvr6.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 150,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 170,
   "variant_ROM": "128 GB",
   "variant_RAM": "6 GB",
@@ -824,6 +992,10 @@
   "product_color": "Coral Green",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732445250/NodeJS_FinalProject/products/phones/necduqfupkpbldmexcmx.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 110,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 130,
   "variant_ROM": "32 GB",
   "variant_RAM": "3 GB",
@@ -843,6 +1015,10 @@
   "product_color": "Carbon Black",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732445345/NodeJS_FinalProject/products/phones/kguc79mpgzhl8j569bju.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 110,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 130,
   "variant_ROM": "32 GB",
   "variant_RAM": "3 GB",
@@ -862,6 +1038,10 @@
   "product_color": "Dark Blue",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732524684/NodeJS_FinalProject/products/phones/so44oeuqglzyawqqxiru.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 110,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 130,
   "variant_ROM": "32 GB",
   "variant_RAM": "4 GB",
@@ -881,6 +1061,10 @@
   "product_color": "Mint Green",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732524825/NodeJS_FinalProject/products/phones/vp465r8y88mj2jdtbuml.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 110,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 130,
   "variant_ROM": "32 GB",
   "variant_RAM": "4 GB",
@@ -900,6 +1084,10 @@
   "product_color": "Frost Blue",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732525633/NodeJS_FinalProject/products/phones/bknm5jg8fp125hhjclmf.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 110,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 130,
   "variant_ROM": "128 GB",
   "variant_RAM": "8 GB",
@@ -919,6 +1107,10 @@
   "product_color": "Interstellar Black",
   "variant_quantity": 25,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732525760/NodeJS_FinalProject/products/phones/e7u6xbsgcqnnyryll7zq.jpg",
+<<<<<<< HEAD
+=======
+  "import_price": 110,
+>>>>>>> dbd66f56e91472de19fa1af381e803e506bb1a60
   "retail_price": 130,
   "variant_ROM": "128 GB",
   "variant_RAM": "8 GB",

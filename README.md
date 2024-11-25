@@ -1,6 +1,6 @@
 - Run "npm i" in each folder "BackEnd"/"FrontEnd" to install all libraries  
 
-Admin:
+Admin:  
 phone: 0356779197  
 password: 1234567890  
 

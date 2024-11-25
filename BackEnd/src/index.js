@@ -60,13 +60,13 @@ app.use(cors(corsOptions));
 
 app.use(flash());
 
-app.use(rateLimit({
-    windowMs: 15 * 60 * 1000,
-    limit: 100,
-    standardHeaders: 'draft-7',
-    legacyHeaders: false,
-    message: "Too many requests !!"
-}));
+// app.use(rateLimit({
+//     windowMs: 15 * 60 * 1000,
+//     limit: 1000,
+//     standardHeaders: 'draft-7',
+//     legacyHeaders: false,
+//     message: "Too many requests !!"
+// }));
 
 // rest method api
 app.use(method_override('_method'));

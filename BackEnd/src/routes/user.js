@@ -10,7 +10,7 @@ router.put('/profile/:id',upload.single('img_file'), checkLogin, userValidator.u
     userMiddleWare.update_user_profile, userController.update_user_profile);
 
 //View profile
-router.get('/profile/:id', checkLogin, userController.get_user_profile);
+// router.get('/profile/:id', checkLogin, userController.get_user_profile);
 //View purchase history
 router.get('/purchase-history', checkLogin, userController.get_purchase_history);
 router.get('/purchase-detail/:orderId', checkLogin, userController.get_purchase_details);

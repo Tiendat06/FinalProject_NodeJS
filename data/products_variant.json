@@ -61,44 +61,6 @@
       "$oid": "674138636c0973f433b151a6"
     },
     "product_name": "OnePlus Nord CE 2 Lite 5G",
-    "product_color": "Blue Tide",
-    "variant_quantity": 20,
-    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732373151/NodeJS_FinalProject/products/phones/ih2dxa07njzdxmodipl3.jpg",
-    "retail_price": 256,
-    "variant_ROM": "128 GB",
-    "variant_RAM": "8 GB",
-    "variant_operation_system": "Android 11",
-    "variant_chipset": "Snapdragon 695 5G",
-    "variant_graphic_card": "Adreno 619",
-    "variant_screen": "6.59-inch Full HD+ Display",
-    "variant_cpu": "",
-    "variant_weight": "203g"
-  },
-
-  {
-    "product_id": {
-      "$oid": "674138636c0973f433b151a6"
-    },
-    "product_name": "OnePlus Nord CE 2 Lite 5G",
-    "product_color": "Black Dusk",
-    "variant_quantity": 20,
-    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732374928/NodeJS_FinalProject/products/phones/ianonmpuibvtu9t8xag4.jpg",
-    "retail_price": 256,
-    "variant_ROM": "128 GB",
-    "variant_RAM": "6 GB",
-    "variant_operation_system": "Android 11",
-    "variant_chipset": "Snapdragon 695 5G",
-    "variant_graphic_card": "Adreno 619",
-    "variant_screen": "6.59-inch Full HD+ Display",
-    "variant_cpu": "",
-    "variant_weight": "203g"
-  },
-
-  {
-    "product_id": {
-      "$oid": "674138636c0973f433b151a6"
-    },
-    "product_name": "OnePlus Nord CE 2 Lite 5G",
     "product_color": "Black Dusk",
     "variant_quantity": 20,
     "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732374928/NodeJS_FinalProject/products/phones/ianonmpuibvtu9t8xag4.jpg",
@@ -113,25 +75,6 @@
     "variant_weight": "203g"
   },
 
-  {
-    "product_id": {
-      "$oid": "674138636c0973f433b151a6"
-    },
-    "product_name": "OnePlus Nord CE 2 Lite 5G",
-    "product_color": "Black Dusk",
-    "variant_quantity": 20,
-    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732374928/NodeJS_FinalProject/products/phones/ianonmpuibvtu9t8xag4.jpg",
-    "import_price": 240,
-    "retail_price": 260,
-    "variant_ROM": "128 GB",
-    "variant_RAM": "8 GB",
-    "variant_operation_system": "Android 11",
-    "variant_chipset": "Snapdragon 695 5G",
-    "variant_graphic_card": "Adreno 619",
-    "variant_screen": "6.59-inch Full HD+ Display",
-    "variant_cpu": "",
-    "variant_weight": "203g"
-  },
   {
     "product_id": {
       "$oid": "674138636c0973f433b151a7"
@@ -928,5 +871,747 @@
     "variant_screen": "6.78-inch AMOLED E5 HD+ (1080 x 2400 pixels)",
     "variant_cpu": "",
     "variant_weight": "108g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151b8"
+    },
+    "product_name": "OnePlus 10R 5G",
+    "product_color": "Forest Green",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732546145/NodeJS_FinalProject/products/phones/bkmqti7hgcx0qmmqyyfc.jpg",
+    "retail_price": 370,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 12",
+    "variant_chipset": "Dimensity 8100 Max",
+    "variant_graphic_card": "",
+    "variant_screen": "6.7-inch FULL HD+ (1080 x 2400 pixels)",
+    "variant_cpu": "",
+    "variant_weight": "108g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151b8"
+    },
+    "product_name": "OnePlus 10R 5G",
+    "product_color": "Sierra Black",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732549939/NodeJS_FinalProject/products/phones/pyqaafaba9ong8bnkyc7.jpg",
+    "retail_price": 370,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 12",
+    "variant_chipset": "Dimensity 8100 Max",
+    "variant_graphic_card": "",
+    "variant_screen": "6.7-inch FULL HD+ (1080 x 2400 pixels)",
+    "variant_cpu": "",
+    "variant_weight": "108g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151b9"
+    },
+    "product_name": "iQOO Z6 5G by vivo",
+    "product_color": "Chromatic Blue",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732546277/NodeJS_FinalProject/products/phones/ajytbsypczqqjhxvef8v.jpg",
+    "retail_price": 180,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 12",
+    "variant_chipset": "Dimensity 8100 Max",
+    "variant_graphic_card": "",
+    "variant_screen": "6.7-inch FULL HD+ (1080 x 2400 pixels)",
+    "variant_cpu": "",
+    "variant_weight": "108g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151ba"
+    },
+    "product_name": "Samsung Galaxy S20 FE 5G",
+    "product_color": "Cloud Navy",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732546513/NodeJS_FinalProject/products/phones/ufwz7gqbt6nxv7xbyygt.jpg",
+    "retail_price": 625,
+    "variant_ROM": "256 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 10",
+    "variant_chipset": "Snapdragon 865",
+    "variant_graphic_card": "Adreno 650",
+    "variant_screen": "6.7-inch FULL HD+ (1080 x 2400 pixels)",
+    "variant_cpu": "",
+    "variant_weight": "108g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151ba"
+    },
+    "product_name": "Samsung Galaxy S20 FE 5G",
+    "product_color": "Cloud Mint",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732615257/NodeJS_FinalProject/products/phones/nvu06lrghvzjlox5ei1c.jpg",
+    "retail_price": 625,
+    "variant_ROM": "256 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 10",
+    "variant_chipset": "Snapdragon 865",
+    "variant_graphic_card": "Adreno 650",
+    "variant_screen": "6.7-inch FULL HD+ (1080 x 2400 pixels)",
+    "variant_cpu": "",
+    "variant_weight": "108g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151bb"
+    },
+    "product_name": "Samsung Galaxy M53 5G",
+    "product_color": "Deep Ocean Blue",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732546584/NodeJS_FinalProject/products/phones/qn7b9w3884rd5bqfpmm4.jpg",
+    "retail_price": 491,
+    "variant_ROM": "256 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 10",
+    "variant_chipset": "MediaTek Dimensity 900 5G",
+    "variant_graphic_card": "Mali-G68",
+    "variant_screen": "6.7-inch FULL HD+ (1080 x 2400 pixels)",
+    "variant_cpu": "",
+    "variant_weight": "108g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151bb"
+    },
+    "product_name": "Samsung Galaxy M53 5G",
+    "product_color": "Mystique Green",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732615512/NodeJS_FinalProject/products/phones/xhgxwwfebmpshlcvzphu.jpg",
+    "retail_price": 491,
+    "variant_ROM": "256 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 10",
+    "variant_chipset": "MediaTek Dimensity 900 5G",
+    "variant_graphic_card": "Mali-G68",
+    "variant_screen": "6.7-inch FULL HD+ (1080 x 2400 pixels)",
+    "variant_cpu": "",
+    "variant_weight": "108g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151bb"
+    },
+    "product_name": "Samsung Galaxy M53 5G",
+    "product_color": "Emerald Brown",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732615572/NodeJS_FinalProject/products/phones/g6jmwil8ejeeuoiipgij.jpg",
+    "retail_price": 491,
+    "variant_ROM": "256 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 10",
+    "variant_chipset": "MediaTek Dimensity 900 5G",
+    "variant_graphic_card": "Mali-G68",
+    "variant_screen": "6.7-inch FULL HD+ (1080 x 2400 pixels)",
+    "variant_cpu": "",
+    "variant_weight": "108g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151bc"
+    },
+    "product_name": "Samsung Galaxy M32 Prime Edition",
+    "product_color": "Light Blue",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732546717/NodeJS_FinalProject/products/phones/g0rui0rquun9rvs7x2pq.jpg",
+    "retail_price": 185,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "6 GB",
+    "variant_operation_system": "Android 11, OneU 3.1",
+    "variant_chipset": "MediaTek | Helio G80 Octa Core Processor 2GHz,1.8GHz",
+    "variant_graphic_card": "Mali-G68",
+    "variant_screen": "6.4-inch FHD+ Super AMOLED (1080 x 2400 pixels)",
+    "variant_cpu": "",
+    "variant_weight": "108g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151bc"
+    },
+    "product_name": "Samsung Galaxy M32 Prime Edition",
+    "product_color": "Black",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732615990/NodeJS_FinalProject/products/phones/lszqxektq7lnpb5diklw.jpg",
+    "retail_price": 185,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "6 GB",
+    "variant_operation_system": "Android 11, OneU 3.1",
+    "variant_chipset": "MediaTek | Helio G80 Octa Core Processor 2GHz,1.8GHz",
+    "variant_graphic_card": "Mali-G68",
+    "variant_screen": "6.4-inch FHD+ Super AMOLED (1080 x 2400 pixels)",
+    "variant_cpu": "",
+    "variant_weight": "108g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151bd"
+    },
+    "product_name": "Samsung Galaxy S21 FE 5G",
+    "product_color": "Graphite",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732546815/NodeJS_FinalProject/products/phones/qp0kysmqcoynhbo2ixek.jpg",
+    "retail_price": 452,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 12",
+    "variant_chipset": "Exynos 2100",
+    "variant_graphic_card": "Mali-G78 MP14",
+    "variant_screen": "6.4-inch Full HD+ (1080 x 2340 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "100g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151bd"
+    },
+    "product_name": "Samsung Galaxy S21 FE 5G",
+    "product_color": "Olive",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732616373/NodeJS_FinalProject/products/phones/e9woxfu9dpyafbm6b4yj.jpg",
+    "retail_price": 452,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 12",
+    "variant_chipset": "Exynos 2100",
+    "variant_graphic_card": "Mali-G78 MP14",
+    "variant_screen": "6.4-inch Full HD+ (1080 x 2340 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "100g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151be"
+    },
+    "product_name": "Samsung Galaxy A14 5G",
+    "product_color": "Dark Red",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732546896/NodeJS_FinalProject/products/phones/x6hxb7ac3feqvomtb3h6.jpg",
+    "retail_price": 176,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "4 GB",
+    "variant_operation_system": "Android 13",
+    "variant_chipset": "MediaTek Dimensity 700",
+    "variant_graphic_card": "Mali-G57 MC2",
+    "variant_screen": "6.6-inch Full HD+ (1080 x 2408 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "100g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151be"
+    },
+    "product_name": "Samsung Galaxy A14 5G",
+    "product_color": "Black",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732616554/NodeJS_FinalProject/products/phones/wcgw24tyoghm6aggtjar.jpg",
+    "retail_price": 176,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "4 GB",
+    "variant_operation_system": "Android 13",
+    "variant_chipset": "MediaTek Dimensity 700",
+    "variant_graphic_card": "Mali-G57 MC2",
+    "variant_screen": "6.6-inch Full HD+ (1080 x 2408 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "100g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151be"
+    },
+    "product_name": "Samsung Galaxy A14 5G",
+    "product_color": "Light Green",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732616628/NodeJS_FinalProject/products/phones/qrm00bt9uev90nrljdpl.jpg",
+    "retail_price": 176,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "4 GB",
+    "variant_operation_system": "Android 13",
+    "variant_chipset": "MediaTek Dimensity 700",
+    "variant_graphic_card": "Mali-G57 MC2",
+    "variant_screen": "6.6-inch Full HD+ (1080 x 2408 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "100g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151bf"
+    },
+    "product_name": "Samsung Galaxy S23 Ultra 5G",
+    "product_color": "Green",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732547001/NodeJS_FinalProject/products/phones/tpomodemfzf6nqysp809.jpg",
+    "retail_price": 642,
+    "variant_ROM": "256 GB",
+    "variant_RAM": "12 GB",
+    "variant_operation_system": "Android 13",
+    "variant_chipset": "Snapdragon 8 Gen 2 for Galaxy",
+    "variant_graphic_card": "Adreno 740",
+    "variant_screen": "6.8-inch 2K+ (1440 x 3088 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "125g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151bf"
+    },
+    "product_name": "Samsung Galaxy S23 Ultra 5G",
+    "product_color": "Phantom Black",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732616840/NodeJS_FinalProject/products/phones/pcaqw9vyq2l9xz7xtjsf.jpg",
+    "retail_price": 642,
+    "variant_ROM": "256 GB",
+    "variant_RAM": "12 GB",
+    "variant_operation_system": "Android 13",
+    "variant_chipset": "Snapdragon 8 Gen 2 for Galaxy",
+    "variant_graphic_card": "Adreno 740",
+    "variant_screen": "6.8-inch 2K+ (1440 x 3088 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "125g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151bf"
+    },
+    "product_name": "Samsung Galaxy S23 Ultra 5G",
+    "product_color": "Cream",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732616909/NodeJS_FinalProject/products/phones/cvgmvkurva7ugwvwifh0.jpg",
+    "retail_price": 642,
+    "variant_ROM": "256 GB",
+    "variant_RAM": "12 GB",
+    "variant_operation_system": "Android 13",
+    "variant_chipset": "Snapdragon 8 Gen 2 for Galaxy",
+    "variant_graphic_card": "Adreno 740",
+    "variant_screen": "6.8-inch 2K+ (1440 x 3088 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "125g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151c0"
+    },
+    "product_name": "Samsung Galaxy S23 5G",
+    "product_color": "Green",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732547210/NodeJS_FinalProject/products/phones/h6slmin6284dwcqsoxlx.jpg",
+    "retail_price": 519,
+    "variant_ROM": "256 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 13",
+    "variant_chipset": "Snapdragon 8 Gen 2 for Galaxy",
+    "variant_graphic_card": "Adreno 740",
+    "variant_screen": "6.1-inch Full HD+ (1080 x 2340 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "125g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151c0"
+    },
+    "product_name": "Samsung Galaxy S23 5G",
+    "product_color": "Cream",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732617109/NodeJS_FinalProject/products/phones/wh2r69bqj6zfvi4zqwio.jpg",
+    "retail_price": 519,
+    "variant_ROM": "256 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 13",
+    "variant_chipset": "Snapdragon 8 Gen 2 for Galaxy",
+    "variant_graphic_card": "Adreno 740",
+    "variant_screen": "6.1-inch Full HD+ (1080 x 2340 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "125g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151c0"
+    },
+    "product_name": "Samsung Galaxy S23 5G",
+    "product_color": "Phantom Black",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732617155/NodeJS_FinalProject/products/phones/xionaw6gefptts9xkv69.jpg",
+    "retail_price": 519,
+    "variant_ROM": "256 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 13",
+    "variant_chipset": "Snapdragon 8 Gen 2 for Galaxy",
+    "variant_graphic_card": "Adreno 740",
+    "variant_screen": "6.1-inch Full HD+ (1080 x 2340 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "125g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151c1"
+    },
+    "product_name": "Samsung Galaxy S22 5G",
+    "product_color": "Green",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732547290/NodeJS_FinalProject/products/phones/ubujjvo3ijej8acbkogw.jpg",
+    "retail_price": 400,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 12",
+    "variant_chipset": "Snapdragon 8 Gen 1",
+    "variant_graphic_card": "Adreno 730",
+    "variant_screen": "6.1-inch Full HD+ (1080 x 2340 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "120g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151c1"
+    },
+    "product_name": "Samsung Galaxy S22 5G",
+    "product_color": "Phantom White",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732617685/NodeJS_FinalProject/products/phones/m1gldynnzftdtfp93sgd.jpg",
+    "retail_price": 400,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 12",
+    "variant_chipset": "Snapdragon 8 Gen 1",
+    "variant_graphic_card": "Adreno 730",
+    "variant_screen": "6.1-inch Full HD+ (1080 x 2340 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "120g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151c1"
+    },
+    "product_name": "Samsung Galaxy S22 5G",
+    "product_color": "Phantom Black",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732617730/NodeJS_FinalProject/products/phones/wgtv8jopz9loiplhvb5q.jpg",
+    "retail_price": 400,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "8 GB",
+    "variant_operation_system": "Android 12",
+    "variant_chipset": "Snapdragon 8 Gen 1",
+    "variant_graphic_card": "Adreno 730",
+    "variant_screen": "6.1-inch Full HD+ (1080 x 2340 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "120g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151c2"
+    },
+    "product_name": "Samsung Galaxy A23 5G",
+    "product_color": "Light Blue",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732547371/NodeJS_FinalProject/products/phones/awp5ur3cpkkv6nik9euu.jpg",
+    "retail_price": 163,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "4 GB",
+    "variant_operation_system": "Android 12",
+    "variant_chipset": "Snapdragon 695 5G",
+    "variant_graphic_card": "Adreno 619",
+    "variant_screen": "6.6-inch Full HD+ (1080 x 2408 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "125g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151c2"
+    },
+    "product_name": "Samsung Galaxy A23 5G",
+    "product_color": "Silver",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732618198/NodeJS_FinalProject/products/phones/dz6e84r13pgppaytuidw.jpg",
+    "retail_price": 163,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "4 GB",
+    "variant_operation_system": "Android 12",
+    "variant_chipset": "Snapdragon 695 5G",
+    "variant_graphic_card": "Adreno 619",
+    "variant_screen": "6.6-inch Full HD+ (1080 x 2408 Pixels)",
+    "variant_cpu": "",
+    "variant_weight": "125g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151c3"
+    },
+    "product_name": "DELL Latitude 5490 Core i5 7th Gen Laptop",
+    "product_color": "Black",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732547455/NodeJS_FinalProject/products/phones/q0b7prsft9vihgx9fkdw.jpg",
+    "retail_price": 310,
+    "variant_ROM": "256 GB",
+    "variant_RAM": "8 GB RAM DDR4 2400MHz",
+    "variant_operation_system": "Window 11",
+    "variant_chipset": "Intel Core™ i5 7300u 2.6 GHz upto 3.5 GHz, 3 MB Intel® Smart Cache",
+    "variant_graphic_card": "Intel® UHD Graphics 620",
+    "variant_screen": "14.0 inch Anti-Glare LED Backlit Display 1366x768 HD",
+    "variant_cpu": "Intel Core™ i5 7300u 2.6 GHz upto 3.5 GHz, 3 MB Intel® Smart Cache",
+    "variant_weight": "1.5kg"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151c4"
+    },
+    "product_name": "HP Chromebook C640 10th Gen Intel Core i5 Thin & Light FHD Laptop",
+    "product_color": "Silver",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732547538/NodeJS_FinalProject/products/phones/ndji8gipx3gfj1jsfd3p.jpg",
+    "retail_price": 610,
+    "variant_ROM": "64GB M.2 PCIe NVMe SSD",
+    "variant_RAM": "8 GB RAM DDR4 2400MHz",
+    "variant_operation_system": "Window 11",
+    "variant_chipset": "Intel Core i5 (10th Gen) i5-10310U Quad-core (4 Core) 1.70 GHz",
+    "variant_graphic_card": "Intel UHD Graphics",
+    "variant_screen": "14-inch FHD (1920 x 1080) Touch-Screen",
+    "variant_cpu": "Intel Core i5 (10th Gen) i5-10310U Quad-core (4 Core) 1.70 GHz",
+    "variant_weight": "1.5kg"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151c5"
+    },
+    "product_name": "Lenovo ThinkPad X260 High Performance 12.5 inch IPS Panel 1.5kg Laptop",
+    "product_color": "Black",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732547611/NodeJS_FinalProject/products/phones/npnhzszjcszlohshkotd.jpg",
+    "retail_price": 562,
+    "variant_ROM": "256 GB",
+    "variant_RAM": "8 GB RAM DDR4 (Onboard)",
+    "variant_operation_system": "Windows 10 Pro",
+    "variant_chipset": "Intel Core i5 (6th Gen) i5-6500U Quad-core (4 Core) 1.70 GHz",
+    "variant_graphic_card": "Intel UHD Graphics",
+    "variant_screen": "12.5-inch Full HD (1920 x 1080)",
+    "variant_cpu": "Intel Core i5 (6th Gen) i5-6500U Quad-core (4 Core) 1.70 GHz",
+    "variant_weight": "3.1kg"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151c6"
+    },
+    "product_name": "Lenovo ThinkPad T450 Intel Core i5-5300U 14 inches Business Laptop Computer",
+    "product_color": "Black",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732547703/NodeJS_FinalProject/products/phones/bkow5o9cw7wrnuoastfs.jpg",
+    "retail_price": 193,
+    "variant_ROM": "128 GB",
+    "variant_RAM": "8 GB RAM DDR4 (Onboard)",
+    "variant_operation_system": "Windows 10 Pro",
+    "variant_chipset": "Intel® Core™ i5-5300U Processor (3M Cache, up to 2.90 GHz)",
+    "variant_graphic_card": "Intel UHD Graphics",
+    "variant_screen": "14.0 Anti-Glare LED-backlit (1366x768)",
+    "variant_cpu": "Intel® Core™ i5-5300U Processor (3M Cache, up to 2.90 GHz)",
+    "variant_weight": "3.1kg"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151c7"
+    },
+    "product_name": "HP Victus Gaming Latest FHD Gaming Laptop",
+    "product_color": "Black",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732547808/NodeJS_FinalProject/products/phones/xzdij9cija2oycweree7.jpg",
+    "retail_price": 750,
+    "variant_ROM": "512 GB SSD NVMe PCIe",
+    "variant_RAM": "16 GB RAM DDR5",
+    "variant_operation_system": "Windows 11",
+    "variant_chipset": "AMD Ryzen 5 - 7535HS Turbo Boost 4.55 GHz",
+    "variant_graphic_card": "NVIDIA GeForce RTX 2050, 4 GB",
+    "variant_screen": "15.6 Full HD (1920 x 1080)",
+    "variant_cpu": "AMD Ryzen 5 - 7535HS Turbo Boost 4.55 GHz",
+    "variant_weight": "3.1kg"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151c9"
+    },
+    "product_name": "Acer Aspire 5 Gaming Laptop Intel Core i5 12th gen",
+    "product_color": "Black",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732548020/NodeJS_FinalProject/products/phones/lg5qi5ymyiywplyfulw2.jpg",
+    "retail_price": 649,
+    "variant_ROM": "512 GB SSD NVMe PCIe",
+    "variant_RAM": "16 GB RAM DDR4",
+    "variant_operation_system": "Windows 11",
+    "variant_chipset": "Intel Core i5 Raptor Lake - 13420H",
+    "variant_graphic_card": "NVIDIA GeForce RTX 2050, 4 GB",
+    "variant_screen": "15.6 Full HD (1920 x 1080)",
+    "variant_cpu": "Intel Core i5 Raptor Lake - 13420H",
+    "variant_weight": "3.1kg"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151ca"
+    },
+    "product_name": "HP Pavilion 14 FHD Gaming Laptop",
+    "product_color": "Silver",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732548219/NodeJS_FinalProject/products/phones/s3ugiqjifsfold2jwbzl.jpg",
+    "retail_price": 590,
+    "variant_ROM": "256GB SSD PCIe® NVMe™ M.2",
+    "variant_RAM": "16 GB RAM DDR4",
+    "variant_operation_system": "Windows 11",
+    "variant_chipset": "Core i5 1135G7 (upto 4.20 GHz - 8Mb)",
+    "variant_graphic_card": "Intel® Iris® Xe Graphics",
+    "variant_screen": "14 Full HD (1920 x 1080)",
+    "variant_cpu": "Core i5 1135G7 (upto 4.20 GHz - 8Mb)",
+    "variant_weight": "3.1kg"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151cb"
+    },
+    "product_name": "ASUS TUF Gaming A15 Laptop",
+    "product_color": "Black",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732548326/NodeJS_FinalProject/products/phones/loaaw8hobifhihubgiwq.jpg",
+    "retail_price": 688,
+    "variant_ROM": "512GB PCIe 4.0 NVMe M.2 SSD",
+    "variant_RAM": "16 GB RAM DDR5-5600 SO-DIMM",
+    "variant_operation_system": "Windows 11",
+    "variant_chipset": "AMD Ryzen 5 7535HS (3.3GHz, 19MB Cache, up to 4.55 GHz",
+    "variant_graphic_card": "NVIDIA GeForce RTX 3050 4GB GDDR6 AMD Radeon Graphics",
+    "variant_screen": "15.6 1920 x 1080 pixels (FullHD)",
+    "variant_cpu": "AMD Ryzen 5 7535HS (3.3GHz, 19MB Cache, up to 4.55 GHz",
+    "variant_weight": "3.1kg"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151cc"
+    },
+    "product_name": "Lenovo Ideapad Gaming 3",
+    "product_color": "Black",
+    "variant_quantity": 25,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732548414/NodeJS_FinalProject/products/phones/righyjleqb7fvtfvlb6l.jpg",
+    "retail_price": 876,
+    "variant_ROM": "512GB SSD M.2 2242 PCIe 4.0x4 NVMe",
+    "variant_RAM": "8 GB RAM SO-DIMM DDR4-3200",
+    "variant_operation_system": "Windows 11",
+    "variant_chipset": "AMD Ryzen 5 5500H",
+    "variant_graphic_card": "NVIDIA GeForce RTX 2050 4GB GDDR6",
+    "variant_screen": "15.6 1920 x 1080 pixels (FullHD)",
+    "variant_cpu": "AMD Ryzen 5 5500H",
+    "variant_weight": "2.5kg"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151cd"
+    },
+    "product_name": "boAt Airdopes 141 Bluetooth Truly Wireless in Ear Earbuds",
+    "product_color": "Black",
+    "variant_quantity": 125,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732548529/NodeJS_FinalProject/products/phones/pllyenszfiuewbjd5azl.jpg",
+    "retail_price": 45,
+    "variant_ROM": "",
+    "variant_RAM": "",
+    "variant_operation_system": "",
+    "variant_chipset": "",
+    "variant_graphic_card": "",
+    "variant_screen": "",
+    "variant_cpu": "",
+    "variant_weight": "500g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151ce"
+    },
+    "product_name": "JBL C100SI Wired In Ear Headphones",
+    "product_color": "Black",
+    "variant_quantity": 125,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732548661/NodeJS_FinalProject/products/phones/metf3trfn55oqzulc388.jpg",
+    "retail_price": 45,
+    "variant_ROM": "",
+    "variant_RAM": "",
+    "variant_operation_system": "",
+    "variant_chipset": "",
+    "variant_graphic_card": "",
+    "variant_screen": "",
+    "variant_cpu": "",
+    "variant_weight": "500g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151cf"
+    },
+    "product_name": "realme TechLife Buds T100 Bluetooth Truly Wireless in Ear Earbuds",
+    "product_color": "Black yellow",
+    "variant_quantity": 125,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732548723/NodeJS_FinalProject/products/phones/v328hxi5okpfjb1y4fpc.jpg",
+    "retail_price": 29,
+    "variant_ROM": "",
+    "variant_RAM": "",
+    "variant_operation_system": "",
+    "variant_chipset": "",
+    "variant_graphic_card": "",
+    "variant_screen": "",
+    "variant_cpu": "",
+    "variant_weight": "500g"
+  },
+
+  {
+    "product_id": {
+      "$oid": "674138636c0973f433b151d0"
+    },
+    "product_name": "Noise Buds VS104 in-Ear Truly Wireless Earbuds",
+    "product_color": "Black yellow",
+    "variant_quantity": 125,
+    "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732548788/NodeJS_FinalProject/products/phones/xszx2yewb1lsftwvtcz7.jpg",
+    "retail_price": 36,
+    "variant_ROM": "",
+    "variant_RAM": "",
+    "variant_operation_system": "",
+    "variant_chipset": "",
+    "variant_graphic_card": "",
+    "variant_screen": "",
+    "variant_cpu": "",
+    "variant_weight": "500g"
   }
+
 ]

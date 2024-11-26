@@ -14,6 +14,11 @@ class UserController {
     get_purchase_details = async (req, res, next) => {
         return await userService.getPurchaseDetails(req, res);
     }
+
+    user_change_password = async (req, res, next) => {
+        return await userService.userChangePassword(req, res);
+
+    }
 }
 
 module.exports = new UserController;

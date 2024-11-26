@@ -1,56 +1,141 @@
 import clsx from "clsx";
 import styles from './ShippingAddress.module.css';
 import {Modal} from "~/components/elements";
-import {useState} from "react";
+import {useCallback, useEffect, useLayoutEffect, useReducer, useState} from "react";
+import {useShoppingContext} from "~/context/ShoppingContext";
+import reducer, {initialState} from "./reducers/reducers";
+import {setAddress, getAddresses, addAddress, updateAddress, deleteAddress, onChangeData} from './actions/actions';
 
 function ShippingAddress() {
-    const rawData = [
-        {id: 1, name: 'Jake Jason', isDefault: true, address: '123 St Stress, New York', phone: '0356779197'},
-        {id: 2, name: 'Joe Doe', isDefault: false, address: '456 Greenland Stress, L.A', phone: '0852741963'},
-        {id: 3, name: 'Marry Johnson', isDefault: false, address: '789 Norway Stress, Huston', phone: '0369852147'},
-    ];
+    const api_url = process.env.REACT_APP_API_URL;
+    const {userData} = useShoppingContext();
+    const user_id = userData._id;
+    const [state, dispatch] = useReducer(reducer, initialState);
+    const {address, addresses} = state;
+    const [logMessage, setLogMessage] = useState('');
 
-    const [itemSelected, setItemSelected] = useState({});
-    const [name, setName] = useState('');
-    const [phone, setPhone] = useState('');
-    const [address, setAddress] = useState('');
-    const [isDefault, setIsDefault] = useState(false);
+    // BE
+    useEffect(() => {
+        // if(!user_id) return;
+        fetch(`${api_url}/address/user/profile?user_id=${user_id}`, {
+            method: 'GET',
+            credentials: "include"
+        })
+            .then(response => response.json())
+            .then(data => {
+                const addressData = data.data;
+                if (data.status) {
+                    console.log(addressData);
+                    dispatch(getAddresses(addressData));
+                }
+                else window.location.href = '/';
+            })
+            .catch(error => console.log(error));
 
-    const handleOnClickBtn = ({name, phone, address, isDefault}) => {
-        setName(name);
-        setPhone(phone);
-        setAddress(address);
-        setIsDefault(isDefault);
-    }
+    }, []);
+
+    const handleUpdateSaveChange = useCallback(() => {
+        fetch(`${api_url}/address/user/profile/${address._id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                ...address,
+                // is_default: address.is_default === 'true',
+            }),
+            credentials: 'include'
+        })
+            .then(response => response.json())
+            .then(data => {
+                const msg = data.msg;
+                const status = data.status
+                if(status) {
+                    dispatch(updateAddress({
+                        ...address,
+                        // is_default: address.is_default === 'true',
+                    }));
+                }
+                dispatch(setAddress({}));
+                setLogMessage(msg);
+
+            })
+            .catch(err => console.log(err));
+    }, [addresses, address]);
+
+    const handleAddAddress = useCallback(() => {
+        // console.log({address});
+        fetch(`${api_url}/address/user/profile`, {
+            method: 'POST',
+            body: JSON.stringify({
+                ...address,
+                user_id,
+                is_default: Boolean(address.is_default),
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: "include"
+        })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status) dispatch(addAddress(data.data));
+                dispatch(setAddress({}));
+                setLogMessage(data.msg);
+            })
+            .catch(err => console.log(err));
+    }, [addresses, address])
+
+    const handleDeleteAddress = useCallback(() => {
+        fetch(`${api_url}/address/user/profile/${address._id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: "include",
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status) dispatch(deleteAddress(address));
+                setLogMessage(data.msg);
+            })
+            .catch(err => console.log(err));
+    }, [address, addresses]);
 
     return (
         <>
             <div className="profile-address mb-5">
                 <h5 style={{fontWeight: "normal"}}>Shipping Information</h5>
-                <button data-bs-toggle='modal' data-bs-target='#add-shipping-address' className={clsx(styles["profile-address__add"])}>
+                <button onClick={() => setLogMessage('')} data-bs-toggle='modal' data-bs-target='#add-shipping-address' className={clsx(styles["profile-address__add"])}>
                     <i className="fa-solid fa-plus"></i>
                     <p className={clsx(styles['profile-address__add-text'])}>Add Shipping Address</p>
                 </button>
 
                 <ul className={clsx(styles["profile-address__list"])}>
-                    {rawData.map((item, index) => (
+                    {addresses.map((item, index) => (
                         <li key={index} className={clsx(styles["profile-address__item"])}>
                             <div className={clsx(styles["profile-address__item-info"])}>
                                 <div
                                     className={clsx(styles["profile-address__item-name"], 'col-lg-12 col-md-12 col-sm-12')}>
-                                    <p>{item.name}</p>
-                                    <span className={clsx('badge rounded-pill bg-danger', (!item.isDefault && 'd-none'))}><i
+                                    <p>{item.fullName}</p>
+                                    <span className={clsx('badge rounded-pill bg-danger', (!item.is_default && 'd-none'))}><i
                                         className="fa-regular fa-circle-check"></i> Default address</span>
                                 </div>
                                 <p className={clsx(styles['profile-address__item-text'], 'col-lg-12 col-md-12 col-sm-12')}>Address: {item.address}</p>
                                 <p className={clsx(styles['profile-address__item-text'], 'col-lg-12 col-md-12 col-sm-12')}>Phone
-                                    number: {item.phone}</p>
+                                    number: {item.phone_number}</p>
                             </div>
                             <div className={clsx(styles["profile-address__item-btn"])}>
                                 <span data-bs-toggle='modal' data-bs-target='#update-shipping-address'
-                                      onClick={() => handleOnClickBtn(item)}>Update</span>
+                                      onClick={() => {
+                                          dispatch(setAddress(item))
+                                          setLogMessage('')
+                                      }}>Update</span>
                                 <button data-bs-toggle='modal' data-bs-target='#delete-shipping-address'
-                                        onClick={() => handleOnClickBtn(item)}>Remove</button>
+                                        onClick={() => {
+                                            dispatch(setAddress(item))
+                                            setLogMessage('')
+                                        }}>Remove</button>
                             </div>
                         </li>
                     ))}
@@ -62,25 +147,41 @@ function ShippingAddress() {
                 title='Save change'
                 labelBtnSave='Save'
                 closeClassName='d-none'
+                onClickLabelSave={handleAddAddress}
                 saveClassName={clsx(styles['profile-address__save-btn'], 'btn')}
             >
                 <div className="form-group">
                     <div className="form-group">
-                        <label className={clsx(styles['profile-address__label-form'], 'mt-0')} htmlFor="name-add">Full name</label>
-                        <input placeholder='Enter full name' type="text" className={clsx(styles['profile-address__inp-form'], 'form-control')} id='name-add'/>
+                        <label className={clsx(styles['profile-address__label-form'], 'mt-0')} htmlFor="name-add">Full
+                            name</label>
+                        <input onChange={e => dispatch(onChangeData({fullName: e.target.value}))}
+                               placeholder='Enter full name' type="text"
+                               className={clsx(styles['profile-address__inp-form'], 'form-control')} id='name-add'/>
                     </div>
                     <div className="form-group">
-                        <label className={clsx(styles['profile-address__label-form'])} htmlFor="phone-add">Phone number</label>
-                        <input placeholder='Enter phone number' type="text" className={clsx(styles['profile-address__inp-form'], 'form-control')} id='phone-add'/>
+                        <label className={clsx(styles['profile-address__label-form'])} htmlFor="phone-add">Phone
+                            number</label>
+                        <input onChange={e => dispatch(onChangeData({phone_number: e.target.value}))}
+                               placeholder='Enter phone number' type="text"
+                               className={clsx(styles['profile-address__inp-form'], 'form-control')} id='phone-add'/>
                     </div>
                     <div className="form-group">
-                        <label className={clsx(styles['profile-address__label-form'])} htmlFor="address-add">Address</label>
-                        <input placeholder='Enter shipping address' type="text" className={clsx(styles['profile-address__inp-form'], 'form-control')} id='address-add'/>
+                        <label className={clsx(styles['profile-address__label-form'])}
+                               htmlFor="address-add">Address</label>
+                        <input onChange={e => dispatch(onChangeData({address: e.target.value}))}
+                               placeholder='Enter shipping address' type="text"
+                               className={clsx(styles['profile-address__inp-form'], 'form-control')} id='address-add'/>
                     </div>
                     <div className="form-group d-flex align-items-center mt-3">
-                        <input type="checkbox" className='form-check mr-5' id='check-add'/>
-                        <label style={{marginTop: 0}} className={clsx(styles['profile-address__label-form'], 'mb-0')} htmlFor="check-add">Set default address</label>
+                        <input checked={address.is_default || false}
+                               onChange={e => dispatch(onChangeData({is_default: e.target.checked}))}
+                               type="checkbox" className='form-check mr-5' id='check-add'/>
+                        <label style={{marginTop: 0}} className={clsx(styles['profile-address__label-form'], 'mb-0')}
+                               htmlFor="check-add">Set default address</label>
                     </div>
+                </div>
+                <div className={clsx('alert alert-danger p-2 mt-2 mb-2', (!logMessage && 'd-none'))}>
+                    <p className='mb-0 text-center'>{logMessage}</p>
                 </div>
             </Modal>
 
@@ -89,33 +190,47 @@ function ShippingAddress() {
                 isStatic={true}
                 title='Save change'
                 labelBtnSave='Save'
+                onClickLabelSave={handleUpdateSaveChange}
                 closeClassName='d-none'
                 saveClassName={clsx(styles['profile-address__save-btn'], 'btn')}
             >
                 <div className="form-group">
                     <div className="form-group">
-                        <label className={clsx(styles['profile-address__label-form'], 'mt-0')} htmlFor="name-update">Full name</label>
-                        <input value={name}
-                               onChange={e => setName(e.target.value)} placeholder='Enter full name'
-                               type="text" className={clsx(styles['profile-address__inp-form'], 'form-control')} id='name-update'/>
+                        <label className={clsx(styles['profile-address__label-form'], 'mt-0')} htmlFor="name-update">Full
+                            name</label>
+                        <input value={address.fullName || ''}
+                               onChange={e => dispatch(onChangeData({fullName: e.target.value}))}
+                               placeholder='Enter full name'
+                               type="text" className={clsx(styles['profile-address__inp-form'], 'form-control')}
+                               id='name-update'/>
                     </div>
                     <div className="form-group">
-                        <label className={clsx(styles['profile-address__label-form'])} htmlFor="phone-update">Phone number</label>
-                        <input value={phone}
-                               onChange={e => setPhone(e.target.value)} placeholder='Enter phone number'
-                               type="text" className={clsx(styles['profile-address__inp-form'], 'form-control')} id='phone-update'/>
+                        <label className={clsx(styles['profile-address__label-form'])} htmlFor="phone-update">Phone
+                            number</label>
+                        <input value={address.phone_number || ''}
+                               onChange={e => dispatch(onChangeData({phone_number: e.target.value}))}
+                               placeholder='Enter phone number'
+                               type="text" className={clsx(styles['profile-address__inp-form'], 'form-control')}
+                               id='phone-update'/>
                     </div>
                     <div className="form-group">
-                        <label className={clsx(styles['profile-address__label-form'])} htmlFor="address-update">Address</label>
-                        <input value={address}
-                               onChange={e => setAddress(e.target.value)} placeholder='Enter shipping address'
-                               type="text" className={clsx(styles['profile-address__inp-form'], 'form-control')} id='address-update'/>
+                        <label className={clsx(styles['profile-address__label-form'])}
+                               htmlFor="address-update">Address</label>
+                        <input value={address.address || ''}
+                               onChange={e => dispatch(onChangeData({address: e.target.value}))}
+                               placeholder='Enter shipping address'
+                               type="text" className={clsx(styles['profile-address__inp-form'], 'form-control')}
+                               id='address-update'/>
                     </div>
                     <div className="form-group d-flex align-items-center mt-3">
-                        <input onChange={e => setIsDefault(e.target.checked)} type="checkbox"
-                               checked={isDefault} className='form-check mr-5' id='check-update'/>
-                        <label style={{marginTop: 0}} className={clsx(styles['profile-address__label-form'], 'mb-0')} htmlFor="check-update">Set default address</label>
+                        <input onChange={e => dispatch(onChangeData({is_default: e.target.checked}))} type="checkbox"
+                               checked={address.is_default || false} className='form-check mr-5' id='check-update'/>
+                        <label style={{marginTop: 0}} className={clsx(styles['profile-address__label-form'], 'mb-0')}
+                               htmlFor="check-update">Set default address</label>
                     </div>
+                </div>
+                <div className={clsx('alert alert-danger p-2 mt-2 mb-2', (!logMessage && 'd-none'))}>
+                    <p className='mb-0 text-center'>{logMessage}</p>
                 </div>
             </Modal>
 
@@ -125,10 +240,14 @@ function ShippingAddress() {
                 title='Save change'
                 labelBtnSave='Remove'
                 closeClassName='d-none'
+                onClickLabelSave={handleDeleteAddress}
                 saveClassName={clsx(styles['profile-address__save-btn'], 'btn')}
             >
                 <div className="form-group">
-                    <p className='mb-0'>Are you sure to remove '{address}'?</p>
+                    <p className='mb-0'>Are you sure to remove '{address.fullName}'?</p>
+                </div>
+                <div className={clsx('alert alert-danger p-2 mt-2 mb-2', (!logMessage && 'd-none'))}>
+                    <p className='mb-0 text-center'>{logMessage}</p>
                 </div>
             </Modal>
         </>

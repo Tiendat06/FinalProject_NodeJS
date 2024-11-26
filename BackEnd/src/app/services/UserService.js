@@ -3,11 +3,17 @@ const fs = require('fs');
 
 const userRepository = require('../repository/UserRepository');
 
+
 const orderRepository = require('../repository/OrderRepository');
 
 const err = require("multer/lib/multer-error");
 
+const accountRepository = require('../repository/AccountRepository');
+const bcrypt = require('bcrypt');
+
+
 class UserService {
+
     updateUserProfile = async (req, res) => {
         // console.log()
         const {id} = req.params;
@@ -133,6 +139,28 @@ class UserService {
 
 
     
+    userChangePassword = async (req, res) => {
+        const {newPassword, user_id} = req.body;
+        const error = req.flash('error');
+        // console.log(error);
+        try {
+            if(error.length !== 0) throw new Error(error[0]);
+            const hashPassword = await bcrypt.hash(newPassword, 10);
+
+            const changePassUpdate = await accountRepository.changePasswordByUserId(user_id, hashPassword);
+            if (!changePassUpdate.acknowledged) throw new Error('Change password failed !');
+
+            return res.status(200).json({
+                status: true,
+                msg: 'Change password successfully !',
+            })
+        } catch (e) {
+            return res.status(400).json({
+                status: false,
+                msg: e.message
+            })
+        }
+    }
 }
 
 module.exports = new UserService;

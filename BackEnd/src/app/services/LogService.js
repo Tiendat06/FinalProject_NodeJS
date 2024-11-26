@@ -64,6 +64,7 @@ class LogService {
 
     registerAccount = async (req, res) => {
         let error = req.flash('error');
+        console.log(error);
         try{
             if(error.length === 0) {
                 const {fullName, phone, password, birthday, gender, email, address} = req.body;
@@ -188,7 +189,7 @@ class LogService {
         res.header('Access-Control-Allow-Origin', 'http://localhost:5000');
         res.header('Referrer-Policy', 'no-referrer-when-downgrade');
 
-        const redirectUrl = 'http://localhost:3000/log/googleOAuth';
+        const redirectUrl = `http://localhost:${process.env.PORT}/log/googleOAuth`;
 
         const oAuth2Client = new OAuth2Client(
             process.env.CLIENT_ID,
@@ -216,7 +217,7 @@ class LogService {
         const code = req.query.code;
 
         try {
-            const redirectUrl = 'http://localhost:3000/log/googleOAuth';
+            const redirectUrl = `http://localhost:${process.env.PORT}/log/googleOAuth`;
             const oAuth2Client = new OAuth2Client(
                 process.env.CLIENT_ID,
                 process.env.CLIENT_SECRET,

@@ -39,7 +39,7 @@
 
 .home-new__item--inner{
     padding: 20px;
-    /*background-color: var(--bg-item);*/
+    background-color: var(--bg-item);
     height: 350px;
 }
 

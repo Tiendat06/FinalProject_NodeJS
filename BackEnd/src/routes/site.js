@@ -5,6 +5,6 @@ const siteMiddleWare = require('../app/middlewares/SiteMiddleware');
 const checkLogin = require('../app/auth/checkLogin');
 const {OAuth2Client} = require('google-auth-library');
 
-router.get('/', siteMiddleWare.index);
+router.get('/', siteMiddleWare.index, siteController.index);
 
 module.exports = router;

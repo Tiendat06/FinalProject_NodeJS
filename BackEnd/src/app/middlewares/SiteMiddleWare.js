@@ -5,7 +5,7 @@ class SiteMiddleWare{
 
     // [GET] /
     index = async (req, res, next) => {
-        await siteController.index(req, res, next);
+        next();
     }
 }
 

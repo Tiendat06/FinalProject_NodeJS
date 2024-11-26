@@ -292,19 +292,6 @@ function MyAccount() {
                                 </button>
                             </div>
                         </div>
-                        {/*<div className={clsx(styles["profile-account__security-info"], 'mt-5')}>*/}
-                        {/*    <div*/}
-                        {/*        className={clsx(styles["profile-account__security-title"], 'col-lg-6 col-md-6 col-sm-6')}>*/}
-                        {/*        <i className="fa-solid fa-shield-halved"></i>*/}
-                        {/*        <span>Update PIN code</span>*/}
-                        {/*    </div>*/}
-                        {/*    <div*/}
-                        {/*        className={clsx(styles["profile-account__security-btn"], 'col-lg-6 col-md-6 col-sm-6')}>*/}
-                        {/*        <button*/}
-                        {/*            className={clsx(styles['profile-account__security-btn__item'])}>Update*/}
-                        {/*        </button>*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
                     </div>
                 </div>
             </div>

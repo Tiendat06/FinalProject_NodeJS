@@ -10,65 +10,41 @@ import { Link } from "react-router-dom";
 import OwlCarousel from 'react-owl-carousel';
 
 function ShopPage() {
+    const api_url = process.env.REACT_APP_API_URL;
     const itemsPerPage = 9;
-    let options = {
-        loop: true,
-        margin: 25,
-        nav: true,
-        navText: ["<span class='nav-icon'><i class='fas fa-chevron-left'></i></span>",
-            "<span class='nav-icon'><i class='fas fa-chevron-right'></i></span>"],
-        autoplay: true,
-        autoplayTimeout: 2500,
-        autoplayHoverPause: true,
-        smartSpeed: 800,
-        responsive: {
-            0: {items: 1},
-            600: {items: 1},
-            1000: {items: 1}
-        }
-    };
     const filterOptions = [
-        { value: 'id', label: 'Default' },
-        { value: 'price', label: 'Price' },
-        { value: 'name', label: 'Name' },
+        { value: '_id', label: 'Default' },
+        { value: 'product_price', label: 'Price' },
+        { value: 'product_name', label: 'Name' },
     ];
 
-    // Example for pagination
-    const rawData = [
-        { id: 1, name: "Laptop IdeaPad Slim 3", img: "/img/customer/product/laptop/lenovo-ideapadSlim3.png", price: 300, type: 'laptop' },
-        { id: 2, name: "IPhone 11", img: "/img/customer/product/mobile/iphone11.png", price: 300, type: 'mobile' },
-        { id: 3, name: "Loudspeaker Mini Xiaomi", img: "/img/customer/product/sound/sound-mini-siaomi.png", price: 300, type: 'sound' },
-        { id: 4, name: "Laptop Microsoft Surface", img: "/img/customer/product/laptop/microsoft-surface.png", price: 400, type: 'laptop' },
-        { id: 5, name: "Laptop Vivobook 15", img: "/img/customer/product/laptop/asus-vivobook15.png", price: 300, type: 'laptop' },
-        { id: 6, name: "Laptop HP Pavilion 15", img: "/img/customer/product/laptop/hp-pavilion15.png", price: 300, type: 'laptop' },
-        { id: 7, name: "Mouse G56D", img: "/img/customer/product/mouse/mouse-G56D.png", price: 300, type: 'mouse' },
-        { id: 8, name: "Samsung S23 Ultra", img: "/img/customer/product/mobile/samsung-S23Ultra.png", price: 300, type: 'mobile' },
-        { id: 9, name: "Lenovo K310", img: "/img/customer/product/keyboard/kb-lenovoK310.png", price: 300, type: 'keyboard' },
-        { id: 10, name: "Logitech M650", img: "/img/customer/product/mouse/mouse-logitechM650.png", price: 200, type: 'mouse' },
-    ];
-
-    const [data, setData] = useState(rawData);
+    const [data, setData] = useState([{}]);
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [priceRange, setPriceRange] = useState(10);
     const [isAscending, setIsAscending] = useState(true);
     const [filteredData, setFilteredData] = useState(data);
     const [itemType, setItemType] = useState("all");
-    useLayoutEffect(() => {
-        let filtered = data.filter(item => (item['price'] >= priceRange));
-        if(itemType !== 'all'){
-            filtered = filtered.filter(item => item['type'] === itemType);
+
+    useEffect(() => {
+        if(data && data.length > 0) {
+            let filtered = data.filter(item => (item['product_price'] >= priceRange));
+            console.log(filtered);
+            if(itemType !== 'all'){
+                filtered = filtered.filter(item => item['category_id']['category_name'] === itemType);
+            }
+            setFilteredData(filtered);
+            setPageCount(Math.ceil(filtered.length / itemsPerPage));
+            setCurrentItems(filtered.slice(0, itemsPerPage));
         }
-        setFilteredData(filtered);
-        setPageCount(Math.ceil(filtered.length / itemsPerPage));
-        setCurrentItems(filtered.slice(0, itemsPerPage));
     }, [priceRange, data, itemType]);
+
     const handlePageChange = useCallback((event) => {
         const newOffset = event.selected * itemsPerPage;
         setCurrentItems(filteredData.slice(newOffset, newOffset + itemsPerPage));
-    }, [])
+    }, [filteredData]);
 
-    const [selectedOption, setSelectedOption] = useState('id');
+    const [selectedOption, setSelectedOption] = useState('_id');
     useEffect(() => {
         const sortedDataSelect = [...data].sort((a, b) => {
             if (typeof a[selectedOption] === 'string') {
@@ -84,6 +60,30 @@ function ShopPage() {
         setData(sortedDataSelect);
     }, [selectedOption, isAscending]);
 
+    // BE
+    useEffect(() => {
+        fetch(`${api_url}/product`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: "include",
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if(data.status) {
+                    // console.log(data.data);
+                    setData(data.data);
+                    setFilteredData(data.data);
+                    setPageCount(Math.ceil(data.data.length / itemsPerPage));
+                    setCurrentItems(data.data.slice(0, itemsPerPage));
+                }
+                else window.location.href = '/';
+            })
+            .catch(error => console.log(error));
+    }, [itemsPerPage])
+
     return (
         <>
             <div className="shop-filter col-lg-3 col-md-4 col-sm-12">
@@ -97,28 +97,18 @@ function ShopPage() {
                         </li>
                         <li data-filter=".laptop" className="shop-filter__department-item d-flex">
                             <div
-                               onClick={() => setItemType('laptop')}
-                               className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'laptop' && styles['link-department']}`)}>Laptop</div>
+                               onClick={() => setItemType('Laptop')}
+                               className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'Laptop' && styles['link-department']}`)}>Laptop</div>
                         </li>
                         <li data-filter=".mobile" className="shop-filter__department-item d-flex">
                             <div
-                               onClick={() => setItemType('mobile')}
-                               className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'mobile' && styles['link-department']}`)}>Mobile</div>
+                               onClick={() => setItemType('Smartphone')}
+                               className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'Smartphone' && styles['link-department']}`)}>Mobile</div>
                         </li>
                         <li data-filter=".sound" className="shop-filter__department-item d-flex">
                             <div
-                               onClick={() => setItemType('sound')}
-                               className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'sound' && styles['link-department']}`)}>Loudspeaker</div>
-                        </li>
-                        <li data-filter=".mouse" className="shop-filter__department-item d-flex">
-                            <div
-                               onClick={() => setItemType('mouse')}
-                               className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'mouse' && styles['link-department']}`)}>Mouse</div>
-                        </li>
-                        <li data-filter=".keyboard" className="shop-filter__department-item d-flex">
-                            <div
-                               onClick={() => setItemType('keyboard')}
-                               className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'keyboard' && styles['link-department']}`)}>Keyboard</div>
+                               onClick={() => setItemType('Headphone')}
+                               className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'Headphone' && styles['link-department']}`)}>Headphone</div>
                         </li>
                     </ul>
                 </div>
@@ -132,82 +122,8 @@ function ShopPage() {
                 </div>
 
                 <div className="shop-filter__latest mt-4">
-                    <h4 className="">Latest Product</h4>
                     <div className={clsx(styles['shop-filter__middle'], 'mb-4')}
                          style={{marginRight: "auto", marginLeft: 0}}></div>
-                    <OwlCarousel
-                        {...options}>
-                        <div className="shop-filter__rated-list">
-                            <Link to="/" className={clsx(styles["shop-filter__rated-item"], 'd-flex')}>
-                                <div
-                                    className={clsx(styles["shop-filter__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/laptop/dell-inspiron14.png" alt=""
-                                         className={clsx(styles["shop-filter__rated-img"])}/>
-                                </div>
-                                <div className={clsx(styles["shop-filter__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">Dell Inspiron 14</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
-                                </div>
-                            </Link>
-                            <Link to='/' className={clsx(styles["shop-filter__rated-item"], 'd-flex')}>
-                                <div
-                                    className={clsx(styles["shop-filter__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/laptop/dell-inspiron14.png" alt=""
-                                         className={clsx(styles["shop-filter__rated-img"])}/>
-                                </div>
-                                <div className={clsx(styles["shop-filter__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">Dell Inspiron 14</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
-                                </div>
-                            </Link>
-                            <Link to='/' className={clsx(styles["shop-filter__rated-item"], 'd-flex')}>
-                                <div
-                                    className={clsx(styles["shop-filter__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/laptop/dell-inspiron14.png" alt=""
-                                         className={clsx(styles["shop-filter__rated-img"])}/>
-                                </div>
-                                <div className={clsx(styles["shop-filter__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">Dell Inspiron 14</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
-                                </div>
-                            </Link>
-                        </div>
-                        <div className="shop-filter__rated-list">
-                            <Link to='/' className={clsx(styles["shop-filter__rated-item"], 'd-flex')}>
-                                <div
-                                    className={clsx(styles["shop-filter__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/laptop/asus-vivobookS16.png" alt=""
-                                         className={clsx(styles["shop-filter__rated-img"])}/>
-                                </div>
-                                <div className={clsx(styles["shop-filter__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">Asus Vivobook S16</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
-                                </div>
-                            </Link>
-                            <Link to='/' className={clsx(styles["shop-filter__rated-item"], 'd-flex')}>
-                                <div
-                                    className={clsx(styles["shop-filter__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/laptop/asus-vivobookS16.png" alt=""
-                                         className={clsx(styles["shop-filter__rated-img"])}/>
-                                </div>
-                                <div className={clsx(styles["shop-filter__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">Asus Vivobook S16</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
-                                </div>
-                            </Link>
-                            <Link to='/' className={clsx(styles["shop-filter__rated-item"], 'd-flex')}>
-                                <div
-                                    className={clsx(styles["shop-filter__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/laptop/asus-vivobookS16.png" alt=""
-                                         className={clsx(styles["shop-filter__rated-img"])}/>
-                                </div>
-                                <div className={clsx(styles["shop-filter__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">Asus Vivobook S16</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
-                                </div>
-                            </Link>
-                        </div>
-                    </OwlCarousel>
                 </div>
             </div>
 
@@ -225,16 +141,16 @@ function ShopPage() {
                     </div>
                 </div>
                 <ul className={clsx(styles['shop-list--inner'], 'd-flex flex-wrap p-0')}>
-                    {currentItems.map((item) => (
-                        <li key={item.id}
-                            className={clsx(styles['shop-list__item'], `mix col-lg-4 col-md-6 col-sm-6 ${item.type}`)}>
+                    {currentItems.map((item, index) => (
+                        <li key={item._id}
+                            className={clsx(styles['shop-list__item'], `mix col-lg-4 col-md-6 col-sm-6 ${item.category_id.category_name}`)}>
                             <div className={clsx(styles['shop-list__item--inner'])}>
                                 <div className={clsx(styles['shop-list__item-img--outer'])}>
                                     <img className={clsx(styles['shop-list__item-img'])}
-                                         src={`${item.img}`} alt=""/>
+                                         src={`${item.product_img}`} alt=""/>
                                     <ul className={clsx(styles['shop-list__item-list'], 'd-flex w-100 p-0')}>
                                         <li className={clsx(styles['shop-list__item-list--icon'])}>
-                                            <Link className="text-dark" to={`/shop/details/${item.id}`}>
+                                            <Link className="text-dark" to={`/shop/details/${item._id}`}>
                                                 <i className="fa-solid fa-eye"></i>
                                             </Link>
                                         </li>
@@ -251,9 +167,9 @@ function ShopPage() {
                                     </ul>
                                 </div>
                                 <div className="shop-list__item-info text-center mt-3">
-                                    <p className="mb-0 text-dark">{item.name}</p>
+                                    <p className="mb-0 text-dark">{item.product_name}</p>
                                     <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency
-                                        price={item.price}/></p>
+                                        price={item.product_price}/></p>
                                 </div>
                             </div>
                         </li>

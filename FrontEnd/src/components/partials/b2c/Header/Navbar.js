@@ -237,9 +237,9 @@ function Navbar() {
                                 <div className={clsx(styles['header-search__left-list--inner'], isCategoryClicked ? styles['header-search__left-list--down']: undefined)}>
                                     <div className={clsx(styles['header-search__left-item'])}>Laptop</div>
                                     <div className={clsx(styles['header-search__left-item'])}>Mobile</div>
-                                    <div className={clsx(styles['header-search__left-item'])}>Loudspeaker</div>
-                                    <div className={clsx(styles['header-search__left-item'])}>Mouse</div>
-                                    <div className={clsx(styles['header-search__left-item'])}>Keyboard</div>
+                                    <div className={clsx(styles['header-search__left-item'])}>Headphone</div>
+                                    {/*<div className={clsx(styles['header-search__left-item'])}>Mouse</div>*/}
+                                    {/*<div className={clsx(styles['header-search__left-item'])}>Keyboard</div>*/}
                                 </div>
                             </div>
                         </div>

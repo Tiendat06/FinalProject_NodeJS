@@ -4,35 +4,25 @@ import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import OwlCarousel from 'react-owl-carousel';
 import mixitup from 'mixitup';
-import {useEffect, useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 import 'react-bootstrap'
+
+import Slider from "react-slick";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import SlickCarousel from "~/components/elements/SlickCarousel/SlickCarousel";
+import SmallSlickCarousel from "~/components/elements/SlickCarousel/SmallSlickCarousel";
 
 import styles from './HomePage.module.css';
 import {FormatUSDCurrency} from '~/utils'
 
 function HomePage(){
-
-    // owl carousel
-    let options = {
-        loop: true,
-        margin: 25,
-        nav: false,
-        autoplay: true,
-        autoplayTimeout: 2500,
-        autoplayHoverPause: true,
-        smartSpeed: 800,
-        responsive: {
-            0: {
-                items: 1
-            },
-            600: {
-                items: 3
-            },
-            1000: {
-                items: 4
-            }
-        }
-    };
+    const api_url = process.env.REACT_APP_API_URL;
+    const [dataList, setDataList] = useState({
+        top5Products: [],
+        top8Products: [],
+        top3Products: []
+    });
 
     // mixitup
     let containerRef = useRef(null);
@@ -41,6 +31,25 @@ function HomePage(){
             mixitup(containerRef.current);
         }
     }, []);
+
+    useEffect(() => {
+        fetch(`${api_url}/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: "include"
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                const top5Products = data.top5Products;
+                const top8Products = data.top8Products;
+                const top3Products = data.top3Products;
+                setDataList({...dataList, top5Products, top8Products, top3Products});
+            })
+            .catch(error => console.log(error));
+    }, [])
 
     return (
         <>
@@ -90,76 +99,20 @@ function HomePage(){
             <section className={clsx(styles["home-new"], 'carousel-wrapper mb-70')}>
                 <h2 className={clsx('text-center')}>New Product</h2>
                 <div className={clsx(styles['home-new__middle'])}></div>
-                <OwlCarousel className={clsx(styles['home-new__list'])}
-                             loop={options.loop}
-                             margin={options.margin}
-                             nav={options.nav}
-                             smartSpeed={options.smartSpeed}
-                             autoplay={options.autoplay}
-                             autoplayTimeout={options.autoplayTimeout}
-                             autoplayHoverPause={options.autoplayHoverPause}
-                             responsive={options.responsive}>
-                    <div className={clsx(styles['home-new__item--inner'])}>
-                        <div className={clsx(styles['home-new__item-img--outer'])}>
-                            <img className={styles['home-new__item-img']}
-                                 src="/img/customer/product/laptop/msi-GF63Thin.png" alt=""/>
-                        </div>
-                        <div className={clsx(styles['home-new__item-btn'])}>
-                            <div className={clsx(styles['home-new__item-btn--inner'])}>
-                                <Link className={clsx(styles['home-new__item-link'], 'link-underline')}
-                                      to="/">MSI GF63 Thin</Link>
+                <SlickCarousel>
+                    {dataList.top5Products.map((item, index) => (
+                        <div key={item._id} className={clsx(styles['home-new__item--inner'])}>
+                            <div className={clsx(styles['home-new__item-img--outer'])}>
+                                <img className={styles['home-new__item-img']} src={item.product_img} alt={item.product_name} />
+                            </div>
+                            <div className={clsx(styles['home-new__item-btn'])}>
+                                <div className={clsx(styles['home-new__item-btn--inner'])}>
+                                    <Link className={clsx(styles['home-new__item-link'], 'link-underline')} to="/">{item.product_name}</Link>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className={clsx(styles['home-new__item--inner'])}>
-                        <div className={clsx(styles['home-new__item-img--outer'])}>
-                            <img className={styles['home-new__item-img']}
-                                 src="/img/customer/product/laptop/asus-rog.png" alt=""/>
-                        </div>
-                        <div className={clsx(styles['home-new__item-btn'])}>
-                            <div className={clsx(styles['home-new__item-btn--inner'])}>
-                                <Link className={clsx(styles['home-new__item-link'], 'link-underline')}
-                                      to="/">ASUS ROG</Link>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={clsx(styles['home-new__item--inner'])}>
-                        <div className={clsx(styles['home-new__item-img--outer'])}>
-                            <img className={styles['home-new__item-img']}
-                                 src="/img/customer/product/laptop/acer-aspire7.png" alt=""/>
-                        </div>
-                        <div className={clsx(styles['home-new__item-btn'])}>
-                            <div className={clsx(styles['home-new__item-btn--inner'])}>
-                                <Link className={clsx(styles['home-new__item-link'], 'link-underline')}
-                                      to="/">ACER ASPIRE 7</Link>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={clsx(styles['home-new__item--inner'])}>
-                        <div className={clsx(styles['home-new__item-img--outer'])}>
-                            <img className={styles['home-new__item-img']}
-                                 src="/img/customer/product/mouse/mouse-logitechM650.png" alt=""/>
-                        </div>
-                        <div className={clsx(styles['home-new__item-btn'])}>
-                            <div className={clsx(styles['home-new__item-btn--inner'])}>
-                                <Link className={clsx(styles['home-new__item-link'], 'link-underline')}
-                                      to="/">MOUSE LOGITECH M650</Link>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={clsx(styles['home-new__item--inner'])}>
-                        <div className={clsx(styles['home-new__item-img--outer'])}>
-                            <img className={styles['home-new__item-img']}
-                                 src="/img/customer/product/mobile/samsung-s24Ultra.png" alt=""/>
-                        </div>
-                        <div className={clsx(styles['home-new__item-btn'])}>
-                            <div className={clsx(styles['home-new__item-btn--inner'])}>
-                                <Link className={clsx(styles['home-new__item-link'], 'link-underline')}
-                                      to="/">SAMSUNG S24 ULTRA</Link>
-                            </div>
-                        </div>
-                    </div>
-                </OwlCarousel>
+                    ))}
+                </SlickCarousel>
             </section>
 
             <section className={clsx(styles["home-featured"])}>
@@ -167,505 +120,117 @@ function HomePage(){
                 <div className={clsx(styles['home-new__middle'])}></div>
                 <ul className={clsx(styles["home-featured__category"], 'flex-wrap')}>
                     <Link data-filter="*" className={clsx(styles["home-featured__category-item"],'link-underline')}>All</Link>
-                    <Link data-filter=".laptop" className={clsx(styles["home-featured__category-item"],'link-underline')}>Laptop</Link>
-                    <Link data-filter=".mobile" className={clsx(styles["home-featured__category-item"],'link-underline')}>Mobile</Link>
-                    <Link data-filter=".sound" className={clsx(styles["home-featured__category-item"],'link-underline')}>Sound</Link>
-                    <Link data-filter=".mouse" className={clsx(styles["home-featured__category-item"],'link-underline')}>Mouse</Link>
-                    <Link data-filter=".keyboard" className={clsx(styles["home-featured__category-item"],'link-underline')}>Keyboard</Link>
+                    <Link data-filter=".Laptop" className={clsx(styles["home-featured__category-item"],'link-underline')}>Laptop</Link>
+                    <Link data-filter=".FullOptionDevice" className={clsx(styles["home-featured__category-item"],'link-underline')}>Mobile</Link>
+                    <Link data-filter=".Headphone" className={clsx(styles["home-featured__category-item"],'link-underline')}>Headphone</Link>
                 </ul>
                 <ul className={clsx(styles['home-featured__list'], 'd-flex flex-wrap')} ref={containerRef}>
-                    <li className={clsx(styles['home-featured__item'], 'mix col-lg-3 col-md-4 col-sm-6 laptop')}>
-                        <div className={clsx(styles['home-featured__item--inner'])}>
-                            <div className={clsx(styles['home-featured__item-img--outer'])}>
-                                <img className={clsx(styles['home-featured__item-img'])}
-                                     src="/img/customer/product/laptop/lenovo-ideapadSlim3.png" alt=""/>
-                                <ul className={clsx(styles['home-featured__item-list'], 'd-flex w-100 p-0')}>
-                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
-                                        <Link className="text-dark" to='/'><i className="fa-solid fa-eye"></i></Link>
-                                    </li>
-                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
-                                        <Link className="text-dark" to='/'><i
-                                            className="fa-solid fa-heart"></i></Link>
-                                    </li>
-                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
-                                        <Link to='/' className='text-dark'><i className="fa-solid fa-cart-shopping"></i></Link>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="home-featured__item-info text-center mt-3">
-                                <p className="mb-0 text-dark">Laptop IdeaPad Slim 3</p>
-                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={300} /></p>
-                            </div>
-                        </div>
-                    </li>
-                    <li className={clsx(styles['home-featured__item'], 'mix col-lg-3 col-md-4 col-sm-6 laptop')}>
-                        <div className={clsx(styles['home-featured__item--inner'])}>
-                            <div className={clsx(styles['home-featured__item-img--outer'])}>
-                                <img className={clsx(styles['home-featured__item-img'])}
-                                     src="/img/customer/product/laptop/acer-aspire5.png" alt=""/>
-                                <ul className={clsx(styles['home-featured__item-list'], 'd-flex w-100 p-0')}>
-                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
-                                        <Link className="text-dark" to='/'><i className="fa-solid fa-eye"></i></Link>
-                                    </li>
-                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
-                                        <Link className="text-dark" to='/'><i
-                                            className="fa-solid fa-heart"></i></Link>
-                                    </li>
-                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
-                                        <Link to='/' className='text-dark'><i className="fa-solid fa-cart-shopping"></i></Link>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="home-featured__item-info text-center mt-3">
-                                <p className="mb-0 text-dark">Laptop AcerAspire 5</p>
-                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={200} /></p>
-                            </div>
-                        </div>
-                    </li>
-                    <li className={clsx(styles['home-featured__item'], 'mix col-lg-3 col-md-4 col-sm-6 mouse')}>
-                        <div className={clsx(styles['home-featured__item--inner'])}>
-                            <div className={clsx(styles['home-featured__item-img--outer'])}>
-                                <img className={clsx(styles['home-featured__item-img'])}
-                                     src="/img/customer/product/mouse/mouse-razer-basiliskV3.png" alt=""/>
-                                <ul className={clsx(styles['home-featured__item-list'], 'd-flex w-100 p-0')}>
-                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
-                                        <Link className="text-dark" to='/'><i className="fa-solid fa-eye"></i></Link>
-                                    </li>
-                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
-                                        <Link className="text-dark" to='/'><i
-                                            className="fa-solid fa-heart"></i></Link>
-                                    </li>
-                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
-                                        <Link to='/' className='text-dark'><i className="fa-solid fa-cart-shopping"></i></Link>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="home-featured__item-info text-center mt-3">
-                                <p className="mb-0 text-dark">Mouse Razer Basilisk V3</p>
-                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={300} /></p>
-                            </div>
-                        </div>
-                    </li>
-                    <li className={clsx(styles['home-featured__item'], 'mix col-lg-3 col-md-4 col-sm-6 sound')}>
-                        <div className={clsx(styles['home-featured__item--inner'])}>
-                            <div className={clsx(styles['home-featured__item-img--outer'])}>
-                                <img className={clsx(styles['home-featured__item-img'])}
-                                     src="/img/customer/product/sound/sound-maika.png" alt=""/>
-                                <ul className={clsx(styles['home-featured__item-list'], 'd-flex w-100 p-0')}>
-                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
-                                        <Link className="text-dark" to='/'><i className="fa-solid fa-eye"></i></Link>
-                                    </li>
-                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
-                                        <Link className="text-dark" to='/'><i
-                                            className="fa-solid fa-heart"></i></Link>
-                                    </li>
-                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
-                                        <Link to='/' className='text-dark'><i className="fa-solid fa-cart-shopping"></i></Link>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="home-featured__item-info text-center mt-3">
-                                <p className="mb-0 text-dark">Sound Maika</p>
-                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={150} /></p>
-                            </div>
-                        </div>
-                    </li>
-                    <li className={clsx(styles['home-featured__item'], 'mix col-lg-3 col-md-4 col-sm-6 keyboard')}>
-                        <div className={clsx(styles['home-featured__item--inner'])}>
-                            <div className={clsx(styles['home-featured__item-img--outer'])}>
-                                <img className={clsx(styles['home-featured__item-img'])}
-                                     src="/img/customer/product/keyboard/kb-lenovoK200.png" alt=""/>
-                                <ul className={clsx(styles['home-featured__item-list'], 'd-flex w-100 p-0')}>
-                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
-                                        <Link className="text-dark" to='/'><i className="fa-solid fa-eye"></i></Link>
-                                    </li>
-                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
-                                        <Link className="text-dark" to='/'><i
-                                            className="fa-solid fa-heart"></i></Link>
-                                    </li>
-                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
-                                        <Link to='/' className='text-dark'><i className="fa-solid fa-cart-shopping"></i></Link>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="home-featured__item-info text-center mt-3">
-                                <p className="mb-0 text-dark">Keyboard Lenovo K200</p>
-                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={100} /></p>
-                            </div>
-                        </div>
-                    </li>
-                    <li className={clsx(styles['home-featured__item'], 'mix col-lg-3 col-md-4 col-sm-6 keyboard')}>
-                        <div className={clsx(styles['home-featured__item--inner'])}>
-                            <div className={clsx(styles['home-featured__item-img--outer'])}>
-                                <img className={clsx(styles['home-featured__item-img'])}
-                                     src="/img/customer/product/keyboard/kb-lenovoK500.png" alt=""/>
-                                <ul className={clsx(styles['home-featured__item-list'], 'd-flex w-100 p-0')}>
-                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
-                                        <Link className="text-dark" to='/'><i className="fa-solid fa-eye"></i></Link>
-                                    </li>
-                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
-                                        <Link className="text-dark" to='/'><i
-                                            className="fa-solid fa-heart"></i></Link>
-                                    </li>
-                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
-                                        <Link to='/' className='text-dark'><i className="fa-solid fa-cart-shopping"></i></Link>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="home-featured__item-info text-center mt-3">
-                                <p className="mb-0 text-dark">Keyboard Lenovo K500</p>
-                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={200} /></p>
-                            </div>
-                        </div>
-                    </li>
-                    <li className={clsx(styles['home-featured__item'], 'mix col-lg-3 col-md-4 col-sm-6 mobile')}>
-                        <div className={clsx(styles['home-featured__item--inner'])}>
-                            <div className={clsx(styles['home-featured__item-img--outer'])}>
-                                <img className={clsx(styles['home-featured__item-img'])}
-                                     src="/img/customer/product/mobile/iphone11.png" alt=""/>
-                                <ul className={clsx(styles['home-featured__item-list'], 'd-flex w-100 p-0')}>
-                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
-                                        <Link className="text-dark" to='/'><i className="fa-solid fa-eye"></i></Link>
-                                    </li>
-                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
-                                        <Link className="text-dark" to='/'><i
-                                            className="fa-solid fa-heart"></i></Link>
-                                    </li>
-                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
-                                        <Link to='/' className='text-dark'><i className="fa-solid fa-cart-shopping"></i></Link>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="home-featured__item-info text-center mt-3">
-                                <p className="mb-0 text-dark">Iphone 11</p>
-                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={150} /></p>
-                            </div>
-                        </div>
-                    </li>
-                    <li className={clsx(styles['home-featured__item'], 'mix col-lg-3 col-md-4 col-sm-6 mobile')}>
-                        <div className={clsx(styles['home-featured__item--inner'])}>
-                            <div className={clsx(styles['home-featured__item-img--outer'])}>
-                                <img className={clsx(styles['home-featured__item-img'])}
-                                     src="/img/customer/product/mobile/xiaomi-note12.png" alt=""/>
-                                <ul className={clsx(styles['home-featured__item-list'], 'd-flex w-100 p-0')}>
-                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
-                                        <Link className="text-dark" to='/'><i className="fa-solid fa-eye"></i></Link>
-                                    </li>
-                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
-                                        <Link className="text-dark" to='/'><i
-                                            className="fa-solid fa-heart"></i></Link>
-                                    </li>
-                                    <li className={clsx(styles['home-featured__item-list--icon'])}>
-                                        <Link to='/' className='text-dark'><i className="fa-solid fa-cart-shopping"></i></Link>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="home-featured__item-info text-center mt-3">
-                                <p className="mb-0 text-dark">Xiaomi Note 12</p>
-                                <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency price={90} /></p>
-                            </div>
-                        </div>
-                    </li>
+                        {dataList.top8Products.map((item, index) => (
+                            <li className={clsx(styles['home-featured__item'], 'mix col-lg-3 col-md-4 col-sm-6', `${(item.category_id.category_name)}`)}>
+                                <div key={index} className={clsx(styles['home-featured__item--inner'])}>
+                                    <div className={clsx(styles['home-featured__item-img--outer'])}>
+                                        <img className={clsx(styles['home-featured__item-img'])}
+                                             src={item.product_img} alt=""/>
+                                        <ul className={clsx(styles['home-featured__item-list'], 'd-flex w-100 p-0')}>
+                                            <li className={clsx(styles['home-featured__item-list--icon'])}>
+                                                <Link className="text-dark" to='/'><i
+                                                    className="fa-solid fa-eye"></i></Link>
+                                            </li>
+                                            <li className={clsx(styles['home-featured__item-list--icon'])}>
+                                                <Link className="text-dark" to='/'><i
+                                                    className="fa-solid fa-heart"></i></Link>
+                                            </li>
+                                            <li className={clsx(styles['home-featured__item-list--icon'])}>
+                                                <Link to='/' className='text-dark'><i
+                                                    className="fa-solid fa-cart-shopping"></i></Link>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div className="home-featured__item-info text-center mt-3">
+                                        <p className="mb-0 text-dark">{item.product_name}</p>
+                                        <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency
+                                            price={item.product_price}/></p>
+                                    </div>
+                                </div>
+                            </li>
+                        ))}
+
                 </ul>
             </section>
 
             <section className={clsx(styles['home-discount'])}>
                 <div className={clsx(styles["home-discount__list"], 'flex-wrap')}>
-                    <img src="/img/customer/home/sell-off-1.jpg" className={clsx(styles['home-discount__img'], 'p-2 col-lg-6 col-md-6 col-sm-12')} alt=""/>
-                    <img src="/img/customer/home/sell-off-2.png" className={clsx(styles['home-discount__img'], 'p-2 col-lg-6 col-md-6 col-sm-12')} alt=""/>
+                    <img src="/img/customer/home/sell-off-1.jpg"
+                         className={clsx(styles['home-discount__img'], 'p-2 col-lg-6 col-md-6 col-sm-12')} alt=""/>
+                    <img src="/img/customer/home/sell-off-2.png"
+                         className={clsx(styles['home-discount__img'], 'p-2 col-lg-6 col-md-6 col-sm-12')} alt=""/>
                 </div>
             </section>
 
             <section className="home-top d-flex flex-wrap">
                 <div className="col-lg-4 col-md-4 col-sm-12">
                     <h2 className="">Top Rated</h2>
-                    <div className={clsx(styles['home-new__middle'], 'mb-4')} style={{marginRight: "auto", marginLeft: 0}}></div>
-                    <OwlCarousel
-                        loop={options.loop}
-                        margin={options.margin}
-                        nav={options.nav}
-                        smartSpeed={options.smartSpeed}
-                        autoplay={options.autoplay}
-                        autoplayTimeout={options.autoplayTimeout}
-                        autoplayHoverPause={options.autoplayHoverPause}
-                        responsive={{
-                            0: {
-                                items: 1
-                            },
-                            600: {
-                                items: 1
-                            },
-                            1000: {
-                                items: 1
-                            }
-                        }}
-                    >
-                        <div className="home-top__rated-list">
-                            <Link to="/" className={clsx(styles["home-top__rated-item"], 'd-flex')}>
+                    <div className={clsx(styles['home-new__middle'], 'mb-4')}
+                         style={{marginRight: "auto", marginLeft: 0}}></div>
+                    <SmallSlickCarousel>
+                        {dataList.top3Products.map((item, index) => (
+                            <Link key={index} to="/" className={clsx(styles["home-top__rated-item"], 'd-flex')}>
                                 <div
-                                    className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/laptop/dell-inspiron14.png" alt=""
+                                    className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5 d-flex justify-content-center')}>
+                                    <img src={item.product_img} alt=""
                                          className={clsx(styles["home-top__rated-img"])}/>
                                 </div>
                                 <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">Dell Inspiron 14</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
+                                    <p style={{textAlign: "left"}} className="text-dark mb-0">{item.product_name}</p>
+                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18, textAlign: "left"}}>
+                                        <FormatUSDCurrency price={item.product_price}/></p>
                                 </div>
                             </Link>
-                            <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
-                                <div
-                                    className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/laptop/dell-inspiron14.png" alt=""
-                                         className={clsx(styles["home-top__rated-img"])}/>
-                                </div>
-                                <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">Dell Inspiron 14</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
-                                </div>
-                            </Link>
-                            <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
-                                <div
-                                    className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/laptop/dell-inspiron14.png" alt=""
-                                         className={clsx(styles["home-top__rated-img"])}/>
-                                </div>
-                                <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">Dell Inspiron 14</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
-                                </div>
-                            </Link>
-                        </div>
-                        <div className="home-top__rated-list">
-                            <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
-                                <div
-                                    className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/laptop/asus-vivobookS16.png" alt=""
-                                         className={clsx(styles["home-top__rated-img"])}/>
-                                </div>
-                                <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">Asus Vivobook S16</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
-                                </div>
-                            </Link>
-                            <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
-                                <div
-                                    className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/laptop/asus-vivobookS16.png" alt=""
-                                         className={clsx(styles["home-top__rated-img"])}/>
-                                </div>
-                                <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">Asus Vivobook S16</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
-                                </div>
-                            </Link>
-                            <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
-                                <div
-                                    className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/laptop/asus-vivobookS16.png" alt=""
-                                         className={clsx(styles["home-top__rated-img"])}/>
-                                </div>
-                                <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">Asus Vivobook S16</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
-                                </div>
-                            </Link>
-                        </div>
+                        ))}
+                    </SmallSlickCarousel>
 
-                    </OwlCarousel>
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-12">
                     <h2>Top Viewed</h2>
                     <div className={clsx(styles['home-new__middle'], 'mb-4')}
                          style={{marginRight: "auto", marginLeft: 0}}></div>
-                    <OwlCarousel
-                        loop={options.loop}
-                        margin={options.margin}
-                        nav={options.nav}
-                        smartSpeed={options.smartSpeed}
-                        autoplay={options.autoplay}
-                        autoplayTimeout={options.autoplayTimeout}
-                        autoplayHoverPause={options.autoplayHoverPause}
-                        responsive={{
-                            0: {
-                                items: 1
-                            },
-                            600: {
-                                items: 1
-                            },
-                            1000: {
-                                items: 1
-                            }
-                        }}
-                    >
-                        <div className="home-top__rated-list">
-                            <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
+                    <SmallSlickCarousel>
+                        {dataList.top3Products.map((item, index) => (
+                            <Link key={index} to="/" className={clsx(styles["home-top__rated-item"], 'd-flex')}>
                                 <div
-                                    className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/mobile/iphone11.png" alt=""
+                                    className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5 d-flex justify-content-center')}>
+                                    <img src={item.product_img} alt=""
                                          className={clsx(styles["home-top__rated-img"])}/>
                                 </div>
                                 <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">IPhone 11</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
+                                    <p style={{textAlign: "left"}} className="text-dark mb-0">{item.product_name}</p>
+                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18, textAlign: "left"}}>
+                                        <FormatUSDCurrency price={item.product_price}/></p>
                                 </div>
                             </Link>
-                            <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
-                                <div
-                                    className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/mobile/iphone11.png" alt=""
-                                         className={clsx(styles["home-top__rated-img"])}/>
-                                </div>
-                                <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">IPhone 11</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
-                                </div>
-                            </Link>
-                            <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
-                                <div
-                                    className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/mobile/iphone11.png" alt=""
-                                         className={clsx(styles["home-top__rated-img"])}/>
-                                </div>
-                                <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">IPhone 11</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
-                                </div>
-                            </Link>
-                        </div>
-                        <div className="home-top__rated-list">
-                            <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
-                                <div
-                                    className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/sound/sound-jblPartybox300.png" alt=""
-                                         className={clsx(styles["home-top__rated-img"])}/>
-                                </div>
-                                <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">JBL Party Box 300</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
-                                </div>
-                            </Link>
-                            <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
-                                <div
-                                    className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/sound/sound-jblPartybox300.png" alt=""
-                                         className={clsx(styles["home-top__rated-img"])}/>
-                                </div>
-                                <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">JBL Party Box 300</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
-                                </div>
-                            </Link>
-                            <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
-                                <div
-                                    className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/sound/sound-jblPartybox300.png" alt=""
-                                         className={clsx(styles["home-top__rated-img"])}/>
-                                </div>
-                                <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">JBL Party Box 300</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
-                                </div>
-                            </Link>
-                        </div>
-
-                    </OwlCarousel>
+                        ))}
+                    </SmallSlickCarousel>
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-12">
                     <h2>Top Selling</h2>
                     <div className={clsx(styles['home-new__middle'], 'mb-4')}
                          style={{marginRight: "auto", marginLeft: 0}}></div>
-                    <OwlCarousel
-                        loop={options.loop}
-                        margin={options.margin}
-                        nav={options.nav}
-                        smartSpeed={options.smartSpeed}
-                        autoplay={options.autoplay}
-                        autoplayTimeout={options.autoplayTimeout}
-                        autoplayHoverPause={options.autoplayHoverPause}
-                        responsive={{
-                            0: {
-                                items: 1
-                            },
-                            600: {
-                                items: 1
-                            },
-                            1000: {
-                                items: 1
-                            }
-                        }}
-                    >
-                        <div className="home-top__rated-list">
-                            <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
+                    <SmallSlickCarousel>
+                        {dataList.top3Products.map((item, index) => (
+                            <Link key={index} to="/" className={clsx(styles["home-top__rated-item"], 'd-flex')}>
                                 <div
-                                    className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/keyboard/kb-asusROG-eva.png" alt=""
+                                    className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5 d-flex justify-content-center')}>
+                                    <img src={item.product_img} alt=""
                                          className={clsx(styles["home-top__rated-img"])}/>
                                 </div>
                                 <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">Asus ROG Eva Edition</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
+                                    <p style={{textAlign: "left"}} className="text-dark mb-0">{item.product_name}</p>
+                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18, textAlign: "left"}}>
+                                        <FormatUSDCurrency price={item.product_price}/></p>
                                 </div>
                             </Link>
-                            <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
-                                <div
-                                    className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/keyboard/kb-asusROG-eva.png" alt=""
-                                         className={clsx(styles["home-top__rated-img"])}/>
-                                </div>
-                                <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">Asus ROG Eva Edition</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
-                                </div>
-                            </Link>
-                            <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
-                                <div
-                                    className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/keyboard/kb-asusROG-eva.png" alt=""
-                                         className={clsx(styles["home-top__rated-img"])}/>
-                                </div>
-                                <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">Asus ROG Eva Edition</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
-                                </div>
-                            </Link>
-                        </div>
-                        <div className="home-top__rated-list">
-                            <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
-                                <div
-                                    className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/mouse/mouse-dragon-g7.png" alt=""
-                                         className={clsx(styles["home-top__rated-img"])}/>
-                                </div>
-                                <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">Dragon G7</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
-                                </div>
-                            </Link>
-                            <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
-                                <div
-                                    className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/mouse/mouse-dragon-g7.png" alt=""
-                                         className={clsx(styles["home-top__rated-img"])}/>
-                                </div>
-                                <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">Dragon G7</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
-                                </div>
-                            </Link>
-                            <Link to='/' className={clsx(styles["home-top__rated-item"], 'd-flex')}>
-                                <div
-                                    className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <img src="/img/customer/product/mouse/mouse-dragon-g7.png" alt=""
-                                         className={clsx(styles["home-top__rated-img"])}/>
-                                </div>
-                                <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p className="text-dark mb-0">Dragon G7</p>
-                                    <p className="text-dark" style={{fontWeight: "bold", fontSize: 18}}><FormatUSDCurrency price={300} /></p>
-                                </div>
-                            </Link>
-                        </div>
-
-                    </OwlCarousel>
+                        ))}
+                    </SmallSlickCarousel>
                 </div>
             </section>
 

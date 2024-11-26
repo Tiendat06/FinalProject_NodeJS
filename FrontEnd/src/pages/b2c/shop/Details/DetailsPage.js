@@ -12,6 +12,9 @@ import {Fragment, useLayoutEffect, useState} from "react";
 function DetailsPage(){
     const {id} = useParams();
     console.log(id);
+    const [productInfo, setProductInfo] = useState({});
+    const [productVariantInfo, setProductVariantInfo] = useState([]);
+
     const [detailsImg, setDetailsImg] = useState('/img/customer/product/mobile/iphone11.png');
     const [quantity, setQuantity] = useState(1);
     const [navTabItem, setNavTabItem] = useState(1);

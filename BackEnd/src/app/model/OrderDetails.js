@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const Product = require('./Product');
+const Order = require('./Order');
 
 const OrderDetails = new Schema({
     order_id: { type: Schema.Types.ObjectId, ref: "Order", required: true },

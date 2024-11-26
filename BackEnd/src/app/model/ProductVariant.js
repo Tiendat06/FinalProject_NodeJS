@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Product = require('./Product')
 
 const ProductVariant = new Schema({
     product_id: {type: Schema.Types.ObjectId, ref: 'Product', required: true},

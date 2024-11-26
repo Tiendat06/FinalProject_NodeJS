@@ -12,22 +12,6 @@ import OwlCarousel from 'react-owl-carousel';
 function ShopPage() {
     const api_url = process.env.REACT_APP_API_URL;
     const itemsPerPage = 9;
-    let options = {
-        loop: true,
-        margin: 25,
-        nav: true,
-        navText: ["<span class='nav-icon'><i class='fas fa-chevron-left'></i></span>",
-            "<span class='nav-icon'><i class='fas fa-chevron-right'></i></span>"],
-        autoplay: true,
-        autoplayTimeout: 2500,
-        autoplayHoverPause: true,
-        smartSpeed: 800,
-        responsive: {
-            0: {items: 1},
-            600: {items: 1},
-            1000: {items: 1}
-        }
-    };
     const filterOptions = [
         { value: '_id', label: 'Default' },
         { value: 'product_price', label: 'Price' },

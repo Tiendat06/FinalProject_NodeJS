@@ -121,7 +121,7 @@ function HomePage(){
                 <ul className={clsx(styles["home-featured__category"], 'flex-wrap')}>
                     <Link data-filter="*" className={clsx(styles["home-featured__category-item"],'link-underline')}>All</Link>
                     <Link data-filter=".Laptop" className={clsx(styles["home-featured__category-item"],'link-underline')}>Laptop</Link>
-                    <Link data-filter=".Smartphone" className={clsx(styles["home-featured__category-item"],'link-underline')}>Mobile</Link>
+                    <Link data-filter=".FullOptionDevice" className={clsx(styles["home-featured__category-item"],'link-underline')}>Mobile</Link>
                     <Link data-filter=".Headphone" className={clsx(styles["home-featured__category-item"],'link-underline')}>Headphone</Link>
                 </ul>
                 <ul className={clsx(styles['home-featured__list'], 'd-flex flex-wrap')} ref={containerRef}>

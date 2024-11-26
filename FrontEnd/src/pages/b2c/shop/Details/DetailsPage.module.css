@@ -157,6 +157,19 @@
     align-items: center;
 }
 
+.details-more__item-cmt{
+    height: 500px;
+    overflow: scroll;
+}
+.details-more__item-cmt::-webkit-scrollbar{
+    display: none;
+}
+
+.details-more__item-cmt__item{
+    border-bottom: 1px solid var(--border-slick);
+    padding: 10px;
+}
+
 .details-more__title{
     display: flex;
     justify-content: space-around;

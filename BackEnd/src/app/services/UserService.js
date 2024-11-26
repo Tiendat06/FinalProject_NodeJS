@@ -2,6 +2,9 @@ const cloudinary = require('cloudinary').v2;
 const fs = require('fs');
 
 const userRepository = require('../repository/UserRepository');
+
+const orderRepository = require('../repository/OrderRepository');
+
 const err = require("multer/lib/multer-error");
 
 class UserService {
@@ -60,6 +63,76 @@ class UserService {
             })
         }
     }
+    ///View user profile
+    getUserProfile = async (req, res) => {
+        const { id } = req.params;
+        try {
+            const user = await userRepository.getUserById(id);
+            if (!user) {
+                return res.status(404).json({
+                    status: false,
+                    msg: 'User not found'
+                });
+            }
+            return res.status(200).json({
+                status: true,
+                user
+            });
+        } catch (e) {
+            return res.status(500).json({
+                status: false,
+                msg: e.message
+            });
+        }
+    }
+
+    getPurchaseHistory = async (req, res) => {
+        const userId = req.userData._id;
+        try {
+            const orders = await orderRepository.getOrdersByUserId(userId);
+            if (!orders || orders.length === 0) {
+                return res.status(404).json({
+                    status: false,
+                    msg: 'No purchase history found'
+                });
+            }
+            return res.status(200).json({
+                status: true,
+                orders
+            });
+        } catch (e) {
+            return res.status(500).json({
+                status: false,
+                msg: e.message
+            });
+        }
+    }
+
+    getPurchaseDetails = async (req, res) => {
+        const { orderId } = req.params;
+        const userId = req.userData._id;
+        try {
+            const order = await orderRepository.getOrderByIdAndUserId(orderId, userId);
+            if (!order) {
+                return res.status(404).json({
+                    status: false,
+                    msg: 'Order not found'
+                });
+            }
+            return res.status(200).json({
+                status: true,
+                order
+            });
+        } catch (e) {
+            return res.status(500).json({
+                status: false,
+                msg: e.message
+            });
+        }
+    }
+
+
+    
 }
 
 module.exports = new UserService;

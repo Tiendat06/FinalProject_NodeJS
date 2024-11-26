@@ -39,10 +39,10 @@ function ShopPage() {
     const [pageCount, setPageCount] = useState(0);
     const [priceRange, setPriceRange] = useState(10);
     const [isAscending, setIsAscending] = useState(true);
-    const [filteredData, setFilteredData] = useState([]);
+    const [filteredData, setFilteredData] = useState(data);
     const [itemType, setItemType] = useState("all");
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         if(data && data.length > 0) {
             let filtered = data.filter(item => (item['product_price'] >= priceRange));
             console.log(filtered);
@@ -58,7 +58,7 @@ function ShopPage() {
     const handlePageChange = useCallback((event) => {
         const newOffset = event.selected * itemsPerPage;
         setCurrentItems(filteredData.slice(newOffset, newOffset + itemsPerPage));
-    }, []);
+    }, [filteredData]);
 
     const [selectedOption, setSelectedOption] = useState('_id');
     useEffect(() => {
@@ -87,15 +87,18 @@ function ShopPage() {
         })
             .then(response => response.json())
             .then(data => {
-                // console.log(data);
+                console.log(data);
                 if(data.status) {
-                    console.log(data.data);
+                    // console.log(data.data);
                     setData(data.data);
+                    setFilteredData(data.data);
+                    setPageCount(Math.ceil(data.data.length / itemsPerPage));
+                    setCurrentItems(data.data.slice(0, itemsPerPage));
                 }
                 else window.location.href = '/';
             })
             .catch(error => console.log(error));
-    }, [])
+    }, [itemsPerPage])
 
     return (
         <>

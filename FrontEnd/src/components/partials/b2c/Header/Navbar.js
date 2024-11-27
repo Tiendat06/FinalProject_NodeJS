@@ -17,14 +17,6 @@ function Navbar() {
     const [logMessage, setLogMessage] = useState(null);
     const {userData, setUserData, productData, setProductData, search, setSearch} = useShoppingContext();
 
-    useLayoutEffect(() => {
-        if(search !== ''){
-
-        } else{
-
-        }
-    }, [search])
-
     let handleIsLogin = (data) => {
        setIsLogin(data);
        setLogMessage(null);

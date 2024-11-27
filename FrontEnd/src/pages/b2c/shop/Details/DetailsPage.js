@@ -104,6 +104,26 @@ function DetailsPage(){
             .catch(err => console.log(err));
     }, [id]);
     // console.log(productInfo);
+
+    const handleAddWishList = (item) => {
+        fetch(`${api_url}/product/add-wishlist`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                product_id: item._id,
+                user_id,
+            }),
+            credentials: "include",
+        })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status) toast.success(data.msg);
+                else toast.error(data.msg);
+            })
+            .catch(error => console.log(error));
+    }
     return (
         <>
             <div className={clsx(stylesGrid['details'], "col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap")}>
@@ -440,7 +460,7 @@ function DetailsPage(){
                                             </Link>
                                         </li>
                                         <li className={clsx(styles['details-related__item-list--icon'])}>
-                                            <Link className="text-dark" to={`/`}>
+                                            <Link className="text-dark" onClick={() => handleAddWishList(item)}>
                                                 <i className="fa-solid fa-heart"></i>
                                             </Link>
                                         </li>

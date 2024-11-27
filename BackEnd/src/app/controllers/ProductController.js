@@ -18,6 +18,11 @@ class ProductController {
 
         return await productService.commentProduct(req, res);
     }
+
+    // [POST] /product/add-wishlist
+    add_wish_list = async (req, res, next) => {
+        return await productService.addWishList(req, res);
+    }
 }
 
 module.exports = new ProductController;

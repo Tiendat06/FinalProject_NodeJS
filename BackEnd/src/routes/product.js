@@ -7,9 +7,12 @@ const productValidator = require('../app/validators/ProductValidator');
 
 router.get('/', productMiddleWare.index, productController.index);
 
-router.get('/:id', productMiddleWare.product_details, productController.product_details);
-
 router.post('/comment', checkLogin, productValidator.commentValidator,
     productMiddleWare.comment_product, productController.comment_product);
+
+router.post('/add-wishlist', checkLogin, productValidator.addWishListValidators,
+    productMiddleWare.add_wish_list, productController.add_wish_list)
+
+router.get('/:id', productMiddleWare.product_details, productController.product_details);
 
 module.exports = router;

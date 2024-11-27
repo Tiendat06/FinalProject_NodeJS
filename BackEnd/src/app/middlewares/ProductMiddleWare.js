@@ -24,6 +24,16 @@ class ProductMiddleWare {
         // console.log('middle ware');
         next();
     }
+
+    add_wish_list = (req, res, next) => {
+        const result = validationResult(req);
+        let error = '';
+        if(!result.isEmpty()){
+            error = result.array()[0].msg;
+        }
+        req.flash('error', error);
+        next();
+    }
 }
 
 module.exports = new ProductMiddleWare;

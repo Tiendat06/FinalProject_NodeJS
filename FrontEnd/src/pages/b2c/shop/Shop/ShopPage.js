@@ -1,18 +1,19 @@
 import styles from './ShopPage.module.css';
 import {Pagination, NiceSelect} from '~/components/elements';
 import {FormatUSDCurrency} from '~/utils'
+import {useShoppingContext} from "~/context/ShoppingContext";
 
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import {useCallback, useEffect, useLayoutEffect, useState} from "react";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
-import OwlCarousel from 'react-owl-carousel';
-import {useShoppingContext} from "~/context/ShoppingContext";
+import {toast} from "react-toastify";
 
 function ShopPage() {
     const api_url = process.env.REACT_APP_API_URL;
-    const {productData, setProductData} = useShoppingContext();
+    const {productData, setProductData, userData} = useShoppingContext();
+    const user_id = userData._id;
 
     const itemsPerPage = 9;
     const filterOptions = [
@@ -48,6 +49,7 @@ function ShopPage() {
     }, [filteredData]);
 
     const [selectedOption, setSelectedOption] = useState('_id');
+
     useEffect(() => {
         const sortedDataSelect = [...data].sort((a, b) => {
             if (typeof a[selectedOption] === 'string') {
@@ -87,7 +89,28 @@ function ShopPage() {
                 else window.location.href = '/';
             })
             .catch(error => console.log(error));
-    }, [itemsPerPage])
+    }, [itemsPerPage]);
+
+    // toast
+    const handleAddWishList = (item) => {
+        fetch(`${api_url}/product/add-wishlist`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                product_id: item._id,
+                user_id,
+            }),
+            credentials: "include",
+        })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status) toast.success(data.msg);
+                else toast.error(data.msg);
+            })
+            .catch(error => console.log(error));
+    }
 
     return (
         <>
@@ -161,7 +184,7 @@ function ShopPage() {
                                             </Link>
                                         </li>
                                         <li className={clsx(styles['shop-list__item-list--icon'])}>
-                                            <Link className="text-dark" to='/'>
+                                            <Link onClick={() => handleAddWishList(item)} className="text-dark">
                                                 <i className="fa-solid fa-heart"></i>
                                             </Link>
                                         </li>

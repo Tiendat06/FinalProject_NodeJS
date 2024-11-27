@@ -11,6 +11,7 @@ import "slick-carousel/slick/slick-theme.css";
 import clsx from "clsx";
 import {Fragment, useEffect, useLayoutEffect, useState} from "react";
 import {useShoppingContext} from "~/context/ShoppingContext";
+import {toast} from "react-toastify";
 
 function DetailsPage(){
     const {id} = useParams();
@@ -64,8 +65,9 @@ function DetailsPage(){
                 if (data.status) {
                     const newComment = comments || [];
                     setComments([...newComment, data.data]);
-                }
-                setLogMessage(data.msg);
+                    toast.success(data.msg);
+                }else toast.error(data.msg);
+                // setLogMessage(data.msg);
             })
             .catch(err => console.log(err));
     }

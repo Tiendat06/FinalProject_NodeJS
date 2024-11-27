@@ -8,6 +8,16 @@ commentValidator = [
         .notEmpty().withMessage('Please rating'),
 ];
 
+addWishListValidators = [
+    check('user_id')
+        .trim()
+        .notEmpty().withMessage('Leak of data'),
+    check('product_id')
+        .trim()
+        .notEmpty().withMessage('Leak of data'),
+]
+
 module.exports = {
     commentValidator,
+    addWishListValidators
 }

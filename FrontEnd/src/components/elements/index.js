@@ -7,5 +7,6 @@ import GlobalStyles from './GlobalStyles/GlobalStyles';
 import LineChart from "~/components/elements/LineChart/LineChart";
 import BarChart from "~/components/elements/BarChart/BarChart";
 import Loading from "~/components/elements/Loading/Loading";
+import Toast from "~/components/elements/Toast/Toast";
 
-export {Button, Modal, NiceSelect, Pagination, SlickSlider, GlobalStyles, LineChart, BarChart, Loading};
+export {Button, Modal, NiceSelect, Pagination, SlickSlider, GlobalStyles, LineChart, BarChart, Loading, Toast};

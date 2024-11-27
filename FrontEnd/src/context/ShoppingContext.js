@@ -22,19 +22,21 @@ export const ShoppingProvider = ({ children }) => {
     }, []);
 
     useEffect(() => {
-        fetch(`${api_url}/product`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: "include"
-        })
-            .then(response => response.json())
-            .then(data => {
-                if(data.status) setProductData(data.data);
+        if(productData.length === 0){
+            fetch(`${api_url}/product`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: "include"
             })
-            .catch(err => console.log(err));
-    }, [])
+                .then(response => response.json())
+                .then(data => {
+                    if(data.status) setProductData(data.data);
+                })
+                .catch(err => console.log(err));
+        }
+    }, [search])
 
     useEffect(() => {
         let value = search.toLowerCase();

@@ -57,7 +57,7 @@ function DashboardManageProductPage() {
                         <p className={clsx(styles['manage-user__table-page'], 'mb-0')}> Manage Product</p>
                     </h3>
                     <ul className={clsx(styles["manage-user__table-list"], 'mb-3')}>
-                        <Link to='/dashboard/product'
+                        <Link onClick={() => setDashBoardSubLink('manageProduct')} to='/dashboard/product'
                               className={clsx(styles["manage-user__table-item"], styles['manage-user__table-item--choose'])}>
                             <i className="fa-solid fa-user-gear"></i>
                             <p>Manage Product</p>

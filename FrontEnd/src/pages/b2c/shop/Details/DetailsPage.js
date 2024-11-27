@@ -104,7 +104,6 @@ function DetailsPage(){
             .catch(err => console.log(err));
     }, [id]);
     // console.log(productInfo);
-
     const handleAddWishList = (item) => {
         fetch(`${api_url}/product/add-wishlist`, {
             method: 'POST',
@@ -124,6 +123,20 @@ function DetailsPage(){
             })
             .catch(error => console.log(error));
     }
+
+    const handleAddToCard = (item) => {
+        fetch(`${api_url}/product/add-cart/${item.id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+
+            }),
+            credentials: "include",
+        })
+    }
+
     return (
         <>
             <div className={clsx(stylesGrid['details'], "col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap")}>

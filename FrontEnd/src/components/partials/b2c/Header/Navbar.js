@@ -17,6 +17,14 @@ function Navbar() {
     const [logMessage, setLogMessage] = useState(null);
     const {userData, setUserData, productData, setProductData, search, setSearch} = useShoppingContext();
 
+    useLayoutEffect(() => {
+        if(search !== ''){
+
+        } else{
+
+        }
+    }, [search])
+
     let handleIsLogin = (data) => {
        setIsLogin(data);
        setLogMessage(null);
@@ -249,9 +257,21 @@ function Navbar() {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-8 col-md-7 col-sm-12 d-flex">
-                            <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search products..." type="text" className={clsx('col-lg-10 col-md-9 col-sm-9', styles['header-search__middle-inp'])} id=""/>
-                            <Button label="SEARCH" className={clsx('btn btn-danger col-lg-2 col-md-3 col-sm-3', styles['header-search__middle-btn'])} />
+                        <div className="col-lg-8 col-md-7 col-sm-12 d-flex position-relative">
+                            <div className="col-lg-12 col-sm-12 col-md-12 d-flex align-items-center">
+                                <input value={search} onChange={e => setSearch(e.target.value)}
+                                       placeholder="Search products..." type="text"
+                                       autoComplete="off"
+                                       className={clsx('col-lg-10 col-md-9 col-sm-9', styles['header-search__middle-inp'])}
+                                       id=""/>
+                                <Button label="SEARCH"
+                                        className={clsx('btn btn-danger col-lg-2 col-md-3 col-sm-3', styles['header-search__middle-btn'])}/>
+                            </div>
+                            <div className={clsx(styles['header-search__recommend'], (search === '' && 'd-none'), "col-lg-10 col-md-9 col-sm-9 position-absolute")}>
+                                {productData.map((item, index) => (
+                                    <Link onClick={() => setSearch('')} to={`/shop/details/${item._id}`}>{item.product_name}</Link>
+                                ))}
+                            </div>
                         </div>
                         <div className="col-lg-2 col-md-2 col-sm-0">
                             <img className={clsx(styles['header-search__right-shipper'])} src="/img/logo/shipper.png"

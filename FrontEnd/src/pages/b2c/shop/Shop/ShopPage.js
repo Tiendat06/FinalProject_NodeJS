@@ -84,6 +84,7 @@ function ShopPage() {
             .catch(error => console.log(error));
     }, [itemsPerPage])
 
+    // console.log(currentItems);
     return (
         <>
             <div className="shop-filter col-lg-3 col-md-4 col-sm-12">
@@ -143,6 +144,7 @@ function ShopPage() {
                 <ul className={clsx(styles['shop-list--inner'], 'd-flex flex-wrap p-0')}>
                     {currentItems.map((item, index) => (
                         <li key={item._id}
+                            title={item.product_description}
                             className={clsx(styles['shop-list__item'], `mix col-lg-4 col-md-6 col-sm-6 ${item.category_id.category_name}`)}>
                             <div className={clsx(styles['shop-list__item--inner'])}>
                                 <div className={clsx(styles['shop-list__item-img--outer'])}>

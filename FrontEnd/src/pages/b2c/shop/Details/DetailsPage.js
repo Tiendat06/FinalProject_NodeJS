@@ -100,7 +100,7 @@ function DetailsPage(){
             })
             .catch(err => console.log(err));
     }, [id]);
-
+    // console.log(productInfo);
     return (
         <>
             <div className={clsx(stylesGrid['details'], "col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap")}>
@@ -215,7 +215,10 @@ function DetailsPage(){
                     {navTabItem === 2 &&
                         <div className={clsx(styles["details-more__item"], 'd-flex justify-content-center')}>
                             <div className={clsx(styles["details-more__item--inner"], 'col-lg-5 col-md-8 col-sm-12')}>
-                                {productInfo.category_id.category_name === 'Laptop' || productInfo.category_id.category_name === 'Smartphone' &&
+                                {productInfo.category_id.category_name === 'Smartphone' &&
+                                    <FullOptionDevice {...productInfo} />
+                                }
+                                {productInfo.category_id.category_name === 'Laptop' &&
                                     <FullOptionDevice {...productInfo} />
                                 }
                             </div>

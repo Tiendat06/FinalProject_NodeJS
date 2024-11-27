@@ -12,13 +12,16 @@ class ProductMiddleWare {
 
     comment_product = (req, res, next) => {
         const result = validationResult(req);
+        const {star} = req.body;
         let error = '';
 
         if(!result.isEmpty()){
             error = result.array()[0].msg;
+        } else if(star === 0){
+            error = 'Please rating !';
         }
         req.flash('error', error);
-        console.log('middle ware');
+        // console.log('middle ware');
         next();
     }
 }

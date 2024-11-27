@@ -3,6 +3,7 @@ import stylesGrid from './DetailsPageGrid.module.css';
 import {SlickSlider} from '~/components/elements';
 import {FormatUSDCurrency} from "~/utils"
 import FullOptionDevice from "./Type/FullOptionDevice";
+import Headphone from "./Type/Headphone";
 
 import {Link, useParams} from "react-router-dom";
 import "slick-carousel/slick/slick.css";
@@ -142,7 +143,7 @@ function DetailsPage(){
                                     return li;
                                 })()}
                             </div>
-                            <a href='#' className={clsx(styles['details-info__review'], 'mb-0')}>10 review(s) | Add your
+                            <a href='#' className={clsx(styles['details-info__review'], 'mb-0')}>{comments.length} review(s) | Add your
                                 reviews</a>
                         </div>
                         <div className={clsx(styles["details-info__budget"])}>
@@ -220,6 +221,9 @@ function DetailsPage(){
                                 }
                                 {productInfo.category_id.category_name === 'Laptop' &&
                                     <FullOptionDevice {...productInfo} />
+                                }
+                                {productInfo.category_id.category_name === 'Headphone' &&
+                                    <Headphone {...productInfo} />
                                 }
                             </div>
                         </div>
@@ -420,7 +424,9 @@ function DetailsPage(){
                 <div className={clsx(styles["details-related__middle"])}></div>
                 <ul className={clsx(styles['details-related__list'], 'd-flex flex-wrap p-0')}>
                     {relatedProduct.map((item, index) => (
-                        <li className={clsx(styles['details-related__item'], `mix col-lg-3 col-md-3 col-sm-6`)}>
+                        <li title={item.product_description}
+                            key={`related-${index}`}
+                            className={clsx(styles['details-related__item'], `mix col-lg-3 col-md-3 col-sm-6`)}>
                             <div className={clsx(styles['details-related__item--inner'])}>
                                 <div className={clsx(styles['details-related__item-img--outer'])}>
                                     <img className={clsx(styles['details-related__item-img'])}

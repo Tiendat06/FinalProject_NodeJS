@@ -10,12 +10,12 @@ import {Loading} from "~/components/elements";
 import $ from "jquery";
 
 function Navbar() {
-    let [search, setSearch] = useState('');
+    // let [search, setSearch] = useState('');
     let [isLogin, setIsLogin] = useState(true);
     const [isCategoryClicked, setIsCategoryClicked] = useState(false);
     const [logInformation, setLogInformation] = useState({});
     const [logMessage, setLogMessage] = useState(null);
-    const {userData, setUserData} = useShoppingContext();
+    const {userData, setUserData, productData, setProductData, search, setSearch} = useShoppingContext();
 
     let handleIsLogin = (data) => {
        setIsLogin(data);
@@ -72,6 +72,7 @@ function Navbar() {
             .then(data => {
                 // setLogMessage(data.msg);
                 setUserData({});
+                setProductData([]);
             })
             .catch(error => console.log(error));
     }
@@ -116,6 +117,11 @@ function Navbar() {
                 navigate(data.url);
             })
             .catch(e => console.error(e));
+    }
+
+    const handleSearchProduct = () => {
+        const value = search.toLowerCase();
+
     }
 
     return (

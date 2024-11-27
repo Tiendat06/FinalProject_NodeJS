@@ -3,11 +3,14 @@ import {createContext, useContext, useEffect, useLayoutEffect, useState} from 'r
 const ShoppingContext = createContext();
 
 export const ShoppingProvider = ({ children }) => {
+    let [search, setSearch] = useState('');
     const [userData, setUserData] = useState(JSON.parse(localStorage.getItem('userData')) || {});
     const [accountData, setAccountData] = useState(JSON.parse(localStorage.getItem('userData')) || {});
+    const [productData, setProductData] = useState(JSON.parse(localStorage.getItem('productData')) || []);
+    const [filteredProduct, setFilteredProduct] = useState([]);
     const api_url = process.env.REACT_APP_API_URL;
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         fetch(`${api_url}/log/get-user-data`, {
             method: 'GET',
             credentials: "include"
@@ -17,6 +20,32 @@ export const ShoppingProvider = ({ children }) => {
                 if (data.status) setUserData(data.data);
             }).catch(err => console.log(err));
     }, []);
+
+    useEffect(() => {
+        fetch(`${api_url}/product`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: "include"
+        })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status) setProductData(data.data);
+            })
+            .catch(err => console.log(err));
+    }, [])
+
+    useEffect(() => {
+        let value = search.toLowerCase();
+        console.log(value);
+        let filteredProductData = productData.filter(product =>
+            product.product_name.toLowerCase().includes(value)
+        );
+
+        console.log(filteredProductData);
+        setFilteredProduct(filteredProductData);
+    }, [search]);
 
     useLayoutEffect(() => {
         if(JSON.parse(localStorage.getItem('userData'))){
@@ -28,8 +57,12 @@ export const ShoppingProvider = ({ children }) => {
         localStorage.setItem('userData', JSON.stringify(userData));
     }, [userData]);
 
+    useEffect(() => {
+        localStorage.setItem('productData', JSON.stringify(productData));
+    }, [productData]);
+
     return (
-        <ShoppingContext.Provider value={{ userData, setUserData, accountData, setAccountData }}>
+        <ShoppingContext.Provider value={{ userData, setUserData, search, setSearch, productData: filteredProduct, setProductData }}>
             {children}
         </ShoppingContext.Provider>
     )

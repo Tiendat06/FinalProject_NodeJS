@@ -8,9 +8,12 @@ import {useCallback, useEffect, useLayoutEffect, useState} from "react";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
 import OwlCarousel from 'react-owl-carousel';
+import {useShoppingContext} from "~/context/ShoppingContext";
 
 function ShopPage() {
     const api_url = process.env.REACT_APP_API_URL;
+    const {productData, setProductData} = useShoppingContext();
+
     const itemsPerPage = 9;
     const filterOptions = [
         { value: '_id', label: 'Default' },
@@ -18,7 +21,7 @@ function ShopPage() {
         { value: 'product_name', label: 'Name' },
     ];
 
-    const [data, setData] = useState([{}]);
+    const [data, setData] = useState(productData);
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [priceRange, setPriceRange] = useState(10);
@@ -29,7 +32,7 @@ function ShopPage() {
     useEffect(() => {
         if(data && data.length > 0) {
             let filtered = data.filter(item => (item['product_price'] >= priceRange));
-            console.log(filtered);
+            console.log({filtered});
             if(itemType !== 'all'){
                 filtered = filtered.filter(item => item['category_id']['category_name'] === itemType);
             }
@@ -60,6 +63,10 @@ function ShopPage() {
         setData(sortedDataSelect);
     }, [selectedOption, isAscending]);
 
+    useEffect(() => {
+        setData(productData);
+    }, [productData]);
+
     // BE
     useEffect(() => {
         fetch(`${api_url}/product`, {
@@ -71,9 +78,7 @@ function ShopPage() {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 if(data.status) {
-                    // console.log(data.data);
                     setData(data.data);
                     setFilteredData(data.data);
                     setPageCount(Math.ceil(data.data.length / itemsPerPage));
@@ -84,7 +89,6 @@ function ShopPage() {
             .catch(error => console.log(error));
     }, [itemsPerPage])
 
-    // console.log(currentItems);
     return (
         <>
             <div className="shop-filter col-lg-3 col-md-4 col-sm-12">

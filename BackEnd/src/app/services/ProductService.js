@@ -69,35 +69,6 @@ class ProductService {
             })
         }
     }
-
-    addWishList = async (req, res) => {
-        const {user_id, product_id} = req.body;
-        const error = req.flash('error');
-
-        try {
-            if(error.length !== 0) throw new Error(error[0]);
-
-            const wishListExist = await wishListRepository.checkExistingWishList(user_id, product_id);
-            if(!wishListExist) {
-                const wish_list = await wishListRepository.addWishList({user_id, product_id});
-                if(wish_list.length === 0) throw new Error(error[0]);
-                return res.status(200).json({
-                    status: true,
-                    msg: 'Add to wish list successfully !',
-                })
-            }
-
-            return res.status(200).json({
-                status: true,
-                msg: 'Product is existing in wish list !',
-            })
-        } catch (e) {
-            return res.status(400).json({
-                status: false,
-                msg: e.message
-            })
-        }
-    }
 }
 
 module.exports = new ProductService;

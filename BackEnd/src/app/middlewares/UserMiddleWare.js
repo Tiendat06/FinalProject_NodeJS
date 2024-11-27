@@ -33,13 +33,21 @@ class UserMiddleWare {
         next();
     }
 
-    user_coupon_list = async (req, res, next) => {
+    user_coupon_list = (req, res, next) => {
         // const result = validationResult(req);
         // let error = '';
         // if(result.isEmpty()){
         //     error = result.array()[0].msg;
         // }
         // req.flash('error', error);
+        next();
+    }
+
+    user_wish_list = (req, res, next) => {
+        next();
+    }
+
+    delete_wish_list = (req, res, next) => {
         next();
     }
 }

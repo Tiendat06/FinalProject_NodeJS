@@ -30,7 +30,7 @@
     transition: ease-in-out .3s
 }
 
-.profile-favorite-list__item-list--icon{
+.profile-favorite-list__item-list--icon a{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,12 +43,12 @@
     transition: linear .3s;
 }
 
-.profile-favorite-list__item-list--icon:hover{
+.profile-favorite-list__item-list--icon a:hover{
     cursor: pointer;
     background-color: var(--btn-primary);
 }
 
-.profile-favorite-list__item-list--icon:hover i{
+.profile-favorite-list__item-list--icon a:hover i{
     color: #ffffff;
     transform: rotate(3600deg);
     transition: transform linear .2s;

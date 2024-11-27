@@ -19,4 +19,8 @@ router.post('/profile/change-password', checkLogin, userValidator.checkPassword,
 
 router.get('/profile/coupon', checkLogin, userMiddleWare.user_coupon_list, userController.user_coupon_list)
 
+router.get('/profile/wishlist', checkLogin, userMiddleWare.user_wish_list, userController.user_wish_list);
+
+router.delete('/profile/wishlist/:id', checkLogin, userMiddleWare.delete_wish_list, userController.delete_wish_list);
+
 module.exports = router;

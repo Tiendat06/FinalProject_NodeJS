@@ -119,11 +119,6 @@ function Navbar() {
             .catch(e => console.error(e));
     }
 
-    const handleSearchProduct = () => {
-        const value = search.toLowerCase();
-
-    }
-
     return (
         <nav className="">
             <header className={clsx('navbar navbar-expand-lg navbar-light bg-light', styles['header-top'])}>

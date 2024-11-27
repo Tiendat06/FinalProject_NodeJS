@@ -1,4 +1,5 @@
 const productService = require('../services/ProductService');
+const wishListService = require('../services/WishListService');
 
 class ProductController {
 
@@ -14,14 +15,13 @@ class ProductController {
 
     // [POST] /product/comment
     comment_product = async (req, res, next) => {
-        console.log('controller');
-
+        // console.log('controller');
         return await productService.commentProduct(req, res);
     }
 
     // [POST] /product/add-wishlist
     add_wish_list = async (req, res, next) => {
-        return await productService.addWishList(req, res);
+        return await wishListService.addWishList(req, res);
     }
 }
 

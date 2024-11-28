@@ -15,6 +15,10 @@ function Navbar() {
     const [isCategoryClicked, setIsCategoryClicked] = useState(false);
     const [logInformation, setLogInformation] = useState({});
     const [logMessage, setLogMessage] = useState(null);
+    const [passwordHidden, setPasswordHidden] = useState({
+        loginPassword: true,
+        registerPassword: true,
+    });
     const {userData, setUserData, productData, setProductData, search, setSearch} = useShoppingContext();
 
     let handleIsLogin = (data) => {
@@ -300,8 +304,20 @@ function Navbar() {
                                         <label htmlFor="pwd" className="login-modal__email"><p
                                             className="mb-0">Password</p>
                                         </label>
-                                        <input name='password' onChange={(e) => handleLogInformation({password: e.target.value})} type="password" id="pwd" placeholder='Enter password...'
-                                               className={clsx(styles["login-input__password"], 'form-control')}/>
+                                        <div className={clsx(styles['login-modal__password-inp--outer'], "position-relative")}>
+                                            <input name='password'
+                                                   onChange={(e) => handleLogInformation({password: e.target.value})}
+                                                   type={`${passwordHidden.loginPassword ? 'password' : 'text'}`}
+                                                   id="pwd"
+                                                   placeholder='Enter password...'
+                                                   className={clsx(styles["login-input__password"], 'form-control')}/>
+                                            {passwordHidden.loginPassword ?
+                                            <i onClick={() => setPasswordHidden({...passwordHidden, loginPassword: false})} className="fa-solid fa-eye position-absolute"></i>
+                                                :
+                                            <i onClick={() => setPasswordHidden({...passwordHidden, loginPassword: true})} className="fa-solid fa-eye-slash position-absolute"></i>
+                                            }
+                                        </div>
+
                                     </div>
                                     <div className="form-group mt-3 d-flex align-items-center justify-content-between">
                                         <div className="form-group d-flex align-items-center">
@@ -369,16 +385,34 @@ function Navbar() {
                                         <label htmlFor="pwd" className="login-modal__email"><p
                                             className="mb-0">Password</p>
                                         </label>
-                                        <input name='password'
-                                            onChange={(e) => handleLogInformation({password: e.target.value})} type="password" id="pwd" placeholder='Enter password...'
-                                               className={clsx(styles["login-input__password"], 'form-control')}/>
+                                        <div
+                                            className={clsx(styles['login-modal__password-inp--outer'], "position-relative")}>
+                                            <input name='password'
+                                                   onChange={(e) => handleLogInformation({password: e.target.value})}
+                                                   type={`${passwordHidden.registerPassword ? 'password' : 'text'}`}
+                                                   id="pwd"
+                                                   placeholder='Enter password...'
+                                                   className={clsx(styles["login-input__password"], 'form-control')}/>
+                                            {passwordHidden.registerPassword ?
+                                                <i onClick={() => setPasswordHidden({
+                                                    ...passwordHidden,
+                                                    registerPassword: false
+                                                })} className="fa-solid fa-eye position-absolute"></i>
+                                                :
+                                                <i onClick={() => setPasswordHidden({
+                                                    ...passwordHidden,
+                                                    registerPassword: true
+                                                })} className="fa-solid fa-eye-slash position-absolute"></i>
+                                            }
+                                        </div>
                                     </div>
                                     <div className="form-group mt-3">
                                         <label htmlFor="dob" className="login-modal__email"><p
                                             className="mb-0">Birthday</p>
                                         </label>
                                         <input name='dob'
-                                            onChange={(e) => handleLogInformation({birthday: e.target.value})} type="date" id="dob" placeholder='Enter birthday...'
+                                               onChange={(e) => handleLogInformation({birthday: e.target.value})}
+                                               type="date" id="dob" placeholder='Enter birthday...'
                                                className={clsx(styles["login-input__password"], 'form-control')}/>
                                     </div>
                                     <div className="form-group mt-3">
@@ -386,7 +420,8 @@ function Navbar() {
                                             className="mb-0">Gender</p>
                                         </label>
                                         <select name='gender'
-                                            onChange={(e) => handleLogInformation({gender: e.target.value})} id="gender"
+                                                onChange={(e) => handleLogInformation({gender: e.target.value})}
+                                                id="gender"
                                                 className={clsx(styles["login-input__password"], 'form-select')}>
                                             <option value="">--Choose gender--</option>
                                             <option value="Male">Male</option>

@@ -271,3 +271,12 @@
     color: var(--btn-primary);
 
 }
+
+.login-modal__password-inp--outer i{
+    right: 20px;
+    font-size: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--para-text);
+    cursor: pointer;
+}

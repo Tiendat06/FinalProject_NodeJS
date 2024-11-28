@@ -4,9 +4,12 @@ import {Link} from "react-router-dom";
 import {Modal, Pagination} from "~/components/elements";
 import {ConvertDateString} from "~/utils";
 import {useDashboardContext} from "~/context/DashboardContext";
-import {useCallback, useLayoutEffect, useState} from "react";
+import reducer, {initState} from './reducers/reducers';
+
+import {useCallback, useEffect, useLayoutEffect, useState} from "react";
 
 function DashboardManageProductPage() {
+    const api_url = process.env.REACT_APP_API_URL;
     const {dashBoardSubLink, setDashBoardSubLink} = useDashboardContext();
 
     const itemsPerPage = 10;
@@ -47,6 +50,10 @@ function DashboardManageProductPage() {
             [key]: value
         });
     }
+
+    useEffect(() => {
+        fetch(`${api_url}/`)
+    }, []);
 
     return (
         <>

@@ -136,9 +136,6 @@ class UserService {
             });
         }
     }
-
-
-    
     userChangePassword = async (req, res) => {
         const {newPassword, user_id} = req.body;
         const error = req.flash('error');
@@ -159,6 +156,52 @@ class UserService {
                 status: false,
                 msg: e.message
             })
+        }
+    }
+    //Shopping cart
+    displayShoppingCart = async (req, res) => {
+        const userId = req.userData._id;
+        try {
+            const cartItems = await cartRepository.getCartByUserId(userId);
+            if (!cartItems || cartItems.length === 0) {
+                return res.status(404).json({
+                    status: false,
+                    msg: 'No items in the shopping cart'
+                });
+            }
+            return res.status(200).json({
+                status: true,
+                cartItems
+            });
+        } catch (e) {
+            return res.status(500).json({
+                status: false,
+                msg: e.message
+            });
+        }
+    }
+
+    updateCart = async (req, res) => {
+        const { quantity } = req.body;
+        const userId = req.userData._id;
+        const { product_variant_id } = req.params;
+        try {
+            const cartItem = await cartRepository.updateCartItem(userId, product_variant_id, quantity);
+            if (!cartItem) {
+                return res.status(404).json({
+                    status: false,
+                    msg: 'Cart item not found'
+                });
+            }
+            return res.status(200).json({
+                status: true,
+                cartItem
+            });
+        } catch (e) {
+            return res.status(500).json({
+                status: false,
+                msg: e.message
+            });
         }
     }
 }

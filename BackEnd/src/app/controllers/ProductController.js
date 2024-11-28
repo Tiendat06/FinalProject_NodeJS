@@ -23,6 +23,38 @@ class ProductController {
     add_wish_list = async (req, res, next) => {
         return await wishListService.addWishList(req, res);
     }
+
+    // [GET] /product/variants
+    getAllVariants = async (req, res, next) => {
+        return await productService.getAllProductVariants(req, res);
+    };
+
+    // [GET] /product/variant/:id
+    getProductVariantsById = async (req, res, next) => {
+        try {
+            await productService.getProductVariantById(req, res); // Call the service which will handle the response
+        } catch (error) {
+            return res.status(500).json({
+                status: false,
+                message: error.message,
+            });
+        }
+    }
+
+    // [POST] /product/variant
+    addProductVariant = async (req, res, next) => {
+        return await productService.addProductVariant(req, res);
+    }
+
+    // [PUT] /product/variant/:id
+    updateProductVariant = async (req, res, next) => {
+        return await productService.updateProductVariant(req, res);
+    }
+
+    // [DELETE] /product/variant/:id
+    deleteProductVariant = async (req, res, next) => {
+        return await productService.deleteProductVariant(req, res);
+    }
 }
 
 module.exports = new ProductController;

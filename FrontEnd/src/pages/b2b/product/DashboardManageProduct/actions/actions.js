@@ -1,4 +1,11 @@
-import {GET_PRODUCTS, SET_PRODUCT, ADD_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT} from '../constansts/constansts'
+import {GET_PRODUCTS, SET_PRODUCT, ADD_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT, ON_CHANGE_DATA} from '../constansts/constansts'
+
+export const onChangeData = payLoad => {
+    return {
+        type: ON_CHANGE_DATA,
+        payLoad
+    }
+}
 
 export const getProducts = payLoad => {
     return {

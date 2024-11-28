@@ -204,12 +204,14 @@ function Navbar() {
                                 <i className={clsx('fa-solid fa-bars', styles['header-bottom__mobile-icon'])}></i>
                             </div>
 
+                            {userData?._id &&
                             <Link to='/shop/cart' className="header-bottom__icon col-sm-0 position-relative d-flex justify-content-center align-items-center col-lg-4 col-md-4 col-sm-4">
                                 <i className={clsx("fa-solid fa-basket-shopping")}
                                    style={{fontSize: 25, cursor: "pointer"}}></i>
                                 <div className={clsx("position-absolute", styles['header-bottom__icon--notice'])}>1</div>
                             </Link>
-                            <div className="header-bottom__contact col-sm-0 d-flex col-lg-8 col-md-0 col-sm-8">
+                             }
+                            <div className={clsx("header-bottom__contact col-sm-0 d-flex col-lg-8 col-md-0 col-sm-8", (!userData?._id && 'justify-content-end col-lg-12 col-sm-12'))}>
                                 <div className={clsx(styles['header-bottom__phone'], 'mr-15')}>
                                     <i className={clsx('fa-solid fa-phone', styles['header-bottom__phone--icon'])}></i>
                                 </div>

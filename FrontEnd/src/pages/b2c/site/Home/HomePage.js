@@ -15,6 +15,8 @@ import SmallSlickCarousel from "~/components/elements/SlickCarousel/SmallSlickCa
 
 import styles from './HomePage.module.css';
 import {FormatUSDCurrency} from '~/utils'
+import {toast} from "react-toastify";
+import {useShoppingContext} from "~/context/ShoppingContext";
 
 function HomePage(){
     const api_url = process.env.REACT_APP_API_URL;
@@ -23,6 +25,8 @@ function HomePage(){
         top8Products: [],
         top3Products: []
     });
+    const {userData} = useShoppingContext();
+    const user_id = userData._id;
 
     // mixitup
     let containerRef = useRef(null);
@@ -49,7 +53,28 @@ function HomePage(){
                 setDataList({...dataList, top5Products, top8Products, top3Products});
             })
             .catch(error => console.log(error));
-    }, [])
+    }, []);
+
+    // toast
+    const handleAddWishList = (item) => {
+        fetch(`${api_url}/product/add-wishlist`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                product_id: item._id,
+                user_id,
+            }),
+            credentials: "include",
+        })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status) toast.success(data.msg);
+                else toast.error(data.msg);
+            })
+            .catch(error => console.log(error));
+    }
 
     return (
         <>
@@ -107,7 +132,7 @@ function HomePage(){
                             </div>
                             <div className={clsx(styles['home-new__item-btn'])}>
                                 <div className={clsx(styles['home-new__item-btn--inner'])}>
-                                    <Link className={clsx(styles['home-new__item-link'], 'link-underline')} to="/">{item.product_name}</Link>
+                                    <Link className={clsx(styles['home-new__item-link'], 'link-underline')} to={`/shop/details/${item._id}`}>{item.product_name}</Link>
                                 </div>
                             </div>
                         </div>
@@ -121,7 +146,7 @@ function HomePage(){
                 <ul className={clsx(styles["home-featured__category"], 'flex-wrap')}>
                     <Link data-filter="*" className={clsx(styles["home-featured__category-item"],'link-underline')}>All</Link>
                     <Link data-filter=".Laptop" className={clsx(styles["home-featured__category-item"],'link-underline')}>Laptop</Link>
-                    <Link data-filter=".FullOptionDevice" className={clsx(styles["home-featured__category-item"],'link-underline')}>Mobile</Link>
+                    <Link data-filter=".Smartphone" className={clsx(styles["home-featured__category-item"],'link-underline')}>Mobile</Link>
                     <Link data-filter=".Headphone" className={clsx(styles["home-featured__category-item"],'link-underline')}>Headphone</Link>
                 </ul>
                 <ul className={clsx(styles['home-featured__list'], 'd-flex flex-wrap')} ref={containerRef}>
@@ -133,11 +158,11 @@ function HomePage(){
                                              src={item.product_img} alt=""/>
                                         <ul className={clsx(styles['home-featured__item-list'], 'd-flex w-100 p-0')}>
                                             <li className={clsx(styles['home-featured__item-list--icon'])}>
-                                                <Link className="text-dark" to='/'><i
+                                                <Link className="text-dark" to={`/shop/details/${item._id}`}><i
                                                     className="fa-solid fa-eye"></i></Link>
                                             </li>
                                             <li className={clsx(styles['home-featured__item-list--icon'])}>
-                                                <Link className="text-dark" to='/'><i
+                                                <Link onClick={() => handleAddWishList(item)} className="text-dark"><i
                                                     className="fa-solid fa-heart"></i></Link>
                                             </li>
                                             <li className={clsx(styles['home-featured__item-list--icon'])}>
@@ -174,7 +199,7 @@ function HomePage(){
                          style={{marginRight: "auto", marginLeft: 0}}></div>
                     <SmallSlickCarousel>
                         {dataList.top3Products.map((item, index) => (
-                            <Link key={index} to="/" className={clsx(styles["home-top__rated-item"], 'd-flex')}>
+                            <Link key={`top-rate-${index}`} to={`/shop/details/${item._id}`} className={clsx(styles["home-top__rated-item"], 'd-flex')}>
                                 <div
                                     className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5 d-flex justify-content-center')}>
                                     <img src={item.product_img} alt=""
@@ -196,7 +221,7 @@ function HomePage(){
                          style={{marginRight: "auto", marginLeft: 0}}></div>
                     <SmallSlickCarousel>
                         {dataList.top3Products.map((item, index) => (
-                            <Link key={index} to="/" className={clsx(styles["home-top__rated-item"], 'd-flex')}>
+                            <Link key={`top-view-${index}`} to={`/shop/details/${item._id}`} className={clsx(styles["home-top__rated-item"], 'd-flex')}>
                                 <div
                                     className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5 d-flex justify-content-center')}>
                                     <img src={item.product_img} alt=""
@@ -217,7 +242,7 @@ function HomePage(){
                          style={{marginRight: "auto", marginLeft: 0}}></div>
                     <SmallSlickCarousel>
                         {dataList.top3Products.map((item, index) => (
-                            <Link key={index} to="/" className={clsx(styles["home-top__rated-item"], 'd-flex')}>
+                            <Link key={`top-sell-${index}`} to={`/shop/details/${item._id}`} className={clsx(styles["home-top__rated-item"], 'd-flex')}>
                                 <div
                                     className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5 d-flex justify-content-center')}>
                                     <img src={item.product_img} alt=""

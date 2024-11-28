@@ -11,7 +11,7 @@ class AccountRepository {
     }
 
     changePasswordByUserId = (user_id, password) => {
-        return Account.updateOne({user_id}, {$set: {password}})
+        return Account.updateOne({user_id, deleted: false}, {$set: {password}})
             .then(value => value)
             .catch(err => console.log(err));
     }
@@ -25,7 +25,7 @@ class AccountRepository {
     }
 
     updateAccountById = ({_id, ...accountData}) => {
-        return Account.updateOne({_id}, {$set: accountData})
+        return Account.updateOne({_id, deleted: false}, {$set: accountData})
             .then(value => value)
             .catch(err => console.log(err));
     }

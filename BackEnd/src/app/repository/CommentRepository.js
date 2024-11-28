@@ -3,7 +3,7 @@ const Comment = require('../model/Comment');
 class CommentRepository{
 
     getCommentByProductId = (product_id) => {
-        return Comment.find({product_id})
+        return Comment.find({product_id, deleted: false})
             .populate('user_id')
             .populate('product_id')
             .then(comments => comments)

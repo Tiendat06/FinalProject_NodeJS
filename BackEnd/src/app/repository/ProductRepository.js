@@ -4,21 +4,21 @@ const Product = require('../model/Product');
 class ProductRepository {
 
     getAllProducts = () => {
-        return Product.find()
+        return Product.find({deleted: false})
             .populate('category_id')
             .then(products => products)
             .catch(err => console.log(err));
     }
 
     getProductById = (_id) => {
-        return Product.findOne({_id})
+        return Product.findOne({_id, deleted: false})
             .populate('category_id')
             .then(product => product)
             .catch(err => console.log(err));
     }
 
     getTopNProducts = (n) => {
-        return Product.find()
+        return Product.find({deleted: false})
             .limit(n)
             .populate('category_id')
             .then(products => products)

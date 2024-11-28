@@ -7,8 +7,8 @@ const OrderStatus = require('./OrderStatus');
 
 const Order = new Schema({
     user_id: { type: Schema.Types.ObjectId, ref: "User", required: true },
-    product_variant_id: { type: Schema.Types.ObjectId, ref: "ProductVariant", required: true },
-    status_id: { type: Schema.Types.ObjectId, ref: "OrderStatus", required: true },
+    // product_variant_id: { type: Schema.Types.ObjectId, ref: "ProductVariant", required: true },
+    // status_id: { type: Schema.Types.ObjectId, ref: "OrderStatus", required: true },
     tax: {type: Number, default: 10},
     shippingFee: { type: Number },
     createdAt: { type: Date, default: Date.now },

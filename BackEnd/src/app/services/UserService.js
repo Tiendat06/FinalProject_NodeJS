@@ -4,7 +4,6 @@ const fs = require('fs');
 const userRepository = require('../repository/UserRepository');
 
 
-const orderRepository = require('../repository/OrderRepository');
 
 const err = require("multer/lib/multer-error");
 
@@ -92,50 +91,7 @@ class UserService {
         }
     }
 
-    getPurchaseHistory = async (req, res) => {
-        const userId = req.userData._id;
-        try {
-            const orders = await orderRepository.getOrdersByUserId(userId);
-            if (!orders || orders.length === 0) {
-                return res.status(404).json({
-                    status: false,
-                    msg: 'No purchase history found'
-                });
-            }
-            return res.status(200).json({
-                status: true,
-                orders
-            });
-        } catch (e) {
-            return res.status(500).json({
-                status: false,
-                msg: e.message
-            });
-        }
-    }
 
-    getPurchaseDetails = async (req, res) => {
-        const { orderId } = req.params;
-        const userId = req.userData._id;
-        try {
-            const order = await orderRepository.getOrderByIdAndUserId(orderId, userId);
-            if (!order) {
-                return res.status(404).json({
-                    status: false,
-                    msg: 'Order not found'
-                });
-            }
-            return res.status(200).json({
-                status: true,
-                order
-            });
-        } catch (e) {
-            return res.status(500).json({
-                status: false,
-                msg: e.message
-            });
-        }
-    }
     userChangePassword = async (req, res) => {
         const {newPassword, user_id} = req.body;
         const error = req.flash('error');
@@ -158,52 +114,7 @@ class UserService {
             })
         }
     }
-    //Shopping cart
-    displayShoppingCart = async (req, res) => {
-        const userId = req.userData._id;
-        try {
-            const cartItems = await cartRepository.getCartByUserId(userId);
-            if (!cartItems || cartItems.length === 0) {
-                return res.status(404).json({
-                    status: false,
-                    msg: 'No items in the shopping cart'
-                });
-            }
-            return res.status(200).json({
-                status: true,
-                cartItems
-            });
-        } catch (e) {
-            return res.status(500).json({
-                status: false,
-                msg: e.message
-            });
-        }
-    }
-
-    updateCart = async (req, res) => {
-        const { quantity } = req.body;
-        const userId = req.userData._id;
-        const { product_variant_id } = req.params;
-        try {
-            const cartItem = await cartRepository.updateCartItem(userId, product_variant_id, quantity);
-            if (!cartItem) {
-                return res.status(404).json({
-                    status: false,
-                    msg: 'Cart item not found'
-                });
-            }
-            return res.status(200).json({
-                status: true,
-                cartItem
-            });
-        } catch (e) {
-            return res.status(500).json({
-                status: false,
-                msg: e.message
-            });
-        }
-    }
+    
 }
 
 module.exports = new UserService;

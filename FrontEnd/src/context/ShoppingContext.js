@@ -22,7 +22,7 @@ export const ShoppingProvider = ({ children }) => {
     }, []);
 
     useEffect(() => {
-        if (productData.length === 0){
+        if(productData.length === 0){
             fetch(`${api_url}/product`, {
                 method: 'GET',
                 headers: {

@@ -370,7 +370,7 @@ function Navbar() {
                                             className="mb-0">Password</p>
                                         </label>
                                         <input name='password'
-                                            onChange={(e) => handleLogInformation({password: e.target.value})} type="text" id="pwd" placeholder='Enter password...'
+                                            onChange={(e) => handleLogInformation({password: e.target.value})} type="password" id="pwd" placeholder='Enter password...'
                                                className={clsx(styles["login-input__password"], 'form-control')}/>
                                     </div>
                                     <div className="form-group mt-3">

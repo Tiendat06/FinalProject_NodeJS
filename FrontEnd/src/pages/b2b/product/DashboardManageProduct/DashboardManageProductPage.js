@@ -5,12 +5,15 @@ import {Modal, Pagination} from "~/components/elements";
 import {ConvertDateString} from "~/utils";
 import {useDashboardContext} from "~/context/DashboardContext";
 import reducer, {initState} from './reducers/reducers';
+import {getProducts} from './actions/actions';
 
-import {useCallback, useEffect, useLayoutEffect, useState} from "react";
+import {useCallback, useEffect, useLayoutEffect, useReducer, useState} from "react";
 
 function DashboardManageProductPage() {
     const api_url = process.env.REACT_APP_API_URL;
     const {dashBoardSubLink, setDashBoardSubLink} = useDashboardContext();
+    const [state, dispatch] = useReducer(reducer, initState);
+    const {product, productData} = state;
 
     const itemsPerPage = 10;
     const rawData = [
@@ -25,7 +28,7 @@ function DashboardManageProductPage() {
         { id: 9, name: "Lenovo K310", img: "/img/customer/product/keyboard/kb-lenovoK310.png", import_price:200, price: 300, type: 'keyboard', quantity: 100, desc: 'This is from VN', date_created: new Date('2024-11-13') },
         { id: 10, name: "Logitech M650", img: "/img/customer/product/mouse/mouse-logitechM650.png", import_price:200, price: 200, type: 'mouse', quantity: 100, desc: 'This is from VN', date_created: new Date('2024-11-13') },
     ];
-    const [productData, setProductData] = useState(rawData);
+    // const [productData, setProductData] = useState(productList);
     const [currentPage, setCurrentPage] = useState(0);
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
@@ -52,8 +55,22 @@ function DashboardManageProductPage() {
     }
 
     useEffect(() => {
-        fetch(`${api_url}/`)
+        fetch(`${api_url}/product/variant`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: "include"
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.data);
+                if(data.status) dispatch(getProducts(data.data));
+
+            })
+            .catch(error => console.log(error));
     }, []);
+    console.log(productData);
 
     return (
         <>
@@ -94,12 +111,14 @@ function DashboardManageProductPage() {
                                     <tr>
                                         <th>#</th>
                                         <th>NAME</th>
-                                        <th>IMPORT PRICE</th>
                                         <th>RETAIL PRICE</th>
                                         <th>CATEGORY</th>
+                                        <th>COLOR</th>
+                                        <th>RAM</th>
+                                        <th>ROM</th>
+                                        <th>WEIGHT</th>
                                         <th>QUANTITY</th>
-                                        <th>DATE CREATED</th>
-                                        <th>DESCRIPTION</th>
+                                        {/*<th>DESCRIPTION</th>*/}
                                         <th>ACTION</th>
                                     </tr>
                                     </thead>
@@ -107,30 +126,36 @@ function DashboardManageProductPage() {
                                     {currentItems.map((item, index) => (
                                         <tr key={index}>
                                             <td>
-                                                <p className={clsx(styles['user-table__text'])}>{item.id}</p>
+                                                <p className={clsx(styles['user-table__text'])}>{index + 1}</p>
                                             </td>
-                                            <td>
-                                                <p className={clsx(styles['user-table__text'])}>{item.name}</p>
+                                            <td width=''>
+                                                <p className={clsx(styles['user-table__text'])}>{item.product_name}</p>
                                             </td>
-                                            <td>
-                                                <p className={clsx(styles['user-table__text'])}>{item.import_price}</p>
+                                            <td width=''>
+                                                <p className={clsx(styles['user-table__text'])}>{item.retail_price}</p>
                                             </td>
-                                            <td>
-                                                <p className={clsx(styles['user-table__text'])}>{item.price}</p>
+                                            <td width=''>
+                                                <p className={clsx(styles['user-table__text'])}>{item.product_id.category_id.category_name}</p>
                                             </td>
-                                            <td>
-                                                <p className={clsx(styles['user-table__text'])}>{item.type}</p>
+                                            <td width=''>
+                                                <p className={clsx(styles['user-table__text'])}>{item.product_color}</p>
                                             </td>
-                                            <td>
-                                                <p className={clsx(styles['user-table__text'])}>{item.quantity}</p>
+                                            <td width=''>
+                                                <p className={clsx(styles['user-table__text'])}>{item.variant_RAM || 'X'}</p>
                                             </td>
-                                            <td>
-                                                <p className={clsx(styles['user-table__text'])}>{ConvertDateString(item.date_created)}</p>
+                                            <td width=''>
+                                                <p className={clsx(styles['user-table__text'])}>{item.variant_ROM || 'X'}</p>
                                             </td>
-                                            <td>
-                                                <p className={clsx(styles['user-table__text'])}>{item.desc}</p>
+                                            <td width=''>
+                                                <p className={clsx(styles['user-table__text'])}>{item.variant_weight || 'X'}</p>
                                             </td>
-                                            <td>
+                                            <td width=''>
+                                                <p className={clsx(styles['user-table__text'])}>{item.variant_quantity}</p>
+                                            </td>
+                                            {/*<td>*/}
+                                            {/*    <p className={clsx(styles['user-table__text'])}>{item.product_id.product_description}</p>*/}
+                                            {/*</td>*/}
+                                            <td width=''>
                                                 <p className={clsx(styles["user-table__action"])}>
                                                     <i onClick={() => setTempData(item)} data-bs-toggle='modal'
                                                        data-bs-target='#edit-modal'

@@ -26,7 +26,8 @@ class CartController {
     async updateCart(req, res) {
         try {
             const userId = req.userData._id;
-            const { product_variant_id, quantity } = req.body;
+            const { quantity } = req.body;
+            const { product_variant_id } = req.params;
             const updatedCart = await cartService.updateCart(userId, product_variant_id, quantity);
             res.status(200).json({
                 status: true,
@@ -43,8 +44,8 @@ class CartController {
 
     async deleteCartItem(req, res) {
         try {
-            const userId = req.userData._id; 
-            const { product_variant_id } = req.body;
+            const userId = req.userData._id;
+            const { product_variant_id } = req.params;
             const deletedCartItem = await cartService.deleteCartItem(userId, product_variant_id);
             res.status(200).json({
                 status: true,

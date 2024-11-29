@@ -6,25 +6,16 @@ const ProductVariantRepository = require('../repository/ProductVariantRepository
 const OrderRepository = require('../repository/OrderRepository');
 class OrderService {
 
+  //create an order
   async createOrder(req, res) {
-    const { user_id, product_variant_id, orderStatus_id, quantity = 1 } = req.body;
+    const { user_id, orderStatus_id, cart } = req.body;
 
-    //check user exists
+    // Check if user exists
     const user = await UserRepository.getUserById(user_id);
     if (!user) {
       return res.status(404).json({
         success: false,
         message: 'User not found',
-      });
-    }
-
-    //check product_variant_id exists
-    const productVariant = await ProductVariantRepository.getProductVariantById(product_variant_id);
-
-    if (!productVariant) {
-      return res.status(404).json({
-        success: false,
-        message: 'Product variant not found',
       });
     }
 
@@ -37,33 +28,78 @@ class OrderService {
       });
     }
 
-    // Prepare the order data
+    // Create the order
     const newOrder = {
       user_id,
-      product_variant_id,
       status_id: orderStatus._id,
       tax: 10, // Set your default tax value or calculate dynamically
       shippingFee: 20, // Set your default shipping fee or calculate dynamically
     };
 
-    // Create the order
+    // Save the order
     const savedOrder = await OrderRepository.createOrder(newOrder);
 
-    // Prepare the order details data
-    const newOrderDetails = {
-      order_id: savedOrder._id,
-      product_variant_id: productVariant._id,
-      quantity,
-    };
+    // Get all statuses (Pending, Confirmed, Shipping, Delivered, Cancel)
+    const statuses = await OrderStatus.find({
+      status: { $in: ['Pending', 'Confirmed', 'Shipping', 'Delivered', 'Cancel'] }
+    });
 
-    // Create order details
-    await OrderRepository.createOrderDetails(newOrderDetails);
+    // Create the OrderStatusDetails records for the new order
+    const orderStatusDetailsPromises = statuses.map(status => {
+      const isCheck = status.status === 'Pending';  // Set is_check to true for "Pending"
+      const createdAt = isCheck ? new Date() : null;  // Set current date for "Pending", null for others
 
-    // Send response back with the created order
+      return OrderStatusDetails.create({
+        order_id: savedOrder._id,
+        status_id: status._id,
+        createdAt: createdAt,
+        is_check: isCheck,
+      });
+    });
+
+    // Wait for all order status details to be saved
+    await Promise.all(orderStatusDetailsPromises);
+
+
+
+    // Process the cart items
+    const orderDetailsPromises = cart.map(async (item) => {
+      const { product_variant_id, quantity } = item;
+
+      // Check if the product variant exists
+      const productVariant = await ProductVariantRepository.getProductVariantById(product_variant_id);
+      if (!productVariant) {
+        return res.status(404).json({
+          success: false,
+          message: `Product variant with ID ${product_variant_id} not found`,
+        });
+      }
+
+      // Prepare the order details data
+      const newOrderDetails = {
+        order_id: savedOrder._id,
+        product_variant_id: productVariant._id,
+        quantity: quantity || 1, // Default to 1 if quantity is not provided
+      };
+
+      // Create the order details
+      await OrderRepository.createOrderDetails(newOrderDetails);
+    });
+
+    // Wait for all order details to be saved
+    await Promise.all(orderDetailsPromises);
+
+    // Fetch order details and include them in the response
+    const orderDetails = await OrderRepository.getOrderDetailsByOrderId(savedOrder._id);
+
+    // Send response back with the created order and order details
     return res.status(201).json({
       status: true,
       message: 'Order created successfully',
-      order: savedOrder,
+      order: {
+        ...savedOrder.toObject(), // Return order properties
+        order_details: orderDetails, // Include the created order details
+      },
     });
   }
 

@@ -1,6 +1,6 @@
 const Order = require('../model/Order');
 const OrderDetails = require('../model/OrderDetails');
-const OrderStatusDetails = require('../model/');
+const OrderStatusDetails = require('../model/OrderStatusDetails');
 const OrderStatus = require('../model/OrderStatus');
 class OrderRepository {
 
@@ -12,6 +12,15 @@ class OrderRepository {
     async createOrderDetails(orderDetailsData) {
         const newOrderDetails = new OrderDetails(orderDetailsData);
         return await newOrderDetails.save();
+    }
+
+    // Method to fetch order details by order ID
+    async getOrderDetailsByOrderId(orderId) {
+        try {
+            return await OrderDetails.find({ order_id: orderId }).populate('product_variant_id'); // Populate with product variant data if needed
+        } catch (error) {
+            throw new Error('Error fetching order details');
+        }
     }
     getOrdersByUserId = (userId) => {
         return Order.find({ userId, deleted: false })

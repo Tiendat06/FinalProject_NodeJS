@@ -1,16 +1,21 @@
 const Order = require('../model/Order');
+const OrderDetails = require('../model/OrderDetails');
 
 class OrderRepository {
-    getOrdersByUserId = (userId) => {
-        return Order.find({ userId, deleted: false })
-            .then(orders => orders)
-            .catch(err => console.log(err));
+    async getOrdersByUserId(userId) {
+        try {
+            return await Order.find({ user_id: userId, deleted: false }).populate('user_id').exec();
+        } catch (error) {
+            throw new Error('Error fetching orders');
+        }
     }
-    getOrderByIdAndUserId = (orderId, userId) => {
-        return Order.findOne({ _id: orderId, userId, deleted: false })
-            .then(order => order)
-            .catch(err => console.log(err));
+    async getOrderDetailsByOrderId(orderId) {
+        try {
+            return await OrderDetails.find({ order_id: orderId }).populate('product_variant_id').exec();
+        } catch (error) {
+            throw new Error('Error fetching order details');
+        }
     }
 }
 
-module.exports = new OrderRepository;
+module.exports = new OrderRepository();

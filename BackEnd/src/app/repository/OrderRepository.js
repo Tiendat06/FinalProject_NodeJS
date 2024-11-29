@@ -27,10 +27,20 @@ class OrderRepository {
             .then(orders => orders)
             .catch(err => console.log(err));
     }
-    getOrderByIdAndUserId = (orderId, userId) => {
-        return Order.findOne({ _id: orderId, userId, deleted: false })
-            .then(order => order)
-            .catch(err => console.log(err));
+
+    async getOrdersByUserId(userId) {
+        try {
+            return await Order.find({ user_id: userId, deleted: false }).populate('user_id').exec();
+        } catch (error) {
+            throw new Error('Error fetching orders');
+        }
+    }
+    async getOrderDetailsByOrderId(orderId) {
+        try {
+            return await OrderDetails.find({ order_id: orderId }).populate('product_variant_id').exec();
+        } catch (error) {
+            throw new Error('Error fetching order details');
+        }
     }
 
     async findOrderStatusById(orderStatus_id) {
@@ -50,8 +60,8 @@ class OrderRepository {
     // Update or create OrderStatusDetails
     async upsertOrderStatusDetails(orderId, statusId) {
         return OrderStatusDetails.findOneAndUpdate(
-            { order_id: orderId },
-            { status_id: statusId, createdAt: Date.now(), is_check: true },
+            { order_id: orderId, status_id: statusId },
+            { createdAt: Date.now(), is_check: true },
             { upsert: true, new: true }
         );
     }

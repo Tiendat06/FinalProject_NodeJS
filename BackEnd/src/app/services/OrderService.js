@@ -1,4 +1,3 @@
-const Order = require('../model/Order');
 const OrderStatus = require('../model/OrderStatus');
 const OrderStatusDetails = require('../model/OrderStatusDetails');
 const UserRepository = require('../repository/UserRepository');
@@ -41,7 +40,7 @@ class OrderService {
 
     // Get all statuses (Pending, Confirmed, Shipping, Delivered, Cancel)
     const statuses = await OrderStatus.find({
-      status: { $in: ['Pending', 'Confirmed', 'Shipping', 'Delivered', 'Cancel'] }
+      status: { $in: ['Pending', 'Confirmed', 'Shipping', 'Delivered'] }
     });
 
     // Create the OrderStatusDetails records for the new order
@@ -108,6 +107,24 @@ class OrderService {
     const { orderId } = req.params;
     const { statusId } = req.body;
 
+    // Check if the order exists
+    const orderExists = await OrderRepository.doesOrderExist(orderId);
+    if (!orderExists) {
+      return res.status(404).json({
+        success: false,
+        message: 'Order not found',
+      });
+    }
+
+    // Check if the status exists
+    const statusExists = await OrderRepository.doesStatusExist(statusId);
+    if (!statusExists) {
+      return res.status(404).json({
+        success: false,
+        message: 'Order status not found',
+      });
+    }
+
     try {
       // Update or create the OrderStatusDetails
       const updatedStatusDetails = await OrderRepository.upsertOrderStatusDetails(orderId, statusId);
@@ -123,6 +140,21 @@ class OrderService {
         message: 'An error occurred while updating order status',
         error: error.message,
       });
+    }
+  }
+
+  async getOrdersByUserId(userId) {
+    try {
+      return await orderRepository.getOrdersByUserId(userId);
+    } catch (error) {
+      throw new Error('Error fetching orders');
+    }
+  }
+  async getOrderDetailsByOrderId(orderId) {
+    try {
+      return await orderRepository.getOrderDetailsByOrderId(orderId);
+    } catch (error) {
+      throw new Error('Error fetching order details');
     }
   }
 }

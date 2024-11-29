@@ -16,6 +16,12 @@ class ProductVariantRepository {
     getAllProductVariants = () => {
         return ProductVariant.find()
             .populate('product_id')
+            .populate({
+                path: 'product_id',
+                populate: {
+                    path: 'category_id',
+                }
+            })
             .then(productVariants => productVariants)
             .catch(err => console.log(err));
     }

@@ -1,8 +1,12 @@
-const OrderController = require('../app/controllers/OrderController');
+const orderController = require('../app/controllers/OrderController');
 const router = require('express').Router();
+const checkLogin = require('../app/auth/checkLogin');
 
-router.post('/', OrderController.createOrder);
+router.post('/', checkLogin, orderController.createOrder);
 
-router.put('/order-status/:orderId', OrderController.updateOrderStatusDetails);
+//[PUT] update orderStatusDetails based on orderId
+router.put('/order-status/:orderId', orderController.updateOrderStatusDetails);
 
+router.get('/history', checkLogin, orderController.getOrderHistory);
+router.get('/details/:orderId', checkLogin, orderController.getOrderDetails);
 module.exports = router;

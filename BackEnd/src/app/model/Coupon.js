@@ -6,6 +6,7 @@ const Coupon = new Schema({
     description: {type: String},
     code: {type: String},
     point: {type: Number},
+    discount: {type: Number},
     createdAt: {type: Date, default: Date.now},
     updatedAt: {type: Date, default: Date.now},
     expiredAt: {type: Date,},

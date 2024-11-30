@@ -124,17 +124,25 @@ function DetailsPage(){
             .catch(error => console.log(error));
     }
 
-    const handleAddToCard = (item) => {
-        fetch(`${api_url}/product/add-cart/${item.id}`, {
+    const handleAddToCart = () => {
+        console.log(productInfo);
+        fetch(`${api_url}/cart`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-
+                user_id, quantity, product_variant_id: productInfo._id
             }),
             credentials: "include",
         })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status) {
+                    toast.success(data.msg)
+                };
+            })
+            .catch(err => console.log(err));
     }
 
     return (
@@ -221,7 +229,7 @@ function DetailsPage(){
                             </div>
                         </div>
                         <div className={clsx(styles["details-info__cart"])}>
-                            <button className={clsx(styles["details-info__cart-btn"], 'btn')}>
+                            <button onClick={handleAddToCart} className={clsx(styles["details-info__cart-btn"], 'btn')}>
                                 <i className={clsx("fa-solid fa-cart-shopping d-none", styles['details-info__cart-icon'])}></i>
                                 <span className={clsx(styles['details-info__cart-text'])}>ADD TO CART</span>
                             </button>
@@ -478,11 +486,11 @@ function DetailsPage(){
                                             </Link>
                                         </li>
 
-                                        <li className={clsx(styles['details-related__item-list--icon'])}>
-                                            <Link to='/' className='text-dark'>
-                                                <i className="fa-solid fa-cart-shopping"></i>
-                                            </Link>
-                                        </li>
+                                        {/*<li className={clsx(styles['details-related__item-list--icon'])}>*/}
+                                        {/*    <Link to='/' className='text-dark'>*/}
+                                        {/*        <i className="fa-solid fa-cart-shopping"></i>*/}
+                                        {/*    </Link>*/}
+                                        {/*</li>*/}
                                     </ul>
                                 </div>
                                 <div className="details-related__item-info text-center mt-3">

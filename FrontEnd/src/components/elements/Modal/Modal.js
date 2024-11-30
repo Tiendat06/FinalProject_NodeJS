@@ -4,7 +4,8 @@ function Modal({ id = '', title = '', children = '',
                    labelBtnSave = '', labelBtnClose = '',
                    closeClassName = '', saveClassName = '', modalTitleClassName = '',
                    modalHeaderClassName = '', modalFooterClassName = '', modalContentClassName = '',
-                   modalBodyClassName = '', modalTypeClassName = '', isStatic = false, onClickLabelSave = () => {} }) {
+                   modalBodyClassName = '', modalTypeClassName = '', isStatic = false,
+                   onClickLabelSave = () => {}, onClickLabelClose = () => {} }) {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -35,7 +36,7 @@ function Modal({ id = '', title = '', children = '',
                         {children}
                     </div>
                     <div className={`${modalFooterClassName} modal-footer`}>
-                        <button type="button" className={`${closeClassName}`}
+                        <button type="button" onClick={onClickLabelClose} className={`${closeClassName}`}
                                 data-bs-dismiss="modal">{labelBtnClose}</button>
                         <button type="button" onClick={onClickLabelSave}
                                 className={`${saveClassName}`}>{labelBtnSave}</button>

@@ -1,6 +1,13 @@
 const Cart = require('../model/Cart');
 
 class CartRepository {
+
+    getCartById = (_id) => {
+        return Cart.findOne({_id})
+            .then(cart => cart)
+            .catch(err => console.log(err));
+    }
+
     async getCartByUserId(userId) {
         try {
             return await Cart.find({ user_id: userId }).populate('product_variant_id').exec();
@@ -23,12 +30,36 @@ class CartRepository {
         }
     }
 
+    updateCartItemNew = (_id, quantity) => {
+        return Cart.updateOne({_id}, {$set: {quantity}})
+            .then(value => value)
+            .catch(error => console.log(error));
+    }
+
     async deleteCartItem(userId, product_variant_id) {
         try {
             return await Cart.findOneAndDelete({ user_id: userId, product_variant_id });
         } catch (error) {
             throw new Error('Error deleting cart item');
         }
+    }
+
+    deleteCartItemNewById = (_id) => {
+        return Cart.deleteOne({_id})
+            .then(value => value)
+            .catch(error => console.log(error));
+    }
+
+    addCartItem = (cartData) => {
+        return Cart.insertMany(cartData)
+            .then(cart => cart)
+            .catch(error => console.log(error));
+    }
+
+    deleteCartByUserId = (user_id) => {
+        return Cart.deleteMany({ user_id })
+            .then(value => value)
+            .catch(error => console.log(error));
     }
 }
 

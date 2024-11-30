@@ -105,11 +105,11 @@ function FavoriteItem() {
                                             <i className="fa-solid fa-xmark"></i>
                                         </Link>
                                     </li>
-                                    <li className={clsx(styles['profile-favorite-list__item-list--icon'])}>
-                                        <Link to='/' className='text-dark'>
-                                            <i className="fa-solid fa-cart-shopping"></i>
-                                        </Link>
-                                    </li>
+                                    {/*<li className={clsx(styles['profile-favorite-list__item-list--icon'])}>*/}
+                                    {/*    <Link to='/' className='text-dark'>*/}
+                                    {/*        <i className="fa-solid fa-cart-shopping"></i>*/}
+                                    {/*    </Link>*/}
+                                    {/*</li>*/}
                                 </ul>
                             </div>
                             <div className="profile-favorite-list__item-info text-center mt-3">

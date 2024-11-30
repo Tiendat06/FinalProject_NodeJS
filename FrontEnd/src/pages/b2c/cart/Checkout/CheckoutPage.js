@@ -2,8 +2,9 @@ import styles from './CheckoutPage.module.css';
 import {FormatUSDCurrency} from "~/utils";
 
 import clsx from "clsx";
-import {useMemo, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import {Link} from "react-router-dom";
+import {useShoppingContext} from "~/context/ShoppingContext";
 
 function CheckoutPage() {
     const [items, setItems] = useState([
@@ -18,15 +19,21 @@ function CheckoutPage() {
         { id: 9, name: "Lenovo K310", img: "/img/customer/product/keyboard/kb-lenovoK310.png", price: 300, type: 'keyboard', quantity: 2 },
         { id: 10, name: "Logitech M650", img: "/img/customer/product/mouse/mouse-logitechM650.png", price: 200, type: 'mouse', quantity: 2 },
     ]);
-    const [shippingFees, setShippingFees] = useState(Number(sessionStorage.getItem('shippingFees')));
-    const [taxFees, setTaxFees] = useState(0.1);
+    // const [shippingFees, setShippingFees] = useState(Number(sessionStorage.getItem('shippingFees')));
+    const {taxFees, shippingFees} = useShoppingContext()
+
+    console.log({shippingFees, taxFees})
 
     const totalBill = useMemo(() => {
         const itemsTotal = items.reduce((total, item) => total + (item['price'] * item['quantity']), 0);
         const taxTotal = itemsTotal * taxFees;
         return itemsTotal + taxTotal + shippingFees;
-    }, []);
+    }, [items, taxFees, shippingFees]);
     const [paymentMethod, setPaymentMethod] = useState('cash');
+
+    useEffect(() => {
+
+    }, []);
 
     return (
         <>

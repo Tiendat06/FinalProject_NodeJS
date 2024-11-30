@@ -6,6 +6,7 @@ const User = new Schema({
     gender: {type: String, maxLength: 10, default: 'Male'},
     birthday: {type: Date, default: Date.now},
     phone: {type: String, maxLength: 20, default: ""},
+    point: {type: Number, default: 0},
     profile_image: {type: String, default: 'https://res.cloudinary.com/dervs0fx5/image/upload/v1709054146/cl0hmsqdjl1lwnahek0i.png'},
     createdAt: {type: Date, default: Date.now},
     updatedAt: {type: Date, default: Date.now},

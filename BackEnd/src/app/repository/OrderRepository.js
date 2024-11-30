@@ -16,6 +16,12 @@ class OrderRepository {
             throw new Error('Error fetching order details');
         }
     }
+
+    addCartToOrder = (orderData) => {
+        return Order.insertMany(orderData)
+            .then(orders => orders)
+            .catch(error => console.log(error));
+    }
 }
 
 module.exports = new OrderRepository();

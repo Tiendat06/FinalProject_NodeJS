@@ -7,6 +7,19 @@ const productValidator = require('../app/validators/ProductValidator');
 const { addProductVariantValidator } = require('../app/validators/AddProductVariantValidator');
 const { updateProductVariantValidator } = require('../app/validators/UpdateProductVariantValidator');
 
+const { UpdateProductValidator, handleValidation } = require('../app/validators/UpdateProductValidator');
+
+const { addProductValidator, handleValidationAddProduct } = require('../app/validators/AddProductValidator');
+
+const upload = require('../config/multer/multer');
+
+router.post('/', upload.single('img_file'), addProductValidator, handleValidationAddProduct, productController.createProduct);
+
+router.put('/:id', upload.single('img_file'), addProductValidator, handleValidationAddProduct, productController.updateProduct);
+
+router.delete('/:id', productController.deleteProduct);
+
+
 router.get('/', productMiddleWare.index, productController.index);
 
 router.post('/comment', checkLogin, productValidator.commentValidator,

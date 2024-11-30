@@ -3,6 +3,9 @@ const productVariantRepository = require('../repository/ProductVariantRepository
 const commentRepository = require('../repository/CommentRepository');
 const wishListRepository = require('../repository/WishListRepository');
 const ProductVariantRepository = require('../repository/ProductVariantRepository');
+const cloudinary = require('cloudinary').v2;
+const fs = require('fs');
+
 
 class ProductService {
 
@@ -97,19 +100,20 @@ class ProductService {
             if (!productVariant) {
                 return res.status(404).json({
                     status: false,
-                    message: 'Product variant not found',
+                    msg: 'Product variant not found',
                 });
             }
 
             return res.status(200).json({
                 status: true,
                 data: productVariant,
+                msg: 'Product variant fetched successfully',
             });
         } catch (error) {
             console.error(error);
             return res.status(500).json({
                 status: false,
-                message: error.message,
+                msg: error.message,
             });
         }
     };
@@ -161,7 +165,7 @@ class ProductService {
             if (Object.keys(updatedData).length === 0) {
                 return res.status(400).json({
                     status: false,
-                    message: 'No data provided to update',
+                    msg: 'No data provided to update',
                 });
             }
 
@@ -171,7 +175,7 @@ class ProductService {
             if (!existingProductVariant) {
                 return res.status(404).json({
                     status: false,
-                    message: 'Product variant not found',
+                    msg: 'Product variant not found',
                 });
             }
 
@@ -211,16 +215,208 @@ class ProductService {
 
             return res.status(200).json({
                 status: true,
-                message: 'Product variant deleted successfully',
+                msg: 'Product variant deleted successfully',
             });
         } catch (error) {
             console.error(error);
             return res.status(500).json({
                 status: false,
-                message: error.message,
+                msg: error.message,
             });
         }
     };
-}
 
+    async createProduct(req, res) {
+        try {
+            const filePath = req.file ? req.file.path : null;
+
+            const productData = req.body;
+            console.log(productData);
+            const { category_id } = productData;
+
+            const productCategory = await productRepository.getProductCategoryById(category_id);
+
+            if (!productCategory) {
+                return res.status(400).json({
+                    status: false,
+                    msg: 'Invalid category ID. Category does not exist!'
+                });
+            }
+
+            // const error = req.flash('error');
+            const cloudinaryFolderName = 'NodeJS_FinalProject/products/phones';
+            let image_link = '';
+            // if (error.length !== 0) throw new Error(error[0]);
+
+            try {
+                const cloudinaryResult = await cloudinary.uploader.upload(filePath, {
+                    folder: cloudinaryFolderName,
+                    resource_type: 'image'
+                });
+                image_link = cloudinaryResult.secure_url;
+            } catch (cloudError) {
+                return res.status(500).json({
+                    status: false,
+                    msg: 'Error uploading image to Cloudinary: ' + cloudError.message,
+                });
+            } finally {
+                fs.unlink(filePath, (err) => {
+                    if (err) {
+                        console.error('Failed to delete temp file:', err.message);
+                    }
+                });
+            }
+
+            productData.product_img = image_link;
+
+            //add
+            const newProduct = await productRepository.createProduct(productData);
+
+            // Populate the category_id field
+            const populatedProduct = await productRepository.getProductById(newProduct._id);
+
+            return res.status(201).json({
+                status: true,
+                msg: 'Product created successfully',
+                data: populatedProduct,
+            });
+
+        } catch (error) {
+            return res.status(500).json({ status: false, msg: 'Error creating product: ' + error.message });
+        }
+    }
+
+    async updateProduct(req, res) {
+        try {
+            const product_id = req.params.id;
+            const updateData = req.body;
+
+            // Validate product existence
+            const existingProduct = await productRepository.getProductById(product_id);
+            if (!existingProduct) {
+                return res.status(404).json({ status: false, msg: 'Product not found' });
+            }
+
+            // Handle image upload
+            if (req.file) {
+                const filePath = req.file.path;
+                const cloudinaryFolderName = 'NodeJS_FinalProject/products/phones';
+                let newImageLink;
+
+                try {
+                    const cloudinaryResult = await cloudinary.uploader.upload(filePath, {
+                        folder: cloudinaryFolderName,
+                        resource_type: 'image',
+                    });
+
+                    newImageLink = cloudinaryResult.secure_url;
+                    updateData.product_img = newImageLink;
+                } catch (error) {
+                    return res.status(500).json({
+                        status: false,
+                        msg: 'Error uploading image to Cloudinary: ' + error.message,
+                    });
+                } finally {
+                    fs.unlink(filePath, (err) => {
+                        if (err) {
+                            console.error('Failed to delete temp file:', err.message);
+                        }
+                    });
+                }
+
+                // Remove old image from Cloudinary
+                if (existingProduct.product_img) {
+                    try {
+                        const publicId = existingProduct.product_img
+                            .split('/')
+                            .pop()
+                            .split('.')[0];
+                        console.log('publicId:', publicId);
+
+                        //delete old image
+                        await cloudinary.uploader.destroy('NodeJS_FinalProject/products/phones/' + publicId).then(result => { console.log(result) }).catch(error => { console.log(error) });
+                    } catch (err) {
+                        console.warn('Failed to delete old image from Cloudinary:', err.message);
+                    }
+                }
+            }
+
+            // Validate fields in updateData
+            const invalidFields = [];
+            for (const key in updateData) {
+                if (updateData[key] === "" || updateData[key] === null || updateData[key] === undefined) {
+                    invalidFields.push(key);
+                }
+            }
+
+            if (invalidFields.length > 0) {
+                return res.status(400).json({
+                    status: false,
+                    msg: 'Validation failed: Some fields are empty or invalid',
+                    invalidFields,
+                });
+            }
+
+            // Merge update data
+            const updatedProductData = { ...existingProduct.toObject(), ...updateData };
+
+            // Protect sensitive fields
+            delete updatedProductData._id;
+            delete updatedProductData.createdAt;
+
+
+            // Update product in repository
+            const updatedProduct = await productRepository.updateProduct(product_id, updatedProductData);
+
+            return res.status(200).json({
+                status: true,
+                msg: 'Product updated successfully',
+                data: updatedProduct,
+            });
+        } catch (err) {
+            console.error('Error updating product:', err.message);
+            return res.status(500).json({
+                status: false,
+                msg: 'An error occurred while updating the product. Please try again later.',
+            });
+        }
+    }
+
+    async deleteProduct(req, res) {
+        try {
+            const product_id = req.params.id;
+            const product = await productRepository.getProductById(product_id);
+            if (!product) {
+                return res.status(404).json({ status: false, msg: 'Product not found' });
+            }
+
+            if (product.product_img) {
+                try {
+                    const publicId = product.product_img
+                        .split('/')
+                        .pop()
+                        .split('.')[0];
+                    console.log('publicId:', publicId);
+
+                    //delete old image
+                    await cloudinary.uploader.destroy('NodeJS_FinalProject/products/phones/' + publicId).then(result => { console.log(result) }).catch(error => { console.log(error) });
+                } catch (err) {
+                    console.warn('Failed to delete old image from Cloudinary:', err.message);
+                }
+            }
+            const deletedProduct = await productRepository.deleteProduct(product_id);
+            return res.status(200).json({
+                status: true,
+                msg: 'Product deleted successfully',
+                data: deletedProduct,
+            });
+        } catch (err) {
+            console.error('Error deleting product:', err.message);
+            return res.status(500).json({
+                status: false,
+                msg: 'An error occurred while deleting the product. Please try again later.',
+            });
+        }
+    }
+}
 module.exports = new ProductService;

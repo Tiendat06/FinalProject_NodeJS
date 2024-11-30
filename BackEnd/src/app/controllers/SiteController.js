@@ -18,7 +18,7 @@ const logService = require('../services/LogService');
 // const Role = require('../model/Role');
 // const User = require('../model/User');
 // const UserCoupon = require('../model/UserCoupon');
-// const WishList = require('../model/WishList');
+const WishList = require('../model/WishList');
 
 class SiteController {
 
@@ -26,7 +26,18 @@ class SiteController {
     index = async (req, res, next) => {
         return await siteService.index(req, res);
     }
-
+    // Get Top WishListed Products
+    async getTopWishListedProducts(req, res) {
+        return await siteService.getTopWishListedProducts(req, res);
+    }
+    // Get top-selling products
+    async getTopSellingProducts(req, res) {
+        return await siteService.getTopSellingProducts(req, res);
+    }
+    // Get top-reviewed products
+    async getTopReviewedProducts(req, res) {
+        return await siteService.getTopReviewedProducts(req, res);
+    }
 }
 
 module.exports = new SiteController;

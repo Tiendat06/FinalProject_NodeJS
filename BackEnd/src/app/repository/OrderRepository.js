@@ -80,6 +80,28 @@ class OrderRepository {
             .catch(error => console.log(error));
     }
 
+    //Top selling products
+    getTopSellingProducts = (limit) => {
+        return OrderDetails.aggregate([
+            { $group: { _id: "$product_variant_id", count: { $sum: "$quantity" } } },
+            { $sort: { count: -1 } },
+            { $limit: limit },
+            {
+                $lookup: {
+                    from: "product_variant",
+                    localField: "_id",
+                    foreignField: "_id",
+                    as: "product_variant"
+                }
+            },
+            { $unwind: "$product_variant" }
+        ])
+            .then(products => {
+                return products;
+            })
+            .catch(err => console.log(err));
+    }
+
     findOneOrderAndUpdate = ({user_id, ...updateData}) => {
         return Order.findOneAndUpdate({user_id, createdAt: null}, {$set: updateData}, {new: true})
             .then(order => order)

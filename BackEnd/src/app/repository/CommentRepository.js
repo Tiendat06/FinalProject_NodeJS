@@ -15,6 +15,30 @@ class CommentRepository{
             .then(comment => comment)
             .catch(err => console.log(err));
     }
+    //Top reviewed products
+    getTopReviewedProducts = (limit) => {
+        return Comment.aggregate([
+            { $group: { _id: "$product_id", count: { $sum: 1 } } },
+            { $sort: { count: -1 } },
+            { $limit: limit },
+            {
+                $lookup: {
+                    from: "product",
+                    localField: "_id",
+                    foreignField: "_id",
+                    as: "product"
+                }
+            },
+            { $unwind: "$product" }
+        ])
+            .then(products => {
+                return products;
+            })
+            .catch(err => {
+                console.log('Aggregation Error:', err);
+                return [];
+            });
+    }
 }
 
 module.exports = new CommentRepository;

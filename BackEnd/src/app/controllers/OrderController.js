@@ -10,6 +10,10 @@ class OrderController {
         }
     };
 
+    async getAllOrders(req, res, next) {
+        return await orderService.getAllOrders(req, res);
+    }
+
     updateOrderStatusDetails = async (req, res, next) => {
         return await orderService.updateOrderStatusDetails(req, res);
     }

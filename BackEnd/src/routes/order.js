@@ -11,6 +11,8 @@ router.post('/', checkLogin, orderController.createOrder);
 router.post('/place-order', orderValidator.placeOrderValidator,
     orderMiddleWare.place_order, orderController.place_order);
 
+router.get('/', orderController.getAllOrders);
+
 //[PUT] update orderStatusDetails based on orderId
 router.put('/order-status/:orderId', orderController.updateOrderStatusDetails);
 

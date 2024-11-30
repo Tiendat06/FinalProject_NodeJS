@@ -5,6 +5,8 @@ const cartMiddleware = require('../app/middlewares/CartMiddleware');
 const cartValidator = require('../app/validators/CartValidator');
 
 router.get('/', cartMiddleware.index, cartController.getCart);
+// router.put('/update/:product_variant_id', cartMiddleware.index, cartController.updateCart);
+// router.delete('/delete/:product_variant_id', cartMiddleware.index, cartController.deleteCartItem);
 
 router.post('/', cartMiddleware.add_cart, cartController.add_cart);
 

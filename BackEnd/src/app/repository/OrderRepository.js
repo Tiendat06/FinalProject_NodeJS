@@ -1,20 +1,70 @@
 const Order = require('../model/Order');
 const OrderDetails = require('../model/OrderDetails');
+const OrderStatusDetails = require('../model/OrderStatusDetails');
+const OrderStatus = require('../model/OrderStatus');
 
 class OrderRepository {
-    async getOrdersByUserId(userId) {
-        try {
-            return await Order.find({ user_id: userId, deleted: false }).populate('user_id').exec();
-        } catch (error) {
-            throw new Error('Error fetching orders');
-        }
+
+    async createOrder(orderData) {
+        const newOrder = new Order(orderData);
+        return await newOrder.save();
     }
+
+    async createOrderDetails(orderDetailsData) {
+        const newOrderDetails = new OrderDetails(orderDetailsData);
+        return await newOrderDetails.save();
+    }
+
+    // Method to fetch order details by order ID
     async getOrderDetailsByOrderId(orderId) {
         try {
-            return await OrderDetails.find({ order_id: orderId }).populate('product_variant_id').exec();
+            return await OrderDetails.find({ order_id: orderId }).populate('product_variant_id'); // Populate with product variant data if needed
         } catch (error) {
             throw new Error('Error fetching order details');
         }
+    }
+    getOrdersByUserId = (userId) => {
+        return Order.find({ userId, deleted: false })
+            .then(orders => orders)
+            .catch(err => console.log(err));
+    }
+
+    // async getOrdersByUserId(userId) {
+    //     try {
+    //         return await Order.find({ user_id: userId, deleted: false }).populate('user_id').exec();
+    //     } catch (error) {
+    //         throw new Error('Error fetching orders');
+    //     }
+    // }
+    // async getOrderDetailsByOrderId(orderId) {
+    //     try {
+    //         return await OrderDetails.find({ order_id: orderId }).populate('product_variant_id').exec();
+    //     } catch (error) {
+    //         throw new Error('Error fetching order details');
+    //     }
+    // }
+
+    async findOrderStatusById(orderStatus_id) {
+        return await OrderStatus.findById(orderStatus_id);
+    }
+
+    // Check if the order exists
+    async doesOrderExist(orderId) {
+        return await Order.exists({ _id: orderId });
+    }
+
+    // Check if the status exists
+    async doesStatusExist(statusId) {
+        return await OrderStatus.exists({ _id: statusId });
+    }
+
+    // Update or create OrderStatusDetails
+    async upsertOrderStatusDetails(orderId, statusId) {
+        return OrderStatusDetails.findOneAndUpdate(
+            { order_id: orderId, status_id: statusId },
+            { createdAt: Date.now(), is_check: true },
+            { upsert: true, new: true }
+        );
     }
 
     addCartToOrder = (orderData) => {
@@ -24,4 +74,4 @@ class OrderRepository {
     }
 }
 
-module.exports = new OrderRepository();
+module.exports = new OrderRepository;

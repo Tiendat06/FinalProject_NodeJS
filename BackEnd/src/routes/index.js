@@ -14,6 +14,7 @@ function route(app) {
     app.use('/product', productRouter);
     app.use('/order', orderRouter);
     app.use('/cart', cartRouter);
+    // app.use('/order', orderRouter);
 }
 
 module.exports = route;

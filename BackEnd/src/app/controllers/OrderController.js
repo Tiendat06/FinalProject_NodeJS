@@ -1,6 +1,19 @@
 const orderService = require('../services/OrderService');
 
 class OrderController {
+
+    async createOrder(req, res, next) {
+        try {
+            return await orderService.createOrder(req, res); // Call service method
+        } catch (error) {
+            next(error);  // If there's an error, pass it to the next middleware
+        }
+    };
+
+    updateOrderStatusDetails = async (req, res, next) => {
+        return await orderService.updateOrderStatusDetails(req, res);
+    }
+
     async getOrderHistory(req, res) {
         try {
             const userId = req.userData._id;
@@ -43,8 +56,6 @@ class OrderController {
             });
         }
     }
-
-    
 }
 
-module.exports = new OrderController();
+module.exports = new OrderController;

@@ -31,13 +31,13 @@ router.post('/add-wishlist', checkLogin, productValidator.addWishListValidators,
 router.get('/variant', productController.getAllVariants);
 
 // Route for adding a new product variant
-router.post('/variant', addProductVariantValidator, productController.addProductVariant);
+router.post('/variant', upload.single('img_file'), addProductVariantValidator, productController.addProductVariant);
 
 // Route for getting a product variant by ID
 router.get('/variant/:id', productController.getProductVariantsById);
 
 // Route for updating a product variant
-router.put('/variant/:id', updateProductVariantValidator, productController.updateProductVariant);
+router.put('/variant/:id', upload.single('img_file'), updateProductVariantValidator, productController.updateProductVariant);
 
 // Route for deleting a product variant
 router.delete('/variant/:id', productController.deleteProductVariant);

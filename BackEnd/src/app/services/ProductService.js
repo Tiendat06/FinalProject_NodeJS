@@ -121,13 +121,40 @@ class ProductService {
     //Add a product variant
     async addProductVariant(req, res) {
         try {
+            const filePath = req.file ? req.file.path : null;
+
             const variantData = req.body;  // Extract the variant data from the request body
+            console.log(variantData);
 
             const { product_id } = variantData;
 
             if (!product_id) {
                 return res.status(400).json({ status: false, msg: "Product ID is required!" });
             }
+
+            const cloudinaryFolderName = 'NodeJS_FinalProject/products/phones';
+            let image_link = '';
+
+            try {
+                const cloudinaryResult = await cloudinary.uploader.upload(filePath, {
+                    folder: cloudinaryFolderName,
+                    resource_type: 'image'
+                });
+                image_link = cloudinaryResult.secure_url;
+            } catch (cloudError) {
+                return res.status(500).json({
+                    status: false,
+                    msg: 'Error uploading image to Cloudinary: ' + cloudError.message,
+                });
+            } finally {
+                fs.unlink(filePath, (err) => {
+                    if (err) {
+                        console.error('Failed to delete temp file:', err.message);
+                    }
+                });
+            }
+
+            variantData.product_image = image_link;
 
             // Check if the product_id exists in the Product collection
             const product = await productRepository.getProductById(product_id);
@@ -246,29 +273,31 @@ class ProductService {
             // const error = req.flash('error');
             const cloudinaryFolderName = 'NodeJS_FinalProject/products/phones';
             let image_link = '';
-            // if (error.length !== 0) throw new Error(error[0]);
 
-            try {
-                const cloudinaryResult = await cloudinary.uploader.upload(filePath, {
-                    folder: cloudinaryFolderName,
-                    resource_type: 'image'
-                });
-                image_link = cloudinaryResult.secure_url;
-            } catch (cloudError) {
-                return res.status(500).json({
-                    status: false,
-                    msg: 'Error uploading image to Cloudinary: ' + cloudError.message,
-                });
-            } finally {
-                fs.unlink(filePath, (err) => {
-                    if (err) {
-                        console.error('Failed to delete temp file:', err.message);
-                    }
-                });
+            // if (error.length !== 0) throw new Error(error[0]);
+            if (filePath != null) {
+                try {
+                    const cloudinaryResult = await cloudinary.uploader.upload(filePath, {
+                        folder: cloudinaryFolderName,
+                        resource_type: 'image'
+                    });
+                    image_link = cloudinaryResult.secure_url;
+                } catch (cloudError) {
+                    return res.status(500).json({
+                        status: false,
+                        msg: 'Error uploading image to Cloudinary: ' + cloudError.message,
+                    });
+                } finally {
+                    fs.unlink(filePath, (err) => {
+                        if (err) {
+                            console.error('Failed to delete temp file:', err.message);
+                        }
+                    });
+                }
+
             }
 
             productData.product_img = image_link;
-
             //add
             const newProduct = await productRepository.createProduct(productData);
 

@@ -11,20 +11,15 @@ const addProductVariantValidator = [
     .notEmpty().withMessage('Variant quantity is required')
     .isInt({ min: 1 }).withMessage('Variant quantity must be a positive integer'),
 
-  // Validate the 'product_image' field
-  body('product_image')
-    .notEmpty().withMessage('Product image is required')
-    .isURL().withMessage('Invalid URL format for product image'),
-
   // Validate other fields, such as color, RAM, ROM, etc.
   body('product_color').notEmpty().withMessage('Product color is required'),
-  body('variant_ROM').notEmpty().withMessage('ROM is required'),
-  body('variant_RAM').notEmpty().withMessage('RAM is required'),
-  body('variant_operation_system').notEmpty().withMessage('Operating system is required'),
-  body('variant_chipset').notEmpty().withMessage('Chipset is required'),
-  body('variant_screen').notEmpty().withMessage('Screen details are required'),
-  body('variant_cpu').optional().isString().withMessage('Invalid CPU specification'),
-  body('variant_weight').notEmpty().withMessage('Variant weight is required'),
+  body('variant_ROM').isString().withMessage('Invalid ROM specification'),
+  body('variant_RAM').isString().withMessage('Invalid RAM specification'),
+  body('variant_operation_system').isString().withMessage('Invalid operation system specification'),
+  body('variant_chipset').isString().withMessage('Invalid chipset specification'),
+  body('variant_screen').isString().withMessage('Invalid screen specification'),
+  body('variant_cpu').isString().withMessage('Invalid CPU specification'),
+  body('variant_weight').isString().withMessage('Invalid weight specification'),
 
   // Handle validation errors
   (req, res, next) => {
@@ -32,7 +27,7 @@ const addProductVariantValidator = [
     if (!errors.isEmpty()) {
       return res.status(400).json({
         status: false,
-        errors: errors.array()[0],
+        msg: errors.array()[0].msg,
       });
     }
     next();

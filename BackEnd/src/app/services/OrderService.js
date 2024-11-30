@@ -14,6 +14,7 @@ const paymentRepository = require('../repository/PaymentRepository');
 const userRepository = require("../repository/UserRepository");
 const accountRepository = require("../repository/AccountRepository");
 const productVariantRepository = require('../repository/ProductVariantRepository');
+const couponRepository = require('../repository/CouponRepository');
 const mailer = require("nodemailer");
 const bcrypt = require("bcrypt");
 
@@ -202,10 +203,27 @@ class OrderService {
     }
 
     placeOrder = async (req, res) => {
-        const {user_id, totalBill, address_id, payment_method_name, products} = req.body;
+        const {user_id, totalBill, address_id, payment_method_name, products, coupon_id} = req.body;
         const error = req.flash('error');
         try {
             if(error.length !== 0) throw new Error(error[0]);
+            if (coupon_id) {
+                const coupon = await couponRepository.getCouponById(coupon_id);
+                if(!coupon) throw new Error('Coupon not found');
+                const coupon_point = coupon.point;
+
+                const user = await userRepository.getUserById(user_id);
+                if(!user) throw new Error('User not found !');
+                const user_point = user.point;
+
+                const result = user_point - coupon_point;
+
+                const userPointUpdateData = {
+                    _id: user_id, point: result
+                }
+                const userPointUpdated = await userRepository.updateUserById(userPointUpdateData);
+                if(!userPointUpdated.acknowledged) throw new Error('Update user point failed !');
+            }
 
             const newOrderData = {
                 user_id, address_id,

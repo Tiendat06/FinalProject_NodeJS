@@ -3,7 +3,7 @@ import {memo, useState} from "react";
 import {toast} from "react-toastify";
 import {useShoppingContext} from "~/context/ShoppingContext";
 
-function PayPalCheckoutButton({products, totalBill, shippingAddress, email}) {
+function PayPalCheckoutButton({products, totalBill, shippingAddress, email, coupon_id}) {
     // console.log({totalBill, shippingAddress});
     const api_url = process.env.REACT_APP_API_URL;
     const {userData} = useShoppingContext();
@@ -22,7 +22,7 @@ function PayPalCheckoutButton({products, totalBill, shippingAddress, email}) {
                     user_id,
                     totalBill: Number(totalBill),
                     address_id: shippingAddress._id,
-                    payment_method_name: 'PayPal', email, products
+                    payment_method_name: 'PayPal', email, products, coupon_id
                 }),
                 headers: {
                     "Content-Type": "application/json"

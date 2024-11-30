@@ -98,7 +98,8 @@ function CheckoutPage() {
                 user_id,
                 totalBill: Number(totalBill),
                 address_id: addressInfo[addressChoose]._id,
-                payment_method_name: 'Cash', email: emailInfo, products: items
+                payment_method_name: 'Cash', email: emailInfo, products: items,
+                coupon_id: orderInfo?.coupon_id?._id
             }),
             headers: {
                 "Content-Type": "application/json"
@@ -263,6 +264,7 @@ function CheckoutPage() {
 
                             {paymentMethod === 'paypal' &&
                                 <PayPalCheckoutButton
+                                    coupon_id={orderInfo?.coupon_id?._id}
                                     email={emailInfo}
                                     shippingAddress={addressInfo[addressChoose]}
                                     products={items}

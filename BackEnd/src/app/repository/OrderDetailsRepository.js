@@ -7,6 +7,13 @@ class OrderDetailsRepository{
             .then(orderDetails => orderDetails)
             .catch(error => console.log(error));
     }
+
+    getOrderDetailsByOrderId = (order_id) => {
+        return OrderDetails.find({order_id})
+            .populate('product_variant_id')
+            .then(orderDetails => orderDetails)
+            .catch(error => console.log(error));
+    }
 }
 
 module.exports = new OrderDetailsRepository;

@@ -61,6 +61,12 @@ class CartRepository {
             .then(value => value)
             .catch(error => console.log(error));
     }
+
+    checkProductVariantIsExistInUserCart = (product_variant_id, user_id) => {
+        return Cart.findOne({product_variant_id, user_id})
+            .then(cart => cart)
+            .catch(err => console.log(err));
+    }
 }
 
 module.exports = new CartRepository();

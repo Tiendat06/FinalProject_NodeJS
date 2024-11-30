@@ -1,0 +1,1 @@
+export const GET_ORDER_DETAILS = 'get_order_details';

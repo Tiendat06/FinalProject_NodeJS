@@ -72,6 +72,19 @@ class OrderRepository {
             .then(orders => orders)
             .catch(error => console.log(error));
     }
+
+    getOrderByUserAndDateCreatedIsNull = (user_id) => {
+        return Order.findOne({user_id, createdAt: null, updatedAt: null})
+            .populate('coupon_id')
+            .then(order => order)
+            .catch(error => console.log(error));
+    }
+
+    findOneOrderAndUpdate = ({user_id, ...updateData}) => {
+        return Order.findOneAndUpdate({user_id, createdAt: null}, {$set: updateData}, {new: true})
+            .then(order => order)
+            .catch(err => console.log(err));
+    }
 }
 
 module.exports = new OrderRepository;

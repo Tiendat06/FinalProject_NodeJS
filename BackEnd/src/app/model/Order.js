@@ -5,10 +5,12 @@ const ProductVariant = require('./ProductVariant');
 const User = require('./User');
 const OrderStatus = require('./OrderStatus');
 const Coupon = require('./Coupon');
+const Address = require('./Address');
 
 const Order = new Schema({
     user_id: { type: Schema.Types.ObjectId, ref: "User", required: true },
     coupon_id: { type: Schema.Types.ObjectId, ref: "Coupon", default: null },
+    address_id: { type: Schema.Types.ObjectId, ref: "Address", default: null },
     // product_variant_id: { type: Schema.Types.ObjectId, ref: "ProductVariant", required: true },
     // status_id: { type: Schema.Types.ObjectId, ref: "OrderStatus", required: true },
     tax: {type: Number, default: 10},

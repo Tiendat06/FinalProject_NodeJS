@@ -140,7 +140,9 @@ function DetailsPage(){
             .then(data => {
                 if(data.status) {
                     toast.success(data.msg)
-                };
+                } else{
+                    toast.error(data.msg)
+                }
             })
             .catch(err => console.log(err));
     }

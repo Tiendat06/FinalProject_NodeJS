@@ -92,7 +92,8 @@ class CartService {
         const error = req.flash('error');
         try {
             if(error.length !== 0) throw new Error(error[0]);
-
+            const itemInCart = await cartRepository.checkProductVariantIsExistInUserCart(product_variant_id, user_id);
+            if(itemInCart) throw new Error('Item is in cart yet !');
             // const cartData = {
             //     product_variant_id, user_id, quantity
             // }

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const PaymentMethod = require('./PaymentMethod');
+const Order = require('./Order');
 
 const Payment = new Schema({
     payment_method_id: {type: Schema.Types.ObjectId, ref: "PaymentMethod", required: true},

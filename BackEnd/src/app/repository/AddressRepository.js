@@ -16,6 +16,7 @@ class AddressRepository {
 
     getAddressesByUserId = (user_id) => {
         return Address.find({user_id})
+            .sort({ is_default: -1 })
             .then(addresses => addresses)
             .catch(err => console.log(err));
     }

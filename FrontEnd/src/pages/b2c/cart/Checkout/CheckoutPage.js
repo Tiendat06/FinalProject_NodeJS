@@ -6,7 +6,14 @@ import {useEffect, useMemo, useState} from "react";
 import {Link} from "react-router-dom";
 import {useShoppingContext} from "~/context/ShoppingContext";
 
+import {PayPalCheckoutButton} from '~/components/elements';
+import {toast} from "react-toastify";
+
 function CheckoutPage() {
+    const api_url = process.env.REACT_APP_API_URL;
+    const {userData} = useShoppingContext();
+    const user_id = userData._id;
+
     const [items, setItems] = useState([
         { id: 1, name: "Laptop IdeaPad Slim 3", img: "/img/customer/product/laptop/lenovo-ideapadSlim3.png", price: 300, type: 'laptop', quantity: 3 },
         { id: 2, name: "IPhone 11", img: "/img/customer/product/mobile/iphone11.png", price: 300, type: 'mobile', quantity: 5 },
@@ -19,131 +26,258 @@ function CheckoutPage() {
         { id: 9, name: "Lenovo K310", img: "/img/customer/product/keyboard/kb-lenovoK310.png", price: 300, type: 'keyboard', quantity: 2 },
         { id: 10, name: "Logitech M650", img: "/img/customer/product/mouse/mouse-logitechM650.png", price: 200, type: 'mouse', quantity: 2 },
     ]);
-    // const [shippingFees, setShippingFees] = useState(Number(sessionStorage.getItem('shippingFees')));
-    const {taxFees, shippingFees} = useShoppingContext()
-
-    console.log({shippingFees, taxFees})
+    const [orderInfo, setOrderInfo] = useState({});
+    const [addressInfo, setAddressInfo] = useState([]);
+    const [addressChoose, setAddressChoose] = useState(0);
+    const [userInfo, setUserInfo] = useState({
+        _id: "",
+        fullName: "",
+        phone_number: "",
+        address: ""
+    });
+    const [emailInfo, setEmailInfo] = useState('')
 
     const totalBill = useMemo(() => {
-        const itemsTotal = items.reduce((total, item) => total + (item['price'] * item['quantity']), 0);
-        const taxTotal = itemsTotal * taxFees;
-        return itemsTotal + taxTotal + shippingFees;
-    }, [items, taxFees, shippingFees]);
+        const itemsTotal = items.reduce((total, item) => total + (item.product_variant_id?.retail_price * item?.quantity), 0);
+        const shippingTotal = itemsTotal + orderInfo?.shippingFee;
+        const taxTotal = shippingTotal * orderInfo?.tax / 100;
+        const result = itemsTotal + orderInfo?.shippingFee + taxTotal;
+        return result - ((orderInfo?.coupon_id?.discount || 0) * result / 100);
+    }, [items, orderInfo]);
     const [paymentMethod, setPaymentMethod] = useState('cash');
 
-    useEffect(() => {
+    const handleChangeShippingAddress = (index, item) => {
+        setAddressChoose(index);
+        setAddressInfo(addressInfo);
+        setUserInfo({
+            ...userInfo,
+            _id: item._id,
+            fullName: item.fullName,
+            address: item.address,
+            phone_number: item.phone_number,
+        })
+    }
 
+    // BE
+    useEffect(() => {
+        fetch(`${api_url}/order?user_id=${user_id}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include"
+        })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status) {
+                    setAddressInfo(data.dataShippingAddress);
+                    setOrderInfo(data.dataOrder);
+                    setItems(data.dataOrderDetails);
+                    setUserInfo({
+                        ...userInfo,
+                        _id: data.dataShippingAddress[0]._id,
+                        fullName: data.dataShippingAddress[0].fullName,
+                        phone_number: data.dataShippingAddress[0].phone_number,
+                        address: data.dataShippingAddress[0].address
+                    })
+                }
+                else window.location.href = '/';
+            })
+            .catch(error => console.log(error));
     }, []);
+
+    const handleCashPayment = () => {
+        if(emailInfo === undefined || emailInfo === '') {
+            toast.error('Please enter email !');
+            return;
+        }
+
+        fetch(`${api_url}/order/place-order`, {
+            method: "POST",
+            body: JSON.stringify({
+                user_id,
+                totalBill: Number(totalBill),
+                address_id: addressInfo[addressChoose]._id,
+                payment_method_name: 'Cash', email: emailInfo, products: items
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include"
+        })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status) {
+                    toast.success('Thanks for you payment !');
+                    setTimeout(() => {
+                        window.location.href = '/'
+                    }, 3000);
+                } else {
+                    toast.error(data.msg);
+                }
+            })
+            .catch(error => {
+                toast.error(error);
+                console.log(error);
+            });
+    }
 
     return (
         <>
-            <div className="col-lg-6 col-md-5 col-sm-12">
-                <h4>SHIPPING ADDRESS</h4>
-                <form className={clsx(styles['checkout-info__form'], "form-group")}>
-                    <input className={clsx(styles['checkout-info__inp'], 'form-control mb-3')} placeholder="First Name"
-                           type="text"/>
-                    <input className={clsx(styles['checkout-info__inp'], 'form-control mb-3')} placeholder="Last Name"
-                           type="text"/>
-                    <input className={clsx(styles['checkout-info__inp'], 'form-control mb-3')} placeholder="Email"
-                           type="email"/>
-                    <input className={clsx(styles['checkout-info__inp'], 'form-control mb-3')} placeholder="Address"
-                           type="text"/>
-                    <input className={clsx(styles['checkout-info__inp'], 'form-control mb-3')} placeholder="City"
-                           type="text"/>
-                    <input className={clsx(styles['checkout-info__inp'], 'form-control mb-3')} placeholder="Telephone"
-                           type="text"/>
-                    <textarea name="" className={clsx(styles['checkout-info__inp'], 'form-control mb-3')}
-                              cols="30" rows="5" placeholder="Other Notes"></textarea>
-                    <Link to='/shop/cart' type='button' className={clsx(styles['checkout-info__btn-back'])}>GO BACK</Link>
-                </form>
-            </div>
-            <div className="col-lg-6 col-md-7 col-sm-12">
-                <div className={clsx(styles["checkout-order"])}>
-                    <h4 className="text-center">YOUR ORDER</h4>
-                    <div className={clsx(styles["checkout-order__title"])}>
-                        <p className="text-dark">Product</p>
-                        <p className="text-dark">Total</p>
-                    </div>
-                    <div className={clsx(styles["checkout-order__product"])}>
-                        <ul className={clsx(styles["checkout-order__list"], 'p-0')}>
-                            {items.map((item, index) => (
-                                <li key={index} className={clsx(styles["checkout-order__item"])}>
-                                    <p>{item.quantity}x {item.name}</p>
-                                    <p><FormatUSDCurrency price={item.quantity * item.price}/></p>
+            {/*<PayPalScriptProvider options={initialPaypalOptions}>*/}
+                <div className="col-lg-6 col-md-5 col-sm-12">
+                    <h4>SHIPPING ADDRESS</h4>
+                    <form className={clsx(styles['checkout-info__form'], "form-group")}>
+                        <input value={userInfo.fullName}
+                               onChange={e => setUserInfo({...userInfo, fullName: e.target.value})}
+                               className={clsx(styles['checkout-info__inp'], 'form-control mb-3')}
+                               placeholder="Full Name"
+                               type="text"/>
+                        {/*<input className={clsx(styles['checkout-info__inp'], 'form-control mb-3')} placeholder="Last Name"*/}
+                        {/*       type="text"/>*/}
+                        <input value={emailInfo}
+                               onChange={e => setEmailInfo(e.target.value)}
+                               className={clsx(styles['checkout-info__inp'], 'form-control mb-3')} placeholder="Email"
+                               type="email"/>
+                        <input value={userInfo.address}
+                               onChange={e => setUserInfo({...userInfo, address: e.target.value})}
+                               className={clsx(styles['checkout-info__inp'], 'form-control mb-3')} placeholder="Address"
+                               type="text"/>
+                        {/*<input className={clsx(styles['checkout-info__inp'], 'form-control mb-3')} placeholder="City"*/}
+                        {/*       type="text"/>*/}
+                        <input value={userInfo.phone_number}
+                               onChange={e => setUserInfo({...userInfo, phone_number: e.target.value})}
+                               className={clsx(styles['checkout-info__inp'], 'form-control mb-3')}
+                               placeholder="Telephone"
+                               type="text"/>
+                        {/*<textarea name="" className={clsx(styles['checkout-info__inp'], 'form-control mb-3')}*/}
+                        {/*          cols="30" rows="5" placeholder="Other Notes"></textarea>*/}
+
+                        <ul className={clsx(styles["shipping-address__list"], 'mb-3')}>
+                            {addressInfo.map((item, index) => (
+                                <li onClick={() => handleChangeShippingAddress(index, item)} key={item._id}
+                                    className={clsx(styles["shipping-address__item"],
+                                        'col-lg-6 col-md-6 col-sm-6')}>
+                                    <div className={clsx(styles["shipping-address__item--inner"],
+                                        ((addressChoose === index) && styles['shipping-address__item--inner--click']))}>
+                                        {/*<p>{index}</p>*/}
+                                        <span>Full name: {item.fullName}</span>
+                                        <span>Address: {item.address}</span>
+                                        <span>Phone number: {item.phone_number}</span>
+                                    </div>
                                 </li>
                             ))}
                         </ul>
-                    </div>
-                    <div className={clsx(styles["checkout-order__ship"])}>
-                        <p>Tax</p>
-                        <p style={{fontWeight: "bold"}}>{taxFees * 100}%</p>
-                    </div>
-                    <div className={clsx(styles["checkout-order__ship"])}>
-                        <p>Shipping</p>
-                        <p style={{fontWeight: "bold"}}>{shippingFees !== 0 ? <FormatUSDCurrency price={shippingFees} /> : 'FREE'}</p>
-                    </div>
-                    <div className={clsx(styles["checkout-order__ship"])}>
-                        <p className="text-dark" style={{fontWeight: "bold"}}>TOTAL</p>
-                        <p className={clsx(styles['checkout-order__totalBill-text'])}><FormatUSDCurrency
-                            price={totalBill}/></p>
-                    </div>
-                    <div className={clsx(styles["checkout-order__payment-method"])}>
-                        <div
-                            className={clsx(styles['checkout-order__payment-method__form'], "form-group col-lg-3 col-md-3 col-sm-12")}>
-                            <input type="radio"
-                                   className={clsx(styles['checkout-order__payment-method__inp'], "btn-check")}
-                                   name="btnradio" value="Paypal" id="paypal"
-                                   autoComplete="off"/>
-                            <label onClick={() => setPaymentMethod('paypal')}
-                                   className={clsx(styles['checkout-order__label'], paymentMethod === 'paypal' && styles['checkout-order__label-focus'])}
-                                   htmlFor="paypal"> <img className={clsx(styles['checkout-order__img'])}
-                                                          src="/img/icon/paypal.png" alt=""/> Paypal</label>
-                        </div>
 
-                        <div
-                            className={clsx(styles['checkout-order__payment-method__form'], "form-group col-lg-3 col-md-3 col-sm-12")}>
-                            <input type="radio"
-                                   className={clsx(styles['checkout-order__payment-method__inp'], "btn-check")}
-                                   name="btnradio" value="Momo" id="momo"
-                                   autoComplete="off"/>
-                            <label onClick={() => setPaymentMethod('momo')}
-                                   className={clsx(styles['checkout-order__label'], paymentMethod === 'momo' && styles['checkout-order__label-focus'])}
-                                   htmlFor="momo"><img className={clsx(styles['checkout-order__img'])}
-                                                       src="/img/icon/momo.png" alt=""/>Momo</label>
+                        <Link to='/shop/cart' type='button' className={clsx(styles['checkout-info__btn-back'])}>CANCEL
+                            ORDER</Link>
+                    </form>
+                </div>
+                <div className="col-lg-6 col-md-7 col-sm-12">
+                    <div className={clsx(styles["checkout-order"])}>
+                        <h4 className="text-center">YOUR ORDER</h4>
+                        <div className={clsx(styles["checkout-order__title"])}>
+                            <p className="text-dark">Product</p>
+                            <p className="text-dark">Total</p>
                         </div>
+                        <div className={clsx(styles["checkout-order__product"])}>
+                            <ul className={clsx(styles["checkout-order__list"], 'p-0')}>
+                                {items.map((item, index) => (
+                                    <li key={item._id} className={clsx(styles["checkout-order__item"])}>
+                                        <p>{item.quantity}x {item.product_variant_id?.product_name}</p>
+                                        <p><FormatUSDCurrency
+                                            price={item.quantity * item.product_variant_id?.retail_price}/>
+                                        </p>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div className={clsx(styles["checkout-order__ship"])}>
+                            <p>Coupon</p>
+                            <p style={{fontWeight: "bold"}}>{orderInfo?.coupon_id?.code || ''} (-{orderInfo?.coupon_id?.discount}%)</p>
+                        </div>
+                        <div className={clsx(styles["checkout-order__ship"])}>
+                            <p>Tax</p>
+                            <p style={{fontWeight: "bold"}}>{orderInfo?.tax}%</p>
+                        </div>
+                        <div className={clsx(styles["checkout-order__ship"])}>
+                            <p>Shipping</p>
+                            <p style={{fontWeight: "bold"}}>{orderInfo?.shippingFee !== 0 ?
+                                <FormatUSDCurrency price={orderInfo?.shippingFee}/> : 'FREE'}</p>
+                        </div>
+                        <div className={clsx(styles["checkout-order__ship"])}>
+                            <p className="text-dark" style={{fontWeight: "bold"}}>TOTAL</p>
+                            <p className={clsx(styles['checkout-order__totalBill-text'])}><FormatUSDCurrency
+                                price={totalBill}/></p>
+                        </div>
+                        <div className={clsx(styles["checkout-order__payment-method"])}>
+                            <div
+                                className={clsx(styles['checkout-order__payment-method__form'], "form-group col-lg-3 col-md-3 col-sm-12")}>
+                                <input type="radio"
+                                       className={clsx(styles['checkout-order__payment-method__inp'], "btn-check")}
+                                       name="btnradio" value="Paypal" id="paypal"
+                                       autoComplete="off"/>
+                                <label onClick={() => setPaymentMethod('paypal')}
+                                       className={clsx(styles['checkout-order__label'], paymentMethod === 'paypal' && styles['checkout-order__label-focus'])}
+                                       htmlFor="paypal"> <img className={clsx(styles['checkout-order__img'])}
+                                                              src="/img/icon/paypal.png" alt=""/> Paypal</label>
+                            </div>
 
-                        <div
-                            className={clsx(styles['checkout-order__payment-method__form'], "form-group col-lg-3 col-md-3 col-sm-12")}>
-                            <input type="radio"
-                                   className={clsx(styles['checkout-order__payment-method__inp'], "btn-check")}
-                                   name="btnradio" value="ZaloPay" id="zalopay"
-                                   autoComplete="off"/>
-                            <label onClick={() => setPaymentMethod('zalopay')}
-                                   className={clsx(styles['checkout-order__label'], paymentMethod === 'zalopay' && styles['checkout-order__label-focus'])}
-                                   htmlFor="zalopay"><img className={clsx(styles['checkout-order__img'])}
-                                                          src="/img/icon/zalopay.png" alt=""/>ZaloPay</label>
-                        </div>
+                            <div
+                                className={clsx(styles['checkout-order__payment-method__form'], "form-group col-lg-3 col-md-3 col-sm-12")}>
+                                <input type="radio"
+                                       className={clsx(styles['checkout-order__payment-method__inp'], "btn-check")}
+                                       name="btnradio" value="Momo" id="momo"
+                                       autoComplete="off"/>
+                                <label onClick={() => setPaymentMethod('momo')}
+                                       className={clsx(styles['checkout-order__label'], paymentMethod === 'momo' && styles['checkout-order__label-focus'])}
+                                       htmlFor="momo"><img className={clsx(styles['checkout-order__img'])}
+                                                           src="/img/icon/momo.png" alt=""/>Momo</label>
+                            </div>
 
-                        <div
-                            className={clsx(styles['checkout-order__payment-method__form'], "form-group col-lg-3 col-md-3 col-sm-12")}>
-                            <input type="radio"
-                                   className={clsx(styles['checkout-order__payment-method__inp'], "btn-check")}
-                                   name="btnradio" value="Cash" id="cash"
-                                   autoComplete="off"/>
-                            <label onClick={() => setPaymentMethod('cash')}
-                                   className={clsx(styles['checkout-order__label'], paymentMethod === 'cash' && styles['checkout-order__label-focus'])}
-                                   htmlFor="cash"><img className={clsx(styles['checkout-order__img'])}
-                                                       src="/img/icon/cash.png" alt=""/> COD</label>
+                            <div
+                                className={clsx(styles['checkout-order__payment-method__form'], "form-group col-lg-3 col-md-3 col-sm-12")}>
+                                <input type="radio"
+                                       className={clsx(styles['checkout-order__payment-method__inp'], "btn-check")}
+                                       name="btnradio" value="ZaloPay" id="zalopay"
+                                       autoComplete="off"/>
+                                <label onClick={() => setPaymentMethod('zalopay')}
+                                       className={clsx(styles['checkout-order__label'], paymentMethod === 'zalopay' && styles['checkout-order__label-focus'])}
+                                       htmlFor="zalopay"><img className={clsx(styles['checkout-order__img'])}
+                                                              src="/img/icon/zalopay.png" alt=""/>ZaloPay</label>
+                            </div>
+
+                            <div
+                                className={clsx(styles['checkout-order__payment-method__form'], "form-group col-lg-3 col-md-3 col-sm-12")}>
+                                <input type="radio"
+                                       className={clsx(styles['checkout-order__payment-method__inp'], "btn-check")}
+                                       name="btnradio" value="Cash" id="cash"
+                                       autoComplete="off"/>
+                                <label onClick={() => setPaymentMethod('cash')}
+                                       className={clsx(styles['checkout-order__label'], paymentMethod === 'cash' && styles['checkout-order__label-focus'])}
+                                       htmlFor="cash"><img className={clsx(styles['checkout-order__img'])}
+                                                           src="/img/icon/cash.png" alt=""/> COD</label>
+                            </div>
                         </div>
-                    </div>
-                    <div className={clsx(styles["checkout-order__payment-btn"], 'mt-4')}>
-                        <button className={clsx(styles['checkout-order__payment-btn__text'], 'btn w-100')}>
-                            <span>PLACE ORDER</span>
-                            <i className="fa-solid fa-truck-fast"></i>
-                        </button>
+                        <div className={clsx(styles["checkout-order__payment-btn"], 'mt-4')}>
+
+                            {paymentMethod === 'paypal' &&
+                                <PayPalCheckoutButton
+                                    email={emailInfo}
+                                    shippingAddress={addressInfo[addressChoose]}
+                                    products={items}
+                                    totalBill={totalBill} />
+                            }
+                            {paymentMethod === 'cash' &&
+                                <button onClick={handleCashPayment} className={clsx(styles['checkout-order__payment-btn__text'], 'btn w-100')}>
+                                    <span>PLACE ORDER</span>
+                                    <i className="fa-solid fa-truck-fast"></i>
+                                </button>
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
+            {/*</PayPalScriptProvider>*/}
         </>
     )
 }

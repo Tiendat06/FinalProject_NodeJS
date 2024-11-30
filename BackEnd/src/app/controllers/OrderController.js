@@ -56,6 +56,21 @@ class OrderController {
             });
         }
     }
+
+    get_user_order = async (req, res, next) => {
+        return await orderService.getUserOrder(req, res);
+    }
+
+    place_order = async (req, res, next) => {
+        // console.log(req.body);
+        //
+        // return res.status(200).json({
+        //     status: true,
+        //     msg: 'Place order oke'
+        // })
+        console.log(req.body);
+        return await orderService.placeOrder(req, res);
+    }
 }
 
 module.exports = new OrderController;

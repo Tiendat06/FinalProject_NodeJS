@@ -16,9 +16,9 @@ addCouponValidator = [
 ];
 
 addOrderValidator = [
-    check('user_id')
-        .trim()
-        .notEmpty().withMessage('Please enter user id !'),
+    // check('user_id')
+    //     .trim()
+    //     .notEmpty().withMessage('Please enter user id !'),
     check('tax')
         .trim()
         .notEmpty().withMessage('Please enter tax !'),

@@ -188,11 +188,11 @@ function ShopPage() {
                                                 <i className="fa-solid fa-heart"></i>
                                             </Link>
                                         </li>
-                                        <li className={clsx(styles['shop-list__item-list--icon'])}>
-                                            <Link to='/' className='text-dark'>
-                                                <i className="fa-solid fa-cart-shopping"></i>
-                                            </Link>
-                                        </li>
+                                        {/*<li className={clsx(styles['shop-list__item-list--icon'])}>*/}
+                                        {/*    <Link to='/' className='text-dark'>*/}
+                                        {/*        <i className="fa-solid fa-cart-shopping"></i>*/}
+                                        {/*    </Link>*/}
+                                        {/*</li>*/}
                                     </ul>
                                 </div>
                                 <div className="shop-list__item-info text-center mt-3">

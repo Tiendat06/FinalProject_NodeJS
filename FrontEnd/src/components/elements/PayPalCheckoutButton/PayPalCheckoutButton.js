@@ -2,8 +2,9 @@ import {PayPalButtons} from '@paypal/react-paypal-js'
 import {memo, useState} from "react";
 import {toast} from "react-toastify";
 import {useShoppingContext} from "~/context/ShoppingContext";
+import FetchPlaceOrder from "~/pages/b2c/cart/Checkout/utils/FetchPlaceOrder";
 
-function PayPalCheckoutButton({products, totalBill, shippingAddress, email, coupon_id}) {
+function PayPalCheckoutButton({products, totalBill, shippingAddress, email, coupon_id, userInfo}) {
     // console.log({totalBill, shippingAddress});
     const api_url = process.env.REACT_APP_API_URL;
     const {userData} = useShoppingContext();
@@ -16,34 +17,46 @@ function PayPalCheckoutButton({products, totalBill, shippingAddress, email, coup
     const handleApprove = async (orderId) => {
     //     call backend function
         if(!error) {
-            fetch(`${api_url}/order/place-order`, {
-                method: "POST",
-                body: JSON.stringify({
+            if(userData?._id){
+                await FetchPlaceOrder({
                     user_id,
                     totalBill: Number(totalBill),
                     address_id: shippingAddress._id,
-                    payment_method_name: 'PayPal', email, products, coupon_id
-                }),
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                credentials: "include"
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if(data.status) {
+                    payment_method_name: 'PayPal',
+                    email,
+                    products,
+                    coupon_id
+                });
+            } else{
+                fetch(`${api_url}/order/place-order-no-login`, {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        totalBill: Number(totalBill),
+                        userInfo,
+                        payment_method_name: 'PayPal',
+                        email,
+                        products,
+                        tax: 10,
+                        shippingFee: localStorage.getItem('shippingFees'),
+                        cartList: JSON.parse(localStorage.getItem('carts'))
+                    }),
+                    credentials: "include"
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        localStorage.removeItem('carts');
+                        localStorage.removeItem('checkOut');
+                        // console.log(data);
                         toast.success('Thanks for you payment !');
                         setTimeout(() => {
                             window.location.href = '/'
                         }, 3000);
-                    } else {
-                        toast.error(data.msg);
-                    }
-                })
-                .catch(error => {
-                    toast.error(error);
-                    console.log(error);
-                });
+                    })
+                    .catch(error => console.log(error));
+            }
         }
     //     refresh user account or subscription status
 

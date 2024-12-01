@@ -165,10 +165,10 @@ function HomePage(){
                                                 <Link onClick={() => handleAddWishList(item)} className="text-dark"><i
                                                     className="fa-solid fa-heart"></i></Link>
                                             </li>
-                                            <li className={clsx(styles['home-featured__item-list--icon'])}>
-                                                <Link to='/' className='text-dark'><i
-                                                    className="fa-solid fa-cart-shopping"></i></Link>
-                                            </li>
+                                            {/*<li className={clsx(styles['home-featured__item-list--icon'])}>*/}
+                                            {/*    <Link to='/' className='text-dark'><i*/}
+                                            {/*        className="fa-solid fa-cart-shopping"></i></Link>*/}
+                                            {/*</li>*/}
                                         </ul>
                                     </div>
                                     <div className="home-featured__item-info text-center mt-3">

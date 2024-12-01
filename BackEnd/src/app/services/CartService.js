@@ -146,7 +146,7 @@ class CartService {
         try {
             if (error.length !== 0) throw new Error(error[0]);
             const orderData = {
-                user_id, coupon_id, tax, shippingFee, createdAt: null, updatedAt: null
+                user_id, coupon_id, tax, shippingFee, createdAt: null, updatedAt: null, status: ''
             }
             const orderAddData = await orderRepository.addCartToOrder(orderData);
             if(orderAddData.length === 0) throw new Error('Add to order failed !');

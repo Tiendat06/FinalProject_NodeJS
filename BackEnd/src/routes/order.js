@@ -11,6 +11,9 @@ router.post('/', checkLogin, orderController.createOrder);
 router.post('/place-order', orderValidator.placeOrderValidator,
     orderMiddleWare.place_order, orderController.place_order);
 
+router.post('/place-order-no-login', orderValidator.placeOrderNoLoginValidator,
+    orderMiddleWare.place_order, orderController.place_order_no_login);
+
 //[PUT] update orderStatusDetails based on orderId
 router.put('/order-status/:orderId', orderController.updateOrderStatusDetails);
 

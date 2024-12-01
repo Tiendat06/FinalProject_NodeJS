@@ -62,7 +62,7 @@ function CheckoutPage() {
     // BE
     useEffect(() => {
         if(userData?._id) {
-            fetch(`${api_url}/order?user_id=${user_id}`, {
+            fetch(`${api_url}/order/user?user_id=${user_id}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
@@ -89,6 +89,7 @@ function CheckoutPage() {
                 .catch(error => console.log(error));
         } else{
             const checkOutData = JSON.parse(localStorage.getItem('checkOut'));
+            if (!checkOutData) window.location.href = '/';
             setOrderInfo(checkOutData.dataOrder);
             setItems(checkOutData.dataOrderDetails);
         }

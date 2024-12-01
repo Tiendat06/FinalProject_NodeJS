@@ -21,7 +21,7 @@ router.get('/', orderController.getAllOrders);
 router.put('/order-status/:orderId', orderController.updateOrderStatusDetails);
 
 // prepare
-router.get('/', orderMiddleWare.index, orderController.get_user_order);
+router.get('/user', orderMiddleWare.index, orderController.get_user_order);
 
 router.get('/history', checkLogin, orderController.getOrderHistory);
 router.get('/details/:orderId', checkLogin, orderController.getOrderDetails);

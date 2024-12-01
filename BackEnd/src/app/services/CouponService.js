@@ -10,6 +10,16 @@ class CouponService {
             msg: 'Load coupons successfully !',
         });
     }
+
+    getCouponById = async (req, res) => {
+        const { id } = req.params;
+        const coupon = await couponRepository.getCouponById(id);
+        return res.status(200).json({
+            status: true,
+            data: coupon,
+            msg: 'Load coupon successfully !',
+        });
+    }
 }
 
 module.exports = new CouponService;

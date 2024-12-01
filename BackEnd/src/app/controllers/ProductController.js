@@ -55,6 +55,22 @@ class ProductController {
     deleteProductVariant = async (req, res, next) => {
         return await productService.deleteProductVariant(req, res);
     }
+
+    //Create new product
+    // [POST] /product
+    createProduct = async (req, res, next) => {
+        return await productService.createProduct(req, res);
+    }
+
+    // [PUT] /product/:id
+    updateProduct = async (req, res, next) => {
+        return await productService.updateProduct(req, res);
+    }
+
+    // [DELETE] /product/:id
+    deleteProduct = async (req, res, next) => {
+        return await productService.deleteProduct(req, res);
+    }
 }
 
 module.exports = new ProductController;

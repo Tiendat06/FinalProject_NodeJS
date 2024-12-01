@@ -80,6 +80,12 @@ class OrderRepository {
             .catch(error => console.log(error));
     }
 
+    findOneOrderAndUpdate = ({ user_id, ...updateData }) => {
+        return Order.findOneAndUpdate({ user_id, createdAt: null }, { $set: updateData }, { new: true })
+            .then(order => order)
+            .catch(err => console.log(err));
+    }
+
     //Top selling products
     getTopSellingProducts = (limit) => {
         return OrderDetails.aggregate([
@@ -99,12 +105,6 @@ class OrderRepository {
             .then(products => {
                 return products;
             })
-            .catch(err => console.log(err));
-    }
-
-    findOneOrderAndUpdate = ({user_id, ...updateData}) => {
-        return Order.findOneAndUpdate({user_id, createdAt: null}, {$set: updateData}, {new: true})
-            .then(order => order)
             .catch(err => console.log(err));
     }
 

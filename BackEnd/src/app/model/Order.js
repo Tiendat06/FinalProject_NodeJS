@@ -13,8 +13,9 @@ const Order = new Schema({
     address_id: { type: Schema.Types.ObjectId, ref: "Address", default: null },
     // product_variant_id: { type: Schema.Types.ObjectId, ref: "ProductVariant", required: true },
     // status_id: { type: Schema.Types.ObjectId, ref: "OrderStatus", required: true },
+    status: {type: String, default: 'Pending'},
     tax: {type: Number, default: 10},
-    shippingFee: { type: Number },
+    shippingFee: { type: Number, default: 6 },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
     deleted: { type: Boolean, default: false }

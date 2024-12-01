@@ -47,6 +47,15 @@ function DetailsPage(){
         })
     }
 
+    const handleChangeItemByColor = (item) => {
+        // console.log(item);
+        setDetailsImg(item.product_image);
+        setProductInfo({
+            ...productInfo,
+            ...item
+        })
+    }
+
     const handleSubmitComment = () => {
         fetch(`${api_url}/product/comment`, {
             method: "POST",
@@ -125,26 +134,60 @@ function DetailsPage(){
     }
 
     const handleAddToCart = () => {
-        console.log(productInfo);
-        fetch(`${api_url}/cart`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                user_id, quantity, product_variant_id: productInfo._id
-            }),
-            credentials: "include",
-        })
-            .then(response => response.json())
-            .then(data => {
-                if(data.status) {
-                    toast.success(data.msg)
-                } else{
-                    toast.error(data.msg)
-                }
+        // console.log(productInfo);
+        if(userData?._id) {
+            fetch(`${api_url}/cart`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    user_id, quantity, product_variant_id: productInfo._id
+                }),
+                credentials: "include",
             })
-            .catch(err => console.log(err));
+                .then(response => response.json())
+                .then(data => {
+                    if(data.status) {
+                        toast.success(data.msg)
+                    } else{
+                        toast.error(data.msg)
+                    }
+                })
+                .catch(err => console.log(err));
+        } else{
+            let cartItems = JSON.parse(localStorage.getItem('carts'))
+            if(cartItems.length === 0){
+                localStorage.setItem('carts', JSON.stringify([]));
+                cartItems = JSON.parse(localStorage.getItem('carts'));
+            }
+            fetch(`${api_url}/product/variant/${productInfo._id}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: "include",
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const product_variant = data.data;
+                    // console.log(cartItems);
+                    const existItem = cartItems.find(item => item.product_variant_id._id === product_variant._id);
+                    if(!existItem){
+                        cartItems.push({
+                            _id: cartItems.length + 1,
+                            product_variant_id: product_variant,
+                            quantity,
+                        });
+                        localStorage.setItem('carts', JSON.stringify(cartItems));
+                        toast.success('Add to cart successfully !');
+                    } else{
+                        // console.log('Item is in cart yet !')
+                        toast.error('Items is in cart yet !');
+                    }
+                })
+                .catch(err => console.log(err));
+        }
     }
 
     return (
@@ -205,10 +248,12 @@ function DetailsPage(){
                                 className="form-group col-lg-5 col-md-5 col-sm-5 d-flex align-items-center justify-content-between mb-3">
                                 <label className={clsx(styles['details-info__choice-label'])}
                                        htmlFor="color-details">COLOR</label>
-                                <select name="" className={clsx(styles["details-info__choice-select"], 'form-select', stylesGrid['details-info__choice-select'])}
+                                <select
+                                    onChange={e => handleChangeItemByColor(JSON.parse(e.target.value))}
+                                    name="" className={clsx(styles["details-info__choice-select"], 'form-select', stylesGrid['details-info__choice-select'])}
                                         id="color-details">
                                     {productVariantInfo.map((item, index) => (
-                                        <option key={`color-${index}`} value={item.product_color}>{item.product_color}</option>
+                                        <option key={`color-${index}`} value={JSON.stringify(item)}>{item.product_color}</option>
                                     ))}
                                 </select>
                             </div>
@@ -231,10 +276,12 @@ function DetailsPage(){
                             </div>
                         </div>
                         <div className={clsx(styles["details-info__cart"])}>
+                            {(productInfo.variant_quantity !== 0 || productInfo.variant_quantity - quantity > 0) &&
                             <button onClick={handleAddToCart} className={clsx(styles["details-info__cart-btn"], 'btn')}>
                                 <i className={clsx("fa-solid fa-cart-shopping d-none", styles['details-info__cart-icon'])}></i>
                                 <span className={clsx(styles['details-info__cart-text'])}>ADD TO CART</span>
                             </button>
+                            }
                         </div>
                     </div>
                 </div>

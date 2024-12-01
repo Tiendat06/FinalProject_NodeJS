@@ -27,6 +27,26 @@ class WishListRepository {
             .then(value => value)
             .catch(err => console.log(err));
     }
+    getTopWishListedProducts = (limit) => {
+        return WishList.aggregate([
+            { $group: { _id: "$product_id", count: { $sum: 1 } } },
+            { $sort: { count: -1 } },
+            { $limit: limit },
+            {
+                $lookup: {
+                    from: "product",
+                    localField: "_id",
+                    foreignField: "_id",
+                    as: "product"
+                }
+            },
+            { $unwind: "$product" }
+        ])
+            .then(products => {
+                return products;
+            })
+            .catch(err => console.log(err));
+    }
 }
 
 module.exports = new WishListRepository;

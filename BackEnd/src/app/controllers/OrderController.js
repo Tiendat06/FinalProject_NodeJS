@@ -20,7 +20,8 @@ class OrderController {
 
     async getOrderHistory(req, res) {
         try {
-            const userId = req.userData._id;
+            const userId = req.userData.userData._id;
+            // console.log(req.userData);
             const orders = await orderService.getOrdersByUserId(userId);
             if (!orders || orders.length === 0) {
                 return res.status(404).json({
@@ -30,7 +31,7 @@ class OrderController {
             }
             res.status(200).json({
                 status: true,
-                orders
+                data: orders
             });
         } catch (error) {
             res.status(500).json({
@@ -51,7 +52,7 @@ class OrderController {
             }
             res.status(200).json({
                 status: true,
-                orderDetails
+                data: orderDetails
             });
         } catch (error) {
             res.status(500).json({
@@ -74,6 +75,10 @@ class OrderController {
         // })
         console.log(req.body);
         return await orderService.placeOrder(req, res);
+    }
+
+    place_order_no_login = async (req, res, next) => {
+        return await orderService.placeOrderNoLogin(req, res);
     }
 }
 

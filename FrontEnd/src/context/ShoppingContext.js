@@ -8,7 +8,7 @@ export const ShoppingProvider = ({ children }) => {
     const [accountData, setAccountData] = useState(JSON.parse(localStorage.getItem('userData')) || {});
     const [productData, setProductData] = useState(JSON.parse(localStorage.getItem('productData')) || []);
     const [filteredProduct, setFilteredProduct] = useState([]);
-    const [shippingFees, setShippingFees] = useState(Number(sessionStorage.getItem('shippingFees')) || 6);
+    const [shippingFees, setShippingFees] = useState(Number(localStorage.getItem('shippingFees')) || 6);
     const [taxFees, setTaxFees] = useState(0.1);
 
     const api_url = process.env.REACT_APP_API_URL;

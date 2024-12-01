@@ -32,6 +32,12 @@ class UserRepository {
             .catch(err => console.log(err));
     }
 
+    getUserByPhoneAndEmail = (phone, email) => {
+        return User.findOne({phone, email, deleted: false})
+            .then(user => user)
+            .catch(err => console.log(err));
+    }
+
     updateUserById = ({_id, ...userUpdate}) => {
         return User.updateOne({_id, deleted: false}, {$set: userUpdate})
             .then(value => value)

@@ -31,7 +31,7 @@ function CartPage(){
     const {shippingFees, setShippingFees} = useShoppingContext();
     const {taxFees, setTaxFees} = useShoppingContext();
     const [coupon, setCoupon] = useState('');
-    const [couponCode, setCouponCode] = useState(/*JSON.parse(localStorage.getItem('couponCode')) || */{});
+    const [couponCode, setCouponCode] = useState(/*JSON.parse(localStorage.getItem('couponCode')) ||*/ {});
 
     const totalBill = useMemo(() => {
         const itemsTotal = cartList.reduce((total, item) => total + (item.product_variant_id.retail_price * item.quantity), 0);
@@ -76,88 +76,144 @@ function CartPage(){
     }
 
     useEffect(() => {
-        fetch(`${api_url}/cart?user_id=${user_id}`, {
-            method: 'GET',
-            credentials: "include"
-        })
-            .then(response => response.json())
-            .then(data => {
-                // console.log(data.data);
-                if(data.status) {
-                    dispatch(getCart(data.data));
-                    // setItems(data.data);
-                }
+        if(userData?._id){
+            fetch(`${api_url}/cart?user_id=${user_id}`, {
+                method: 'GET',
+                credentials: "include"
             })
-            .catch(err => console.log(err));
-    }, [user_id]);
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.data);
+                    if(data.status) {
+                        dispatch(getCart(data.data));
+                        // setItems(data.data);
+                    }
+                })
+                .catch(err => console.log(err));
+        } else{
+            let cartItems = JSON.parse(localStorage.getItem('carts'));
+            if (!cartItems) {
+                localStorage.setItem('carts', JSON.stringify([]));
+                cartItems = JSON.parse(localStorage.getItem('carts'));
+            }
+            dispatch(getCart(cartItems));
+        }
+
+    }, [userData]);
 
     // BE
     const updateProductQuantity = (_id, quantity) => {
         // dispatch(setQuantity({_id: item._id, quantity: item.quantity - 1}));
-        fetch(`${api_url}/cart/${_id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                quantity
-            }),
-            credentials: "include"
-        })
-            .then(response => response.json())
-            .then(data => {
-                if(data.status) dispatch(setQuantity({_id, quantity}))
+        if(userData?._id){
+            fetch(`${api_url}/cart/${_id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    quantity
+                }),
+                credentials: "include"
             })
-            .catch(err => console.log(err));
+                .then(response => response.json())
+                .then(data => {
+                    if(data.status) dispatch(setQuantity({_id, quantity}))
+                })
+                .catch(err => console.log(err));
+        } else{
+            const cartItems = JSON.parse(localStorage.getItem('carts'));
+            let newCart = cartItems.map(item =>
+                item._id === _id
+                ? { ...item, quantity: Math.max(1, quantity) }
+                : item);
+            localStorage.setItem('carts', JSON.stringify(newCart));
+            dispatch(setQuantity({_id, quantity}))
+        }
     }
 
     const handleRemoveProductFromCart = useCallback(() => {
-        fetch(`${api_url}/cart/${cart._id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: "include"
-        })
-            .then(response => response.json())
-            .then(data => {
-                if(data.status) {
-                    dispatch(deleteCart(cart));
-                    toast.success(data.msg);
-                }
+        if(userData?._id) {
+            fetch(`${api_url}/cart/${cart._id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: "include"
             })
-            .catch(err => console.log(err));
+                .then(response => response.json())
+                .then(data => {
+                    if(data.status) {
+                        dispatch(deleteCart(cart));
+                        toast.success(data.msg);
+                    }
+                })
+                .catch(err => console.log(err));
+        } else{
+            const cartItems = JSON.parse(localStorage.getItem('carts'));
+            let newCart = cartItems.filter(item => item._id !== cart._id);
+            localStorage.setItem('carts', JSON.stringify(newCart));
+            dispatch(deleteCart(cart))
+            toast.success('Remove product from cart successfully !');
+        }
     }, [cart]);
 
     const proceedToCheckout = () => {
-        fetch(`${api_url}/cart/order`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                user_id,
-                coupon_id: couponCode._id || null,
-                tax: taxFees * 100,
-                shippingFee: shippingFees,
-                products: cartList
-            }),
-            credentials: "include"
-        })
-            .then(response => response.json())
-            .then(data => {
-                // console.log(data);
-                if(data.status) {
-                    dispatch(setCartList(''));
-                    toast.success(data.msg);
-                    setTimeout(() => {
-                        window.location.href = '/shop/checkout';
-                    }, 3000)
-                } else toast.error(data.msg);
-
-                // /shop/checkout
+        if(userData?._id){
+            fetch(`${api_url}/cart/order`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    user_id,
+                    coupon_id: couponCode._id || null,
+                    tax: taxFees * 100,
+                    shippingFee: shippingFees,
+                    products: cartList
+                }),
+                credentials: "include"
             })
-            .catch(err => console.log(err));
+                .then(response => response.json())
+                .then(data => {
+                    // console.log(data);
+                    if(data.status) {
+                        dispatch(setCartList(''));
+                        toast.success(data.msg);
+                        setTimeout(() => {
+                            window.location.href = '/shop/checkout';
+                        }, 3000)
+                    } else toast.error(data.msg);
+
+                    // /shop/checkout
+                })
+                .catch(err => console.log(err));
+        } else{
+            const cartItems = JSON.parse(localStorage.getItem('carts'));
+            const updatedData = cartItems.map(item => ({
+                ...item,
+                order_id: 1
+            }))
+            const checkOutData = {
+                dataOrder: {
+                    address_id: null,
+                    coupon_id: null,
+                    createdAt: null,
+                    deleted: false,
+                    shippingFee: shippingFees,
+                    status: '',
+                    tax: taxFees * 100,
+                    updatedAt: null,
+                    _id: 1
+                },
+                dataOrderDetails: updatedData,
+            }
+            localStorage.setItem('checkOut', JSON.stringify(checkOutData));
+            toast.success('Proceed to order !');
+            setTimeout(() => {
+                window.location.href = '/shop/checkout';
+            }, 3000)
+            // console.log(checkOutData);
+        }
     }
 
     return (
@@ -247,7 +303,7 @@ function CartPage(){
                         <div className={clsx(styles["cart-more__delivery-options"])}>
                             <div onClick={() => {
                                 setShippingFees(standardShip);
-                                sessionStorage.setItem('shippingFees', standardShip.toString());
+                                localStorage.setItem('shippingFees', standardShip.toString());
                             }}
                                  className={clsx(styles["cart-more__delivery-options__items"], stylesGrid['cart-more__delivery-options__items'],
                                      (shippingFees === standardShip && styles['cart-more__delivery-options__items--choose']))}>
@@ -263,7 +319,7 @@ function CartPage(){
                             </div>
                             <div onClick={() => {
                                 setShippingFees(expressShip);
-                                sessionStorage.setItem('shippingFees', expressShip.toString());
+                                localStorage.setItem('shippingFees', expressShip.toString());
                             }}
                                  className={clsx(styles["cart-more__delivery-options__items"], stylesGrid['cart-more__delivery-options__items'],
                                      (shippingFees === expressShip && styles['cart-more__delivery-options__items--choose']))}>
@@ -279,6 +335,7 @@ function CartPage(){
                         </div>
                     </div>
 
+                    {userData?._id &&
                     <div className="cart-more__coupon mt-5">
                         <h6 className="mb-3">Discount Coupon</h6>
                         <div className="form-group d-flex align-items-center">
@@ -292,6 +349,7 @@ function CartPage(){
                             </button>
                         </div>
                     </div>
+                    }
                 </div>
 
                 <div

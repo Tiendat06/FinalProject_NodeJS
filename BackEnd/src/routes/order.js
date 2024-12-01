@@ -11,12 +11,17 @@ router.post('/', checkLogin, orderController.createOrder);
 router.post('/place-order', orderValidator.placeOrderValidator,
     orderMiddleWare.place_order, orderController.place_order);
 
+router.post('/place-order-no-login', orderValidator.placeOrderNoLoginValidator,
+    orderMiddleWare.place_order, orderController.place_order_no_login);
+
+// prepare
 router.get('/', orderController.getAllOrders);
 
 //[PUT] update orderStatusDetails based on orderId
 router.put('/order-status/:orderId', orderController.updateOrderStatusDetails);
 
-router.get('/', orderMiddleWare.index, orderController.get_user_order);
+// prepare
+router.get('/user', orderMiddleWare.index, orderController.get_user_order);
 
 router.get('/history', checkLogin, orderController.getOrderHistory);
 router.get('/details/:orderId', checkLogin, orderController.getOrderDetails);

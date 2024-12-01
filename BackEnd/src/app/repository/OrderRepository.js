@@ -74,10 +74,16 @@ class OrderRepository {
     }
 
     getOrderByUserAndDateCreatedIsNull = (user_id) => {
-        return Order.findOne({user_id, createdAt: null, updatedAt: null})
+        return Order.findOne({ user_id, createdAt: null, updatedAt: null })
             .populate('coupon_id')
             .then(order => order)
             .catch(error => console.log(error));
+    }
+
+    findOneOrderAndUpdate = ({user_id, ...updateData}) => {
+        return Order.findOneAndUpdate({user_id, createdAt: null}, {$set: updateData}, {new: true})
+            .then(order => order)
+            .catch(err => console.log(err));
     }
 
     //Top selling products
@@ -102,9 +108,12 @@ class OrderRepository {
             .catch(err => console.log(err));
     }
 
-    findOneOrderAndUpdate = ({user_id, ...updateData}) => {
-        return Order.findOneAndUpdate({user_id, createdAt: null}, {$set: updateData}, {new: true})
-            .then(order => order)
+    getAllOrders = (order_id) => {
+        return Order.find({ order_id })
+            .populate('user_id')
+            .populate('coupon_id')
+            .populate('address_id')
+            .then(orders => orders)
             .catch(err => console.log(err));
     }
 }

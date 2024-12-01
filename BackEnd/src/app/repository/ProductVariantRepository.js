@@ -2,13 +2,17 @@ const ProductVariant = require('../model/ProductVariant');
 
 class ProductVariantRepository {
     getProductVariantByProductId = (product_id) => {
-        return ProductVariant.find({product_id})
+        return ProductVariant.find({ product_id })
             .then(productVariant => productVariant)
             .catch(err => console.log(err));
     }
 
     getProductVariantById = (variant_id) => {
         return ProductVariant.findById(variant_id)
+            .populate({
+                path: 'product_id',
+                populate: { path: 'category_id' }
+            })
             .then(productVariant => productVariant)
             .catch(err => console.log(err));
     };

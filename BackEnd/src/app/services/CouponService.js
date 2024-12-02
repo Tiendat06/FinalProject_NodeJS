@@ -48,7 +48,7 @@ class CouponService {
             }
 
             // Define the list of valid fields for update
-            const validFields = ['coupon_name', 'description', 'code', 'point', 'discount'];
+            const validFields = ['coupon_name', 'description', 'code', 'point', 'discount', 'expiredAt'];
 
             // Check if all keys in the request body are valid
             const invalidFields = Object.keys(couponUpdates).filter(field => !validFields.includes(field));

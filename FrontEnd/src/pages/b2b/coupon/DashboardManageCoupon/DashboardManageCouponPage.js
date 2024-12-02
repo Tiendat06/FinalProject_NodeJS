@@ -4,45 +4,114 @@ import {Link} from "react-router-dom";
 import {Modal, Pagination} from "~/components/elements";
 import {ConvertDateString} from "~/utils";
 import {useDashboardContext} from "~/context/DashboardContext";
-import {useCallback, useLayoutEffect, useState} from "react";
+import {useCallback, useEffect, useLayoutEffect, useReducer, useState} from "react";
+import reducer, {initState} from './reducers/reducer';
+import {getCoupons, setCoupon, onChangeData, updateCouponData, addCoupon, deleteCoupon} from "./actions/action";
+import {toast} from "react-toastify";
 
 function DashboardManageCouponPage() {
+    const api_url = process.env.REACT_APP_API_URL;
     const {dashBoardSubLink, setDashBoardSubLink} = useDashboardContext();
+    const [state, dispatch] = useReducer(reducer, initState);
+    const {coupon, couponList} = state;
 
     const itemsPerPage = 10;
-    const rawData = [
-        {id: 1, name: 'HAPPY10', discount: 10, point: 100, date_expired: new Date('2024-11-14'), desc: 'Discount 10%'},
-        {id: 2, name: 'HAPPY20', discount: 20, point: 200, date_expired: new Date('2024-11-14'), desc: 'Discount 20%'},
-        {id: 3, name: 'HAPPY30', discount: 30, point: 300, date_expired: new Date('2024-11-14'), desc: 'Discount 30%'},
-        {id: 4, name: 'HAPPY40', discount: 40, point: 400, date_expired: new Date('2024-11-14'), desc: 'Discount 40%'},
-        {id: 5, name: 'HAPPY50', discount: 50, point: 500, date_expired: new Date('2024-11-14'), desc: 'Discount 50%'},
-    ];
-    const [couponData, setCouponData] = useState(rawData);
     const [currentPage, setCurrentPage] = useState(0);
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
 
     useLayoutEffect(() => {
-        setPageCount(Math.ceil(couponData.length / itemsPerPage));
-        setCurrentItems(couponData.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage));
-    }, [couponData, currentPage]);
+        setPageCount(Math.ceil(couponList.length / itemsPerPage));
+        setCurrentItems(couponList.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage));
+    }, [couponList, currentPage]);
 
     const handlePageChange = useCallback((event) => {
         setCurrentPage(event.selected);
     }, []);
 
-    const [tempData, setTempData] = useState({});
-    const handleChangeTempData = (data) => {
-        const key = Object.keys(data)[0];
-        let value = data[key];
-        if (key === 'date_expired'){
-            value = new Date(value);
-        }
-        setTempData({
-            ...tempData,
-            [key]: value
-        });
-    }
+    // BE
+    useEffect(() => {
+        fetch(`${api_url}/coupon`, {
+            method: 'GET',
+            credentials: 'include'
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if (data.status) dispatch(getCoupons(data.data));
+            })
+            .catch(err => console.log(err));
+    }, []);
+
+    const fetchUpdateCoupon = useCallback(() => {
+        fetch(`${api_url}/coupon/${coupon._id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                coupon_name: coupon.coupon_name,
+                description: coupon.description,
+                code: coupon.code,
+                point: coupon.point,
+                discount: coupon.discount,
+                expiredAt: coupon.expiredAt,
+            }),
+            credentials: 'include'
+        })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status) {
+                    dispatch(updateCouponData(data.data));
+                    toast.success(data.msg);
+                } else toast.error(data.msg);
+            })
+            .catch(err => console.log(err));
+    }, [coupon])
+
+    const fetchAddCoupon = useCallback(() => {
+        fetch(`${api_url}/coupon`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                coupon_name: coupon.coupon_name,
+                description: coupon.description,
+                code: coupon.code,
+                point: coupon.point,
+                discount: coupon.discount,
+                expiredAt: coupon.expiredAt,
+            }),
+            credentials: 'include'
+        })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status) {
+                    dispatch(addCoupon(data.data));
+                    toast.success(data.msg);
+                } else toast.error(data.msg);
+            })
+            .catch(err => console.log(err));
+    }, [coupon]);
+
+    const fetchDeleteCoupon = useCallback(() => {
+        fetch(`${api_url}/coupon/${coupon._id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include'
+        })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status) {
+                    dispatch(deleteCoupon(data.deletedCoupon));
+                    toast.success(data.msg);
+                } else toast.error(data.msg);
+            })
+            .catch(err => console.log(err));
+    }, [coupon])
 
     return (
         <>
@@ -83,6 +152,7 @@ function DashboardManageCouponPage() {
                                     <tr>
                                         <th>#</th>
                                         <th>NAME</th>
+                                        <th>CODE</th>
                                         <th>DISCOUNT</th>
                                         <th>POINT</th>
                                         <th>DATE EXPIRED</th>
@@ -92,31 +162,34 @@ function DashboardManageCouponPage() {
                                     </thead>
                                     <tbody>
                                     {currentItems.map((item, index) => (
-                                        <tr key={index}>
+                                        <tr key={`coupon-${index}`}>
                                             <td>
-                                                <p className={clsx(styles['user-table__text'])}>{item.id}</p>
+                                                <p className={clsx(styles['user-table__text'])}>{index + 1}</p>
                                             </td>
                                             <td>
-                                                <p className={clsx(styles['user-table__text'])}>{item.name}</p>
+                                                <p className={clsx(styles['user-table__text'])}>{item.coupon_name}</p>
                                             </td>
                                             <td>
-                                                <p className={clsx(styles['user-table__text'])}>{item.discount}</p>
+                                                <p className={clsx(styles['user-table__text'])}>{item.code}</p>
+                                            </td>
+                                            <td>
+                                                <p className={clsx(styles['user-table__text'])}>{item.discount}%</p>
                                             </td>
                                             <td>
                                                 <p className={clsx(styles['user-table__text'])}>{item.point}</p>
                                             </td>
                                             <td>
-                                                <p className={clsx(styles['user-table__text'])}>{ConvertDateString(item.date_expired)}</p>
+                                                <p className={clsx(styles['user-table__text'])}>{ConvertDateString(item.expiredAt)}</p>
                                             </td>
                                             <td>
-                                                <p className={clsx(styles['user-table__text'])}>{item.desc}</p>
+                                                <p className={clsx(styles['user-table__text'])}>{item.description}</p>
                                             </td>
                                             <td>
                                                 <p className={clsx(styles["user-table__action"])}>
-                                                    <i onClick={() => setTempData(item)} data-bs-toggle='modal'
+                                                    <i onClick={() => dispatch(setCoupon(item))} data-bs-toggle='modal'
                                                        data-bs-target='#edit-modal'
                                                        className={clsx(styles['user-table__action-edit'], "fa-solid fa-pen-to-square")}></i>
-                                                    <i onClick={() => setTempData(item)} data-bs-toggle='modal'
+                                                    <i onClick={() => dispatch(setCoupon(item))} data-bs-toggle='modal'
                                                        data-bs-target='#delete-modal'
                                                        className={clsx(styles['user-table__action-trash'], "fa-solid fa-trash")}></i>
                                                 </p>
@@ -136,49 +209,60 @@ function DashboardManageCouponPage() {
                 id='edit-modal'
                 title='Save change'
                 labelBtnSave='Save'
+                onClickLabelSave={fetchUpdateCoupon}
                 closeClassName='d-none'
                 isStatic={true}
-                saveClassName={clsx(styles['edit-modal__save'], 'btn btn-success')}
+                saveClassName={clsx(styles['edit-modal__save'], 'btn btn-danger')}
             >
                 <div className="form-group">
                     <div className="form-group">
                         <label className={clsx(styles['edit-modal__label'], 'mt-0')} htmlFor="name-edit">COUPON
                             NAME</label>
-                        <input onChange={e => handleChangeTempData({name: e.target.value})}
+                        <input onChange={e => dispatch(onChangeData({coupon_name: e.target.value}))}
                                type="text"
                                id='name-edit'
                                placeholder='Enter coupon name'
-                               className={clsx(styles['edit-modal__inp'], 'form-control')} value={tempData.name}/>
+                               className={clsx(styles['edit-modal__inp'], 'form-control')} value={coupon.coupon_name}/>
+                    </div>
+                    <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'], 'mt-0')} htmlFor="code-edit">COUPON
+                            CODE</label>
+                        <input onChange={e => dispatch(onChangeData({code: e.target.value}))}
+                               type="text"
+                               id='code-edit'
+                               placeholder='Enter coupon code'
+                               className={clsx(styles['edit-modal__inp'], 'form-control')} value={coupon.code}/>
                     </div>
                     <div className="form-group">
                         <label className={clsx(styles['edit-modal__label'])} htmlFor="discount-edit">DISCOUNT</label>
-                        <input onChange={e => handleChangeTempData({discount: e.target.value})}
+                        <input onChange={e => dispatch(onChangeData({discount: e.target.value}))}
                                type='number'
                                id='discount-edit'
                                placeholder='Enter discount'
                                className={clsx(styles['edit-modal__inp'], 'form-control')}
-                               value={tempData.discount}/>
+                               value={coupon.discount}/>
                     </div>
                     <div className="form-group">
                         <label className={clsx(styles['edit-modal__label'])} htmlFor="point-edit">POINT</label>
-                        <input onChange={e => handleChangeTempData({point: e.target.value})}
+                        <input onChange={e => dispatch(onChangeData({point: e.target.value}))}
                                type="number"
                                id='point-edit'
                                placeholder='Enter point'
-                               className={clsx(styles['edit-modal__inp'], 'form-control')} value={tempData.point}/>
+                               className={clsx(styles['edit-modal__inp'], 'form-control')} value={coupon.point}/>
                     </div>
                     <div className="form-group">
                         <label className={clsx(styles['edit-modal__label'])} htmlFor="date-edit">DATE EXPIRED</label>
-                        <input onChange={e => handleChangeTempData({date_expired: e.target.value})}
+                        <input onChange={e => dispatch(onChangeData({expiredAt: e.target.value}))}
                                type="date"
                                id='date-edit'
                                placeholder='Enter date expired'
-                               className={clsx(styles['edit-modal__inp'], 'form-control')} value={ConvertDateString(tempData.date_expired)}/>
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}
+                               value={ConvertDateString(coupon.expiredAt, 0)}/>
                     </div>
                     <div className="form-group">
                         <label className={clsx(styles['edit-modal__label'])} htmlFor="desc-edit">DESCRIPTION</label>
-                        <textarea value={tempData.desc} placeholder='Enter description'
-                                  onChange={e => handleChangeTempData({desc: e.target.value})}
+                        <textarea value={coupon.description} placeholder='Enter description'
+                                  onChange={e => dispatch(onChangeData({description: e.target.value}))}
                                   className={clsx(styles['edit-modal__inp'], 'form-control')}
                                   name="" id="desc-edit" cols="30" rows="5">
                         </textarea>
@@ -191,22 +275,32 @@ function DashboardManageCouponPage() {
                 title='Add Coupon'
                 labelBtnSave='Save'
                 closeClassName='d-none'
+                onClickLabelSave={fetchAddCoupon}
                 isStatic={true}
-                saveClassName={clsx(styles['edit-modal__save'], 'btn btn-success')}
+                saveClassName={clsx(styles['edit-modal__save'], 'btn btn-danger')}
             >
                 <div className="form-group">
                     <div className="form-group">
                         <label className={clsx(styles['edit-modal__label'], 'mt-0')} htmlFor="name-add">COUPON
                             NAME</label>
-                        <input onChange={e => handleChangeTempData({name: e.target.value})}
+                        <input onChange={e => dispatch(onChangeData({coupon_name: e.target.value}))}
                                type="text"
                                id='name-add'
                                placeholder='Enter coupon name'
                                className={clsx(styles['edit-modal__inp'], 'form-control')}/>
                     </div>
                     <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'], 'mt-0')} htmlFor="code-add">COUPON
+                            CODE</label>
+                        <input onChange={e => dispatch(onChangeData({code: e.target.value}))}
+                               type="text"
+                               id='code-add'
+                               placeholder='Enter coupon code'
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}/>
+                    </div>
+                    <div className="form-group">
                         <label className={clsx(styles['edit-modal__label'])} htmlFor="discount-add">DISCOUNT</label>
-                        <input onChange={e => handleChangeTempData({discount: e.target.value})}
+                        <input onChange={e => dispatch(onChangeData({discount: e.target.value}))}
                                type='number'
                                id='discount-add'
                                placeholder='Enter discount'
@@ -214,7 +308,7 @@ function DashboardManageCouponPage() {
                     </div>
                     <div className="form-group">
                         <label className={clsx(styles['edit-modal__label'])} htmlFor="point-add">POINT</label>
-                        <input onChange={e => handleChangeTempData({point: e.target.value})}
+                        <input onChange={e => dispatch(onChangeData({point: e.target.value}))}
                                type="number"
                                id='point-add'
                                placeholder='Enter point'
@@ -222,7 +316,7 @@ function DashboardManageCouponPage() {
                     </div>
                     <div className="form-group">
                         <label className={clsx(styles['edit-modal__label'])} htmlFor="date-add">DATE EXPIRED</label>
-                        <input onChange={e => handleChangeTempData({date_expired: e.target.value})}
+                        <input onChange={e => dispatch(onChangeData({expiredAt: e.target.value}))}
                                type="date"
                                id='date-add'
                                placeholder='Enter date expired'
@@ -231,7 +325,7 @@ function DashboardManageCouponPage() {
                     <div className="form-group">
                         <label className={clsx(styles['edit-modal__label'])} htmlFor="desc-add">DESCRIPTION</label>
                         <textarea placeholder='Enter description'
-                                  onChange={e => handleChangeTempData({desc: e.target.value})}
+                                  onChange={e => dispatch(onChangeData({description: e.target.value}))}
                                   className={clsx(styles['edit-modal__inp'], 'form-control')}
                                   name="" id="desc-add" cols="30" rows="5">
                         </textarea>
@@ -244,10 +338,11 @@ function DashboardManageCouponPage() {
                 title='Delete Product'
                 labelBtnSave='Delete'
                 closeClassName='d-none'
+                onClickLabelSave={fetchDeleteCoupon}
                 isStatic={true}
                 saveClassName={clsx(styles['delete-modal__save'], 'btn btn-danger')}
             >
-                <p className='mb-0'>Are you sure to delete {tempData.name}?</p>
+                <p className='mb-0'>Are you sure to delete '{coupon.coupon_name}'?</p>
             </Modal>
         </>
     )

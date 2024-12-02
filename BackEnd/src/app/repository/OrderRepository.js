@@ -116,6 +116,12 @@ class OrderRepository {
             .then(orders => orders)
             .catch(err => console.log(err));
     }
+
+    updateOrderById = (_id, updateData) => {
+        return Order.updateOne({_id}, {$set: updateData }, { new: true })
+            .then(value => value)
+            .catch(err => console.log(err));
+    }
 }
 
 module.exports = new OrderRepository;

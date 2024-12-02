@@ -125,13 +125,13 @@ class OrderService {
     try {
       const orders = await OrderRepository.getAllOrders();
       return res.status(200).json({
-        success: true,
+        status: true,
         data: orders,
       });
     } catch (error) {
       return res.status(500).json({
-        success: false,
-        message: 'An error occurred while fetching orders',
+        status: false,
+        msg: 'An error occurred while fetching orders',
         error: error.message,
       });
     }
@@ -145,7 +145,7 @@ class OrderService {
     const orderExists = await OrderRepository.doesOrderExist(orderId);
     if (!orderExists) {
       return res.status(404).json({
-        success: false,
+        status: false,
         message: 'Order not found',
       });
     }
@@ -154,19 +154,28 @@ class OrderService {
     const statusExists = await OrderRepository.doesStatusExist(statusId);
     if (!statusExists) {
       return res.status(404).json({
-        success: false,
+        status: false,
         message: 'Order status not found',
       });
     }
 
     try {
+      const orderStatus = await orderStatusRepository.getOrderStatusById(statusId);
+      const orderStatusName = orderStatus.status;
+
+      // update current status for order
+      const orderUpdated = await OrderRepository.updateOrderById(orderId, {status: orderStatusName});
+      if(!orderUpdated.acknowledged) throw new Error('Update order status failed !');
+
       // Update or create the OrderStatusDetails
       const updatedStatusDetails = await OrderRepository.upsertOrderStatusDetails(orderId, statusId);
 
+      const newUpdatedStatusDetails = await orderStatusDetailsRepository.getOrderStatusByOrderIdAndStatusId(orderId, statusId);
+
       return res.status(200).json({
-        success: true,
+        status: true,
         message: 'Order status updated successfully',
-        data: updatedStatusDetails,
+        data: newUpdatedStatusDetails,
       });
     } catch (error) {
       return res.status(500).json({
@@ -560,6 +569,23 @@ class OrderService {
         msg: e.message
       })
     }
+  }
+
+  getOrderStatusByOrderId = async (req, res) => {
+      const { order_id } = req.params;
+      try {
+          const orderStatusDetails = await orderStatusDetailsRepository.getOrderStatusByOrderId(order_id);
+          return res.status(200).json({
+              status: true,
+              data: orderStatusDetails,
+              msg: 'Load order status successfully !'
+          })
+      } catch (e) {
+          return res.status(400).json({
+              status: false,
+              msg: e.message,
+          })
+      }
   }
 }
 

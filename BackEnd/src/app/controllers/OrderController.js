@@ -66,6 +66,10 @@ class OrderController {
         return await orderService.getUserOrder(req, res);
     }
 
+    get_order_status = async (req, res, next) => {
+        return await orderService.getOrderStatusByOrderId(req, res);
+    }
+
     place_order = async (req, res, next) => {
         // console.log(req.body);
         //

@@ -7,6 +7,12 @@ class OrderStatusRepository{
             .then(orderStatus => orderStatus)
             .catch(err => console.log(err));
     }
+
+    getOrderStatusById = (_id) => {
+        return OrderStatus.findOne({_id})
+            .then(orderStatus => orderStatus)
+            .catch(err => console.log(err));
+    }
 }
 
 module.exports = new OrderStatusRepository;

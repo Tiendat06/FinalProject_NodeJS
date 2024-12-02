@@ -18,7 +18,11 @@ router.post('/place-order-no-login', orderValidator.placeOrderNoLoginValidator,
 router.get('/', orderController.getAllOrders);
 
 //[PUT] update orderStatusDetails based on orderId
-router.put('/order-status/:orderId', orderController.updateOrderStatusDetails);
+router.put('/order-status/:orderId'/*, orderMiddleWare.updateOrderStatusDetails*/, orderController.updateOrderStatusDetails);
+
+router.get('/status/:order_id', orderController.get_order_status)
+
+// router.put('/status/:status_details_id', orderController.updateOrderStatusDetails);
 
 // prepare
 router.get('/user', orderMiddleWare.index, orderController.get_user_order);

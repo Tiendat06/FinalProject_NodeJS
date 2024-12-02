@@ -1,60 +1,136 @@
 import {useDashboardContext} from "~/context/DashboardContext";
-import {useCallback, useLayoutEffect, useState} from "react";
+import {useCallback, useEffect, useLayoutEffect, useReducer, useState} from "react";
 import clsx from "clsx";
 import styles from "./DashboardManageOrderPage.module.css";
 import {Link} from "react-router-dom";
-import {ConvertDateString, FormatUSDCurrency} from "~/utils";
+import {ConvertDateString, FormatUSDCurrency, ConvertTime} from "~/utils";
 import {Modal, Pagination} from "~/components/elements";
+import reducer, {initState} from "./reducers/reducers";
+import details_reducer, {detailsInitState} from "./reducers/details_reducers";
+import status_reducers, {statusInitState} from "./reducers/status_reducers";
+
+import {getOrders, setOrder} from './actions/actions';
+import {getOrderDetailsData} from "./actions/details_actions";
+import {getStatusDetail, updateStatusDetailData} from "./actions/status_actions";
+import {toast} from "react-toastify";
 
 function DashboardManageOrderPage() {
+    const api_url = process.env.REACT_APP_API_URL;
     const {dashBoardSubLink, setDashBoardSubLink} = useDashboardContext();
+    const [state, dispatch] = useReducer(reducer, initState);
+    const {order, orderList} = state;
+
+    const [detailsState, detailsDispatch] = useReducer(details_reducer, detailsInitState);
+    const {orderDetails, orderDetailsList} = detailsState;
+
+    const [statusDetailsState, statusDetailsDispatch] = useReducer(status_reducers, statusInitState);
+    const {statusDetails, statusDetailsList} = statusDetailsState;
 
     const itemsPerPage = 20;
-    const rawData = [
-        {id: 1, order_status: 1, customer_name: 'Jake Jason', date_created: new Date('2024-11-13'), total_amount: 700, status: 'Pending', order_details: [
-                {id: 1, product_name: 'IPhone 11', category: 'mobile', discount: '0', quantity: 5, total_price: 500},
-                {id: 2, product_name: 'IPhone 11', category: 'mobile', discount: '0', quantity: 5, total_price: 500},
-                {id: 3, product_name: 'IPhone 11', category: 'mobile', discount: '0', quantity: 5, total_price: 500},
-                {id: 4, product_name: 'IPhone 11', category: 'mobile', discount: '0', quantity: 5, total_price: 500},
-            ] },
-        {id: 2, order_status: 1, customer_name: 'Jake Jason', date_created: new Date('2024-11-13'), total_amount: 700, status: 'Pending', order_details: [
-                {id: 1, product_name: 'IPhone 11', category: 'mobile', discount: '0', quantity: 5, total_price: 500},
-                {id: 2, product_name: 'IPhone 11', category: 'mobile', discount: '0', quantity: 5, total_price: 500},
-                {id: 3, product_name: 'IPhone 11', category: 'mobile', discount: '0', quantity: 5, total_price: 500},
-                {id: 4, product_name: 'IPhone 11', category: 'mobile', discount: '0', quantity: 5, total_price: 500},
-            ] },
-        {id: 3, order_status: 2, customer_name: 'Jake Jason', date_created: new Date('2024-11-13'), total_amount: 700, status: 'Pending', order_details: [
-                {id: 1, product_name: 'IPhone 11', category: 'mobile', discount: '0', quantity: 5, total_price: 500},
-                {id: 2, product_name: 'IPhone 11', category: 'mobile', discount: '0', quantity: 5, total_price: 500},
-                {id: 3, product_name: 'IPhone 11', category: 'mobile', discount: '0', quantity: 5, total_price: 500},
-                {id: 4, product_name: 'IPhone 11', category: 'mobile', discount: '0', quantity: 5, total_price: 500},
-            ] },
-        {id: 4, order_status: 3, customer_name: 'Jake Jason', date_created: new Date('2024-11-13'), total_amount: 700, status: 'Pending', order_details: [
-                {id: 1, product_name: 'IPhone 11', category: 'mobile', discount: '0', quantity: 5, total_price: 500},
-                {id: 2, product_name: 'IPhone 11', category: 'mobile', discount: '0', quantity: 5, total_price: 500},
-                {id: 3, product_name: 'IPhone 11', category: 'mobile', discount: '0', quantity: 5, total_price: 500},
-                {id: 4, product_name: 'IPhone 11', category: 'mobile', discount: '0', quantity: 5, total_price: 500},
-            ] },
-    ];
-    const [userData, setUserData] = useState(rawData);
+    const [tempOrder, setTempOrder] = useState([]);
+
     const [currentPage, setCurrentPage] = useState(0);
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
 
+    const [startFilter, setStartFilter] = useState("");
+    const [endFilter, setEndFilter] = useState("");
+
+    const filterDataByDate = () => {
+        console.log('hi world');
+
+        const filterStart = new Date(startFilter);
+        const filterEnd = new Date(endFilter);
+        // console.log({filterStart, filterEnd});
+
+        const filteredData = tempOrder?.filter(item => {
+            const orderDate = new Date(item?.createdAt);
+            // console.log({orderDate})
+
+            return orderDate >= filterStart && orderDate <= filterEnd;
+        });
+        // console.log(filteredData);
+        dispatch(getOrders(filteredData));
+    };
+
     useLayoutEffect(() => {
-        setPageCount(Math.ceil(userData.length / itemsPerPage));
-        setCurrentItems(userData.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage));
-    }, [userData, currentPage]);
+        setPageCount(Math.ceil(orderList.length / itemsPerPage));
+        setCurrentItems(orderList.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage));
+    }, [orderList, currentPage]);
     const handlePageChange = useCallback((event) => {
         setCurrentPage(event.selected);
     }, []);
 
-    const [tempData, setTempData] = useState({});
-    const handleOrderStatus = (data) => {
-        setOrderStatus(data.order_status);
+    // BE
+    useEffect(() => {
+        fetch(`${api_url}/order`, {
+            method: 'GET',
+            credentials: 'include',
+        })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status) {
+                    setTempOrder(data.data);
+                    dispatch(getOrders(data.data));
+                }
+            })
+            .catch(error => console.log(error));
+    }, []);
+
+    const getOrderDetails = (item) => {
+        dispatch(setOrder(item));
+        fetch(`${api_url}/order/details/${item._id}`, {
+            method: 'GET',
+            credentials: 'include',
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if(data.status) detailsDispatch(getOrderDetailsData(data.data))
+            })
+            .catch(error => console.log(error));
     }
 
-    const [orderStatus, setOrderStatus] = useState(1)
+    const getOrderStatus = (item) => {
+        dispatch(setOrder(item))
+        fetch(`${api_url}/order/status/${item._id}`, {
+            method: 'GET',
+            credentials: 'include',
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                statusDetailsDispatch(getStatusDetail(data.data));
+            })
+            .catch(error => console.log(error));
+    }
+
+    const updateStatusDetails = (item) => {
+        fetch(`${api_url}/order/order-status/${item.order_id._id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                statusId: item.status_id._id,
+                order_status_name: item.order_id.status,
+            }),
+            credentials: 'include',
+        })
+            .then(response => response.json())
+            .then(data => {
+                // console.log(data);
+                if(data.status) {
+                    statusDetailsDispatch(updateStatusDetailData(data.data));
+                    toast.success(data.message);
+                } else{
+                    toast.error(data.message);
+                }
+            })
+            .catch(error => console.log(error));
+    }
+
+    // console.log({order, orderDetailsList})
 
     return (
         <>
@@ -88,15 +164,17 @@ function DashboardManageOrderPage() {
                                 <div className={clsx(styles["user-time__date"], '')}>
                                     <div className="form-group mr-15">
                                         <label htmlFor="date-from">From</label>
-                                        <input value={ConvertDateString(Date.now(), 2)} type="date" id='date-from' className={clsx(styles["user-time__inp"], 'form-control')}/>
+                                        <input onChange={e => setStartFilter(e.target.value)}
+                                               value={startFilter || ConvertDateString(Date.now(), 2)} type="date" id='date-from' className={clsx(styles["user-time__inp"], 'form-control')}/>
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="date-to">To</label>
-                                        <input value={ConvertDateString(Date.now(), 2)} type="date" id='date-to' className={clsx(styles["user-time__inp"], 'form-control')}/>
+                                        <input onChange={e => setEndFilter(e.target.value)}
+                                            value={endFilter || ConvertDateString(Date.now(), 2)} type="date" id='date-to' className={clsx(styles["user-time__inp"], 'form-control')}/>
                                     </div>
                                 </div>
                                 <div className={clsx(styles["user-time__btn"], 'col-kg-12 col-md-12 col-sm-12')}>
-                                    <button className='btn'>Find</button>
+                                    <button onClick={filterDataByDate} className='btn'>Find</button>
                                 </div>
                             </div>
                             <div className={clsx(styles["table-manage"])}>
@@ -106,46 +184,52 @@ function DashboardManageOrderPage() {
                                         <th>#</th>
                                         <th>DATE CREATED</th>
                                         <th>CUSTOMER NAME</th>
+                                        <th>CUSTOMER PHONE</th>
+                                        <th>CUSTOMER ADDRESS</th>
                                         <th>STATUS</th>
-                                        <th>TOTAL AMOUNT</th>
                                         <th className='text-center'>ACTIONS</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                <tbody>
                                     {currentItems.map((item, index) => (
-                                        <tr key={index}>
+                                        <tr key={`order-${index}`}>
                                             <td>
-                                                <p className={clsx(styles['user-table__text'])}>{item.id}</p>
+                                                <p className={clsx(styles['user-table__text'])}>{index + 1}</p>
                                             </td>
                                             <td>
-                                                <p className={clsx(styles['user-table__text'])}>{ConvertDateString(item.date_created)}</p>
+                                                <p className={clsx(styles['user-table__text'])}>{ConvertDateString(item?.createdAt)}</p>
                                             </td>
                                             <td>
-                                                <p className={clsx(styles['user-table__text'])}>{item.customer_name}</p>
+                                                <p className={clsx(styles['user-table__text'])}>{item?.user_id?.fullName}</p>
+                                            </td>
+                                            <td>
+                                                <p className={clsx(styles['user-table__text'])}>{item?.address_id?.phone_number}</p>
+                                            </td>
+                                            <td>
+                                                <p className={clsx(styles['user-table__text'])}>{item?.address_id?.address}</p>
                                             </td>
                                             <td>
                                                 <p className={clsx(styles['user-table__text'])}>{item.status}</p>
                                             </td>
-                                            <td>
-                                                <p className={clsx(styles['user-table__text'])}><FormatUSDCurrency price={item.total_amount} /></p>
-                                            </td>
+
                                             <td>
                                                 <p className={clsx(styles["user-table__action"])}>
                                                     <div>
-                                                        <i onClick={() => setTempData(item)} data-bs-toggle='modal'
+                                                        <i onClick={() => getOrderDetails(item)} data-bs-toggle='modal'
                                                            data-bs-target='#edit-modal'
                                                            className={clsx(styles['user-table__action-edit'], "fa-solid fa-eye text-primary")}></i>
                                                     </div>
-
                                                     <div>
-                                                        <i onClick={() => handleOrderStatus(item)} data-bs-toggle='modal'
-                                                           data-bs-target='#tracking-modal' className={clsx(styles['user-table__action-edit'], "fa-solid fa-box text-danger")}></i>
+                                                        <i onClick={() => getOrderStatus(item)}
+                                                           data-bs-toggle='modal'
+                                                           data-bs-target='#tracking-modal'
+                                                           className={clsx(styles['user-table__action-edit'], "fa-solid fa-box text-danger")}></i>
                                                     </div>
                                                 </p>
                                             </td>
                                         </tr>
                                     ))}
-                                    </tbody>
+                                </tbody>
                             </table>
                             </div>
                             <Pagination pageCount={pageCount} handlePageChange={handlePageChange}/>
@@ -158,10 +242,11 @@ function DashboardManageOrderPage() {
                 id='edit-modal'
                 title='Order Details'
                 labelBtnSave='Save'
-                closeClassName='d-none'
+                closeClassName='btn btn-secondary'
+                labelBtnClose='Close'
                 isStatic={true}
                 modalTypeClassName='modal-xl'
-                saveClassName={clsx(styles['edit-modal__save'], 'btn btn-danger')}
+                saveClassName='d-none'
             >
                 <div className={clsx(styles["table-manage"])}>
                     <table className="table table-hover table-bordered">
@@ -169,32 +254,32 @@ function DashboardManageOrderPage() {
                         <tr>
                             <th>#</th>
                             <th>PRODUCT NAME</th>
-                            <th>CATEGORY</th>
+                            <th>COLOR</th>
+                            <th>RETAIL PRICE</th>
                             <th>QUANTITY</th>
-                            <th>DISCOUNT</th>
                             <th>TOTAL AMOUNT</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {tempData.order_details?.map((item, index) => (
-                            <tr key={index}>
+                        {orderDetailsList.map((item, index) => (
+                            <tr key={`od-${index}`}>
                                 <td>
-                                    <p className={clsx(styles['user-table__text'])}>{item.id}</p>
+                                    <p className={clsx(styles['user-table__text'])}>{index + 1}</p>
                                 </td>
                                 <td>
-                                    <p className={clsx(styles['user-table__text'])}>{item.product_name}</p>
+                                    <p className={clsx(styles['user-table__text'])}>{item?.product_variant_id?.product_name}</p>
                                 </td>
                                 <td>
-                                    <p className={clsx(styles['user-table__text'])}>{item.category}</p>
+                                    <p className={clsx(styles['user-table__text'])}>{item?.product_variant_id?.product_color}</p>
                                 </td>
                                 <td>
-                                    <p className={clsx(styles['user-table__text'])}>{item.quantity}</p>
+                                    <p className={clsx(styles['user-table__text'])}>{item?.product_variant_id?.retail_price}</p>
                                 </td>
                                 <td>
-                                    <p className={clsx(styles['user-table__text'])}>{item.discount}</p>
+                                    <p className={clsx(styles['user-table__text'])}>{item?.quantity}</p>
                                 </td>
                                 <td>
-                                    <p className={clsx(styles['user-table__text'])}><FormatUSDCurrency price={item.total_price} /></p>
+                                    <p className={clsx(styles['user-table__text'])}><FormatUSDCurrency price={item?.quantity * item?.product_variant_id?.retail_price} /></p>
                                 </td>
                             </tr>
                         ))}
@@ -213,88 +298,31 @@ function DashboardManageOrderPage() {
                 saveClassName='d-none'
             >
                 <div className={clsx(styles["order-tracking__details"])}>
-                    <div className={clsx(styles["order-tracking__details--outer"], 'col-lg-3 col-md-3 col-sm-3')}>
-                        <div className={clsx(styles["order-tracking__details-item"])}>
-                            <div
-                                className={clsx(styles["order-tracking__details-line"], styles['order-tracking__details-line--pass'])}></div>
-                            <div
-                                className={clsx(styles["order-tracking__details-text"], styles['order-tracking__details-text--pass'])}>
-                                <p><i className="fa-solid fa-check"></i></p>
+                    {statusDetailsList.map((item, index) => (
+                        <div className={clsx(styles["order-tracking__details--outer"], 'col-lg-3 col-md-3 col-sm-3')}>
+                            <div className={clsx(styles["order-tracking__details-item"])}>
+                                <div
+                                    className={clsx(styles["order-tracking__details-line"], item?.is_check && (styles['order-tracking__details-line--pass']))}></div>
+                                <div
+                                    className={clsx(styles["order-tracking__details-text"], item?.is_check && (styles['order-tracking__details-text--pass']))}>
+                                    <p><i className="fa-solid fa-check"></i></p>
+                                </div>
+                                <div
+                                    className={clsx(styles["order-tracking__details-line"], item?.is_check && (styles['order-tracking__details-line--pass']))}></div>
                             </div>
-                            <div
-                                className={clsx(styles["order-tracking__details-line"], styles['order-tracking__details-line--pass'])}></div>
-                        </div>
-                        <div className={clsx(styles["order-tracking__details-info"], 'mt-3')}>
-                            <h6 className='mb-0 text-center'>Pending</h6>
-                            <p className='mb-0 text-center'>05:03</p>
-                            <div className={clsx(styles['order-tracking__details-btn'], '')}>
-                                {/*<button>Confirm</button>*/}
-                            </div>
-                        </div>
-                    </div>
-                    <div className={clsx(styles["order-tracking__details--outer"], 'col-lg-3 col-md-3 col-sm-3')}>
-                        <div className={clsx(styles["order-tracking__details-item"])}>
-                            <div
-                                className={clsx(styles["order-tracking__details-line"], orderStatus >= 2 && (styles['order-tracking__details-line--pass']))}></div>
-                            <div
-                                className={clsx(styles["order-tracking__details-text"], orderStatus >= 2 && (styles['order-tracking__details-text--pass']))}>
-                                <p><i className="fa-solid fa-check"></i></p>
-                            </div>
-                            <div
-                                className={clsx(styles["order-tracking__details-line"], orderStatus >= 2 && (styles['order-tracking__details-line--pass']))}></div>
-                        </div>
-                        <div className={clsx(styles["order-tracking__details-info"], 'mt-3')}>
-                            <h6 className='mb-0 text-center'>Confirmed</h6>
-                            <p className='mb-0 text-center'>--:--</p>
-                            <div className={clsx(styles['order-tracking__details-btn'], '')}>
-                                <button
-                                    onClick={(orderStatus === 1) ? (() => setOrderStatus(2)) : undefined}>Confirm
-                                </button>
+                            <div className={clsx(styles["order-tracking__details-info"], 'mt-3')}>
+                                <h6 className='mb-0 text-center'>{item?.status_id?.status}</h6>
+                                {item?.createdAt &&
+                                <p className='mb-0 text-center'>{ConvertTime(item?.createdAt)}</p>
+                                }
+                                <div className={clsx(styles['order-tracking__details-btn'], 'mt-3')}>
+                                    {!item?.is_check &&
+                                    <button onClick={() => updateStatusDetails(item)}>Confirm</button>
+                                    }
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className={clsx(styles["order-tracking__details--outer"], 'col-lg-3 col-md-3 col-sm-3')}>
-                        <div className={clsx(styles["order-tracking__details-item"])}>
-                            <div
-                                className={clsx(styles["order-tracking__details-line"], orderStatus >= 3 && (styles['order-tracking__details-line--pass']))}></div>
-                            <div
-                                className={clsx(styles["order-tracking__details-text"], orderStatus >= 3 && (styles['order-tracking__details-text--pass']))}>
-                                <p><i className="fa-solid fa-check"></i></p>
-                            </div>
-                            <div
-                                className={clsx(styles["order-tracking__details-line"], orderStatus >= 3 && (styles['order-tracking__details-line--pass']))}></div>
-                        </div>
-                        <div className={clsx(styles["order-tracking__details-info"], 'mt-3')}>
-                            <h6 className='mb-0 text-center'>Shipping</h6>
-                            <p className='mb-0 text-center'>--:--</p>
-                            <div className={clsx(styles['order-tracking__details-btn'], '')}>
-                                <button
-                                    onClick={(orderStatus === 2) ? (() => setOrderStatus(3)) : undefined}>Confirm
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={clsx(styles["order-tracking__details--outer"], 'col-lg-3 col-md-3 col-sm-3')}>
-                        <div className={clsx(styles["order-tracking__details-item"])}>
-                            <div
-                                className={clsx(styles["order-tracking__details-line"], orderStatus >= 4 && (styles['order-tracking__details-line--pass']))}></div>
-                            <div
-                                className={clsx(styles["order-tracking__details-text"], orderStatus >= 4 && (styles['order-tracking__details-text--pass']))}>
-                                <p><i className="fa-solid fa-check"></i></p>
-                            </div>
-                            <div
-                                className={clsx(styles["order-tracking__details-line"], orderStatus >= 4 && (styles['order-tracking__details-line--pass']))}></div>
-                        </div>
-                        <div className={clsx(styles["order-tracking__details-info"], 'mt-3')}>
-                            <h6 className='mb-0 text-center'>Delivered</h6>
-                            <p className='mb-0 text-center'>--:--</p>
-                            <div className={clsx(styles['order-tracking__details-btn'], '')}>
-                                <button
-                                    onClick={(orderStatus === 3) ? (() => setOrderStatus(4)) : undefined}>Confirm
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </Modal>
         </>

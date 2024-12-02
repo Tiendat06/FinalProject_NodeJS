@@ -7,6 +7,12 @@ class ProductVariantRepository {
             .catch(err => console.log(err));
     }
 
+    deleteProductVariantByProductId = (product_id) => {
+        return ProductVariant.deleteOne({product_id})
+            .then(value => value)
+            .catch(err => console.log(err));
+    }
+
     getProductVariantById = (variant_id) => {
         return ProductVariant.findById(variant_id)
             .populate({

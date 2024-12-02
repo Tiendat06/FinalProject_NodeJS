@@ -1,10 +1,11 @@
 import { useState, useEffect, memo } from 'react';
+import {Loading} from "~/components/elements";
 
 function Modal({ id = '', title = '', children = '',
                    labelBtnSave = '', labelBtnClose = '',
                    closeClassName = '', saveClassName = '', modalTitleClassName = '',
                    modalHeaderClassName = '', modalFooterClassName = '', modalContentClassName = '',
-                   modalBodyClassName = '', modalTypeClassName = '', isStatic = false,
+                   modalBodyClassName = '', modalTypeClassName = '', isStatic = false, loadingClassName='',
                    onClickLabelSave = () => {}, onClickLabelClose = () => {} }) {
 
     const [isOpen, setIsOpen] = useState(false);
@@ -39,7 +40,10 @@ function Modal({ id = '', title = '', children = '',
                         <button type="button" onClick={onClickLabelClose} className={`${closeClassName}`}
                                 data-bs-dismiss="modal">{labelBtnClose}</button>
                         <button type="button" onClick={onClickLabelSave}
-                                className={`${saveClassName}`}>{labelBtnSave}</button>
+                                className={`${saveClassName}`}>
+                            <Loading spinnerClassName={`d-none spinner-load ${loadingClassName}`} />
+                            <span>{labelBtnSave}</span>
+                        </button>
                     </div>
                 </div>
             </div>

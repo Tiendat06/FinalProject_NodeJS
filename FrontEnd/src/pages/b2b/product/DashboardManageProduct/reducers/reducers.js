@@ -26,10 +26,35 @@ const reducer = (state, action) => {
                 product: {...action.payLoad}
             }
             break;
+        case UPDATE_PRODUCT:
+            const newProductUpdate = [...state.productData];
+
+            newState = {
+                ...state,
+                productData: newProductUpdate.map(item =>
+                    item._id === action.payLoad._id
+                        ? {...item, ...action.payLoad} : item
+                )
+            };
+            break;
+        case ADD_PRODUCT:
+            newState = {
+                ...state,
+                productData: [...state.productData, action.payLoad],
+            }
+            break;
+        case DELETE_PRODUCT:
+            let newDeletedItems = [...state.productData];
+            let deletedData = newDeletedItems.filter(item => item._id !== action.payLoad._id);
+            newState = {
+                ...state,
+                productData: deletedData,
+            }
+            break;
         default:
             throw new Error(`Unknown action type ${action.type}`);
     }
-
+    console.log(newState);
     return newState;
 }
 

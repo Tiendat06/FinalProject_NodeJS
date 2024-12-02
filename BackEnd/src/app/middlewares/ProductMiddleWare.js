@@ -1,4 +1,5 @@
 const {validationResult} = require("express-validator");
+const productCategoryRepository = require('../repository/ProductCategoryRepository');
 
 class ProductMiddleWare {
 
@@ -32,6 +33,34 @@ class ProductMiddleWare {
             error = result.array()[0].msg;
         }
         req.flash('error', error);
+        next();
+    }
+
+    get_variant_by_product = (req, res, next) => {
+        const result = validationResult(req);
+        let error = '';
+        if(!result.isEmpty()){
+            error = result.array()[0].msg;
+        }
+        req.flash('error', error);
+        next();
+    }
+
+    updateProduct = async (req, res, next) => {
+        const {category_name} = req.body;
+        // return res.status(200).json({
+        //     status: true,
+        //     data: req.body
+        // })
+        console.log(req.body);
+        const productCategory = await productCategoryRepository.getCategoryByName(category_name);
+        if (!productCategory){
+            return res.status(400).json({
+                status: false,
+                msg: 'Category not found',
+            })
+        }
+        req.body.category_id = productCategory._id;
         next();
     }
 }

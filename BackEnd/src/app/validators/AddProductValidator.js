@@ -21,11 +21,11 @@ const addProductValidator = [
     .isNumeric()
     .withMessage('Product price must be a number'),
 
-  body('category_id')
-    .notEmpty()
-    .withMessage('Category ID is required')
-    .isMongoId()
-    .withMessage('Category ID must be a valid MongoDB ID'),
+  // body('category_id')
+  //   .notEmpty()
+  //   .withMessage('Category ID is required')
+  //   .isMongoId()
+  //   .withMessage('Category ID must be a valid MongoDB ID'),
 ];
 
 // Middleware to handle validation results

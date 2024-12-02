@@ -15,9 +15,35 @@ addWishListValidators = [
     check('product_id')
         .trim()
         .notEmpty().withMessage('Leak of data'),
+];
+
+getProductVariantByProduct = [
+    check('product_id')
+        .trim()
+        .notEmpty().withMessage('Leak of data'),
+];
+
+addProductValidatorV2 = [
+    check('product_name')
+        .trim()
+        .notEmpty().withMessage('Product name is required !'),
+    check('product_price')
+        .trim()
+        .notEmpty().withMessage('Product price is required !'),
+    check('variant_quantity')
+        .trim()
+        .notEmpty().withMessage('Quantity is required !'),
+    check('product_color')
+        .trim()
+        .notEmpty().withMessage('Product color is required !'),
+    check('product_description')
+        .trim()
+        .notEmpty().withMessage('Product description is required !'),
 ]
 
 module.exports = {
     commentValidator,
-    addWishListValidators
+    addWishListValidators,
+    getProductVariantByProduct,
+    addProductValidatorV2
 }

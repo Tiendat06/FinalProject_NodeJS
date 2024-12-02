@@ -13,9 +13,11 @@ const { addProductValidator, handleValidationAddProduct } = require('../app/vali
 
 const upload = require('../config/multer/multer');
 
-router.post('/', upload.single('img_file'), addProductValidator, handleValidationAddProduct, productController.createProduct);
+router.post('/', upload.single('img_file'), /*addProductValidator*/ productValidator.addProductValidatorV2, handleValidationAddProduct,
+    productMiddleWare.updateProduct, productController.createProduct);
 
-router.put('/:id', upload.single('img_file'), addProductValidator, handleValidationAddProduct, productController.updateProduct);
+router.put('/:id', upload.single('img_file'), addProductValidator, handleValidationAddProduct,
+    productMiddleWare.updateProduct, productController.updateProduct);
 
 router.delete('/:id', productController.deleteProduct);
 
@@ -26,7 +28,10 @@ router.post('/comment', checkLogin, productValidator.commentValidator,
     productMiddleWare.comment_product, productController.comment_product);
 
 router.post('/add-wishlist', checkLogin, productValidator.addWishListValidators,
-    productMiddleWare.add_wish_list, productController.add_wish_list)
+    productMiddleWare.add_wish_list, productController.add_wish_list);
+
+router.get('/variant/product-details/:product_id', checkLogin, productValidator.getProductVariantByProduct,
+    productMiddleWare.get_variant_by_product, productController.get_variant_by_product)
 
 router.get('/variant', productController.getAllVariants);
 

@@ -140,3 +140,12 @@ th{
     background-color: #ffffff;
     border: 1px solid var(--btn-primary);
 }
+
+.modal-content-variant{
+    overflow: scroll;
+    padding-top: 30px;
+}
+
+.modal-content-variant::-webkit-scrollbar{
+    display: none;
+}

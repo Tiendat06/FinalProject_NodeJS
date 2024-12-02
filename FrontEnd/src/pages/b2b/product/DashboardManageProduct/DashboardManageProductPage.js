@@ -2,11 +2,22 @@ import styles from './DashboardManageProductPage.module.css';
 import clsx from "clsx";
 import {Link} from "react-router-dom";
 import {Modal, Pagination} from "~/components/elements";
-import {ConvertDateString} from "~/utils";
+import {ConvertDateString, FormatUSDCurrency} from "~/utils";
 import {useDashboardContext} from "~/context/DashboardContext";
 import reducer, {initState} from './reducers/reducers';
-import {getProducts, setProduct, updateProduct, deleteProduct, onChangeData} from './actions/actions';
+import variant_reducer, {initVariantState} from './reducers/variant_reducer';
+import {getProducts, setProduct, updateProduct, deleteProduct, onChangeData, addProduct} from './actions/actions';
+import {
+    addProductVariantData, deleteProductVariantData,
+    getProductsVariant,
+    onChangeVariantData,
+    setProductsVariant,
+    updateVariantData
+} from './actions/variant_actions';
+import ProductVariantModal from "./ProductVariantModal/ProductVariantModal";
+import $ from 'jquery';
 
+import {toast} from 'react-toastify'
 import {useCallback, useEffect, useLayoutEffect, useReducer, useState} from "react";
 
 function DashboardManageProductPage() {
@@ -15,23 +26,23 @@ function DashboardManageProductPage() {
     const [state, dispatch] = useReducer(reducer, initState);
     const {product, productData} = state;
 
+    const [variantState, variantDispatch] = useReducer(variant_reducer, initVariantState);
+    const {productVariant, productVariantData} = variantState;
+
     const itemsPerPage = 10;
-    const rawData = [
-        { id: 1, name: "Laptop IdeaPad Slim 3", img: "/img/customer/product/laptop/lenovo-ideapadSlim3.png", import_price:200, price: 300, type: 'laptop', quantity: 100, desc: 'This is from VN', date_created: new Date('2024-11-13') },
-        { id: 2, name: "IPhone 11", img: "/img/customer/product/mobile/iphone11.png", import_price:200, price: 300, type: 'mobile', quantity: 100, desc: 'This is from VN', date_created: new Date('2024-11-13') },
-        { id: 3, name: "Loudspeaker Mini Xiaomi", img: "/img/customer/product/sound/sound-mini-siaomi.png", import_price:200, price: 300, type: 'sound', quantity: 100, desc: 'This is from VN', date_created: new Date('2024-11-13') },
-        { id: 4, name: "Laptop Microsoft Surface", img: "/img/customer/product/laptop/microsoft-surface.png", import_price:200, price: 400, type: 'laptop', quantity: 100, desc: 'This is from VN', date_created: new Date('2024-11-13') },
-        { id: 5, name: "Laptop Vivobook 15", img: "/img/customer/product/laptop/asus-vivobook15.png", import_price:200, price: 300, type: 'laptop', quantity: 100, desc: 'This is from VN', date_created: new Date('2024-11-13') },
-        { id: 6, name: "Laptop HP Pavilion 15", img: "/img/customer/product/laptop/hp-pavilion15.png", import_price:200, price: 300, type: 'laptop', quantity: 100, desc: 'This is from VN', date_created: new Date('2024-11-13') },
-        { id: 7, name: "Mouse G56D", img: "/img/customer/product/mouse/mouse-G56D.png", import_price:200, price: 300, type: 'mouse', quantity: 100, desc: 'This is from VN', date_created: new Date('2024-11-13') },
-        { id: 8, name: "Samsung S23 Ultra", img: "/img/customer/product/mobile/samsung-S23Ultra.png", import_price:200, price: 300, type: 'mobile', quantity: 100, desc: 'This is from VN', date_created: new Date('2024-11-13') },
-        { id: 9, name: "Lenovo K310", img: "/img/customer/product/keyboard/kb-lenovoK310.png", import_price:200, price: 300, type: 'keyboard', quantity: 100, desc: 'This is from VN', date_created: new Date('2024-11-13') },
-        { id: 10, name: "Logitech M650", img: "/img/customer/product/mouse/mouse-logitechM650.png", import_price:200, price: 200, type: 'mouse', quantity: 100, desc: 'This is from VN', date_created: new Date('2024-11-13') },
-    ];
-    // const [productData, setProductData] = useState(productList);
     const [currentPage, setCurrentPage] = useState(0);
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
+    const [imgFile, setImgFile] = useState('');
+
+    const handleProductImage = (e) => {
+        const img = e.target.files[0];
+        setImgFile(img);
+        // dispatch(setProduct({
+        //     ...product,
+        //     product_img: URL.createObjectURL(img),
+        // }))
+    }
 
     useLayoutEffect(() => {
         setPageCount(Math.ceil(productData.length / itemsPerPage));
@@ -41,21 +52,10 @@ function DashboardManageProductPage() {
         setCurrentPage(event.selected);
     }, []);
 
-    const [tempData, setTempData] = useState({});
-    const handleChangeTempData = (data) => {
-        const key = Object.keys(data)[0];
-        let value = data[key];
-        if (key === 'birthday'){
-            value = new Date(value);
-        }
-        setTempData({
-            ...tempData,
-            [key]: value
-        });
-    }
-
+    // BE
+    // product
     useEffect(() => {
-        fetch(`${api_url}/product/variant`, {
+        fetch(`${api_url}/product`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -64,27 +64,221 @@ function DashboardManageProductPage() {
         })
             .then(response => response.json())
             .then(data => {
+                console.log(data)
                 if(data.status) dispatch(getProducts(data.data));
 
             })
             .catch(error => console.log(error));
     }, []);
 
-    const updateProductVariant = () => {
-        fetch(`${api_url}/product/variant/${product._id}`, {
-            method: 'PUT',
+    const onClickProductIcon = (item) => {
+        dispatch(setProduct(item));
+        fetch(`${api_url}/product/variant/product-details/${item._id}`, {
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(product),
             credentials: "include"
         })
             .then(response => response.json())
             .then(data => {
-                if(data.status) dispatch(updateProduct(product));
+                console.log(data)
+                variantDispatch(getProductsVariant(data.data));
             })
             .catch(error => console.log(error));
     }
+
+    const fetchUpdateProduct = useCallback(() => {
+        const formData = new FormData();
+        formData.append('product_name', product.product_name);
+        formData.append('category_id', '');
+        formData.append('category_name', product?.category_id?.category_name);
+        formData.append('product_description', product.product_description);
+        formData.append('product_price', product.product_price);
+        formData.append('img_file', imgFile);
+        fetch(`${api_url}/product/${product._id}`, {
+            method: 'PUT',
+            body: formData,
+            credentials: "include"
+        })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status){
+                    const category_id = data.data.category_id;
+                    const category_name = product?.category_id?.category_name;
+                    dispatch(updateProduct({
+                        ...data.data,
+                        category_id: {
+                            _id: category_id,
+                            category_name
+                        }
+                    }));
+                    toast.success('Product updated successfully!');
+                } else{
+                    toast.error('Product updated failed!');
+                }
+
+            })
+            .catch(error => console.log(error));
+    }, [product, imgFile]);
+
+    const fetchAddProduct = useCallback(() => {
+        if(imgFile === undefined || imgFile === null) {
+            toast.error('Please select product image!');
+            console.log('hi world')
+            return;
+        }
+        $('.loading-spinner').removeClass('d-none');
+        $('.loading-add').html('Loading...')
+        const formData = new FormData();
+        formData.append('product_name', product?.product_name || '');
+        formData.append('product_price', product?.retail_price || '');
+        formData.append('variant_quantity', product?.variant_quantity || '');
+        formData.append('product_color', product?.product_color || '');
+        formData.append('category_id', '');
+        formData.append('category_name', product?.category_id?.category_name || 'Laptop');
+        formData.append('variant_RAM', product?.variant_RAM || '');
+        formData.append('variant_ROM', product?.variant_ROM || '');
+        formData.append('variant_operation_system', product?.variant_operation_system || '');
+        formData.append('variant_chipset', product?.variant_chipset || '');
+        formData.append('variant_graphic_card', product?.variant_graphic_card || '');
+        formData.append('variant_screen', product?.variant_screen || '');
+        formData.append('variant_cpu', product?.variant_cpu || '');
+        formData.append('variant_weight', product?.variant_weight || '');
+        formData.append('product_description', product?.product_description || '');
+        formData.append('img_file', imgFile);
+        fetch(`${api_url}/product`, {
+            method: 'POST',
+            body: formData,
+            credentials: "include"
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if(data.status){
+                    dispatch(addProduct(data.data));
+                    toast.success('Product added successfully!');
+                } else{
+                    toast.error(data.msg);
+                }
+                $('.loading-spinner').addClass('d-none');
+                $('.loading-add').html('Save');
+            })
+            .catch(err => console.log(err));
+    }, [product, imgFile]);
+
+    const fetchDeleteProduct = useCallback(() => {
+        $('.loading-spinner').removeClass('d-none');
+        $('.loading-add').html('Loading...')
+        fetch(`${api_url}/product/${product._id}`, {
+            method: 'DELETE',
+            credentials: "include"
+        })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status){
+                    dispatch(deleteProduct(product));
+                    $('.loading-spinner').addClass('d-none');
+                    $('.loading-add').html('Delete')
+                    toast.success(data.msg);
+                } else{
+                    toast.error(data.msg);
+                }
+            })
+            .catch(err => console.log(err));
+    }, [product]);
+
+    const fetchUpdateProductVariant = useCallback(() => {
+        $('.loading-spinner').removeClass('d-none');
+        $('.loading-add').html('Loading...')
+        const formData = new FormData();
+        formData.append('product_id', productVariant?.product_id);
+        formData.append('product_name', productVariant?.product_name || '');
+        formData.append('product_color', productVariant?.product_color || '');
+        formData.append('variant_quantity', productVariant?.variant_quantity || '');
+        formData.append('retail_price', productVariant?.retail_price || '');
+        formData.append('variant_ROM', productVariant?.variant_ROM || '');
+        formData.append('variant_RAM', productVariant?.variant_RAM || '');
+        formData.append('variant_operation_system', productVariant?.variant_operation_system || '');
+        formData.append('variant_chipset', productVariant?.variant_chipset || '');
+        formData.append('variant_graphic_card', productVariant?.variant_graphic_card || '');
+        formData.append('variant_screen', productVariant?.variant_screen || '');
+        formData.append('variant_cpu', productVariant?.variant_cpu || '');
+        formData.append('variant_weight', productVariant?.variant_weight || '');
+        formData.append('img_file', imgFile);
+        fetch(`${api_url}/product/variant/${productVariant._id}`, {
+            method: 'PUT',
+            body: formData,
+            credentials: "include"
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if(data.status) {
+                    variantDispatch(updateVariantData(data.data));
+                    toast.success(data.message);
+                } else toast.error(data.message);
+
+                $('.loading-spinner').addClass('d-none');
+                $('.loading-add').html('Save');
+            })
+            .catch(error => console.log(error));
+    }, [productVariant, imgFile])
+
+    const fetchAddProductVariant = useCallback(() => {
+        $('.loading-spinner').removeClass('d-none');
+        $('.loading-add').html('Loading...')
+        const formData = new FormData();
+        formData.append('product_id', product._id);
+        formData.append('product_name', productVariant?.product_name || '');
+        formData.append('product_color', productVariant?.product_color || '');
+        formData.append('variant_quantity', productVariant?.variant_quantity || '');
+        formData.append('retail_price', productVariant?.retail_price || '');
+        formData.append('variant_ROM', productVariant?.variant_ROM || '');
+        formData.append('variant_RAM', productVariant?.variant_RAM || '');
+        formData.append('variant_operation_system', productVariant?.variant_operation_system || '');
+        formData.append('variant_chipset', productVariant?.variant_chipset || '');
+        formData.append('variant_graphic_card', productVariant?.variant_graphic_card || '');
+        formData.append('variant_screen', productVariant?.variant_screen || '');
+        formData.append('variant_cpu', productVariant?.variant_cpu || '');
+        formData.append('variant_weight', productVariant?.variant_weight || '');
+        formData.append('img_file', imgFile);
+        fetch(`${api_url}/product/variant`, {
+            method: 'POST',
+            body: formData,
+            credentials: "include"
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if(data.status) {
+                    variantDispatch(addProductVariantData(data.data));
+                    toast.success(data.msg);
+                } else toast.error(data.msg);
+                $('.loading-spinner').addClass('d-none');
+                $('.loading-add').html('Save')
+            })
+            .catch(err => console.log(err));
+    }, [productVariant, imgFile]);
+
+    const fetchDeleteProductVariant = useCallback(() => {
+        $('.loading-spinner').removeClass('d-none');
+        $('.loading-add').html('Loading...')
+        fetch(`${api_url}/product/variant/${productVariant._id}`, {
+            method: 'DELETE',
+            credentials: "include"
+        })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status) {
+                    variantDispatch(deleteProductVariantData(data.data));
+                    toast.success(data.msg);
+                } else toast.error(data.msg);
+                $('.loading-spinner').addClass('d-none');
+                $('.loading-add').html('Delete')
+            })
+            .catch(err => console.log(err));
+    }, [productVariant, imgFile]);
     // console.log(product);
 
     return (
@@ -126,14 +320,8 @@ function DashboardManageProductPage() {
                                     <tr>
                                         <th>#</th>
                                         <th>NAME</th>
-                                        <th>RETAIL PRICE</th>
                                         <th>CATEGORY</th>
-                                        <th>COLOR</th>
-                                        <th>RAM</th>
-                                        <th>ROM</th>
-                                        <th>WEIGHT</th>
-                                        <th>QUANTITY</th>
-                                        {/*<th>DESCRIPTION</th>*/}
+                                        <th>DESCRIPTION</th>
                                         <th>ACTION</th>
                                     </tr>
                                     </thead>
@@ -143,43 +331,28 @@ function DashboardManageProductPage() {
                                             <td>
                                                 <p className={clsx(styles['user-table__text'])}>{index + 1}</p>
                                             </td>
-                                            <td width=''>
+                                            <td width='300'>
                                                 <div className="d-flex flex-wrap">
-                                                    <img src={`${item.product_image}`}
+                                                    <img src={`${item.product_img}`}
                                                          style={{width: 25, objectFit: "contain"}} alt=""/>
-                                                    <p className={clsx(styles['user-table__text'], 'ml-5')}>{item.product_name}</p>
+                                                    <p className={clsx(styles['user-table__text'], 'ml-5')}>{item?.product_name}</p>
                                                 </div>
                                             </td>
                                             <td width=''>
-                                            <p className={clsx(styles['user-table__text'])}>{item.retail_price}</p>
+                                                <p className={clsx(styles['user-table__text'])}>{item?.category_id?.category_name}</p>
                                             </td>
-                                            <td width=''>
-                                                <p className={clsx(styles['user-table__text'])}>{item.product_id.category_id.category_name}</p>
+                                            <td>
+                                                <p className={clsx(styles['user-table__text'])}>{item?.product_description}</p>
                                             </td>
-                                            <td width=''>
-                                                <p className={clsx(styles['user-table__text'])}>{item.product_color}</p>
-                                            </td>
-                                            <td width=''>
-                                                <p className={clsx(styles['user-table__text'])}>{item.variant_RAM || 'X'}</p>
-                                            </td>
-                                            <td width=''>
-                                                <p className={clsx(styles['user-table__text'])}>{item.variant_ROM || 'X'}</p>
-                                            </td>
-                                            <td width=''>
-                                                <p className={clsx(styles['user-table__text'])}>{item.variant_weight || 'X'}</p>
-                                            </td>
-                                            <td width=''>
-                                                <p className={clsx(styles['user-table__text'])}>{item.variant_quantity}</p>
-                                            </td>
-                                            {/*<td>*/}
-                                            {/*    <p className={clsx(styles['user-table__text'])}>{item.product_id.product_description}</p>*/}
-                                            {/*</td>*/}
-                                            <td width=''>
+                                            <td width='120'>
                                                 <p className={clsx(styles["user-table__action"])}>
-                                                    <i onClick={() => dispatch(setProduct(item))} data-bs-toggle='modal'
+                                                    <i onClick={() => onClickProductIcon(item)} data-bs-toggle='modal'
+                                                       data-bs-target='#view-product-variant'
+                                                       className={clsx(styles['user-table__action-edit'], "fa-solid fa-eye text-success")}></i>
+                                                    <i onClick={() => onClickProductIcon(item)} data-bs-toggle='modal'
                                                        data-bs-target='#edit-modal'
                                                        className={clsx(styles['user-table__action-edit'], "fa-solid fa-pen-to-square")}></i>
-                                                    <i onClick={() => dispatch(setProduct(item))} data-bs-toggle='modal'
+                                                    <i onClick={() => onClickProductIcon(item)} data-bs-toggle='modal'
                                                        data-bs-target='#delete-modal'
                                                        className={clsx(styles['user-table__action-trash'], "fa-solid fa-trash")}></i>
                                                 </p>
@@ -194,17 +367,387 @@ function DashboardManageProductPage() {
                     </div>
                 </div>
             </div>
+
+            {/*product variant*/}
+            {/*<ProductVariantModal productVariant={productVariant} productVariantData={productVariantData} />*/}
+
+            <Modal
+                id='view-product-variant'
+                modalHeaderClassName='d-none'
+                saveClassName='d-none'
+                closeClassName='btn btn-secondary'
+                labelBtnClose='Close'
+                modalTypeClassName='modal-xl'
+                modalBodyClassName={styles['modal-content-variant']}
+                isStatic={true}
+            >
+                <div className={clsx(styles['user-table__btn'])}>
+                    <button data-bs-toggle='modal' data-bs-target='#add-variant-modal' className={clsx("btn")}><i
+                        className="fa-brands fa-product-hunt"></i> Add Product Variant
+                    </button>
+                </div>
+                <table className="table table-hover table-bordered">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>NAME</th>
+                        <th>COLOR</th>
+                        <th>QUANTITY</th>
+                        <th>RETAIL PRICE</th>
+                        <th>ROM</th>
+                        <th>RAM</th>
+                        <th>SYSTEM</th>
+                        <th>CHIPSET</th>
+                        <th>GRAPHIC CARD</th>
+                        <th>SCREEN</th>
+                        <th>CPU</th>
+                        <th>WEIGHT</th>
+                        <th>ACTION</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {productVariantData.map((item, index) => (
+                        <tr key={`variant-p-${index}`}>
+                            <td>
+                                <p className={clsx(styles['user-table__text'])}>{index + 1}</p>
+                            </td>
+                            <td width='350'>
+                                <div className="d-flex flex-wrap">
+                                    <img src={`${item?.product_image}`}
+                                         style={{width: 25, objectFit: "contain"}} alt=""/>
+                                    <p className={clsx(styles['user-table__text'], 'ml-5')}>{item?.product_name}</p>
+                                </div>
+                            </td>
+                            <td width='150'>
+                                <p className={clsx(styles['user-table__text'])}>{item?.product_color}</p>
+                            </td>
+                            <td width=''>
+                                <p className={clsx(styles['user-table__text'])}>{item?.variant_quantity}</p>
+                            </td>
+                            <td width='100'>
+                                <p className={clsx(styles['user-table__text'])}><FormatUSDCurrency
+                                    price={item?.retail_price}/></p>
+                            </td>
+                            <td width='80'>
+                                <p className={clsx(styles['user-table__text'])}>{item?.variant_ROM || 'X'}</p>
+                            </td>
+                            <td width='80'>
+                                <p className={clsx(styles['user-table__text'])}>{item?.variant_RAM || 'X'}</p>
+                            </td>
+                            <td width='150'>
+                                <p className={clsx(styles['user-table__text'])}>{item?.variant_operation_system || 'X'}</p>
+                            </td>
+                            <td>
+                                <p className={clsx(styles['user-table__text'])}>{item?.variant_chipset || 'X'}</p>
+                            </td>
+                            <td width='150'>
+                                <p className={clsx(styles['user-table__text'])}>{item?.variant_graphic_card || 'X'}</p>
+                            </td>
+                            <td>
+                                <p className={clsx(styles['user-table__text'])}>{item?.variant_screen || 'X'}</p>
+                            </td>
+                            <td>
+                                <p className={clsx(styles['user-table__text'])}>{item?.variant_cpu || 'X'}</p>
+                            </td>
+                            <td>
+                                <p className={clsx(styles['user-table__text'])}>{item?.variant_weight || 'X'}</p>
+                            </td>
+                            <td width='120'>
+                                <p className={clsx(styles["user-table__action"])}>
+                                    <i onClick={() => variantDispatch(setProductsVariant(item))} data-bs-toggle='modal'
+                                       data-bs-target='#edit-variant-modal'
+                                       className={clsx(styles['user-table__action-edit'], "fa-solid fa-pen-to-square")}></i>
+                                    <i onClick={() => variantDispatch(setProductsVariant(item))} data-bs-toggle='modal'
+                                       data-bs-target='#delete-variant-modal'
+                                       className={clsx(styles['user-table__action-trash'], "fa-solid fa-trash")}></i>
+                                </p>
+                            </td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+            </Modal>
+
+            <Modal
+                id='edit-variant-modal'
+                title='Save change'
+                labelBtnSave='Save'
+                closeClassName='d-none'
+                loadingClassName='loading-spinner'
+                onClickLabelSave={fetchUpdateProductVariant}
+                isStatic={true}
+                saveClassName={clsx(styles['edit-modal__save'], 'btn btn-danger loading-add')}
+            >
+                <div className="form-group">
+                    <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'], 'mt-0')} htmlFor="name-v-edit">PRODUCT
+                            NAME</label>
+                        <input onChange={e => variantDispatch(onChangeVariantData({product_name: e.target.value}))}
+                               type="text"
+                               id='name-v-edit'
+                               placeholder='Enter full name'
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}
+                               value={productVariant?.product_name || ''}/>
+                    </div>
+                    <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'])} htmlFor="retail_price-v-edit">RETAIL
+                            PRICE</label>
+                        <input onChange={e => variantDispatch(onChangeVariantData({retail_price: e.target.value}))}
+                               type="number"
+                               id='retail_price-v-edit'
+                               placeholder='Enter retail price'
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}
+                               value={productVariant.retail_price || 0}/>
+                    </div>
+                    <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'])} htmlFor="quantity-v-edit">QUANTITY</label>
+                        <input onChange={e => variantDispatch(onChangeVariantData({variant_quantity: e.target.value}))}
+                               type="number"
+                               id='quantity-v-edit'
+                               placeholder='Enter quantity'
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}
+                               value={productVariant.variant_quantity || 0}/>
+                    </div>
+                    <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'])} htmlFor="ram-v-edit">RAM</label>
+                        <input onChange={e => variantDispatch(onChangeVariantData({variant_RAM: e.target.value}))}
+                               type="text"
+                               id='ram-v-edit'
+                               placeholder='Enter RAM'
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}
+                               value={productVariant?.variant_RAM}/>
+                    </div>
+                    <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'])} htmlFor="rom-v-edit">ROM</label>
+                        <input onChange={e => variantDispatch(onChangeVariantData({variant_ROM: e.target.value}))}
+                               type="text"
+                               id='rom-v-edit'
+                               placeholder='Enter ROM'
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}
+                               value={productVariant?.variant_ROM}/>
+                    </div>
+                    <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'])} htmlFor="os-v-edit">Operation
+                            system</label>
+                        <input
+                            onChange={e => variantDispatch(onChangeVariantData({variant_operation_system: e.target.value}))}
+                            type="text"
+                            id='os-v-edit'
+                            placeholder='Enter operation system'
+                            className={clsx(styles['edit-modal__inp'], 'form-control')}
+                            value={productVariant?.variant_operation_system}/>
+                    </div>
+                    <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'])} htmlFor="chipset-v-edit">Chipset</label>
+                        <input onChange={e => variantDispatch(onChangeVariantData({variant_chipset: e.target.value}))}
+                               type="text"
+                               id='chipset-v-edit'
+                               placeholder='Enter operation system'
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}
+                               value={productVariant?.variant_chipset}/>
+                    </div>
+                    <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'])} htmlFor="graphic-card-v-edit">Graphic
+                            card</label>
+                        <input
+                            onChange={e => variantDispatch(onChangeVariantData({variant_graphic_card: e.target.value}))}
+                            type="text"
+                            id='graphic-card-v-edit'
+                            placeholder='Enter graphic card'
+                            className={clsx(styles['edit-modal__inp'], 'form-control')}
+                            value={productVariant?.variant_graphic_card}/>
+                    </div>
+                    <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'])} htmlFor="screen-v-edit">Screen</label>
+                        <input onChange={e => variantDispatch(onChangeVariantData({variant_screen: e.target.value}))}
+                               type="text"
+                               id='screen-v-edit'
+                               placeholder='Enter screen'
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}
+                               value={productVariant?.variant_screen}/>
+                    </div>
+                    <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'])} htmlFor="cpu-v-edit">CPU</label>
+                        <input onChange={e => variantDispatch(onChangeVariantData({variant_cpu: e.target.value}))}
+                               type="text"
+                               id='cpu-v-edit'
+                               placeholder='Enter cpu'
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}
+                               value={productVariant?.variant_cpu}/>
+                    </div>
+                    <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'])} htmlFor="weight-v-edit">CPU</label>
+                        <input onChange={e => variantDispatch(onChangeVariantData({variant_weight: e.target.value}))}
+                               type="text"
+                               id='weight-v-edit'
+                               placeholder='Enter weight'
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}
+                               value={productVariant?.variant_weight}/>
+                    </div>
+                    <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'])} htmlFor="img-v-edit">Product image</label>
+                        <input onChange={e => handleProductImage(e)}
+                               type="file"
+                               id='img-v-edit'
+                               placeholder='Enter image'
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}/>
+                    </div>
+                </div>
+            </Modal>
+
+            <Modal
+                id='add-variant-modal'
+                title='Add Product'
+                labelBtnSave='Save'
+                closeClassName='d-none'
+                loadingClassName='loading-spinner'
+                onClickLabelSave={fetchAddProductVariant}
+                isStatic={true}
+                saveClassName={clsx(styles['edit-modal__save'], 'btn btn-danger loading-add')}
+            >
+                <div className="form-group">
+                    <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'], 'mt-0')} htmlFor="name-variant-add">PRODUCT
+                            NAME</label>
+                        <input onChange={e => variantDispatch(onChangeVariantData({product_name: e.target.value}))}
+                               type="text"
+                               id='name-variant-add'
+                               placeholder='Enter full name'
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}/>
+                    </div>
+                    <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'])} htmlFor="retail_price-variant-add">RETAIL
+                            PRICE</label>
+                        <input onChange={e => variantDispatch(onChangeVariantData({retail_price: e.target.value}))}
+                               type="number"
+                               id='retail_price-variant-add'
+                               placeholder='Enter retail price'
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}/>
+                    </div>
+                    <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'])}
+                               htmlFor="quantity-variant-add">QUANTITY</label>
+                        <input onChange={e => variantDispatch(onChangeVariantData({variant_quantity: e.target.value}))}
+                               type="number"
+                               id='quantity-variant-add'
+                               placeholder='Enter quantity'
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}/>
+                    </div>
+                    <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'])} htmlFor="color-variant-add">Color</label>
+                        <input onChange={e => variantDispatch(onChangeVariantData({product_color: e.target.value}))}
+                               type="text"
+                               id='color-variant-add'
+                               placeholder='Enter color'
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}/>
+                    </div>
+                    <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'])} htmlFor="ram-variant-add">RAM</label>
+                        <input onChange={e => variantDispatch(onChangeVariantData({variant_RAM: e.target.value}))}
+                               type="text"
+                               id='ram-variant-add'
+                               placeholder='Enter RAM'
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}/>
+                    </div>
+                    <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'])} htmlFor="rom-variant-add">ROM</label>
+                        <input onChange={e => variantDispatch(onChangeVariantData({variant_ROM: e.target.value}))}
+                               type="text"
+                               id='rom-variant-add'
+                               placeholder='Enter ROM'
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}/>
+                    </div>
+                    <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'])} htmlFor="os-variant-add">Operation
+                            system</label>
+                        <input
+                            onChange={e => variantDispatch(onChangeVariantData({variant_operation_system: e.target.value}))}
+                            type="text"
+                            id='os-variant-add'
+                            placeholder='Enter operation system'
+                            className={clsx(styles['edit-modal__inp'], 'form-control')}/>
+                    </div>
+                    <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'])}
+                               htmlFor="chipset-variant-add">Chipset</label>
+                        <input onChange={e => variantDispatch(onChangeVariantData({variant_chipset: e.target.value}))}
+                               type="text"
+                               id='chipset-variant-add'
+                               placeholder='Enter operation system'
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}/>
+                    </div>
+                    <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'])} htmlFor="graphic-card-variant-add">Graphic
+                            card</label>
+                        <input
+                            onChange={e => variantDispatch(onChangeVariantData({variant_graphic_card: e.target.value}))}
+                            type="text"
+                            id='graphic-card-variant-add'
+                            placeholder='Enter graphic card'
+                            className={clsx(styles['edit-modal__inp'], 'form-control')}/>
+                    </div>
+                    <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'])} htmlFor="screen-variant-add">Screen</label>
+                        <input onChange={e => variantDispatch(onChangeVariantData({variant_screen: e.target.value}))}
+                               type="text"
+                               id='screen-variant-add'
+                               placeholder='Enter screen'
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}/>
+                    </div>
+                    <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'])} htmlFor="cpu-variant-add">CPU</label>
+                        <input onChange={e => variantDispatch(onChangeVariantData({variant_cpu: e.target.value}))}
+                               type="text"
+                               id='cpu-variant-add'
+                               placeholder='Enter cpu'
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}/>
+                    </div>
+                    <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'])} htmlFor="weight-variant-add">CPU</label>
+                        <input onChange={e => variantDispatch(onChangeVariantData({variant_weight: e.target.value}))}
+                               type="text"
+                               id='weight-variant-add'
+                               placeholder='Enter weight'
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}/>
+                    </div>
+                    <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'])} htmlFor="img-variant-add">Product
+                            image</label>
+                        <input onChange={e => handleProductImage(e)}
+                               type="file"
+                               id='img-variant-add'
+                               placeholder='Enter image'
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}/>
+                    </div>
+                </div>
+            </Modal>
+
+            <Modal
+                id='delete-variant-modal'
+                title='Delete Product'
+                labelBtnSave='Delete'
+                closeClassName='d-none'
+                loadingClassName='loading-spinner'
+                onClickLabelSave={fetchDeleteProductVariant}
+                isStatic={true}
+                saveClassName={clsx(styles['delete-modal__save'], 'btn btn-danger loading-add')}
+            >
+                <p className='mb-0'>Are you sure to delete "{productVariant?.product_name}"?</p>
+            </Modal>
+
+            {/*product*/}
             <Modal
                 id='edit-modal'
                 title='Save change'
                 labelBtnSave='Save'
                 closeClassName='d-none'
+                onClickLabelSave={fetchUpdateProduct}
                 isStatic={true}
-                saveClassName={clsx(styles['edit-modal__save'], 'btn btn-success')}
+                saveClassName={clsx(styles['edit-modal__save'], 'btn btn-danger')}
             >
                 <div className="form-group">
                     <div className="form-group">
-                        <label className={clsx(styles['edit-modal__label'], 'mt-0')} htmlFor="name-edit">FULL
+                        <label className={clsx(styles['edit-modal__label'], 'mt-0')} htmlFor="name-edit">PRODUCT
                             NAME</label>
                         <input onChange={e => dispatch(onChangeData({product_name: e.target.value}))}
                                type="text"
@@ -214,117 +757,20 @@ function DashboardManageProductPage() {
                                value={product.product_name || ''}/>
                     </div>
                     <div className="form-group">
-                        <label className={clsx(styles['edit-modal__label'])} htmlFor="retail_price-edit">RETAIL
-                            PRICE</label>
-                        <input onChange={e => dispatch(onChangeData({retail_price: e.target.value}))}
-                               type="number"
-                               id='retail_price-edit'
-                               placeholder='Enter retail price'
-                               className={clsx(styles['edit-modal__inp'], 'form-control')}
-                               value={product.retail_price || 0}/>
-                    </div>
-                    <div className="form-group">
-                        <label className={clsx(styles['edit-modal__label'])} htmlFor="quantity-edit">QUANTITY</label>
-                        <input onChange={e => dispatch(onChangeData({variant_quantity: e.target.value}))}
-                               type="number"
-                               id='quantity-edit'
-                               placeholder='Enter quantity'
-                               className={clsx(styles['edit-modal__inp'], 'form-control')}
-                               value={product.variant_quantity || 0}/>
-                    </div>
-                    <div className="form-group">
                         <label className={clsx(styles['edit-modal__label'])} htmlFor="type-edit">CATEGORY</label>
                         <select onChange={e => dispatch(onChangeData({
-                            product_id: {
-                                ...product?.product_id,
-                                category_id: {
-                                    ...product.product_id?.category_id,
-                                    category_name: e.target.value
-                                }
+                            category_id: {
+                                ...product?.category_id,
+                                category_name: e.target.value
                             }
                         }))}
                                 name="" id="type-edit"
-                                value={product.product_id?.category_id?.category_name || ''}
+                                value={product?.category_id?.category_name || ''}
                                 className={clsx(styles['edit-modal__inp'], 'form-select')}>
                             <option value="Laptop">Laptop</option>
                             <option value="Smartphone">Mobile</option>
                             <option value="Headphone">Headphone</option>
-                            {/*<option value="mouse">Mouse</option>*/}
-                            {/*<option value="keyboard">Keyboard</option>*/}
                         </select>
-                    </div>
-                    <div className="form-group">
-                        <label className={clsx(styles['edit-modal__label'])} htmlFor="ram-edit">RAM</label>
-                        <input onChange={e => dispatch(onChangeData({variant_RAM: e.target.value}))}
-                               type="text"
-                               id='ram-edit'
-                               placeholder='Enter RAM'
-                               className={clsx(styles['edit-modal__inp'], 'form-control')}
-                               value={product?.variant_RAM}/>
-                    </div>
-                    <div className="form-group">
-                        <label className={clsx(styles['edit-modal__label'])} htmlFor="rom-edit">ROM</label>
-                        <input onChange={e => dispatch(onChangeData({variant_ROM: e.target.value}))}
-                               type="text"
-                               id='rom-edit'
-                               placeholder='Enter ROM'
-                               className={clsx(styles['edit-modal__inp'], 'form-control')}
-                               value={product?.variant_ROM}/>
-                    </div>
-                    <div className="form-group">
-                        <label className={clsx(styles['edit-modal__label'])} htmlFor="os-edit">Operation system</label>
-                        <input onChange={e => dispatch(onChangeData({variant_operation_system: e.target.value}))}
-                               type="text"
-                               id='os-edit'
-                               placeholder='Enter operation system'
-                               className={clsx(styles['edit-modal__inp'], 'form-control')}
-                               value={product?.variant_operation_system}/>
-                    </div>
-                    <div className="form-group">
-                        <label className={clsx(styles['edit-modal__label'])} htmlFor="chipset-edit">Chipset</label>
-                        <input onChange={e => dispatch(onChangeData({variant_chipset: e.target.value}))}
-                               type="text"
-                               id='chipset-edit'
-                               placeholder='Enter operation system'
-                               className={clsx(styles['edit-modal__inp'], 'form-control')}
-                               value={product?.variant_chipset}/>
-                    </div>
-                    <div className="form-group">
-                        <label className={clsx(styles['edit-modal__label'])} htmlFor="graphic-card-edit">Graphic
-                            card</label>
-                        <input onChange={e => dispatch(onChangeData({variant_graphic_card: e.target.value}))}
-                               type="text"
-                               id='graphic-card-edit'
-                               placeholder='Enter graphic card'
-                               className={clsx(styles['edit-modal__inp'], 'form-control')}
-                               value={product?.variant_graphic_card}/>
-                    </div>
-                    <div className="form-group">
-                        <label className={clsx(styles['edit-modal__label'])} htmlFor="screen-edit">Screen</label>
-                        <input onChange={e => dispatch(onChangeData({variant_screen: e.target.value}))}
-                               type="text"
-                               id='screen-edit'
-                               placeholder='Enter screen'
-                               className={clsx(styles['edit-modal__inp'], 'form-control')}
-                               value={product?.variant_screen}/>
-                    </div>
-                    <div className="form-group">
-                        <label className={clsx(styles['edit-modal__label'])} htmlFor="cpu-edit">CPU</label>
-                        <input onChange={e => dispatch(onChangeData({variant_cpu: e.target.value}))}
-                               type="text"
-                               id='cpu-edit'
-                               placeholder='Enter cpu'
-                               className={clsx(styles['edit-modal__inp'], 'form-control')}
-                               value={product?.variant_cpu}/>
-                    </div>
-                    <div className="form-group">
-                        <label className={clsx(styles['edit-modal__label'])} htmlFor="weight-edit">CPU</label>
-                        <input onChange={e => dispatch(onChangeData({variant_weight: e.target.value}))}
-                               type="text"
-                               id='weight-edit'
-                               placeholder='Enter weight'
-                               className={clsx(styles['edit-modal__inp'], 'form-control')}
-                               value={product?.variant_weight}/>
                     </div>
                     <div className="form-group">
                         <label className={clsx(styles['edit-modal__label'])} htmlFor="img-edit">Product image</label>
@@ -336,12 +782,9 @@ function DashboardManageProductPage() {
                     </div>
                     <div className="form-group">
                         <label className={clsx(styles['edit-modal__label'])} htmlFor="desc-edit">DESCRIPTION</label>
-                        <textarea value={product.product_id?.product_description || ''} placeholder='Enter description'
+                        <textarea value={product?.product_description || ''} placeholder='Enter description'
                                   onChange={e => dispatch(onChangeData({
-                                      product_id: {
-                                          ...product?.product_id,
-                                          product_description: e.target.value
-                                      }
+                                      product_description: e.target.value
                                   }))}
                                   className={clsx(styles['edit-modal__inp'], 'form-control')}
                                   name="" id="desc-edit" cols="30" rows="5">
@@ -355,14 +798,16 @@ function DashboardManageProductPage() {
                 title='Add Product'
                 labelBtnSave='Save'
                 closeClassName='d-none'
+                onClickLabelSave={fetchAddProduct}
+                loadingClassName='loading-spinner'
                 isStatic={true}
-                saveClassName={clsx(styles['edit-modal__save'], 'btn btn-success')}
+                saveClassName={clsx(styles['edit-modal__save'], 'btn btn-danger loading-add')}
             >
                 <div className="form-group">
                     <div className="form-group">
                         <label className={clsx(styles['edit-modal__label'], 'mt-0')} htmlFor="name-add">FULL
                             NAME</label>
-                        <input onChange={e => onChangeData({product_name: e.target.value})}
+                        <input onChange={e => dispatch(onChangeData({product_name: e.target.value}))}
                                type="text"
                                id='name-add'
                                placeholder='Enter product name'
@@ -386,23 +831,27 @@ function DashboardManageProductPage() {
                                className={clsx(styles['edit-modal__inp'], 'form-control')}/>
                     </div>
                     <div className="form-group">
+                        <label className={clsx(styles['edit-modal__label'])} htmlFor="color-v-add">Color</label>
+                        <input onChange={e => dispatch(onChangeData({product_color: e.target.value}))}
+                               type="text"
+                               id='color-v-add'
+                               placeholder='Enter color'
+                               className={clsx(styles['edit-modal__inp'], 'form-control')}/>
+                    </div>
+                    <div className="form-group">
                         <label className={clsx(styles['edit-modal__label'])} htmlFor="type-add">CATEGORY</label>
                         <select onChange={e => dispatch(onChangeData({
-                            product_id: {
-                                ...product?.product_id,
-                                category_id: {
-                                    ...product.product_id?.category_id,
-                                    category_name: e.target.value
-                                }
+                            category_id: {
+                                // ...product?.category_id,
+                                category_name: e.target.value
                             }
                         }))}
                                 name="" id="type-add"
+                                value={product?.category_id?.category_name || ''}
                                 className={clsx(styles['edit-modal__inp'], 'form-select')}>
                             <option value="Laptop">Laptop</option>
                             <option value="Smartphone">Mobile</option>
                             <option value="Headphone">Headphone</option>
-                            {/*<option value="mouse">Mouse</option>*/}
-                            {/*<option value="keyboard">Keyboard</option>*/}
                         </select>
                     </div>
                     <div className="form-group">
@@ -472,7 +921,7 @@ function DashboardManageProductPage() {
                     </div>
                     <div className="form-group">
                         <label className={clsx(styles['edit-modal__label'])} htmlFor="img-add">Product image</label>
-                        <input onChange={e => dispatch(onChangeData({product_image: e.target.value}))}
+                        <input onChange={e => handleProductImage(e)}
                                type="file"
                                id='img-add'
                                placeholder='Enter image'
@@ -480,12 +929,9 @@ function DashboardManageProductPage() {
                     </div>
                     <div className="form-group">
                         <label className={clsx(styles['edit-modal__label'])} htmlFor="desc-add">DESCRIPTION</label>
-                        <textarea placeholder='Enter description'
+                        <textarea value={product?.product_description || ''} placeholder='Enter description'
                                   onChange={e => dispatch(onChangeData({
-                                      product_id: {
-                                          ...product?.product_id,
-                                          product_description: e.target.value
-                                      }
+                                      product_description: e.target.value
                                   }))}
                                   className={clsx(styles['edit-modal__inp'], 'form-control')}
                                   name="" id="desc-add" cols="30" rows="5">
@@ -499,8 +945,10 @@ function DashboardManageProductPage() {
                 title='Delete Product'
                 labelBtnSave='Delete'
                 closeClassName='d-none'
+                loadingClassName='loading-spinner'
+                onClickLabelSave={fetchDeleteProduct}
                 isStatic={true}
-                saveClassName={clsx(styles['delete-modal__save'], 'btn btn-danger')}
+                saveClassName={clsx(styles['delete-modal__save'], 'btn btn-danger loading-add')}
             >
                 <p className='mb-0'>Are you sure to delete "{product.product_name}"?</p>
             </Modal>

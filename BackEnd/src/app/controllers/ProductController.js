@@ -24,6 +24,11 @@ class ProductController {
         return await wishListService.addWishList(req, res);
     }
 
+    // [GET] /product/variant/product-details/:product_id
+    get_variant_by_product = async (req, res, next) => {
+        return await productService.getVariantByProductId(req, res);
+    }
+
     // [GET] /product/variants
     getAllVariants = async (req, res, next) => {
         return await productService.getAllProductVariants(req, res);
@@ -59,7 +64,8 @@ class ProductController {
     //Create new product
     // [POST] /product
     createProduct = async (req, res, next) => {
-        return await productService.createProduct(req, res);
+        // return await productService.createProduct(req, res);
+        return await productService.addProductV2(req, res);
     }
 
     // [PUT] /product/:id
@@ -69,7 +75,8 @@ class ProductController {
 
     // [DELETE] /product/:id
     deleteProduct = async (req, res, next) => {
-        return await productService.deleteProduct(req, res);
+        // return await productService.deleteProduct(req, res);
+        return await productService.deleteProductV2(req, res);
     }
 }
 

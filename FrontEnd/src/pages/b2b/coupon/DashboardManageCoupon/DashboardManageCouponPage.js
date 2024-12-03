@@ -20,7 +20,7 @@ function DashboardManageCouponPage() {
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         setPageCount(Math.ceil(couponList.length / itemsPerPage));
         setCurrentItems(couponList.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage));
     }, [couponList, currentPage]);
@@ -136,6 +136,11 @@ function DashboardManageCouponPage() {
                               className={clsx(styles["manage-user__table-item"], styles['manage-user__table-item--choose'])}>
                             <i className="fa-solid fa-ticket"></i>
                             <p>Manage Coupon</p>
+                        </Link>
+                        <Link onClick={() => setDashBoardSubLink('manageCategory')} to='/dashboard/category'
+                              className={clsx(styles["manage-user__table-item"])}>
+                            <i className="fa-solid fa-list"></i>
+                            <p>Manage Category</p>
                         </Link>
                     </ul>
                     <div className="card-body">

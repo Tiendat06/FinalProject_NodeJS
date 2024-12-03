@@ -78,6 +78,16 @@ class ProductController {
         // return await productService.deleteProduct(req, res);
         return await productService.deleteProductV2(req, res);
     }
+
+    // [GET] /product/category
+    get_product_category = async (req, res, next) => {
+        return await productService.getProductCategory(req, res);
+    }
+
+    // [POST] /product/category
+    add_product_category = async (req, res, next) => {
+        return await productService.addProductCategory(req, res);
+    }
 }
 
 module.exports = new ProductController;

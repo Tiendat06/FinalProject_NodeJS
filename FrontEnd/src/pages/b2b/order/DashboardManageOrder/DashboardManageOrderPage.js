@@ -156,6 +156,11 @@ function DashboardManageOrderPage() {
                             <i className="fa-solid fa-ticket"></i>
                             <p>Manage Coupon</p>
                         </Link>
+                        <Link onClick={() => setDashBoardSubLink('manageCategory')} to='/dashboard/category'
+                              className={clsx(styles["manage-user__table-item"])}>
+                            <i className="fa-solid fa-list"></i>
+                            <p>Manage Category</p>
+                        </Link>
                     </ul>
                     <div className="card-body">
                         <div className={clsx(styles['user-table'])}>

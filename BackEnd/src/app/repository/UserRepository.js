@@ -2,6 +2,12 @@ const User = require('../model/User');
 
 class UserRepository {
 
+    getAllUsers = () => {
+        return User.find({deleted: false})
+            .then(users => users)
+            .catch(err => console.log(err))
+    }
+
     insertUserRegister = (userJson) => {
         return User.insertMany(userJson)
             .then(value => {

@@ -15,9 +15,11 @@ class LogService {
             if(error.length === 0) {
                 const {phone, password} = req.body;
                 const userData = await userRepository.getUserByPhone(phone);
+                if(!userData) throw new Error('Invalid phone number or password !');
                 if(userData){
                     const user_id = userData._id;
                     const accountData = await accountRepository.getAccountByUserId(user_id);
+                    if (!accountData) throw new Error('Your account has been banned !');
                     const hashPassword = accountData.password;
                     console.log({
                         password, hashPassword

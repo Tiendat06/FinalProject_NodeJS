@@ -39,11 +39,21 @@ addProductValidatorV2 = [
     check('product_description')
         .trim()
         .notEmpty().withMessage('Product description is required !'),
+];
+
+addCategoryValidator = [
+    check('category_name')
+        .trim()
+        .notEmpty().withMessage('Category name is required !'),
+    check('description')
+        .trim()
+        .notEmpty().withMessage('Description is required !'),
 ]
 
 module.exports = {
     commentValidator,
     addWishListValidators,
     getProductVariantByProduct,
-    addProductValidatorV2
+    addProductValidatorV2,
+    addCategoryValidator
 }

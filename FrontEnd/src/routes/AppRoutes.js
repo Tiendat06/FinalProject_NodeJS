@@ -2,7 +2,7 @@ import {
     AboutPage,
     CartPage,
     CheckoutPage,
-    ContactPage,
+    ContactPage, DashboardCategory,
     DetailsPage,
     HomePage,
     ProfilePage,
@@ -40,6 +40,7 @@ function AppRoutes() {
             <Route path='/dashboard/product' element={<DashboardManageProductPage />} />
             <Route path='/dashboard/order' element={<DashboardManageOrderPage />} />
             <Route path='/dashboard/coupon' element={<DashboardManageCouponPage />} />
+            <Route path='/dashboard/category' element={<DashboardCategory />} />
         </Routes>
     );
 }

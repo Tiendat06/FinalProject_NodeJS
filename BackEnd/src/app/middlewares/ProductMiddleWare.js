@@ -63,6 +63,16 @@ class ProductMiddleWare {
         req.body.category_id = productCategory._id;
         next();
     }
+
+    add_product_category = (req, res, next) => {
+        const result = validationResult(req);
+        let error = '';
+        if(!result.isEmpty()){
+            error = result.array()[0].msg;
+        }
+        req.flash('error', error);
+        next();
+    }
 }
 
 module.exports = new ProductMiddleWare;

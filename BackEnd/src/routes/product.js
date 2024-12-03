@@ -21,6 +21,10 @@ router.put('/:id', upload.single('img_file'), addProductValidator, handleValidat
 
 router.delete('/:id', productController.deleteProduct);
 
+router.get('/category', productController.get_product_category);
+router.post('/category', productValidator.addCategoryValidator,
+    productMiddleWare.add_product_category, productController.add_product_category);
+
 
 router.get('/', productMiddleWare.index, productController.index);
 

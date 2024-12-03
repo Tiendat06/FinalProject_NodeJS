@@ -102,6 +102,15 @@ function DashboardSidebar() {
                                         <span>Manage Coupon</span>
                                     </Link>
                                 </li>
+                                <li onClick={() => setDashBoardSubLink('manageCategory')}
+                                    className={clsx(styles["sidebar-content__all-item__list-item"])}>
+                                    <Link
+                                        className={clsx(dashBoardSubLink === 'manageCategory' && styles["sidebar-content__all-item__list-item--choose"])}
+                                        to='/dashboard/category'>
+                                        <i className="fa-solid fa-list"></i>
+                                        <span>Manage Category</span>
+                                    </Link>
+                                </li>
                             </ul>
                         </li>
                         <li className={clsx(styles["sidebar-content__all-item"], 'mb-1')}>

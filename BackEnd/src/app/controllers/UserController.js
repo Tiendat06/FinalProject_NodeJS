@@ -5,9 +5,18 @@ const wishListService = require('../services/WishListService');
 
 class UserController {
 
+    get_all_users = async (req, res, next) => {
+        return await userService.getAllUsers(req, res);
+    }
+
     update_user_profile = async (req, res, next) => {
         return await userService.updateUserProfile(req, res);
     }
+
+    delete_user = async (req, res, next) => {
+        return await userService.deleteUser(req, res);
+    }
+
     get_user_profile = async (req, res, next) => {
         return await userService.getUserProfile(req, res);
     }

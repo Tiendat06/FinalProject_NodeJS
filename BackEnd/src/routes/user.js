@@ -7,6 +7,10 @@ const userValidator = require('../app/validators/UserValidator');
 
 const upload = require('../config/multer/multer');
 
+router.get('/', userController.get_all_users);
+
+router.delete('/:id', userController.delete_user);
+
 router.put('/profile/:id',upload.single('img_file'), checkLogin, userValidator.userProfileValidator,
     userMiddleWare.update_user_profile, userController.update_user_profile);
 

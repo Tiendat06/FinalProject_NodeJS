@@ -3,6 +3,7 @@ const productVariantRepository = require('../repository/ProductVariantRepository
 const commentRepository = require('../repository/CommentRepository');
 const wishListRepository = require('../repository/WishListRepository');
 const ProductVariantRepository = require('../repository/ProductVariantRepository');
+const productCategoryRepository = require('../repository/ProductCategoryRepository');
 const cloudinary = require('cloudinary').v2;
 const fs = require('fs');
 
@@ -660,6 +661,46 @@ class ProductService {
                 status: false,
                 msg: 'An error occurred while deleting the product. Please try again later.',
             });
+        }
+    }
+
+    getProductCategory = async (req, res, next) => {
+        try {
+            const category = await productCategoryRepository.getAllCategory();
+            return res.status(200).json({
+                status: true,
+                data: category,
+                msg: 'Product category found !',
+            })
+
+        } catch (e) {
+            return res.status(400).json({
+                status: false,
+                msg: e.message,
+            })
+        }
+    }
+
+    addProductCategory = async (req, res, next) => {
+        console.log('hi world')
+        const {category_name, description} = req.body;
+        const error = req.flash('error');
+
+        try {
+            const categoryData = await productCategoryRepository.insertProductCategory({category_name, description});
+            if(categoryData.length === 0) throw new Error(error[0]);
+            // console.log(categoryData);
+
+            return res.status(200).json({
+                status: true,
+                data: categoryData[0],
+                msg: 'Product category added successfully',
+            })
+        } catch (e) {
+            return res.status(400).json({
+                status: false,
+                msg: e.message,
+            })
         }
     }
 }

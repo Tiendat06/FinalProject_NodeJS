@@ -13,17 +13,32 @@ const bcrypt = require('bcrypt');
 
 class UserService {
 
+    getAllUsers = async (req, res) => {
+        const users = await userRepository.getAllUsers();
+        res.status(200).json({
+            status: true,
+            data: users
+        });
+    }
+
     updateUserProfile = async (req, res) => {
         // console.log()
         const {id} = req.params;
         const filePath = req.file ? req.file.path : null;
-        const {name, email, birthday, phoneNumber, gender} = req.body;
+        const {name, email, birthday, phoneNumber, gender, point} = req.body;
         const error = req.flash('error');
+        let userPoint = point;
+        console.log(filePath);
 
         const cloudinaryFolderName = 'NodeJS_FinalProject/user';
 
         const user = await userRepository.getUserById(id);
+        if(!user) throw new Error('User not found !');
+
         let image_link = user.profile_image;
+        if(!point) {
+            userPoint = user.point;
+        }
 
         try {
             if(error.length !== 0) throw new Error(error[0]);
@@ -45,29 +60,65 @@ class UserService {
                 _id: id,
                 fullName: name,
                 email, gender, birthday, phone: phoneNumber,
-                profile_image: image_link,
+                profile_image: image_link, point: userPoint,
                 updatedAt: Date.now()
             }
             const userUpdate = await userRepository.updateUserById(userUpdateData);
             if(!userUpdate.acknowledged) throw new Error('Update profile failed !');
 
+            const user = await userRepository.getUserById(id);
+
             return res.status(200).json({
                 status: true,
                 msg: 'Update profile successfully !',
+                data: user,
                 profile_image: image_link
             })
         } catch (e) {
-            fs.unlink(filePath, (err) => {
-                if (err) {
-                    throw new Error(err.message)
-                }
-            });
+            if(filePath){
+                fs.unlink(filePath, (err) => {
+                    if (err) {
+                        throw new Error(err.message)
+                    }
+                });
+            }
+
             return res.status(400).json({
                 status: false,
                 msg: e.message
             })
         }
     }
+
+    deleteUser = async (req, res) => {
+        const {id} = req.params;
+        try {
+            const user = await userRepository.getUserById(id);
+            if(!user) throw new Error('User not found !');
+
+            const account = await accountRepository.getAccountByUserId(id);
+            if(!account) throw new Error('Account not found !');
+
+            const deletedUser = await userRepository.hardDeleteById(id);
+            if(!deletedUser.acknowledged) throw new Error('Delete user failed !');
+
+            const deletedAccount = await accountRepository.hardDeleteAccountByUserId(id);
+            if(!deletedAccount.acknowledged) throw new Error('Delete account failed !');
+
+            return res.status(200).json({
+                status: true,
+                data: user,
+                msg: 'Deleted user successfully !',
+            })
+
+        } catch (e) {
+            return res.status(400).json({
+                status: false,
+                msg: e.message
+            })
+        }
+    }
+
     ///View user profile
     getUserProfile = async (req, res) => {
         const { id } = req.params;

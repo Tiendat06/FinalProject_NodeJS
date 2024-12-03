@@ -1,0 +1,156 @@
+[{
+  "_id": {
+    "$oid": "673734f63d72cc4d7206d34e"
+  },
+  "user_id": {
+    "$oid": "673734f63d72cc4d7206d34a"
+  },
+  "fullName": "Tạ Tiến Đạt",
+  "address": "52/8, đường HT31",
+  "phone_number": "0356779197",
+  "is_default": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "673f7710be3ed6e609ab3a7f"
+  },
+  "user_id": {
+    "$oid": "673f7710be3ed6e609ab3a7b"
+  },
+  "fullName": "Jake Jason",
+  "address": "52/8, đường HT31",
+  "phone_number": "0356779197",
+  "is_default": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6741a61d4ccb29381f082388"
+  },
+  "user_id": {
+    "$oid": "6741a61d4ccb29381f082384"
+  },
+  "fullName": "Bob Johnson",
+  "address": "12 district",
+  "phone_number": "0369852147",
+  "is_default": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674332ee0c792c9da04fcbd5"
+  },
+  "user_id": {
+    "$oid": "6741a61d4ccb29381f082384"
+  },
+  "fullName": "Bob Johnson",
+  "address": "12 district",
+  "phone_number": "0369852147",
+  "is_default": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6743fe78770fb2a999766be6"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "fullName": "Jake John",
+  "address": "52/8, đường HT31",
+  "phone_number": "0356779197",
+  "is_default": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6743fe8f770fb2a999766bed"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "fullName": "Tạ Tiến Đạt",
+  "address": "Admin Address",
+  "phone_number": "0356779197",
+  "is_default": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674ab2c28191eaaa221fbc60"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "fullName": "Ben 10",
+  "address": "52/8, HT45",
+  "phone_number": "0147852369",
+  "is_default": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674c5ae2da1095fa0e0626d2"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "fullName": "Tạ Tiến Đạt",
+  "address": "52/8, đường HT31",
+  "phone_number": "0356779197",
+  "is_default": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674c635ce5063c9398680534"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "fullName": "Tạ Tiến Đạt",
+  "address": "52/8, đường HT31",
+  "phone_number": "0356779197",
+  "is_default": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674c63ede5063c939868054c"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "fullName": "Tạ Tiến Đạt",
+  "address": "52/8, đường HT31",
+  "phone_number": "0356779197",
+  "is_default": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674c64f8e5063c9398680587"
+  },
+  "user_id": {
+    "$oid": "674c64f8e5063c9398680583"
+  },
+  "fullName": "Jacky Style",
+  "address": "HT45 district 12",
+  "phone_number": "0356779198",
+  "is_default": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674c6f1b135a45393ac38270"
+  },
+  "user_id": {
+    "$oid": "674c6f1b135a45393ac3826c"
+  },
+  "fullName": "Jack John",
+  "address": "HT15 district 12",
+  "phone_number": "0356779199",
+  "is_default": true,
+  "__v": 0
+}]

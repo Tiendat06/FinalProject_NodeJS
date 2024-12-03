@@ -1,0 +1,24 @@
+[{
+  "_id": {
+    "$oid": "6741b3bafebecf90784bc24a"
+  },
+  "payment_method_name": "Cash"
+},
+{
+  "_id": {
+    "$oid": "6741b3bafebecf90784bc24b"
+  },
+  "payment_method_name": "PayPal"
+},
+{
+  "_id": {
+    "$oid": "6741b3bafebecf90784bc24c"
+  },
+  "payment_method_name": "VNPAY"
+},
+{
+  "_id": {
+    "$oid": "6741b3bafebecf90784bc24d"
+  },
+  "payment_method_name": "ZaloPay"
+}]

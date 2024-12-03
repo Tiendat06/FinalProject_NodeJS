@@ -1,0 +1,168 @@
+[{
+  "_id": {
+    "$oid": "6745a54598c37682a859650a"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151a5"
+  },
+  "content": "ok",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-11-26T10:39:01.149Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-26T10:39:01.149Z"
+  },
+  "__v": 0,
+  "star": 4
+},
+{
+  "_id": {
+    "$oid": "6745a876a24c46141ed3bb0d"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151a5"
+  },
+  "content": "It's time for watch",
+  "star": 4,
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-11-26T10:52:38.282Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-26T10:52:38.282Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6745a8e1e76633d70457c8f3"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151a5"
+  },
+  "content": "nahhh",
+  "star": 2,
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-11-26T10:54:25.661Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-26T10:54:25.661Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6745a8ede76633d70457c8f5"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151a5"
+  },
+  "content": "nahhh",
+  "star": 2,
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-11-26T10:54:37.791Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-26T10:54:37.791Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6745a8f0e76633d70457c8f7"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151a5"
+  },
+  "content": "nahhh",
+  "star": 2,
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-11-26T10:54:40.680Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-26T10:54:40.680Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6745aa6de76633d70457c911"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151a5"
+  },
+  "content": "yess sir",
+  "star": 5,
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-11-26T11:01:01.836Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-26T11:01:01.836Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674686fd4975aec49b3cc9da"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151a9"
+  },
+  "content": "oke, gud job bro",
+  "star": 4,
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-11-27T02:42:05.395Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-27T02:42:05.395Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67468ab54975aec49b3cca42"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151a5"
+  },
+  "content": "yehh",
+  "star": 0,
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-11-27T02:57:57.989Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-27T02:57:57.989Z"
+  },
+  "__v": 0
+}]

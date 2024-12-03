@@ -1,0 +1,24 @@
+[{
+  "_id": {
+    "$oid": "6741b3abfebecf90784bc244"
+  },
+  "status": "Pending"
+},
+{
+  "_id": {
+    "$oid": "6741b3abfebecf90784bc245"
+  },
+  "status": "Confirmed"
+},
+{
+  "_id": {
+    "$oid": "6741b3abfebecf90784bc246"
+  },
+  "status": "Shipping"
+},
+{
+  "_id": {
+    "$oid": "6741b3abfebecf90784bc247"
+  },
+  "status": "Delivered"
+}]

@@ -13,6 +13,8 @@ const { addProductValidator, handleValidationAddProduct } = require('../app/vali
 
 const upload = require('../config/multer/multer');
 
+router.get('/', productMiddleWare.index, productController.index);
+
 router.post('/', upload.single('img_file'), /*addProductValidator*/ productValidator.addProductValidatorV2, handleValidationAddProduct,
     productMiddleWare.updateProduct, productController.createProduct);
 
@@ -22,11 +24,14 @@ router.put('/:id', upload.single('img_file'), addProductValidator, handleValidat
 router.delete('/:id', productController.deleteProduct);
 
 router.get('/category', productController.get_product_category);
+
 router.post('/category', productValidator.addCategoryValidator,
     productMiddleWare.add_product_category, productController.add_product_category);
 
+router.put('/category/:id', productValidator.addCategoryValidator,
+    productMiddleWare.update_product_category, productController.update_product_category);
 
-router.get('/', productMiddleWare.index, productController.index);
+router.delete('/category/:id', productController.delete_product_category);
 
 router.post('/comment', checkLogin, productValidator.commentValidator,
     productMiddleWare.comment_product, productController.comment_product);

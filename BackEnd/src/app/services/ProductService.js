@@ -664,7 +664,7 @@ class ProductService {
         }
     }
 
-    getProductCategory = async (req, res, next) => {
+    getProductCategory = async (req, res) => {
         try {
             const category = await productCategoryRepository.getAllCategory();
             return res.status(200).json({
@@ -681,7 +681,7 @@ class ProductService {
         }
     }
 
-    addProductCategory = async (req, res, next) => {
+    addProductCategory = async (req, res) => {
         console.log('hi world')
         const {category_name, description} = req.body;
         const error = req.flash('error');
@@ -696,6 +696,62 @@ class ProductService {
                 data: categoryData[0],
                 msg: 'Product category added successfully',
             })
+        } catch (e) {
+            return res.status(400).json({
+                status: false,
+                msg: e.message,
+            })
+        }
+    }
+
+    updateProductCategory = async (req, res) => {
+        const {category_name, description} = req.body;
+        const {id} = req.params;
+        const error = req.flash('error');
+        try {
+            if(error.length > 0) throw new Error(error[0]);
+
+            const category = await productCategoryRepository.getCategoryById(id);
+            if(!category) throw new Error('Category not found !');
+
+            const updateData = {
+                _id: id,
+                category_name, description
+            }
+            const categoryUpdate = await productCategoryRepository.updateProductCategory(updateData);
+            if(!categoryUpdate.acknowledged) throw new Error('Update category failed !');
+
+            const categoryUpdated = await productCategoryRepository.getCategoryById(id);
+
+            return res.status(200).json({
+                status: true,
+                data: categoryUpdated,
+                msg: 'Product category updated successfully',
+            })
+
+        } catch (e) {
+            return res.status(400).json({
+                status: false,
+                msg: e.message,
+            })
+        }
+    }
+
+    deleteProductCategory = async (req, res) => {
+        const {id} = req.params;
+
+        try {
+            const category = await productCategoryRepository.getCategoryById(id);
+            if(!category) throw new Error('Category not found !');
+
+            const deletedCategory = await productCategoryRepository.deleteProductCategory(id);
+            if(!deletedCategory.acknowledged) throw new Error('Delete category failed !');
+            return res.status(200).json({
+                status: true,
+                data: category,
+                msg: 'Product category deleted successfully',
+            })
+
         } catch (e) {
             return res.status(400).json({
                 status: false,

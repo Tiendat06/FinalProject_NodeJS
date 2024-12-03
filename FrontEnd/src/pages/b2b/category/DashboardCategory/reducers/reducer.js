@@ -59,6 +59,7 @@ function reducer(state, action) {
         default:
             throw new Error(`Unknown action type ${action.type}`);
     }
+    console.log(newState);
     return newState;
 }
 

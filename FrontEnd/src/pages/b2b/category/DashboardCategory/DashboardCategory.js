@@ -62,7 +62,43 @@ function DashboardManageCouponPage() {
                 } else toast.error(data.msg);
             })
             .catch(err => console.log(err));
-    })
+    }, [category])
+
+    const updateCategory = useCallback(() => {
+        fetch(`${api_url}/product/category/${category._id}`, {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                ...category
+            }),
+            credentials: 'include',
+        })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status) {
+                    dispatch(updateCategoryData(data.data));
+                    toast.success(data.msg);
+                } else toast.error(data.msg);
+            })
+            .catch(err => console.log(err));
+    }, [category])
+
+    const deleteCategory = useCallback(() => {
+        fetch(`${api_url}/product/category/${category._id}`, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status) {
+                    dispatch(deleteCategoryData(data.data));
+                    toast.success(data.msg);
+                } else toast.error(data.msg);
+            })
+            .catch(err => console.log(err));
+    }, [category])
 
     return (
         <>
@@ -126,10 +162,10 @@ function DashboardManageCouponPage() {
                                             </td>
                                             <td width='100'>
                                                 <p className={clsx(styles["user-table__action"])}>
-                                                    <i onClick={() => setCategory(item)} data-bs-toggle='modal'
+                                                    <i onClick={() => dispatch(setCategory(item))} data-bs-toggle='modal'
                                                        data-bs-target='#edit-modal'
                                                        className={clsx(styles['user-table__action-edit'], "fa-solid fa-pen-to-square")}></i>
-                                                    <i onClick={() => setCategory(item)} data-bs-toggle='modal'
+                                                    <i onClick={() => dispatch(setCategory(item))} data-bs-toggle='modal'
                                                        data-bs-target='#delete-modal'
                                                        className={clsx(styles['user-table__action-trash'], "fa-solid fa-trash")}></i>
                                                 </p>
@@ -150,6 +186,7 @@ function DashboardManageCouponPage() {
                 title='Save change'
                 labelBtnSave='Save'
                 closeClassName='d-none'
+                onClickLabelSave={updateCategory}
                 isStatic={true}
                 saveClassName={clsx(styles['edit-modal__save'], 'btn btn-danger')}
             >
@@ -161,7 +198,7 @@ function DashboardManageCouponPage() {
                                type="text"
                                id='name-edit'
                                placeholder='Enter category name'
-                               className={clsx(styles['edit-modal__inp'], 'form-control')} value={category.category_name}/>
+                               className={clsx(styles['edit-modal__inp'], 'form-control')} value={category?.category_name}/>
                     </div>
                     <div className="form-group">
                         <label className={clsx(styles['edit-modal__label'])} htmlFor="desc-edit">DESCRIPTION</label>
@@ -209,6 +246,7 @@ function DashboardManageCouponPage() {
                 title='Delete Category'
                 labelBtnSave='Delete'
                 closeClassName='d-none'
+                onClickLabelSave={deleteCategory}
                 isStatic={true}
                 saveClassName={clsx(styles['delete-modal__save'], 'btn btn-danger')}
             >

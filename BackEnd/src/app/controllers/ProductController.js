@@ -88,6 +88,16 @@ class ProductController {
     add_product_category = async (req, res, next) => {
         return await productService.addProductCategory(req, res);
     }
+
+    // [PUT] /product/category/:id
+    update_product_category = async (req, res, next) => {
+        return await productService.updateProductCategory(req, res);
+    }
+
+    // [DELETE] /product/category/:id
+    delete_product_category = async (req, res) => {
+        return await productService.deleteProductCategory(req, res);
+    }
 }
 
 module.exports = new ProductController;

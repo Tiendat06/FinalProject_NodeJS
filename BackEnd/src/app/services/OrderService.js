@@ -172,10 +172,13 @@ class OrderService {
 
       const newUpdatedStatusDetails = await orderStatusDetailsRepository.getOrderStatusByOrderIdAndStatusId(orderId, statusId);
 
+      const newOrderUpdated = await OrderRepository.getAllOrders();
+
       return res.status(200).json({
         status: true,
         message: 'Order status updated successfully',
         data: newUpdatedStatusDetails,
+        newOrderUpdated
       });
     } catch (error) {
       return res.status(500).json({

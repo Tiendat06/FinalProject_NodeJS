@@ -23,7 +23,10 @@ function HomePage(){
     const [dataList, setDataList] = useState({
         top5Products: [],
         top8Products: [],
-        top3Products: []
+        top3Products: [],
+        topWishList: [],
+        topSelling: [],
+        topReview: [],
     });
     const {userData} = useShoppingContext();
     const user_id = userData._id;
@@ -50,7 +53,10 @@ function HomePage(){
                 const top5Products = data.top5Products;
                 const top8Products = data.top8Products;
                 const top3Products = data.top3Products;
-                setDataList({...dataList, top5Products, top8Products, top3Products});
+                const topWishList = data.topWishList;
+                const topSelling = data.topSelling;
+                const topReview = data.topReview;
+                setDataList({...dataList, top5Products, top8Products, top3Products, topWishList, topSelling, topReview});
             })
             .catch(error => console.log(error));
     }, []);
@@ -125,7 +131,7 @@ function HomePage(){
                 <h2 className={clsx('text-center')}>New Product</h2>
                 <div className={clsx(styles['home-new__middle'])}></div>
                 <SlickCarousel>
-                    {dataList.top5Products.map((item, index) => (
+                    {dataList?.top5Products?.map((item, index) => (
                         <div key={item._id} className={clsx(styles['home-new__item--inner'])}>
                             <div className={clsx(styles['home-new__item-img--outer'])}>
                                 <img className={styles['home-new__item-img']} src={item.product_img} alt={item.product_name} />
@@ -150,7 +156,7 @@ function HomePage(){
                     <Link data-filter=".Headphone" className={clsx(styles["home-featured__category-item"],'link-underline')}>Headphone</Link>
                 </ul>
                 <ul className={clsx(styles['home-featured__list'], 'd-flex flex-wrap')} ref={containerRef}>
-                        {dataList.top8Products.map((item, index) => (
+                        {dataList?.top8Products?.map((item, index) => (
                             <li className={clsx(styles['home-featured__item'], 'mix col-lg-3 col-md-4 col-sm-6', `${(item.category_id.category_name)}`)}>
                                 <div key={index} className={clsx(styles['home-featured__item--inner'])}>
                                     <div className={clsx(styles['home-featured__item-img--outer'])}>
@@ -198,17 +204,17 @@ function HomePage(){
                     <div className={clsx(styles['home-new__middle'], 'mb-4')}
                          style={{marginRight: "auto", marginLeft: 0}}></div>
                     <SmallSlickCarousel>
-                        {dataList.top3Products.map((item, index) => (
-                            <Link key={`top-rate-${index}`} to={`/shop/details/${item._id}`} className={clsx(styles["home-top__rated-item"], 'd-flex')}>
+                        {dataList?.topReview?.map((item, index) => (
+                            <Link key={`top-rate-${index}`} to={`/shop/details/${item?.product?._id}`} className={clsx(styles["home-top__rated-item"], 'd-flex')}>
                                 <div
                                     className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5 d-flex justify-content-center')}>
-                                    <img src={item.product_img} alt=""
+                                    <img src={item?.product?.product_img} alt=""
                                          className={clsx(styles["home-top__rated-img"])}/>
                                 </div>
                                 <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p style={{textAlign: "left"}} className="text-dark mb-0">{item.product_name}</p>
+                                    <p style={{textAlign: "left"}} className="text-dark mb-0">{item?.product?.product_name}</p>
                                     <p className="text-dark" style={{fontWeight: "bold", fontSize: 18, textAlign: "left"}}>
-                                        <FormatUSDCurrency price={item.product_price}/></p>
+                                        <FormatUSDCurrency price={item?.product?.product_price}/></p>
                                 </div>
                             </Link>
                         ))}
@@ -220,17 +226,17 @@ function HomePage(){
                     <div className={clsx(styles['home-new__middle'], 'mb-4')}
                          style={{marginRight: "auto", marginLeft: 0}}></div>
                     <SmallSlickCarousel>
-                        {dataList.top3Products.map((item, index) => (
-                            <Link key={`top-view-${index}`} to={`/shop/details/${item._id}`} className={clsx(styles["home-top__rated-item"], 'd-flex')}>
+                        {dataList?.topWishList?.map((item, index) => (
+                            <Link key={`top-view-${index}`} to={`/shop/details/${item?.product?._id}`} className={clsx(styles["home-top__rated-item"], 'd-flex')}>
                                 <div
                                     className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5 d-flex justify-content-center')}>
-                                    <img src={item.product_img} alt=""
+                                    <img src={item?.product?.product_img} alt=""
                                          className={clsx(styles["home-top__rated-img"])}/>
                                 </div>
                                 <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p style={{textAlign: "left"}} className="text-dark mb-0">{item.product_name}</p>
+                                    <p style={{textAlign: "left"}} className="text-dark mb-0">{item?.product?.product_name}</p>
                                     <p className="text-dark" style={{fontWeight: "bold", fontSize: 18, textAlign: "left"}}>
-                                        <FormatUSDCurrency price={item.product_price}/></p>
+                                        <FormatUSDCurrency price={item?.product?.product_price}/></p>
                                 </div>
                             </Link>
                         ))}
@@ -241,17 +247,17 @@ function HomePage(){
                     <div className={clsx(styles['home-new__middle'], 'mb-4')}
                          style={{marginRight: "auto", marginLeft: 0}}></div>
                     <SmallSlickCarousel>
-                        {dataList.top3Products.map((item, index) => (
-                            <Link key={`top-sell-${index}`} to={`/shop/details/${item._id}`} className={clsx(styles["home-top__rated-item"], 'd-flex')}>
+                        {dataList?.topSelling?.map((item, index) => (
+                            <Link key={`top-sell-${index}`} to={`/shop/details/${item?.product_variant?.product_id}`} className={clsx(styles["home-top__rated-item"], 'd-flex')}>
                                 <div
                                     className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5 d-flex justify-content-center')}>
-                                    <img src={item.product_img} alt=""
+                                    <img src={item?.product_variant?.product_image} alt=""
                                          className={clsx(styles["home-top__rated-img"])}/>
                                 </div>
                                 <div className={clsx(styles["home-top__rated-info"], 'col-lg-5 col-md-5 col-sm-5')}>
-                                    <p style={{textAlign: "left"}} className="text-dark mb-0">{item.product_name}</p>
+                                    <p style={{textAlign: "left"}} className="text-dark mb-0">{item?.product_variant?.product_name}</p>
                                     <p className="text-dark" style={{fontWeight: "bold", fontSize: 18, textAlign: "left"}}>
-                                        <FormatUSDCurrency price={item.product_price}/></p>
+                                        <FormatUSDCurrency price={item?.product_variant?.retail_price}/></p>
                                 </div>
                             </Link>
                         ))}

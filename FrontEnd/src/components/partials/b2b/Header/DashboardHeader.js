@@ -1,7 +1,10 @@
 import styles from './DashboardHeader.module.css';
 import clsx from "clsx";
+import {useShoppingContext} from "~/context/ShoppingContext";
 
 function DashboardHeader() {
+    const {userData} = useShoppingContext();
+    const user_img = userData.profile_image;
     return (
         <>
             {/*<header className={clsx(styles['header'])}>*/}
@@ -12,7 +15,7 @@ function DashboardHeader() {
 
                 <div className={clsx(styles["header-info"], 'col-lg-6 col-md-6 col-sm-6')}>
                     <div className={clsx(styles["header-info__img"], '')}>
-                        <img src="/img/customer/profile/profile-img-test.jpg" alt=""/>
+                        <img src={user_img} alt=""/>
                     </div>
                     <div className={clsx(styles["header-info__personal"], '')}>
                         <p className={clsx(styles["header-info__personal-name"])}>Jake Jason</p>

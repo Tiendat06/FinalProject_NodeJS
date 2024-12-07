@@ -14,6 +14,16 @@ class OrderDetailsRepository{
             .then(orderDetails => orderDetails)
             .catch(error => console.log(error));
     }
+
+    checkOrderDetailsRelatedToOrderIdAndProductId = (orderIds, productVariantIds) => {
+        return OrderDetails.find({
+            order_id: {$in: orderIds},
+            product_variant_id: {$in: productVariantIds},
+        }).select('order_id')
+            .then(orderDetails => orderDetails)
+            .catch(error => console.log(error));
+    }
+
 }
 
 module.exports = new OrderDetailsRepository;

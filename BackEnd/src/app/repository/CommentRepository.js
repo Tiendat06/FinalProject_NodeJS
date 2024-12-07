@@ -10,6 +10,14 @@ class CommentRepository{
             .catch(err => console.log(err));
     }
 
+    getCommentById = (_id) => {
+        return Comment.findOne({_id})
+            .populate('user_id')
+            .populate('product_id')
+            .then(comment => comment)
+            .catch(err => console.log(err));
+    }
+
     insertComment = (commentData) => {
         return Comment.insertMany(commentData)
             .then(comment => comment)

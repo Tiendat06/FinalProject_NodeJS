@@ -27,6 +27,14 @@ function DetailsPage(){
     const [relatedProduct, setRelatedProduct] = useState([]);
     const [comments, setComments] = useState([]);
     const [detailsImg, setDetailsImg] = useState('');
+    const [countStar, setCountStar] = useState({
+        fiveStarDoc: 0,
+        fourStarDoc: 0,
+        threeStarDoc: 0,
+        twoStarDoc: 0,
+        oneStarDoc: 0,
+        totalRating: 1
+    });
 
     const [commentInfo, setCommentInfo] = useState({
         fullName: "",
@@ -109,6 +117,9 @@ function DetailsPage(){
                 setRelatedProduct(data.top4Products);
                 setRating(data.starAvg);
                 setComments(data.comment || []);
+                if(data.countStar.totalRating !== 0) {
+                    setCountStar(data.countStar);
+                }
             })
             .catch(err => console.log(err));
     }, [id]);
@@ -344,88 +355,88 @@ function DetailsPage(){
                                         })()}
                                     </div>
                                 </div>
-                                {/*<div className={clsx(styles["details-more__item-rating__details"])}>*/}
-                                {/*    <div className={clsx(styles["details-more__item-rating__group"])}>*/}
-                                {/*        <div*/}
-                                {/*            className={clsx(styles["details-more__item-rating__icon--details"], 'col-lg-4 col-md-4 col-sm-4')}>*/}
-                                {/*            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>*/}
-                                {/*            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>*/}
-                                {/*            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>*/}
-                                {/*            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>*/}
-                                {/*            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>*/}
-                                {/*        </div>*/}
-                                {/*        <div*/}
-                                {/*            className={clsx(styles["details-more__item-rating__progress"], 'col-lg-6 col-md-6 col-sm-4')}>*/}
-                                {/*            <div style={{width: "60%"}}*/}
-                                {/*                 className={clsx(styles["details-more__item-rating__progress--percent"])}></div>*/}
-                                {/*        </div>*/}
-                                {/*        <p className={clsx('mb-0 col-lg-2 col-md-2 col-sm-4 text-center')}>3</p>*/}
-                                {/*    </div>*/}
-                                {/*    <div className={clsx(styles["details-more__item-rating__group"])}>*/}
-                                {/*        <div*/}
-                                {/*            className={clsx(styles["details-more__item-rating__icon--details"], 'col-lg-4 col-md-4 col-sm-4')}>*/}
-                                {/*            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>*/}
-                                {/*            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>*/}
-                                {/*            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>*/}
-                                {/*            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>*/}
-                                {/*            <i className={clsx("fa-regular fa-star", styles['details-more__item-rating__star--details'])}></i>*/}
-                                {/*        </div>*/}
-                                {/*        <div*/}
-                                {/*            className={clsx(styles["details-more__item-rating__progress"], 'col-lg-6 col-md-6 col-sm-4')}>*/}
-                                {/*            <div style={{width: "40%"}}*/}
-                                {/*                 className={clsx(styles["details-more__item-rating__progress--percent"])}></div>*/}
-                                {/*        </div>*/}
-                                {/*        <p className={clsx('mb-0 col-lg-2 col-md-2 col-sm-4 text-center')}>2</p>*/}
-                                {/*    </div>*/}
-                                {/*    <div className={clsx(styles["details-more__item-rating__group"])}>*/}
-                                {/*        <div*/}
-                                {/*            className={clsx(styles["details-more__item-rating__icon--details"], 'col-lg-4 col-md-4 col-sm-4')}>*/}
-                                {/*            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>*/}
-                                {/*            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>*/}
-                                {/*            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>*/}
-                                {/*            <i className={clsx("fa-regular fa-star", styles['details-more__item-rating__star--details'])}></i>*/}
-                                {/*            <i className={clsx("fa-regular fa-star", styles['details-more__item-rating__star--details'])}></i>*/}
-                                {/*        </div>*/}
-                                {/*        <div*/}
-                                {/*            className={clsx(styles["details-more__item-rating__progress"], 'col-lg-6 col-md-6 col-sm-4')}>*/}
-                                {/*            <div style={{width: "0%"}}*/}
-                                {/*                 className={clsx(styles["details-more__item-rating__progress--percent"])}></div>*/}
-                                {/*        </div>*/}
-                                {/*        <p className={clsx('mb-0 col-lg-2 col-md-2 col-sm-4 text-center')}>0</p>*/}
-                                {/*    </div>*/}
-                                {/*    <div className={clsx(styles["details-more__item-rating__group"])}>*/}
-                                {/*        <div*/}
-                                {/*            className={clsx(styles["details-more__item-rating__icon--details"], 'col-lg-4 col-md-4 col-sm-4')}>*/}
-                                {/*            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>*/}
-                                {/*            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>*/}
-                                {/*            <i className={clsx("fa-regular fa-star", styles['details-more__item-rating__star--details'])}></i>*/}
-                                {/*            <i className={clsx("fa-regular fa-star", styles['details-more__item-rating__star--details'])}></i>*/}
-                                {/*            <i className={clsx("fa-regular fa-star", styles['details-more__item-rating__star--details'])}></i>*/}
-                                {/*        </div>*/}
-                                {/*        <div*/}
-                                {/*            className={clsx(styles["details-more__item-rating__progress"], 'col-lg-6 col-md-6 col-sm-4')}>*/}
-                                {/*            <div style={{width: "0%"}}*/}
-                                {/*                 className={clsx(styles["details-more__item-rating__progress--percent"])}></div>*/}
-                                {/*        </div>*/}
-                                {/*        <p className={clsx('mb-0 col-lg-2 col-md-2 col-sm-4 text-center')}>0</p>*/}
-                                {/*    </div>*/}
-                                {/*    <div className={clsx(styles["details-more__item-rating__group"])}>*/}
-                                {/*        <div*/}
-                                {/*            className={clsx(styles["details-more__item-rating__icon--details"], 'col-lg-4 col-md-4 col-sm-4')}>*/}
-                                {/*            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>*/}
-                                {/*            <i className={clsx("fa-regular fa-star", styles['details-more__item-rating__star--details'])}></i>*/}
-                                {/*            <i className={clsx("fa-regular fa-star", styles['details-more__item-rating__star--details'])}></i>*/}
-                                {/*            <i className={clsx("fa-regular fa-star", styles['details-more__item-rating__star--details'])}></i>*/}
-                                {/*            <i className={clsx("fa-regular fa-star", styles['details-more__item-rating__star--details'])}></i>*/}
-                                {/*        </div>*/}
-                                {/*        <div*/}
-                                {/*            className={clsx(styles["details-more__item-rating__progress"], 'col-lg-6 col-md-6 col-sm-4')}>*/}
-                                {/*            <div style={{width: "0%"}}*/}
-                                {/*                 className={clsx(styles["details-more__item-rating__progress--percent"])}></div>*/}
-                                {/*        </div>*/}
-                                {/*        <p className={clsx('mb-0 col-lg-2 col-md-2 col-sm-4 text-center')}>0</p>*/}
-                                {/*    </div>*/}
-                                {/*</div>*/}
+                                <div className={clsx(styles["details-more__item-rating__details"])}>
+                                    <div className={clsx(styles["details-more__item-rating__group"])}>
+                                        <div
+                                            className={clsx(styles["details-more__item-rating__icon--details"], 'col-lg-4 col-md-4 col-sm-4')}>
+                                            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>
+                                            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>
+                                            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>
+                                            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>
+                                            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>
+                                        </div>
+                                        <div
+                                            className={clsx(styles["details-more__item-rating__progress"], 'col-lg-6 col-md-6 col-sm-4')}>
+                                            <div style={{width: `${countStar?.fiveStarDoc / countStar?.totalRating * 100}%`}}
+                                                 className={clsx(styles["details-more__item-rating__progress--percent"])}></div>
+                                        </div>
+                                        <p className={clsx('mb-0 col-lg-2 col-md-2 col-sm-4 text-center')}>{countStar?.fiveStarDoc}</p>
+                                    </div>
+                                    <div className={clsx(styles["details-more__item-rating__group"])}>
+                                        <div
+                                            className={clsx(styles["details-more__item-rating__icon--details"], 'col-lg-4 col-md-4 col-sm-4')}>
+                                            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>
+                                            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>
+                                            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>
+                                            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>
+                                            <i className={clsx("fa-regular fa-star", styles['details-more__item-rating__star--details'])}></i>
+                                        </div>
+                                        <div
+                                            className={clsx(styles["details-more__item-rating__progress"], 'col-lg-6 col-md-6 col-sm-4')}>
+                                            <div style={{width: `${countStar?.fourStarDoc / countStar?.totalRating * 100}%`}}
+                                                 className={clsx(styles["details-more__item-rating__progress--percent"])}></div>
+                                        </div>
+                                        <p className={clsx('mb-0 col-lg-2 col-md-2 col-sm-4 text-center')}>{countStar?.fourStarDoc}</p>
+                                    </div>
+                                    <div className={clsx(styles["details-more__item-rating__group"])}>
+                                        <div
+                                            className={clsx(styles["details-more__item-rating__icon--details"], 'col-lg-4 col-md-4 col-sm-4')}>
+                                            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>
+                                            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>
+                                            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>
+                                            <i className={clsx("fa-regular fa-star", styles['details-more__item-rating__star--details'])}></i>
+                                            <i className={clsx("fa-regular fa-star", styles['details-more__item-rating__star--details'])}></i>
+                                        </div>
+                                        <div
+                                            className={clsx(styles["details-more__item-rating__progress"], 'col-lg-6 col-md-6 col-sm-4')}>
+                                            <div style={{width: `${countStar?.threeStarDoc / countStar?.totalRating * 100}%`}}
+                                                 className={clsx(styles["details-more__item-rating__progress--percent"])}></div>
+                                        </div>
+                                        <p className={clsx('mb-0 col-lg-2 col-md-2 col-sm-4 text-center')}>{countStar?.threeStarDoc}</p>
+                                    </div>
+                                    <div className={clsx(styles["details-more__item-rating__group"])}>
+                                        <div
+                                            className={clsx(styles["details-more__item-rating__icon--details"], 'col-lg-4 col-md-4 col-sm-4')}>
+                                            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>
+                                            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>
+                                            <i className={clsx("fa-regular fa-star", styles['details-more__item-rating__star--details'])}></i>
+                                            <i className={clsx("fa-regular fa-star", styles['details-more__item-rating__star--details'])}></i>
+                                            <i className={clsx("fa-regular fa-star", styles['details-more__item-rating__star--details'])}></i>
+                                        </div>
+                                        <div
+                                            className={clsx(styles["details-more__item-rating__progress"], 'col-lg-6 col-md-6 col-sm-4')}>
+                                            <div style={{width: `${countStar?.twoStarDoc / countStar?.totalRating * 100}%`}}
+                                                 className={clsx(styles["details-more__item-rating__progress--percent"])}></div>
+                                        </div>
+                                        <p className={clsx('mb-0 col-lg-2 col-md-2 col-sm-4 text-center')}>{countStar?.twoStarDoc}</p>
+                                    </div>
+                                    <div className={clsx(styles["details-more__item-rating__group"])}>
+                                        <div
+                                            className={clsx(styles["details-more__item-rating__icon--details"], 'col-lg-4 col-md-4 col-sm-4')}>
+                                            <i className={clsx("fa-solid fa-star", styles['details-more__item-rating__star--details'])}></i>
+                                            <i className={clsx("fa-regular fa-star", styles['details-more__item-rating__star--details'])}></i>
+                                            <i className={clsx("fa-regular fa-star", styles['details-more__item-rating__star--details'])}></i>
+                                            <i className={clsx("fa-regular fa-star", styles['details-more__item-rating__star--details'])}></i>
+                                            <i className={clsx("fa-regular fa-star", styles['details-more__item-rating__star--details'])}></i>
+                                        </div>
+                                        <div
+                                            className={clsx(styles["details-more__item-rating__progress"], 'col-lg-6 col-md-6 col-sm-4')}>
+                                            <div style={{width: `${countStar?.oneStarDoc / countStar?.totalRating * 100}%`}}
+                                                 className={clsx(styles["details-more__item-rating__progress--percent"])}></div>
+                                        </div>
+                                        <p className={clsx('mb-0 col-lg-2 col-md-2 col-sm-4 text-center')}>{countStar?.oneStarDoc}</p>
+                                    </div>
+                                </div>
                             </div>
                             <div className={clsx(styles["details-more__item-cmt"], 'col-lg-12 col-md-12 col-sm-12')}>
                                 <div className={clsx(styles["details-more__item-cmt__list"], 'p-3')}>
@@ -435,24 +446,24 @@ function DetailsPage(){
                                             <div
                                                 className={clsx(styles["details-more__item-cmt__info"], 'col-lg-12 col-md-12 col-sm-12')}>
                                                 <h6 className='mb-0'>{item.user_id.fullName}</h6>
-                                                <div className={clsx(styles["details-more__item-cmt__icon"])}>
-                                                    {(() => {
-                                                        const li = [];
-                                                        for (let i = 0; i < item.star; i++) {
-                                                            li.push(<i key={`item-star1-${i}`} style={{fontSize: 12}}
-                                                                       className={clsx("fa-solid fa-star", styles['details-info__star'])}></i>);
-                                                        }
-                                                        return li;
-                                                    })()}
-                                                    {(() => {
-                                                        const li = [];
-                                                        for (let i = 0; i < 5 - item.star; i++) {
-                                                            li.push(<i key={`item-star2-${i}`} style={{fontSize: 12}}
-                                                                       className={clsx("fa-regular fa-star", styles['details-info__star'])}></i>);
-                                                        }
-                                                        return li;
-                                                    })()}
-                                                </div>
+                                                {/*<div className={clsx(styles["details-more__item-cmt__icon"])}>*/}
+                                                {/*    {(() => {*/}
+                                                {/*        const li = [];*/}
+                                                {/*        for (let i = 0; i < item.star; i++) {*/}
+                                                {/*            li.push(<i key={`item-star1-${i}`} style={{fontSize: 12}}*/}
+                                                {/*                       className={clsx("fa-solid fa-star", styles['details-info__star'])}></i>);*/}
+                                                {/*        }*/}
+                                                {/*        return li;*/}
+                                                {/*    })()}*/}
+                                                {/*    {(() => {*/}
+                                                {/*        const li = [];*/}
+                                                {/*        for (let i = 0; i < 5 - item.star; i++) {*/}
+                                                {/*            li.push(<i key={`item-star2-${i}`} style={{fontSize: 12}}*/}
+                                                {/*                       className={clsx("fa-regular fa-star", styles['details-info__star'])}></i>);*/}
+                                                {/*        }*/}
+                                                {/*        return li;*/}
+                                                {/*    })()}*/}
+                                                {/*</div>*/}
                                             </div>
                                             <div
                                                 className={clsx(styles["details-more__item-cmt__review"], 'col-lg-12 col-md-12 col-sm-12')}>
@@ -487,6 +498,7 @@ function DetailsPage(){
                                     <div className={clsx("alert alert-danger p-2", (!logMessage && 'd-none'))}>
                                         <p className='mb-0 text-center'>{logMessage}</p>
                                     </div>
+                                    {userData?._id &&
                                     <div className={clsx(styles['details-more__item-submit__rating'], 'd-flex')}>
                                         {[5, 4, 3, 2, 1].map((value) => (
                                             <Fragment key={value}>
@@ -504,6 +516,7 @@ function DetailsPage(){
                                             </Fragment>
                                         ))}
                                     </div>
+                                    }
                                     <button onClick={handleSubmitComment} className={clsx(styles["details-more__item-submit__btn"], 'btn', stylesGrid['details-more__item-submit__btn'])}>SUBMIT</button>
                                 </div>
                             </div>

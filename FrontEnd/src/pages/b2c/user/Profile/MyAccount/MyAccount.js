@@ -6,7 +6,8 @@ import reducer, {initState} from "./reducers/reducer";
 import {setDay} from './actions/actions';
 import {Loading, Modal} from "~/components/elements";
 import {useShoppingContext} from "~/context/ShoppingContext";
-const $ = require('jquery');
+import $ from 'jquery';
+import {toast} from 'react-toastify';
 
 function MyAccount() {
     const {userData, setUserData} = useShoppingContext();
@@ -110,6 +111,7 @@ function MyAccount() {
         })
             .then(response => response.json())
             .then(data => {
+                console.log(data)
                 if(data.status === true){
                     const userLocalData = JSON.parse(localStorage.getItem("userData"));
                     const newUserLocalData = {
@@ -122,23 +124,21 @@ function MyAccount() {
                         profile_image: data.profile_image,
                     }
                     setUserData(() => newUserLocalData);
+                    toast.success(data.msg);
+                } else{
+                    toast.error(data.msg);
                 }
-                $('.alert').removeClass('d-none');
-                $('.alert-text').html(data.msg);
                 $('.spinner-border').addClass('d-none');
                 $('.btn-save').html('Save Change');
 
-                setTimeout(() => {
-                    $('.alert').addClass('d-none')
-                    $('.alert-text').html('')
-                }, 5000);
             })
             .catch(err => console.error(err))
     }
 
     const handleChangePassword = useCallback(() => {
         if(password.newPassword !== password.confirmPassword) {
-            setLogMessage('Confirm password is not correct !');
+            // setLogMessage('Confirm password is not correct !');
+            toast.error('Confirm password is not correct !');
             return;
         }
         fetch(`${api_url}/user/profile/change-password`, {
@@ -154,7 +154,9 @@ function MyAccount() {
         })
             .then(response => response.json())
             .then(data => {
-                setLogMessage(data.msg);
+                // setLogMessage(data.msg);
+                if(data.status) toast.success(data.msg);
+                else toast.error(data.msg);
             })
             .catch(err => console.error(err))
     }, [password]);
@@ -168,7 +170,7 @@ function MyAccount() {
                     <div className={clsx(styles["profile-account__personal-main"], styleGrid['profile-account__personal-main'])}>
                         <div
                             className={clsx(styles["profile-account__personal-img"], 'col-lg-3 col-md-3 col-sm-3 mb-3')}>
-                            <label htmlFor="profile-img">
+                            <label htmlFor="profile-img" className='h-100 w-100'>
                                 <img className={clsx(styles['profile-account__personal-img--inner'])}
                                      src={profile.profile_image} alt="User Profile" srcSet=""/>
                             </label>

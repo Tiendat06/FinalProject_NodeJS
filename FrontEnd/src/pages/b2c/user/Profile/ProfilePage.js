@@ -28,10 +28,10 @@ function ProfilePage() {
             <div className="profile d-flex flex-wrap">
                 <div className={clsx(styleGrid['profile-info'], "col-lg-2 col-md-12 col-sm-12")}>
                     <div onClick={onclickCategory} className={clsx(styles["profile-resume"], styleGrid['profile-resume'], 'col-lg-12 col-md-12 col-sm-12')}>
-                        <div className={clsx(styles["profile-resume__img"], 'col-lg-3 col-md-3 col-sm-3 mr-15')}>
-                            <img className={clsx(styles['profile-resume__img-item'])}
-                                 src="/img/customer/profile/profile-img-test.jpg" alt="" srcSet=""/>
-                        </div>
+                        {/*<div className={clsx(styles["profile-resume__img"], 'col-lg-3 col-md-3 col-sm-3 mr-15')}>*/}
+                        {/*    <img className={clsx(styles['profile-resume__img-item'])}*/}
+                        {/*         src="/img/customer/profile/profile-img-test.jpg" alt="" srcSet=""/>*/}
+                        {/*</div>*/}
                         <div className={clsx(styles["profile-resume__name"], 'col-lg-8 col-md-8 col-sm-8')}>
                             <p className={clsx(styles["profile-resume__name-text"], 'mb-0')}>{userData.fullName}</p>
                             <p className={clsx(styles["profile-resume__name-phone"], 'mb-0')}>{userData.phone}</p>

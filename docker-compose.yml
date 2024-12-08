@@ -1,0 +1,35 @@
+services:
+  BackEnd:
+    build: ./BackEnd
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    networks:
+      - webnet
+
+  FrontEnd:
+    build: ./FrontEnd
+    ports:
+      - "5000:5000"
+    depends_on:
+      - BackEnd
+      - mongodb
+    networks:
+      - webnet
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+      - ./mongo-init:/docker-entrypoint-initdb.d
+    networks:
+      - webnet
+
+volumes:
+  mongodb_data:
+    driver: local
+networks:
+  webnet:

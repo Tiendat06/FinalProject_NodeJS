@@ -38,6 +38,10 @@ class SiteController {
     async getTopReviewedProducts(req, res) {
         return await siteService.getTopReviewedProducts(req, res);
     }
+
+    async getDashboardData(req, res) {
+        return await siteService.getDashboardData(req, res);
+    }
 }
 
 module.exports = new SiteController;

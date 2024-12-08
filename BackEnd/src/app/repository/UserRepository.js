@@ -3,7 +3,7 @@ const User = require('../model/User');
 class UserRepository {
 
     getAllUsers = () => {
-        return User.find({deleted: false})
+        return User.find({ deleted: false })
             .then(users => users)
             .catch(err => console.log(err))
     }
@@ -17,13 +17,13 @@ class UserRepository {
     }
 
     getUserById = (_id) => {
-        return User.findOne({_id, deleted: false})
+        return User.findOne({ _id, deleted: false })
             .then(user => user)
             .catch(err => console.log(err));
     }
 
     getUserByPhone = (phone) => {
-        return User.findOne({phone, deleted: false})
+        return User.findOne({ phone, deleted: false })
             .then(value => {
                 return value;
             })
@@ -31,7 +31,7 @@ class UserRepository {
     }
 
     getUserByEmail = (email) => {
-        return User.findOne({email, deleted: false})
+        return User.findOne({ email, deleted: false })
             .then(value => {
                 return value;
             })
@@ -39,21 +39,32 @@ class UserRepository {
     }
 
     getUserByPhoneAndEmail = (phone, email) => {
-        return User.findOne({phone, email, deleted: false})
+        return User.findOne({ phone, email, deleted: false })
             .then(user => user)
             .catch(err => console.log(err));
     }
 
-    updateUserById = ({_id, ...userUpdate}) => {
-        return User.updateOne({_id, deleted: false}, {$set: userUpdate})
+    updateUserById = ({ _id, ...userUpdate }) => {
+        return User.updateOne({ _id, deleted: false }, { $set: userUpdate })
             .then(value => value)
             .catch(err => console.log(err));
     }
 
     hardDeleteById = (_id) => {
-        return User.deleteOne({_id, deleted: false})
+        return User.deleteOne({ _id, deleted: false })
             .then(value => value)
             .catch(err => console.log(err));
+    }
+
+    getTotalUser = async () => {
+        try {
+            const value = await User.countDocuments();
+            console.log('Total Users:', value); // Debug log
+            return value;
+        } catch (err) {
+            console.error('Error counting users:', err);
+            return 0;
+        }
     }
 }
 

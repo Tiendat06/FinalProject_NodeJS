@@ -12,4 +12,6 @@ router.get('/topselling', siteMiddleWare.index, siteController.getTopSellingProd
 // topreviewed
 router.get('/topreviewed', siteMiddleWare.index, siteController.getTopReviewedProducts);
 
+router.get('/dashboard', siteController.getDashboardData);
+
 module.exports = router;

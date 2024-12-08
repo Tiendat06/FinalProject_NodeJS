@@ -8,7 +8,7 @@ class ProductVariantRepository {
     }
 
     deleteProductVariantByProductId = (product_id) => {
-        return ProductVariant.deleteOne({product_id})
+        return ProductVariant.deleteOne({ product_id })
             .then(value => value)
             .catch(err => console.log(err));
     }
@@ -70,6 +70,19 @@ class ProductVariantRepository {
                 return null; // In case of an error, return null
             });
     };
+
+    getTotalProductVariant = () => {
+        return ProductVariant.countDocuments()
+            .then(value => {
+                console.log('Total Product Variants:', value); // Debug log
+                return value;
+            })
+            .catch(err => {
+                console.error('Error counting product variants:', err);
+                return 0;
+            });
+    };
 }
+
 
 module.exports = new ProductVariantRepository;

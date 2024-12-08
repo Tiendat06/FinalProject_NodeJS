@@ -164,8 +164,8 @@ class OrderService {
       const orderStatusName = orderStatus.status;
 
       // update current status for order
-      const orderUpdated = await OrderRepository.updateOrderById(orderId, {status: orderStatusName});
-      if(!orderUpdated.acknowledged) throw new Error('Update order status failed !');
+      const orderUpdated = await OrderRepository.updateOrderById(orderId, { status: orderStatusName });
+      if (!orderUpdated.acknowledged) throw new Error('Update order status failed !');
 
       // Update or create the OrderStatusDetails
       const updatedStatusDetails = await OrderRepository.upsertOrderStatusDetails(orderId, statusId);
@@ -572,20 +572,20 @@ class OrderService {
   }
 
   getOrderStatusByOrderId = async (req, res) => {
-      const { order_id } = req.params;
-      try {
-          const orderStatusDetails = await orderStatusDetailsRepository.getOrderStatusByOrderId(order_id);
-          return res.status(200).json({
-              status: true,
-              data: orderStatusDetails,
-              msg: 'Load order status successfully !'
-          })
-      } catch (e) {
-          return res.status(400).json({
-              status: false,
-              msg: e.message,
-          })
-      }
+    const { order_id } = req.params;
+    try {
+      const orderStatusDetails = await orderStatusDetailsRepository.getOrderStatusByOrderId(order_id);
+      return res.status(200).json({
+        status: true,
+        data: orderStatusDetails,
+        msg: 'Load order status successfully !'
+      })
+    } catch (e) {
+      return res.status(400).json({
+        status: false,
+        msg: e.message,
+      })
+    }
   }
 }
 

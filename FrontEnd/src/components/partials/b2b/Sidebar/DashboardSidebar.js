@@ -117,8 +117,9 @@ function DashboardSidebar() {
                             <div onClick={() => handleDashboardLinkItem('authentications')}
                                  className={clsx(styles['sidebar-content__main-link'],
                                      (dashboardLinkItems === 'authentications' && styles['sidebar-content__main-link--choose']))}>
-                                <i className="fa-solid fa-lock"></i>
-                                <span className='col-md-0'>Authentications</span>
+                                {/*<i className="fa-solid fa-lock"></i>*/}
+                                <i className="fa-solid fa-store"></i>
+                                <span className='col-md-0'>Shopping</span>
                             </div>
                             <ul style={{maxHeight: (dashboardLinkItems === 'authentications' ? 500 : 0)}}
                                 className={clsx(styles["sidebar-content__all-item__list"])}>
@@ -129,13 +130,13 @@ function DashboardSidebar() {
                                         <span>Go back shopping page</span>
                                     </Link>
                                 </li>
-                                <li className={clsx(styles["sidebar-content__all-item__list-item"])}>
-                                    <Link
-                                        to='/logout'>
-                                        <i className="fa-solid fa-door-open"></i>
-                                        <span>Logout</span>
-                                    </Link>
-                                </li>
+                                {/*<li className={clsx(styles["sidebar-content__all-item__list-item"])}>*/}
+                                {/*    <Link*/}
+                                {/*        to='/logout'>*/}
+                                {/*        <i className="fa-solid fa-door-open"></i>*/}
+                                {/*        <span>Logout</span>*/}
+                                {/*    </Link>*/}
+                                {/*</li>*/}
                             </ul>
                         </li>
                     </ul>

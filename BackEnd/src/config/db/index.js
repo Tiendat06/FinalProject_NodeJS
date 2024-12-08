@@ -8,8 +8,8 @@ async function connect() {
 
     try{
         await mongoose.connect(mongoURI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
+            // useNewUrlParser: true,
+            // useUnifiedTopology: true,
         })
             .then(() => console.log('Connected !'));
     }catch (e){

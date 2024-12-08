@@ -69,6 +69,7 @@ function DashboardManageOrderPage() {
         })
             .then(response => response.json())
             .then(data => {
+                // console.log(data)
                 if(data.status) {
                     setTempOrder(data.data);
                     dispatch(getOrders(data.data));
@@ -122,6 +123,9 @@ function DashboardManageOrderPage() {
                 // console.log(data);
                 if(data.status) {
                     statusDetailsDispatch(updateStatusDetailData(data.data));
+                    setTempOrder(data.newOrderUpdated);
+                    dispatch(getOrders(data.newOrderUpdated));
+                    // newOrderUpdated
                     toast.success(data.message);
                 } else{
                     toast.error(data.message);
@@ -191,6 +195,7 @@ function DashboardManageOrderPage() {
                                         <th>CUSTOMER NAME</th>
                                         <th>CUSTOMER PHONE</th>
                                         <th>CUSTOMER ADDRESS</th>
+                                        <th>COUPON</th>
                                         <th>STATUS</th>
                                         <th className='text-center'>ACTIONS</th>
                                     </tr>
@@ -205,13 +210,16 @@ function DashboardManageOrderPage() {
                                                 <p className={clsx(styles['user-table__text'])}>{ConvertDateString(item?.createdAt)}</p>
                                             </td>
                                             <td>
-                                                <p className={clsx(styles['user-table__text'])}>{item?.user_id?.fullName}</p>
+                                                <p className={clsx(styles['user-table__text'])}>{item?.address_id?.fullName}</p>
                                             </td>
                                             <td>
                                                 <p className={clsx(styles['user-table__text'])}>{item?.address_id?.phone_number}</p>
                                             </td>
                                             <td>
                                                 <p className={clsx(styles['user-table__text'])}>{item?.address_id?.address}</p>
+                                            </td>
+                                            <td>
+                                                <p className={clsx(styles['user-table__text'])}>{item?.coupon_id?.coupon_name || 'X'}</p>
                                             </td>
                                             <td>
                                                 <p className={clsx(styles['user-table__text'])}>{item.status}</p>

@@ -18,8 +18,6 @@ class ProductMiddleWare {
 
         if(!result.isEmpty()){
             error = result.array()[0].msg;
-        } else if(star === 0){
-            error = 'Please rating !';
         }
         req.flash('error', error);
         // console.log('middle ware');

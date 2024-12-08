@@ -10,12 +10,18 @@ class SiteService {
         const top5Products = await productRepository.getTopNProducts(5);
         const top8Products = await productRepository.getTopNProducts(8);
         const top3Products = await productRepository.getTopNProducts(3);
+        const topWishList = await wishListRepository.getTopWishListedProducts(3);
+        const topSelling = await OrderRepository.getTopSellingProducts(3);
+        const topReview = await commentRepository.getTopReviewedProducts(3);
 
         return res.status(200).json({
             status: true,
             top5Products,
             top8Products,
-            top3Products
+            top3Products,
+            topWishList,
+            topSelling,
+            topReview,
         })
     }
     // Get top wishlisted products

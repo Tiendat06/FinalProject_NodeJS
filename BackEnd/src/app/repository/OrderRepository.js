@@ -109,11 +109,12 @@ class OrderRepository {
             .catch(err => console.log(err));
     }
 
-    getAllOrders = (order_id) => {
-        return Order.find({ order_id })
+    getAllOrders = () => {
+        return Order.find()
             .populate('user_id')
             .populate('coupon_id')
             .populate('address_id')
+            .sort({ createdAt: -1 })
             .then(orders => orders)
             .catch(err => console.log(err));
     }
@@ -221,6 +222,11 @@ class OrderRepository {
             });
     };
 
+    getOrderById = (_id) => {
+        return Order.findOne({ _id })
+            .then(order => order)
+            .catch(err => console.log(err));
+    }
 }
 
 module.exports = new OrderRepository;

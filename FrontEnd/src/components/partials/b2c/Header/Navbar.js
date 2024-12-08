@@ -8,6 +8,7 @@ import {Button, Modal} from '~/components/elements';
 import {useShoppingContext} from "~/context/ShoppingContext";
 import {Loading} from "~/components/elements";
 import $ from "jquery";
+import {toast} from 'react-toastify';
 
 function Navbar() {
     // let [search, setSearch] = useState('');
@@ -23,7 +24,7 @@ function Navbar() {
 
     let handleIsLogin = (data) => {
        setIsLogin(data);
-       setLogMessage(null);
+       // setLogMessage(null);
     }
     let handleLogInformation = (data) => {
         const key = Object.keys(data)[0];
@@ -57,8 +58,11 @@ function Navbar() {
                 const msg = data.msg;
                 const status = data.status;
                 // if(error) setLogMessage(error);
-                if(route === 'login' && status) setUserData(() => data.userData);
-                setLogMessage(msg);
+                if(route === 'login' && status) {
+                    setUserData(() => data.userData);
+                    toast.success(msg);
+                } else toast.error(msg);
+                // setLogMessage(msg);
             })
             .catch(error => console.log(error));
     }
@@ -97,7 +101,9 @@ function Navbar() {
             .then(response => response.json())
             .then(data => {
                 const msg = data.msg;
-                setLogMessage(msg);
+                // setLogMessage(msg);
+                if(data.status) toast.success(msg);
+                else toast.error(msg);
                 $('.spinner-load').addClass('d-none');
                 $('.btn-save').html('Send mail');
             })
@@ -212,7 +218,7 @@ function Navbar() {
                             <Link to='/shop/cart' className="header-bottom__icon col-sm-0 position-relative d-flex justify-content-center align-items-center col-lg-4 col-md-4 col-sm-4">
                                 <i className={clsx("fa-solid fa-basket-shopping")}
                                    style={{fontSize: 25, cursor: "pointer"}}></i>
-                                <div className={clsx("position-absolute", styles['header-bottom__icon--notice'])}>1</div>
+                                {/*<div className={clsx("position-absolute", styles['header-bottom__icon--notice'])}>1</div>*/}
                             </Link>
                              {/*}*/}
                             <div className={clsx("header-bottom__contact col-sm-0 d-flex col-lg-8 col-md-0 col-sm-8")}>
@@ -262,7 +268,7 @@ function Navbar() {
                             </div>
                             <div className={clsx(styles['header-search__recommend'], (search === '' && 'd-none'), "col-lg-10 col-md-9 col-sm-9 position-absolute")}>
                                 {productData.map((item, index) => (
-                                    <Link onClick={() => setSearch('')} to={`/shop/details/${item._id}`}>{item.product_name}</Link>
+                                    <Link key={`search-p-${index}`} onClick={() => setSearch('')} to={`/shop/details/${item._id}`}>{item.product_name}</Link>
                                 ))}
                             </div>
                         </div>

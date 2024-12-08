@@ -9,7 +9,7 @@ import reducer, {initState} from './reducers/reducer';
 import {getCategories, onChangeData, setCategory, addCategoryData, deleteCategoryData, updateCategoryData} from "./actions/actions";
 import {toast} from "react-toastify";
 
-function DashboardManageCouponPage() {
+function DashboardManageCategoryPage() {
     const api_url = process.env.REACT_APP_API_URL;
     const {dashBoardSubLink, setDashBoardSubLink} = useDashboardContext();
     const [state, dispatch] = useReducer(reducer, initState);
@@ -106,7 +106,7 @@ function DashboardManageCouponPage() {
                 <div className="manage-user__table">
                     <h3 className={clsx(styles["manage-user__table-title"], 'mb-5')}>
                         <p className='mb-0'>Order Settings/</p>
-                        <p className={clsx(styles['manage-user__table-page'], 'mb-0')}> Manage Coupon</p>
+                        <p className={clsx(styles['manage-user__table-page'], 'mb-0')}> Manage Category</p>
                     </h3>
                     <ul className={clsx(styles["manage-user__table-list"], 'mb-3')}>
                         <Link onClick={() => setDashBoardSubLink('manageProduct')} to='/dashboard/product'
@@ -256,4 +256,4 @@ function DashboardManageCouponPage() {
     )
 }
 
-export default DashboardManageCouponPage;
+export default DashboardManageCategoryPage;

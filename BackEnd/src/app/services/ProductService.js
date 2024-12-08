@@ -4,6 +4,10 @@ const commentRepository = require('../repository/CommentRepository');
 const wishListRepository = require('../repository/WishListRepository');
 const ProductVariantRepository = require('../repository/ProductVariantRepository');
 const productCategoryRepository = require('../repository/ProductCategoryRepository');
+const ratingRepository = require('../repository/RatingRepository');
+const orderRepository = require('../repository/OrderRepository');
+const orderDetailsRepository = require('../repository/OrderDetailsRepository');
+const paymentRepository = require('../repository/PaymentRepository');
 const cloudinary = require('cloudinary').v2;
 const fs = require('fs');
 
@@ -27,20 +31,35 @@ class ProductService {
             const product_id = product._id;
             const productVariants = await productVariantRepository.getProductVariantByProductId(product_id);
             const top4Products = await productRepository.getTopNProducts(4);
+            const fiveStarDoc = await ratingRepository.getRatingCountByStar(5, id);
+            const fourStarDoc = await ratingRepository.getRatingCountByStar(4, id);
+            const threeStarDoc = await ratingRepository.getRatingCountByStar(3, id);
+            const twoStarDoc = await ratingRepository.getRatingCountByStar(2, id);
+            const oneStarDoc = await ratingRepository.getRatingCountByStar(1, id);
+
             const comment = await commentRepository.getCommentByProductId(product_id);
+            const rating = await ratingRepository.getRatingByProductId(product_id);
             let totalStar = 0;
             let length = 0;
             let starAvg = 0;
 
-            if (comment.length !== 0) {
-                length = comment.length;
-                totalStar = comment.reduce((sum, cmt) => sum + cmt.star, 0);
+            if (rating.length !== 0) {
+                length = rating.length;
+                totalStar = rating.reduce((sum, cmt) => sum + cmt.star, 0);
                 starAvg = (totalStar / length).toFixed(0);
             }
             // console.log(starAvg);
             return res.status(200).json({
                 status: true,
-                product, productVariants, top4Products, starAvg, comment
+                product, productVariants, top4Products, starAvg, comment,
+                countStar: {
+                    fiveStarDoc,
+                    fourStarDoc,
+                    threeStarDoc,
+                    twoStarDoc,
+                    oneStarDoc,
+                    totalRating: rating.length
+                }
             })
         } catch (e) {
             return res.status(400).json({
@@ -51,27 +70,72 @@ class ProductService {
     }
 
     commentProduct = async (req, res) => {
-        const { user_id, product_id, star, content } = req.body;
+        let { user_id, product_id, star, content } = req.body;
         const error = req.flash('error');
         const commentData = {
-            user_id, content, product_id, star: Number(star)
+            user_id, content, product_id,
+        }
+
+        let comment = '';
+        let previousComment = ''
+        if(error.length === 0) {
+            comment = await commentRepository.insertComment(commentData);
+            const comment_id = comment[0]._id;
+            previousComment = await commentRepository.getCommentById(comment_id);
         }
 
         try {
             if (error.length !== 0) throw new Error(error[0]);
-            const comment = await commentRepository.insertComment(commentData)
             if (comment.length === 0) throw new Error('Comment failed !');
+
+            // find product variant
+            const product_variant = await productVariantRepository.getProductVariantByProductId(product_id);
+            if(product_variant.length === 0) throw new Error('Product not found!');
+            const product_variant_id = product_variant.map(variant => variant._id)
+
+            // find order id
+            const order = await orderRepository.getOrdersByUserId(user_id);
+            if(order.length === 0) throw new Error('You also can rating while you have payment on this product!');
+            const order_id = order.map(o => o._id);
+
+            // check order details with order id and product id
+            const order_details = await orderDetailsRepository.checkOrderDetailsRelatedToOrderIdAndProductId(order_id, product_variant_id);
+
+            const matchingOrderId = order_details.map(detail => detail.order_id);
+            if(matchingOrderId.length === 0) throw new Error('You also can rating while you have payment on this product!');
+
+            const payment = await paymentRepository.checkPaymentOrderRelatedOrderId(matchingOrderId);
+            if(payment.length === 0) throw new Error('You also can rating while you have payment on this product!');
+
+            // console.log(star);
+            if(Number(star) === 0) {
+                star = 1;
+            }
+            const ratingData = {
+                user_id, product_id, star: Number(star)
+            }
+            const rating = await ratingRepository.insertRating(ratingData);
+            if(rating.length === 0) throw new Error('Rating failed !');
 
             return res.status(200).json({
                 status: true,
-                data: comment[0],
+                data: previousComment,
                 msg: 'Thanks for your comment!'
             })
         } catch (e) {
-            return res.status(400).json({
-                status: false,
-                msg: e.message
-            })
+            if(comment.length > 0) {
+                return res.status(200).json({
+                    status: true,
+                    data: previousComment,
+                    msg: e.message
+                })
+            } else{
+                return res.status(400).json({
+                    status: false,
+                    data: comment[0] || '',
+                    msg: e.message
+                })
+            }
         }
     }
 

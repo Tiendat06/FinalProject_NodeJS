@@ -1,4 +1,6 @@
 // const orderRepository = require('../repository/OrderRepository');
+const dayjs = require('dayjs');
+const crypto = require('crypto');
 
 const OrderStatus = require('../model/OrderStatus');
 const OrderStatusDetails = require('../model/OrderStatusDetails');
@@ -589,6 +591,51 @@ class OrderService {
               msg: e.message,
           })
       }
+  }
+
+  placeOrderZaloPay = async (req, res) => {
+    const {items, description, amount } = req.body;
+    const currentDate = dayjs();
+    const app_time = currentDate.valueOf();
+    const tranId = currentDate.format('YYMMDD');
+    const app_trans_id = `${tranId}_${app_time}`;
+    const key1 = 'PcY4iZIKFCIdgZvA6ueMcMHHUbRLYjPL';
+
+    const data = {
+      "amount": amount,
+      "app_id": 2553,
+      "app_time": app_time,
+      "app_trans_id": app_trans_id,
+      "app_user": "demo",
+      "bank_code": 'zalopayapp',
+      'description': description,
+      "callback_url": `http://localhost:${process.env.PORT}/shop/checkout`,
+      "embed_data": JSON.stringify({}),
+      "item": JSON.stringify(items),
+      'key1': key1,
+      "mac": ""
+    }
+
+    const hmac_input = `${data.app_id}|${data.app_trans_id}|${data.app_user}|${data.amount}|${data.app_time}|${data.embed_data}|${data.item}`;
+
+    const mac = crypto.createHmac('sha256', key1).update(hmac_input).digest('hex');
+
+    data.mac = mac;
+
+    console.log('data: ',data);
+    fetch('https://sb-openapi.zalopay.vn/v2/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    })
+        .then(response => response.json())
+        .then(data => {
+          if(data.return_code === 1) res.status(200).json(data);
+          else res.status(500).json(data);
+        })
+        .catch(err => console.log(err));
   }
 }
 

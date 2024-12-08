@@ -84,6 +84,10 @@ class OrderController {
     place_order_no_login = async (req, res, next) => {
         return await orderService.placeOrderNoLogin(req, res);
     }
+
+    place_order_zalopay = async (req, res, next) => {
+        return await orderService.placeOrderZaloPay(req, res);
+    }
 }
 
 module.exports = new OrderController;

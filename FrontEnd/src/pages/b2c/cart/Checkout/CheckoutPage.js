@@ -15,18 +15,7 @@ function CheckoutPage() {
     const {userData} = useShoppingContext();
     const user_id = userData._id;
 
-    const [items, setItems] = useState([
-        { id: 1, name: "Laptop IdeaPad Slim 3", img: "/img/customer/product/laptop/lenovo-ideapadSlim3.png", price: 300, type: 'laptop', quantity: 3 },
-        { id: 2, name: "IPhone 11", img: "/img/customer/product/mobile/iphone11.png", price: 300, type: 'mobile', quantity: 5 },
-        { id: 3, name: "Loudspeaker Mini Xiaomi", img: "/img/customer/product/sound/sound-mini-siaomi.png", price: 300, type: 'sound', quantity: 4 },
-        { id: 4, name: "Laptop Microsoft Surface", img: "/img/customer/product/laptop/microsoft-surface.png", price: 400, type: 'laptop', quantity: 2 },
-        { id: 5, name: "Laptop Vivobook 15", img: "/img/customer/product/laptop/asus-vivobook15.png", price: 300, type: 'laptop', quantity: 2 },
-        { id: 6, name: "Laptop HP Pavilion 15", img: "/img/customer/product/laptop/hp-pavilion15.png", price: 300, type: 'laptop', quantity: 2 },
-        { id: 7, name: "Mouse G56D", img: "/img/customer/product/mouse/mouse-G56D.png", price: 300, type: 'mouse', quantity: 2 },
-        { id: 8, name: "Samsung S23 Ultra", img: "/img/customer/product/mobile/samsung-S23Ultra.png", price: 300, type: 'mobile', quantity: 2 },
-        { id: 9, name: "Lenovo K310", img: "/img/customer/product/keyboard/kb-lenovoK310.png", price: 300, type: 'keyboard', quantity: 2 },
-        { id: 10, name: "Logitech M650", img: "/img/customer/product/mouse/mouse-logitechM650.png", price: 200, type: 'mouse', quantity: 2 },
-    ]);
+    const [items, setItems] = useState([]);
     const [orderInfo, setOrderInfo] = useState({});
     const [addressInfo, setAddressInfo] = useState([]);
     const [addressChoose, setAddressChoose] = useState(0);
@@ -143,39 +132,27 @@ function CheckoutPage() {
                 })
                 .catch(error => console.log(error));
         }
+    }
 
-
-        // fetch(`${api_url}/order/place-order`, {
-        //     method: "POST",
-        //     body: JSON.stringify({
-        //         user_id,
-        //         totalBill: Number(totalBill),
-        //         address_id: addressInfo[addressChoose]._id,
-        //         payment_method_name: 'Cash',
-        //         email: emailInfo,
-        //         products: items,
-        //         coupon_id: orderInfo?.coupon_id?._id
-        //     }),
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     },
-        //     credentials: "include"
-        // })
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         if(data.status) {
-        //             toast.success('Thanks for you payment !');
-        //             setTimeout(() => {
-        //                 window.location.href = '/'
-        //             }, 3000);
-        //         } else {
-        //             toast.error(data.msg);
-        //         }
-        //     })
-        //     .catch(error => {
-        //         toast.error(error);
-        //         console.log(error);
-        //     });
+    const handleZaloPayPayment = () => {
+        fetch(`${api_url}/order/place-order-zalopay`, {
+            method: 'POST',
+            body: JSON.stringify({
+                items: [],
+                description: "oke",
+                amount: 100
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: "include"
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                window.location.href = data.order_url;
+            })
+            .catch(error => console.log(error));
     }
 
     return (
@@ -224,8 +201,8 @@ function CheckoutPage() {
                         ))}
                     </ul>
 
-                    <Link to='/shop/cart' type='button' className={clsx(styles['checkout-info__btn-back'])}>CANCEL
-                        ORDER</Link>
+                    {/*<Link to='/shop/cart' type='button' className={clsx(styles['checkout-info__btn-back'])}>CANCEL*/}
+                    {/*    ORDER</Link>*/}
                 </form>
             </div>
             <div className="col-lg-6 col-md-7 col-sm-12">
@@ -267,50 +244,52 @@ function CheckoutPage() {
                             <p className={clsx(styles['checkout-order__totalBill-text'])}><FormatUSDCurrency
                                 price={totalBill}/></p>
                         </div>
-                    <div className={clsx(styles["checkout-order__payment-method"])}>
+                    <div className={clsx(styles["checkout-order__payment-method"], 'd-block')}>
                             <div
-                                className={clsx(styles['checkout-order__payment-method__form'], "form-group col-lg-3 col-md-3 col-sm-12")}>
+                                className={clsx(styles['checkout-order__payment-method__form'], "form-group col-lg-12 col-md-12 col-sm-12")}>
                                 <input type="radio"
                                        className={clsx(styles['checkout-order__payment-method__inp'], "btn-check")}
                                        name="btnradio" value="Paypal" id="paypal"
                                        autoComplete="off"/>
                                 <label onClick={() => setPaymentMethod('paypal')}
+                                       style={{letterSpacing: 2}}
                                        className={clsx(styles['checkout-order__label'], paymentMethod === 'paypal' && styles['checkout-order__label-focus'])}
                                        htmlFor="paypal"> <img className={clsx(styles['checkout-order__img'])}
                                                               src="/img/icon/paypal.png" alt=""/> Paypal</label>
                             </div>
 
-                            <div
-                                className={clsx(styles['checkout-order__payment-method__form'], "form-group col-lg-3 col-md-3 col-sm-12")}>
-                                <input type="radio"
-                                       className={clsx(styles['checkout-order__payment-method__inp'], "btn-check")}
-                                       name="btnradio" value="Momo" id="momo"
-                                       autoComplete="off"/>
-                                <label onClick={() => setPaymentMethod('momo')}
-                                       className={clsx(styles['checkout-order__label'], paymentMethod === 'momo' && styles['checkout-order__label-focus'])}
-                                       htmlFor="momo"><img className={clsx(styles['checkout-order__img'])}
-                                                           src="/img/icon/momo.png" alt=""/>Momo</label>
-                            </div>
+                            {/*<div*/}
+                            {/*    className={clsx(styles['checkout-order__payment-method__form'], "form-group col-lg-3 col-md-3 col-sm-12")}>*/}
+                            {/*    <input type="radio"*/}
+                            {/*           className={clsx(styles['checkout-order__payment-method__inp'], "btn-check")}*/}
+                            {/*           name="btnradio" value="Momo" id="momo"*/}
+                            {/*           autoComplete="off"/>*/}
+                            {/*    <label onClick={() => setPaymentMethod('momo')}*/}
+                            {/*           className={clsx(styles['checkout-order__label'], paymentMethod === 'momo' && styles['checkout-order__label-focus'])}*/}
+                            {/*           htmlFor="momo"><img className={clsx(styles['checkout-order__img'])}*/}
+                            {/*                               src="/img/icon/momo.png" alt=""/>Momo</label>*/}
+                            {/*</div>*/}
+
+                            {/*<div*/}
+                            {/*    className={clsx(styles['checkout-order__payment-method__form'], "form-group col-lg-3 col-md-3 col-sm-12")}>*/}
+                            {/*    <input type="radio"*/}
+                            {/*           className={clsx(styles['checkout-order__payment-method__inp'], "btn-check")}*/}
+                            {/*           name="btnradio" value="ZaloPay" id="zalopay"*/}
+                            {/*           autoComplete="off"/>*/}
+                            {/*    <label onClick={() => setPaymentMethod('zalopay')}*/}
+                            {/*           className={clsx(styles['checkout-order__label'], paymentMethod === 'zalopay' && styles['checkout-order__label-focus'])}*/}
+                            {/*           htmlFor="zalopay"><img className={clsx(styles['checkout-order__img'])}*/}
+                            {/*                                  src="/img/icon/zalopay.png" alt=""/>ZaloPay</label>*/}
+                            {/*</div>*/}
 
                             <div
-                                className={clsx(styles['checkout-order__payment-method__form'], "form-group col-lg-3 col-md-3 col-sm-12")}>
-                                <input type="radio"
-                                       className={clsx(styles['checkout-order__payment-method__inp'], "btn-check")}
-                                       name="btnradio" value="ZaloPay" id="zalopay"
-                                       autoComplete="off"/>
-                                <label onClick={() => setPaymentMethod('zalopay')}
-                                       className={clsx(styles['checkout-order__label'], paymentMethod === 'zalopay' && styles['checkout-order__label-focus'])}
-                                       htmlFor="zalopay"><img className={clsx(styles['checkout-order__img'])}
-                                                              src="/img/icon/zalopay.png" alt=""/>ZaloPay</label>
-                            </div>
-
-                            <div
-                                className={clsx(styles['checkout-order__payment-method__form'], "form-group col-lg-3 col-md-3 col-sm-12")}>
+                                className={clsx(styles['checkout-order__payment-method__form'], "form-group col-lg-12 col-md-12 col-sm-12")}>
                                 <input type="radio"
                                        className={clsx(styles['checkout-order__payment-method__inp'], "btn-check")}
                                        name="btnradio" value="Cash" id="cash"
                                        autoComplete="off"/>
                                 <label onClick={() => setPaymentMethod('cash')}
+                                       style={{letterSpacing: 2}}
                                        className={clsx(styles['checkout-order__label'], paymentMethod === 'cash' && styles['checkout-order__label-focus'])}
                                        htmlFor="cash"><img className={clsx(styles['checkout-order__img'])}
                                                            src="/img/icon/cash.png" alt=""/> COD</label>
@@ -327,6 +306,12 @@ function CheckoutPage() {
                                 totalBill={totalBill}
                                 userInfo={userInfo}
                             />
+                        }
+                        {paymentMethod === 'zalopay' &&
+                            <button onClick={handleZaloPayPayment} className={clsx(styles['checkout-order__payment-btn__text'], 'btn w-100')}>
+                                <span>ZALOPAY ORDER</span>
+                                <i className="fa-solid fa-truck-fast"></i>
+                            </button>
                         }
                         {paymentMethod === 'cash' &&
                             <button onClick={handleCashPayment} className={clsx(styles['checkout-order__payment-btn__text'], 'btn w-100')}>

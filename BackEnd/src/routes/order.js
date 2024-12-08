@@ -14,6 +14,8 @@ router.post('/place-order', orderValidator.placeOrderValidator,
 router.post('/place-order-no-login', orderValidator.placeOrderNoLoginValidator,
     orderMiddleWare.place_order, orderController.place_order_no_login);
 
+router.post('/place-order-zalopay', orderController.place_order_zalopay);
+
 // prepare
 router.get('/', orderController.getAllOrders);
 

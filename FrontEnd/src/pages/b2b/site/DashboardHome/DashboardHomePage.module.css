@@ -150,6 +150,11 @@
     border-radius: 10px;
 }
 
+.home-information__new-customer-item__info img {
+    object-fit: cover;
+    border-radius: 50%;
+}
+
 .home-information__best-seller-item__info p, .home-information__best-seller-item__sell-out p{
     margin-bottom: 0;
     font-weight: 500;
@@ -249,13 +254,13 @@
 
 .home-information__comment-item__img{
     overflow: hidden;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
 }
 
 .home-information__comment-item__img img{
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-    border-radius: 50%;
+    object-fit: cover;
 }
 
 .home-information__comment-item__text{

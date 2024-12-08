@@ -35,7 +35,7 @@ function LineChart({data}) {
             y: {
                 beginAtZero: true,
                 ticks: {
-                    stepSize: 10,
+                    stepSize: 1,
                 },
             },
         },

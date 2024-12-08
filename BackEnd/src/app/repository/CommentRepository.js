@@ -23,6 +23,17 @@ class CommentRepository{
             .then(comment => comment)
             .catch(err => console.log(err));
     }
+
+    getCommentsWithLimitDocument = (limit) => {
+        return Comment.find()
+            .populate('user_id')
+            .populate('product_id')
+            .limit(limit)
+            .sort({_id: -1})
+            .then(comments => comments)
+            .catch(err => console.log(err));
+    }
+
     //Top reviewed products
     getTopReviewedProducts = (limit) => {
         return Comment.aggregate([

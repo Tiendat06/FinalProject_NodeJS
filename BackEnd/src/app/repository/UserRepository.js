@@ -66,6 +66,14 @@ class UserRepository {
             return 0;
         }
     }
+
+    getUserWithLimitDocument = (limit) => {
+        return User.find()
+            .limit(limit)
+            .sort({_id: -1})
+            .then(users => users)
+            .catch(err => console.log(err));
+    }
 }
 
 module.exports = new UserRepository;

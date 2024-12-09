@@ -21,7 +21,7 @@ class LogController {
     logout = (req, res) => {
         res.clearCookie('token');
         res.status(200).json({
-            status: false,
+            status: true,
             msg: 'Wait for a seconds !',
         });
     }

@@ -28,7 +28,7 @@ function ShippingAddress() {
                     console.log(addressData);
                     dispatch(getAddresses(addressData));
                 }
-                else window.location.href = '/';
+                // else window.location.href = '/';
             })
             .catch(error => console.log(error));
 

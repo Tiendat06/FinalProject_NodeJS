@@ -19,9 +19,10 @@ class OrderController {
     }
 
     async getOrderHistory(req, res) {
+        // console.log('hi world: ',req.userData);
+
         try {
-            const userId = req.userData.userData._id;
-            // console.log(req.userData);
+            const userId = req.query.user_id;
             const orders = await orderService.getOrdersByUserId(userId);
             if (!orders || orders.length === 0) {
                 return res.status(404).json({
@@ -36,7 +37,7 @@ class OrderController {
         } catch (error) {
             res.status(500).json({
                 status: false,
-                msg: 'Error fetching order history'
+                msg: error.message
             });
         }
     }

@@ -61,11 +61,14 @@ function Navbar() {
                 if(route === 'login' && status) {
                     setUserData(() => data.userData);
                     toast.success(msg);
-                } else toast.error(msg);
+                }
+                else if (route === 'register' && status) toast.success(msg);
+                else toast.error(msg);
                 // setLogMessage(msg);
             })
             .catch(error => console.log(error));
     }
+
     let onClickLogout = () => {
         localStorage.removeItem("userData");
         const api_url = process.env.REACT_APP_API_URL;

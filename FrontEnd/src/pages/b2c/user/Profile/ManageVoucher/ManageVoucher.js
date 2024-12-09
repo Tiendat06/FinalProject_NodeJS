@@ -35,7 +35,7 @@ function ManageVoucher() {
             .then(data => {
                 // console.log(data)
                 if(data.status) setItems(data.data);
-                else window.location.href = '/';
+                // else window.location.href = '/';
             })
             .catch(error => console.log(error));
     }, [])
@@ -55,9 +55,10 @@ function ManageVoucher() {
                                     className={clsx(styles["profile-voucher__item-details"], 'd-flex flex-wrap col-lg-12 col-md-12 col-sm-12')}>
                                     <div
                                         className={clsx(styles["profile-voucher__item-details__text"], 'col-lg-11 col-md-11 col-sm-11')}>
-                                        <p style={{fontSize: 16, fontWeight: "bold"}}
-                                           className='mb-0'>{item.coupon_name} ({item.point})</p>
-                                        <p className='mb-0'>{item.description}</p>
+                                        <p style={{fontSize: 16, fontWeight: "bold"}} className='mb-0'>{item?.code}</p>
+                                        <p style={{fontSize: 12, fontWeight: "normal"}}
+                                           className='mb-0'>{item?.coupon_name} ({item?.point} point)</p>
+                                        <p className='mb-0'>{item?.description}</p>
                                     </div>
                                     <img
                                         className='col-lg-1 col-md-1 col-sm-1'

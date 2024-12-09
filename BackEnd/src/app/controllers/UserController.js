@@ -35,6 +35,10 @@ class UserController {
     delete_wish_list = async (req, res, next) => {
         return await wishListService.deleteWishList(req, res);
     }
+
+    view_profile = async (req, res, next) => {
+        return await userService.viewProfile(req, res);
+    }
 }
 
 module.exports = new UserController;

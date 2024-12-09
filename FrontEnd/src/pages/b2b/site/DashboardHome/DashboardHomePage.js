@@ -71,14 +71,6 @@ function DashboardHomePage() {
         ],
     };
 
-    const dataTopCustomer = [
-        {id: 1, name: 'John Doe', order: '100', email: 'jason@gmail.com', img: '/img/customer/profile/profile-img-test.jpg'},
-        {id: 2, name: 'Marry Johnson', order: '100', email: 'jason@gmail.com', img: '/img/customer/profile/profile-img-test.jpg'},
-        {id: 3, name: 'Bob Johnson', order: '100', email: 'jason@gmail.com', img: '/img/customer/profile/profile-img-test.jpg'},
-        {id: 4, name: 'Jack Jason', order: '100', email: 'jason@gmail.com', img: '/img/customer/profile/profile-img-test.jpg'},
-        {id: 5, name: 'Kim Jun Soo', order: '100', email: 'jason@gmail.com', img: '/img/customer/profile/profile-img-test.jpg'},
-    ];
-
     const handleDataOrderChange = (type) => {
         if(type === 'months') {
             setLabelsRecentOrder([...chartLabels[1]]);
@@ -251,7 +243,7 @@ function DashboardHomePage() {
                                         className={clsx(styles["home-information__best-seller-item"], 'mt-3')}>
                                         <div className={clsx(styles["home-information__best-seller-item__info"],
                                             styles['home-information__new-customer-item__info'])}>
-                                            <img src={item?.profile_image} alt=""/>
+                                            <img /*style={{width: 40, height: 40}}*/ src={item?.profile_image} alt=""/>
                                             <div className={clsx(styles["home-information__best-seller-item__text"])}>
                                                 <p>{item?.fullName}</p>
                                                 <span>{item?.email}</span>

@@ -32,7 +32,7 @@ class OrderRepository {
 
     async getOrdersByUserId(userId) {
         try {
-            return await Order.find({ user_id: userId, deleted: false }).populate('user_id').exec();
+            return await Order.find({ user_id: userId, deleted: false }).populate('user_id').sort({createdAt: -1}).exec();
         } catch (error) {
             throw new Error('Error fetching orders');
         }

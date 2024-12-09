@@ -82,6 +82,10 @@ function DetailsPage(){
                 if (data.status) {
                     const newComment = comments || [];
                     setComments([...newComment, data.data]);
+                    setCommentInfo({
+                        ...commentInfo,
+                        content: ''
+                    })
                     toast.success(data.msg);
                 }else toast.error(data.msg);
                 // setLogMessage(data.msg);

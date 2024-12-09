@@ -5,22 +5,14 @@ import {useCallback, useEffect, useLayoutEffect, useState} from "react";
 import {FormatUSDCurrency, FormatECommerceDate} from "~/utils";
 import {Modal, Pagination} from "~/components/elements";
 import {Link} from "react-router-dom";
+import {useShoppingContext} from "~/context/ShoppingContext";
 
 function ManageOrder() {
     const itemsPerPage = 4;
     const api_url = process.env.REACT_APP_API_URL;
-    // const rawData = [
-    //     { id: 1, name: "Laptop IdeaPad Slim 3", status: 'Confirmed' , img: "/img/customer/product/laptop/lenovo-ideapadSlim3.png", price: 300, type: 'laptop', quantity: 3 },
-    //     { id: 2, name: "IPhone 11", status: 'Pending' , img: "/img/customer/product/mobile/iphone11.png", price: 300, type: 'mobile', quantity: 5 },
-    //     { id: 3, name: "Loudspeaker Mini Xiaomi", status: 'Confirmed' , img: "/img/customer/product/sound/sound-mini-siaomi.png", price: 300, type: 'sound', quantity: 4 },
-    //     { id: 4, name: "Laptop Microsoft Surface", status: 'Pending' , img: "/img/customer/product/laptop/microsoft-surface.png", price: 400, type: 'laptop', quantity: 2 },
-    //     { id: 5, name: "Laptop Vivobook 15", status: 'Shipping' , img: "/img/customer/product/laptop/asus-vivobook15.png", price: 300, type: 'laptop', quantity: 2 },
-    //     { id: 6, name: "Laptop HP Pavilion 15", status: 'Delivered' , img: "/img/customer/product/laptop/hp-pavilion15.png", price: 300, type: 'laptop', quantity: 2 },
-    //     { id: 7, name: "Mouse G56D", status: 'Shipping' , img: "/img/customer/product/mouse/mouse-G56D.png", price: 300, type: 'mouse', quantity: 2 },
-    //     { id: 8, name: "Samsung S23 Ultra", status: 'Cancel' , img: "/img/customer/product/mobile/samsung-S23Ultra.png", price: 300, type: 'mobile', quantity: 2 },
-    //     { id: 9, name: "Lenovo K310", status: 'Delivered' , img: "/img/customer/product/keyboard/kb-lenovoK310.png", price: 300, type: 'keyboard', quantity: 2 },
-    //     { id: 10, name: "Logitech M650", status: 'Cancel' , img: "/img/customer/product/mouse/mouse-logitechM650.png", price: 200, type: 'mouse', quantity: 2 },
-    // ];
+    const {userData} = useShoppingContext();
+    const user_id = userData._id;
+
     const [items, setItems] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [pageCount, setPageCount] = useState(0);
@@ -48,7 +40,7 @@ function ManageOrder() {
 
     // BE
     useEffect(() => {
-        fetch(`${api_url}/order/history`, {
+        fetch(`${api_url}/order/history?user_id=${user_id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -57,6 +49,7 @@ function ManageOrder() {
         })
             .then(response => response.json())
             .then(data => {
+                // console.log(data)
                 if(data.status) setItems(data.data);
             })
             .catch(err => console.log(err));
@@ -182,11 +175,13 @@ function ManageOrder() {
                                 </td>
                                 <td>
                                     <p style={{fontSize: 14}} className='text-center mb-0'>
-                                        {item.product_variant_id.retail_price}
+                                        <FormatUSDCurrency price={item.product_variant_id.retail_price} />
                                     </p>
                                 </td>
                                 <td>
-                                    <p style={{fontSize: 14}} className='text-center mb-0'>{item.quantity * item.product_variant_id.retail_price}</p>
+                                    <p style={{fontSize: 14}} className='text-center mb-0'>
+                                        <FormatUSDCurrency price={item.quantity * item.product_variant_id.retail_price} />
+                                    </p>
                                 </td>
                             </tr>
                         ))}

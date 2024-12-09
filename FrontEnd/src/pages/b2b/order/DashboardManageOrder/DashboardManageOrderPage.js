@@ -37,7 +37,7 @@ function DashboardManageOrderPage() {
     const [endFilter, setEndFilter] = useState("");
 
     const filterDataByDate = () => {
-        console.log('hi world');
+        // console.log('hi world');
 
         const filterStart = new Date(startFilter);
         const filterEnd = new Date(endFilter);
@@ -191,6 +191,7 @@ function DashboardManageOrderPage() {
                                     <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>ORDER ID</th>
                                         <th>DATE CREATED</th>
                                         <th>CUSTOMER NAME</th>
                                         <th>CUSTOMER PHONE</th>
@@ -207,16 +208,19 @@ function DashboardManageOrderPage() {
                                                 <p className={clsx(styles['user-table__text'])}>{index + 1}</p>
                                             </td>
                                             <td>
+                                                <p className={clsx(styles['user-table__text'])}>{(item._id).substring(0, 5).toUpperCase()}-{((item._id).substring((item._id).length - 5)).toUpperCase()}</p>
+                                            </td>
+                                            <td>
                                                 <p className={clsx(styles['user-table__text'])}>{ConvertDateString(item?.createdAt)}</p>
                                             </td>
                                             <td>
-                                                <p className={clsx(styles['user-table__text'])}>{item?.address_id?.fullName}</p>
+                                                <p className={clsx(styles['user-table__text'])}>{item?.address_id?.fullName || item?.user_id?.fullName}</p>
                                             </td>
                                             <td>
-                                                <p className={clsx(styles['user-table__text'])}>{item?.address_id?.phone_number}</p>
+                                                <p className={clsx(styles['user-table__text'])}>{item?.address_id?.phone_number || item?.user_id?.phone}</p>
                                             </td>
                                             <td>
-                                                <p className={clsx(styles['user-table__text'])}>{item?.address_id?.address}</p>
+                                                <p className={clsx(styles['user-table__text'])}>{item?.address_id?.address || 'Address Deleted'}</p>
                                             </td>
                                             <td>
                                                 <p className={clsx(styles['user-table__text'])}>{item?.coupon_id?.coupon_name || 'X'}</p>

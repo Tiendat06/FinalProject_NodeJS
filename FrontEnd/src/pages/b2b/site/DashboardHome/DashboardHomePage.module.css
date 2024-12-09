@@ -137,7 +137,7 @@
 
 .home-information__best-seller-item__info{
     display: flex;
-    flex-wrap: wrap;
+    /*flex-wrap: wrap;*/
     align-items: center;
 }
 

@@ -263,8 +263,8 @@ class LogService {
                 if(userAdd.length === 0) throw new Error('Authorize failed !');
 
                 const userAddId = userAddData._id;
-                const password = this.generateRandomString(10);
-                const hashPassword = await bcrypt.hash(password, 10);
+                // const password = this.generateRandomString(10);;
+                const hashPassword = await bcrypt.hash(email, 10);
 
                 const user = await userRepository.getUserByEmail(email);
                 const user_id = user._id;
@@ -287,7 +287,7 @@ class LogService {
             const user_id = user._id;
             const account = await accountRepository.getAccountByUserId(user_id);
             const token = jwt.sign({
-                user, account
+                userData: user, accountData: account
             }, process.env.JWT_SECRET_KEY,{
                 expiresIn: '1d'
             });

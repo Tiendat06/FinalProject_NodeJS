@@ -242,13 +242,13 @@ function HomePage(){
                         ))}
                     </SmallSlickCarousel>
                 </div>
-                <div className="col-lg-4 col-md-4 col-sm-12">
+                <div className="col-lg-4 col-md-4 col-sm-12 mb-5">
                     <h2>Top Selling</h2>
                     <div className={clsx(styles['home-new__middle'], 'mb-4')}
                          style={{marginRight: "auto", marginLeft: 0}}></div>
                     <SmallSlickCarousel>
                         {dataList?.topSelling?.map((item, index) => (
-                            <Link key={`top-sell-${index}`} to={`/shop/details/${item?.product_variant?.product_id}`} className={clsx(styles["home-top__rated-item"], 'd-flex')}>
+                            <Link title={item?.product_variant?.product_name} key={`top-sell-${index}`} to={`/shop/details/${item?.product_variant?.product_id}`} className={clsx(styles["home-top__rated-item"], 'd-flex')}>
                                 <div
                                     className={clsx(styles["home-top__rated-img--outer"], 'col-lg-5 col-md-5 col-sm-5 d-flex justify-content-center')}>
                                     <img src={item?.product_variant?.product_image} alt=""

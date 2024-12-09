@@ -1,17 +1,20 @@
 const cloudinary = require('cloudinary').v2;
 const fs = require('fs');
-
 const userRepository = require('../repository/UserRepository');
-
-
-
-const err = require("multer/lib/multer-error");
-
+// const err = require("multer/lib/multer-error");
 const accountRepository = require('../repository/AccountRepository');
 const bcrypt = require('bcrypt');
 
-
 class UserService {
+
+    viewProfile = async (req, res) => {
+        const user_id = req.userData.userData._id;
+        const user = await userRepository.getUserById(user_id);
+        return res.status(200).json({
+            status: true,
+            data: user,
+        });
+    }
 
     getAllUsers = async (req, res) => {
         const users = await userRepository.getAllUsers();
@@ -141,7 +144,6 @@ class UserService {
             });
         }
     }
-
 
     userChangePassword = async (req, res) => {
         const {newPassword, user_id} = req.body;

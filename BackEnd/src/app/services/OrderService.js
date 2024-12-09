@@ -219,11 +219,15 @@ class OrderService {
       const userShippingAddress = await addressRepository.getAddressesByUserId(user_id);
       if (userShippingAddress === 0) throw new Error('Load user address failed !');
 
+      const userData = await userRepository.getUserById(user_id);
+      const email = userData.email;
+
       return res.status(200).json({
         status: true,
         dataOrderDetails: userOrderDetails,
         dataOrder: userOrder,
         dataShippingAddress: userShippingAddress,
+        email,
         msg: 'Load user order successfully !',
       })
 

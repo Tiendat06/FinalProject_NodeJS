@@ -71,7 +71,8 @@ function CheckoutPage() {
                             fullName: data.dataShippingAddress[0].fullName,
                             phone_number: data.dataShippingAddress[0].phone_number,
                             address: data.dataShippingAddress[0].address
-                        })
+                        });
+                        setEmailInfo(data.email);
                     }
                     else window.location.href = '/';
                 })

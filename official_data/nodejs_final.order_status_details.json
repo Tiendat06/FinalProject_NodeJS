@@ -292,6 +292,9 @@
   "is_check": false,
   "__v": 0
 },
+
+
+
 {
   "_id": {
     "$oid": "674c20a8a50614d7a28b45d5"
@@ -524,8 +527,10 @@
   "status_id": {
     "$oid": "6741b3abfebecf90784bc246"
   },
-  "createdAt": null,
-  "is_check": false,
+  "createdAt": {
+    "$date": "2024-12-03T13:37:21.211Z"
+  },
+  "is_check": true,
   "__v": 0
 },
 {
@@ -568,8 +573,10 @@
   "status_id": {
     "$oid": "6741b3abfebecf90784bc245"
   },
-  "createdAt": null,
-  "is_check": false,
+  "createdAt": {
+    "$date": "2024-12-03T13:33:44.601Z"
+  },
+  "is_check": true,
   "__v": 0
 },
 {
@@ -586,12 +593,1132 @@
   "is_check": false,
   "__v": 0
 },
+
+
+
 {
   "_id": {
     "$oid": "674c6f1b135a45393ac3827f"
   },
   "order_id": {
     "$oid": "674c6f1b135a45393ac38272"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc247"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674efc6ae6ca0e50af3e4f55"
+  },
+  "order_id": {
+    "$oid": "674efc3fe6ca0e50af3e4f46"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc244"
+  },
+  "createdAt": {
+    "$date": "2024-12-03T12:41:14.539Z"
+  },
+  "is_check": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674efc6ae6ca0e50af3e4f56"
+  },
+  "order_id": {
+    "$oid": "674efc3fe6ca0e50af3e4f46"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc245"
+  },
+  "createdAt": {
+    "$date": "2024-12-03T13:29:52.751Z"
+  },
+  "is_check": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674efc6ae6ca0e50af3e4f57"
+  },
+  "order_id": {
+    "$oid": "674efc3fe6ca0e50af3e4f46"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc246"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674efc6ae6ca0e50af3e4f58"
+  },
+  "order_id": {
+    "$oid": "674efc3fe6ca0e50af3e4f46"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc247"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67569a5cadea324424515176"
+  },
+  "order_id": {
+    "$oid": "6756975bf552000b2bae3e86"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc244"
+  },
+  "createdAt": {
+    "$date": "2024-12-09T07:21:00.512Z"
+  },
+  "is_check": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67569a5cadea324424515177"
+  },
+  "order_id": {
+    "$oid": "6756975bf552000b2bae3e86"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc245"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67569a5cadea324424515178"
+  },
+  "order_id": {
+    "$oid": "6756975bf552000b2bae3e86"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc246"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67569a5cadea324424515179"
+  },
+  "order_id": {
+    "$oid": "6756975bf552000b2bae3e86"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc247"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756a08fb4a7648736a80e47"
+  },
+  "order_id": {
+    "$oid": "6756a03db4a7648736a80e37"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc244"
+  },
+  "createdAt": {
+    "$date": "2024-12-09T07:47:27.674Z"
+  },
+  "is_check": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756a08fb4a7648736a80e48"
+  },
+  "order_id": {
+    "$oid": "6756a03db4a7648736a80e37"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc245"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756a08fb4a7648736a80e49"
+  },
+  "order_id": {
+    "$oid": "6756a03db4a7648736a80e37"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc246"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756a08fb4a7648736a80e4a"
+  },
+  "order_id": {
+    "$oid": "6756a03db4a7648736a80e37"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc247"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756a1f7b4a7648736a80eae"
+  },
+  "order_id": {
+    "$oid": "6756a1dab4a7648736a80e9e"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc244"
+  },
+  "createdAt": {
+    "$date": "2024-12-09T07:53:27.987Z"
+  },
+  "is_check": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756a1f7b4a7648736a80eaf"
+  },
+  "order_id": {
+    "$oid": "6756a1dab4a7648736a80e9e"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc245"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756a1f8b4a7648736a80eb0"
+  },
+  "order_id": {
+    "$oid": "6756a1dab4a7648736a80e9e"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc246"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756a1f8b4a7648736a80eb1"
+  },
+  "order_id": {
+    "$oid": "6756a1dab4a7648736a80e9e"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc247"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756a4f65b0ba3712239a566"
+  },
+  "order_id": {
+    "$oid": "6756a4eb5b0ba3712239a556"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc244"
+  },
+  "createdAt": {
+    "$date": "2024-12-09T08:06:14.017Z"
+  },
+  "is_check": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756a4f65b0ba3712239a567"
+  },
+  "order_id": {
+    "$oid": "6756a4eb5b0ba3712239a556"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc245"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756a4f65b0ba3712239a568"
+  },
+  "order_id": {
+    "$oid": "6756a4eb5b0ba3712239a556"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc246"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756a4f65b0ba3712239a569"
+  },
+  "order_id": {
+    "$oid": "6756a4eb5b0ba3712239a556"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc247"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+
+
+
+{
+  "_id": {
+    "$oid": "6756a7560dad16005ce8b2aa"
+  },
+  "order_id": {
+    "$oid": "6756a7450dad16005ce8b29a"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc244"
+  },
+  "createdAt": {
+    "$date": "2024-12-09T08:16:22.449Z"
+  },
+  "is_check": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756a7560dad16005ce8b2ab"
+  },
+  "order_id": {
+    "$oid": "6756a7450dad16005ce8b29a"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc245"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756a7560dad16005ce8b2ac"
+  },
+  "order_id": {
+    "$oid": "6756a7450dad16005ce8b29a"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc246"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756a7560dad16005ce8b2ad"
+  },
+  "order_id": {
+    "$oid": "6756a7450dad16005ce8b29a"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc247"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756abd10dad16005ce8b34e"
+  },
+  "order_id": {
+    "$oid": "6756aac30dad16005ce8b33c"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc244"
+  },
+  "createdAt": {
+    "$date": "2024-12-09T08:35:29.504Z"
+  },
+  "is_check": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756abd10dad16005ce8b34f"
+  },
+  "order_id": {
+    "$oid": "6756aac30dad16005ce8b33c"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc245"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756abd10dad16005ce8b350"
+  },
+  "order_id": {
+    "$oid": "6756aac30dad16005ce8b33c"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc246"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756abd10dad16005ce8b351"
+  },
+  "order_id": {
+    "$oid": "6756aac30dad16005ce8b33c"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc247"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756ac020dad16005ce8b390"
+  },
+  "order_id": {
+    "$oid": "6756abf30dad16005ce8b380"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc244"
+  },
+  "createdAt": {
+    "$date": "2024-12-09T08:36:18.519Z"
+  },
+  "is_check": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756ac020dad16005ce8b391"
+  },
+  "order_id": {
+    "$oid": "6756abf30dad16005ce8b380"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc245"
+  },
+  "createdAt": {
+    "$date": "2024-12-09T09:48:08.910Z"
+  },
+  "is_check": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756ac020dad16005ce8b392"
+  },
+  "order_id": {
+    "$oid": "6756abf30dad16005ce8b380"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc246"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756ac020dad16005ce8b393"
+  },
+  "order_id": {
+    "$oid": "6756abf30dad16005ce8b380"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc247"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756ac5b0dad16005ce8b3db"
+  },
+  "order_id": {
+    "$oid": "6756ac520dad16005ce8b3cb"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc244"
+  },
+  "createdAt": {
+    "$date": "2024-12-09T08:37:47.677Z"
+  },
+  "is_check": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756ac5b0dad16005ce8b3dc"
+  },
+  "order_id": {
+    "$oid": "6756ac520dad16005ce8b3cb"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc245"
+  },
+  "createdAt": {
+    "$date": "2024-12-09T09:51:22.959Z"
+  },
+  "is_check": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756ac5b0dad16005ce8b3dd"
+  },
+  "order_id": {
+    "$oid": "6756ac520dad16005ce8b3cb"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc246"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756ac5b0dad16005ce8b3de"
+  },
+  "order_id": {
+    "$oid": "6756ac520dad16005ce8b3cb"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc247"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756ad4b0dad16005ce8b43c"
+  },
+  "order_id": {
+    "$oid": "6756ad430dad16005ce8b42a"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc244"
+  },
+  "createdAt": {
+    "$date": "2024-12-09T08:41:47.582Z"
+  },
+  "is_check": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756ad4b0dad16005ce8b43d"
+  },
+  "order_id": {
+    "$oid": "6756ad430dad16005ce8b42a"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc245"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756ad4b0dad16005ce8b43e"
+  },
+  "order_id": {
+    "$oid": "6756ad430dad16005ce8b42a"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc246"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756ad4b0dad16005ce8b43f"
+  },
+  "order_id": {
+    "$oid": "6756ad430dad16005ce8b42a"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc247"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+
+
+
+{
+  "_id": {
+    "$oid": "6756b13f0dad16005ce8b47b"
+  },
+  "order_id": {
+    "$oid": "6756b13f0dad16005ce8b471"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc244"
+  },
+  "createdAt": {
+    "$date": "2024-12-09T08:58:39.568Z"
+  },
+  "is_check": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b13f0dad16005ce8b47c"
+  },
+  "order_id": {
+    "$oid": "6756b13f0dad16005ce8b471"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc245"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b13f0dad16005ce8b47d"
+  },
+  "order_id": {
+    "$oid": "6756b13f0dad16005ce8b471"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc246"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b13f0dad16005ce8b47e"
+  },
+  "order_id": {
+    "$oid": "6756b13f0dad16005ce8b471"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc247"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b3410dad16005ce8b51d"
+  },
+  "order_id": {
+    "$oid": "6756b3330dad16005ce8b506"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc244"
+  },
+  "createdAt": {
+    "$date": "2024-12-09T09:07:13.857Z"
+  },
+  "is_check": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b3410dad16005ce8b51e"
+  },
+  "order_id": {
+    "$oid": "6756b3330dad16005ce8b506"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc245"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b3410dad16005ce8b51f"
+  },
+  "order_id": {
+    "$oid": "6756b3330dad16005ce8b506"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc246"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b3410dad16005ce8b520"
+  },
+  "order_id": {
+    "$oid": "6756b3330dad16005ce8b506"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc247"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b3770dad16005ce8b563"
+  },
+  "order_id": {
+    "$oid": "6756b36c0dad16005ce8b54f"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc244"
+  },
+  "createdAt": {
+    "$date": "2024-12-09T09:08:07.160Z"
+  },
+  "is_check": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b3770dad16005ce8b564"
+  },
+  "order_id": {
+    "$oid": "6756b36c0dad16005ce8b54f"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc245"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b3770dad16005ce8b565"
+  },
+  "order_id": {
+    "$oid": "6756b36c0dad16005ce8b54f"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc246"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b3770dad16005ce8b566"
+  },
+  "order_id": {
+    "$oid": "6756b36c0dad16005ce8b54f"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc247"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b5140dad16005ce8b609"
+  },
+  "order_id": {
+    "$oid": "6756b5000dad16005ce8b5f5"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc244"
+  },
+  "createdAt": {
+    "$date": "2024-12-09T09:15:00.275Z"
+  },
+  "is_check": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b5140dad16005ce8b60a"
+  },
+  "order_id": {
+    "$oid": "6756b5000dad16005ce8b5f5"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc245"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b5140dad16005ce8b60b"
+  },
+  "order_id": {
+    "$oid": "6756b5000dad16005ce8b5f5"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc246"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b5140dad16005ce8b60c"
+  },
+  "order_id": {
+    "$oid": "6756b5000dad16005ce8b5f5"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc247"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b57f0dad16005ce8b64d"
+  },
+  "order_id": {
+    "$oid": "6756b5770dad16005ce8b63d"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc244"
+  },
+  "createdAt": {
+    "$date": "2024-12-09T09:16:47.701Z"
+  },
+  "is_check": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b57f0dad16005ce8b64e"
+  },
+  "order_id": {
+    "$oid": "6756b5770dad16005ce8b63d"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc245"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b57f0dad16005ce8b64f"
+  },
+  "order_id": {
+    "$oid": "6756b5770dad16005ce8b63d"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc246"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b57f0dad16005ce8b650"
+  },
+  "order_id": {
+    "$oid": "6756b5770dad16005ce8b63d"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc247"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b9fb0dad16005ce8b68d"
+  },
+  "order_id": {
+    "$oid": "6756b9ed0dad16005ce8b679"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc244"
+  },
+  "createdAt": {
+    "$date": "2024-12-09T09:35:55.859Z"
+  },
+  "is_check": true,
+  "__v": 0
+},
+
+
+
+{
+  "_id": {
+    "$oid": "6756b9fb0dad16005ce8b68e"
+  },
+  "order_id": {
+    "$oid": "6756b9ed0dad16005ce8b679"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc245"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b9fb0dad16005ce8b68f"
+  },
+  "order_id": {
+    "$oid": "6756b9ed0dad16005ce8b679"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc246"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b9fb0dad16005ce8b690"
+  },
+  "order_id": {
+    "$oid": "6756b9ed0dad16005ce8b679"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc247"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756bf6a204903ae7dc1cfd8"
+  },
+  "order_id": {
+    "$oid": "6756bf00204903ae7dc1cfc8"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc244"
+  },
+  "createdAt": {
+    "$date": "2024-12-09T09:59:06.079Z"
+  },
+  "is_check": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756bf6a204903ae7dc1cfd9"
+  },
+  "order_id": {
+    "$oid": "6756bf00204903ae7dc1cfc8"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc245"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756bf6a204903ae7dc1cfda"
+  },
+  "order_id": {
+    "$oid": "6756bf00204903ae7dc1cfc8"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc246"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756bf6a204903ae7dc1cfdb"
+  },
+  "order_id": {
+    "$oid": "6756bf00204903ae7dc1cfc8"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc247"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756bf9b204903ae7dc1d01b"
+  },
+  "order_id": {
+    "$oid": "6756bf95204903ae7dc1d00b"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc244"
+  },
+  "createdAt": {
+    "$date": "2024-12-09T09:59:55.074Z"
+  },
+  "is_check": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756bf9b204903ae7dc1d01c"
+  },
+  "order_id": {
+    "$oid": "6756bf95204903ae7dc1d00b"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc245"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756bf9b204903ae7dc1d01d"
+  },
+  "order_id": {
+    "$oid": "6756bf95204903ae7dc1d00b"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc246"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756bf9b204903ae7dc1d01e"
+  },
+  "order_id": {
+    "$oid": "6756bf95204903ae7dc1d00b"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc247"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756c00a204903ae7dc1d061"
+  },
+  "order_id": {
+    "$oid": "6756c001204903ae7dc1d04f"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc244"
+  },
+  "createdAt": {
+    "$date": "2024-12-09T10:01:46.430Z"
+  },
+  "is_check": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756c00a204903ae7dc1d062"
+  },
+  "order_id": {
+    "$oid": "6756c001204903ae7dc1d04f"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc245"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756c00a204903ae7dc1d063"
+  },
+  "order_id": {
+    "$oid": "6756c001204903ae7dc1d04f"
+  },
+  "status_id": {
+    "$oid": "6741b3abfebecf90784bc246"
+  },
+  "createdAt": null,
+  "is_check": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756c00a204903ae7dc1d064"
+  },
+  "order_id": {
+    "$oid": "6756c001204903ae7dc1d04f"
   },
   "status_id": {
     "$oid": "6741b3abfebecf90784bc247"

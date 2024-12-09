@@ -1,25 +1,8 @@
 services:
-  BackEnd:
-    build: ./BackEnd
-    ports:
-      - "3000:3000"
-    depends_on:
-      - mongodb
-    networks:
-      - webnet
-
-  FrontEnd:
-    build: ./FrontEnd
-    ports:
-      - "5000:5000"
-    depends_on:
-      - BackEnd
-      - mongodb
-    networks:
-      - webnet
-
   mongodb:
     image: mongo:latest
+    container_name: mongodb
+    restart: unless-stopped
     ports:
       - "27017:27017"
     volumes:
@@ -28,8 +11,41 @@ services:
     networks:
       - webnet
 
+  backend:
+    build:
+      context: ./BackEnd
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file: ./BackEnd/.env
+    volumes:
+      - ./BackEnd:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    networks:
+      - webnet
+
+  frontend:
+    build:
+      context: ./FrontEnd
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file: ./FrontEnd/.env
+    volumes:
+      - ./FrontEnd:/app
+      - /app/node_modules
+    ports:
+      - "5000:5000"
+    depends_on:
+      - backend
+    networks:
+      - webnet
+
 volumes:
   mongodb_data:
     driver: local
 networks:
   webnet:
+    driver: bridge

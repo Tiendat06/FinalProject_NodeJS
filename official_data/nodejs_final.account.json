@@ -8,7 +8,7 @@
   "role_id": {
     "$oid": "6737252735224c690dbd21c3"
   },
-  "password": "$2b$10$U/66Pn3itBvbSVf1aQjgcujSQ4Mq.ddKf0OpkD7nB5bKO7E2N.D6W",
+  "password": "$2b$10$6rgf9Aj0ESGQnsNjDVqJeOrz..cVNiCfC0.hAmSuIDH6jXdqQ2mfO",
   "is_ban": false,
   "forgot_password_code": "",
   "deleted": false,
@@ -74,7 +74,7 @@
   "role_id": {
     "$oid": "6737252735224c690dbd21c3"
   },
-  "password": "$2b$10$xU7tnl/Dxx7F455QcbqJF.8pMdrDfdexpP0FA41ugEbQuFIAcKSmS",
+  "password": "$2b$10$oDcDiiB3Klv5sm7/ZE2MKOUR.3AkULe2Cat03MGnd9dL7QGsA5qG2",
   "is_ban": false,
   "forgot_password_code": "",
   "deleted": false,
@@ -88,23 +88,133 @@
 },
 {
   "_id": {
-    "$oid": "674c6f1b135a45393ac3826e"
+    "$oid": "675691557d962d327ba194ef"
   },
   "user_id": {
-    "$oid": "674c6f1b135a45393ac3826c"
+    "$oid": "675691557d962d327ba194ed"
   },
   "role_id": {
     "$oid": "6737252735224c690dbd21c3"
   },
-  "password": "$2b$10$/9qZ/E1pEiwTMXlWnOG9Iuz7R4ZJDKHHryAsL7HRRN3o7I9jk3Oqy",
+  "password": "$2b$10$iNc.wV5hJU0/qhs8od.P0emtsa9K8grzoTzLECFm7C1rXRMHB1Zcq",
   "is_ban": false,
   "forgot_password_code": "",
   "deleted": false,
   "createdAt": {
-    "$date": "2024-12-01T14:13:47.728Z"
+    "$date": "2024-12-09T06:42:29.323Z"
   },
   "updatedAt": {
-    "$date": "2024-12-01T14:13:47.728Z"
+    "$date": "2024-12-09T06:42:29.323Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "675692477d962d327ba194f8"
+  },
+  "user_id": {
+    "$oid": "675692477d962d327ba194f6"
+  },
+  "role_id": {
+    "$oid": "6737252735224c690dbd21c3"
+  },
+  "password": "$2b$10$Lm9ONVnJzJ4OOVqsDXLKd.wiFO8/o9XR2xywYQAl7Yvr1Ne3VZIUq",
+  "is_ban": false,
+  "forgot_password_code": "",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T06:46:31.855Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T06:46:31.855Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "675692847d962d327ba19501"
+  },
+  "user_id": {
+    "$oid": "675692847d962d327ba194ff"
+  },
+  "role_id": {
+    "$oid": "6737252735224c690dbd21c3"
+  },
+  "password": "$2b$10$pqa0fiYmlHsd2oaglKbByOIdJF5srXjtTjqYD6lsDoWUDpOsbqcWu",
+  "is_ban": false,
+  "forgot_password_code": "",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T06:47:32.772Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T06:47:32.772Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756c064204903ae7dc1d084"
+  },
+  "user_id": {
+    "$oid": "6756c064204903ae7dc1d082"
+  },
+  "role_id": {
+    "$oid": "6737252735224c690dbd21c3"
+  },
+  "password": "$2b$10$KT4/Dn2BCqIFjbJnMb35b.2Eh9WtsqXD1hnt55nz9bsEgvugiX4BG",
+  "is_ban": false,
+  "forgot_password_code": "",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T10:03:16.116Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T10:03:16.116Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756c364204903ae7dc1d110"
+  },
+  "user_id": {
+    "$oid": "6756c364204903ae7dc1d10e"
+  },
+  "role_id": {
+    "$oid": "6737252735224c690dbd21c3"
+  },
+  "password": "$2b$10$sg/jPa3g4FCNdiNWnrBZMe1bDjeq07fIm2OQkdVKA8CoHZAXk3J2O",
+  "is_ban": false,
+  "forgot_password_code": "",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T10:16:04.993Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T10:16:04.993Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756c394204903ae7dc1d119"
+  },
+  "user_id": {
+    "$oid": "6756c394204903ae7dc1d117"
+  },
+  "role_id": {
+    "$oid": "6737252735224c690dbd21c3"
+  },
+  "password": "$2b$10$jo9e6vhYDrmk7HndRXjMVe4aBmrPR5e7xB2FdmEP3W46KeoFIwwg.",
+  "is_ban": false,
+  "forgot_password_code": "",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T10:16:52.971Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T10:16:52.971Z"
   },
   "__v": 0
 }]

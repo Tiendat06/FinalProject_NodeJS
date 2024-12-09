@@ -36,10 +36,10 @@
   "tax": 10,
   "shippingFee": 6,
   "createdAt": {
-    "$date": "2024-12-01T07:19:59.733Z"
+    "$date": "2024-11-29T07:19:59.733Z"
   },
   "updatedAt": {
-    "$date": "2024-12-01T07:19:59.733Z"
+    "$date": "2024-11-29T07:19:59.733Z"
   },
   "deleted": false,
   "__v": 0
@@ -82,10 +82,10 @@
   "tax": 10,
   "shippingFee": 6,
   "createdAt": {
-    "$date": "2024-12-01T08:36:02.707Z"
+    "$date": "2024-11-11T08:36:02.707Z"
   },
   "updatedAt": {
-    "$date": "2024-12-01T08:36:02.707Z"
+    "$date": "2024-11-11T08:36:02.707Z"
   },
   "deleted": false,
   "__v": 0
@@ -105,10 +105,10 @@
   "tax": 10,
   "shippingFee": 10,
   "createdAt": {
-    "$date": "2024-12-01T08:39:04.034Z"
+    "$date": "2024-10-29T08:39:04.034Z"
   },
   "updatedAt": {
-    "$date": "2024-12-01T08:39:04.034Z"
+    "$date": "2024-10-10T08:39:04.034Z"
   },
   "deleted": false,
   "__v": 0
@@ -128,10 +128,10 @@
   "tax": 10,
   "shippingFee": 6,
   "createdAt": {
-    "$date": "2024-12-01T12:19:24.527Z"
+    "$date": "2024-11-01T12:19:24.527Z"
   },
   "updatedAt": {
-    "$date": "2024-12-01T12:19:24.527Z"
+    "$date": "2024-11-01T12:19:24.527Z"
   },
   "deleted": false,
   "__v": 0
@@ -151,10 +151,10 @@
   "tax": 10,
   "shippingFee": 6,
   "createdAt": {
-    "$date": "2024-12-01T13:23:40.717Z"
+    "$date": "2024-10-21T13:23:40.717Z"
   },
   "updatedAt": {
-    "$date": "2024-12-01T13:23:40.717Z"
+    "$date": "2024-10-21T13:23:40.717Z"
   },
   "deleted": false,
   "__v": 0
@@ -174,10 +174,10 @@
   "tax": 10,
   "shippingFee": 6,
   "createdAt": {
-    "$date": "2024-12-01T13:26:05.109Z"
+    "$date": "2024-10-01T13:26:05.109Z"
   },
   "updatedAt": {
-    "$date": "2024-12-01T13:26:05.109Z"
+    "$date": "2024-10-01T13:26:05.109Z"
   },
   "deleted": false,
   "__v": 0
@@ -193,14 +193,14 @@
   "address_id": {
     "$oid": "674c64f8e5063c9398680587"
   },
-  "status": "Pending",
+  "status": "Shipping",
   "tax": 10,
   "shippingFee": 6,
   "createdAt": {
-    "$date": "2024-12-01T13:30:32.429Z"
+    "$date": "2024-11-15T13:30:32.429Z"
   },
   "updatedAt": {
-    "$date": "2024-12-01T13:30:32.429Z"
+    "$date": "2024-11-15T13:30:32.429Z"
   },
   "deleted": false,
   "__v": 0
@@ -216,7 +216,7 @@
   "address_id": {
     "$oid": "674c6f1b135a45393ac38270"
   },
-  "status": "Pending",
+  "status": "Confirmed",
   "tax": 10,
   "shippingFee": 10,
   "createdAt": {
@@ -224,6 +224,451 @@
   },
   "updatedAt": {
     "$date": "2024-12-01T14:13:47.738Z"
+  },
+  "deleted": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674efc3fe6ca0e50af3e4f46"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "coupon_id": null,
+  "address_id": {
+    "$oid": "6743fe78770fb2a999766be6"
+  },
+  "status": "Confirmed",
+  "tax": 10,
+  "shippingFee": 10,
+  "createdAt": {
+    "$date": "2024-12-03T12:41:14.514Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-03T12:41:14.514Z"
+  },
+  "deleted": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756975bf552000b2bae3e86"
+  },
+  "user_id": {
+    "$oid": "674067eac35c263bdad6c769"
+  },
+  "coupon_id": null,
+  "address_id": {
+    "$oid": "67569904f29ff44f35f902da"
+  },
+  "status": "Pending",
+  "tax": 10,
+  "shippingFee": 6,
+  "createdAt": {
+    "$date": "2024-12-07T07:21:00.502Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-07T07:21:00.502Z"
+  },
+  "deleted": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756a03db4a7648736a80e37"
+  },
+  "user_id": {
+    "$oid": "674067eac35c263bdad6c769"
+  },
+  "coupon_id": null,
+  "address_id": {
+    "$oid": "67569904f29ff44f35f902da"
+  },
+  "status": "Pending",
+  "tax": 10,
+  "shippingFee": 10,
+  "createdAt": {
+    "$date": "2024-12-09T07:47:27.648Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T07:47:27.648Z"
+  },
+  "deleted": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756a1dab4a7648736a80e9e"
+  },
+  "user_id": {
+    "$oid": "6741a61d4ccb29381f082384"
+  },
+  "coupon_id": null,
+  "address_id": {
+    "$oid": "6741a61d4ccb29381f082388"
+  },
+  "status": "Pending",
+  "tax": 10,
+  "shippingFee": 6,
+  "createdAt": {
+    "$date": "2024-11-19T07:53:27.976Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-19T07:53:27.976Z"
+  },
+  "deleted": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756a4eb5b0ba3712239a556"
+  },
+  "user_id": {
+    "$oid": "6741a61d4ccb29381f082384"
+  },
+  "coupon_id": null,
+  "address_id": {
+    "$oid": "6741a61d4ccb29381f082388"
+  },
+  "status": "Pending",
+  "tax": 10,
+  "shippingFee": 10,
+  "createdAt": {
+    "$date": "2024-12-02T08:06:14.012Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-02T08:06:14.012Z"
+  },
+  "deleted": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756a7450dad16005ce8b29a"
+  },
+  "user_id": {
+    "$oid": "6741a61d4ccb29381f082384"
+  },
+  "coupon_id": null,
+  "address_id": {
+    "$oid": "6741a61d4ccb29381f082388"
+  },
+  "status": "Pending",
+  "tax": 10,
+  "shippingFee": 10,
+  "createdAt": {
+    "$date": "2024-12-09T08:16:22.442Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T08:16:22.442Z"
+  },
+  "deleted": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756aac30dad16005ce8b33c"
+  },
+  "user_id": {
+    "$oid": "674c64f8e5063c9398680583"
+  },
+  "coupon_id": null,
+  "address_id": {
+    "$oid": "674c64f8e5063c9398680587"
+  },
+  "status": "Pending",
+  "tax": 10,
+  "shippingFee": 10,
+  "createdAt": {
+    "$date": "2024-11-25T08:35:29.501Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-25T08:35:29.501Z"
+  },
+  "deleted": false,
+  "__v": 0
+},
+
+
+{
+  "_id": {
+    "$oid": "6756abf30dad16005ce8b380"
+  },
+  "user_id": {
+    "$oid": "674c64f8e5063c9398680583"
+  },
+  "coupon_id": null,
+  "address_id": {
+    "$oid": "674c64f8e5063c9398680587"
+  },
+  "status": "Confirmed",
+  "tax": 10,
+  "shippingFee": 6,
+  "createdAt": {
+    "$date": "2024-12-09T08:36:18.517Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T08:36:18.517Z"
+  },
+  "deleted": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756ac520dad16005ce8b3cb"
+  },
+  "user_id": {
+    "$oid": "674c64f8e5063c9398680583"
+  },
+  "coupon_id": null,
+  "address_id": {
+    "$oid": "674c64f8e5063c9398680587"
+  },
+  "status": "Confirmed",
+  "tax": 10,
+  "shippingFee": 6,
+  "createdAt": {
+    "$date": "2024-12-05T08:37:47.674Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-05T08:37:47.674Z"
+  },
+  "deleted": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756ad430dad16005ce8b42a"
+  },
+  "user_id": {
+    "$oid": "674c64f8e5063c9398680583"
+  },
+  "coupon_id": null,
+  "address_id": {
+    "$oid": "674c64f8e5063c9398680587"
+  },
+  "status": "Pending",
+  "tax": 10,
+  "shippingFee": 10,
+  "createdAt": {
+    "$date": "2024-12-06T08:41:47.578Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-06T08:41:47.578Z"
+  },
+  "deleted": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b13f0dad16005ce8b471"
+  },
+  "user_id": {
+    "$oid": "674c64f8e5063c9398680583"
+  },
+  "coupon_id": null,
+  "address_id": {
+    "$oid": "6756b13f0dad16005ce8b46f"
+  },
+  "status": "Pending",
+  "tax": 10,
+  "shippingFee": 10,
+  "createdAt": {
+    "$date": "2024-11-19T08:58:39.565Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-19T08:58:39.565Z"
+  },
+  "deleted": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b3330dad16005ce8b506"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "coupon_id": null,
+  "address_id": {
+    "$oid": "6743fe8f770fb2a999766bed"
+  },
+  "status": "Pending",
+  "tax": 10,
+  "shippingFee": 10,
+  "createdAt": {
+    "$date": "2024-12-05T09:07:13.853Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-05T09:07:13.853Z"
+  },
+  "deleted": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b36c0dad16005ce8b54f"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "coupon_id": {
+    "$oid": "6741b389febecf90784bc23e"
+  },
+  "address_id": {
+    "$oid": "6743fe8f770fb2a999766bed"
+  },
+  "status": "Pending",
+  "tax": 10,
+  "shippingFee": 6,
+  "createdAt": {
+    "$date": "2024-12-04T09:08:07.158Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-04T09:08:07.158Z"
+  },
+  "deleted": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b5000dad16005ce8b5f5"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "coupon_id": {
+    "$oid": "6741b389febecf90784bc241"
+  },
+  "address_id": {
+    "$oid": "674ab2c28191eaaa221fbc60"
+  },
+  "status": "Pending",
+  "tax": 10,
+  "shippingFee": 6,
+  "createdAt": {
+    "$date": "2024-11-23T09:15:00.273Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-23T09:15:00.273Z"
+  },
+  "deleted": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b5770dad16005ce8b63d"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "coupon_id": null,
+  "address_id": {
+    "$oid": "6743fe78770fb2a999766be6"
+  },
+  "status": "Pending",
+  "tax": 10,
+  "shippingFee": 10,
+  "createdAt": {
+    "$date": "2024-10-12T09:16:47.697Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-12T09:16:47.697Z"
+  },
+  "deleted": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b9ed0dad16005ce8b679"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "coupon_id": {
+    "$oid": "6741b389febecf90784bc23e"
+  },
+  "address_id": {
+    "$oid": "6743fe78770fb2a999766be6"
+  },
+  "status": "Pending",
+  "tax": 10,
+  "shippingFee": 10,
+  "createdAt": {
+    "$date": "2024-12-06T09:35:55.856Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-06T09:35:55.856Z"
+  },
+  "deleted": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756bf00204903ae7dc1cfc8"
+  },
+  "user_id": {
+    "$oid": "674067eac35c263bdad6c769"
+  },
+  "coupon_id": null,
+  "address_id": {
+    "$oid": "67569904f29ff44f35f902da"
+  },
+  "status": "Pending",
+  "tax": 10,
+  "shippingFee": 10,
+  "createdAt": {
+    "$date": "2024-10-23T09:59:06.076Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-23T09:59:06.076Z"
+  },
+  "deleted": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756bf95204903ae7dc1d00b"
+  },
+  "user_id": {
+    "$oid": "674067eac35c263bdad6c769"
+  },
+  "coupon_id": null,
+  "address_id": {
+    "$oid": "67569904f29ff44f35f902da"
+  },
+  "status": "Pending",
+  "tax": 10,
+  "shippingFee": 6,
+  "createdAt": {
+    "$date": "2024-10-16T09:59:55.071Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-16T09:59:55.071Z"
+  },
+  "deleted": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756c001204903ae7dc1d04f"
+  },
+  "user_id": {
+    "$oid": "674c64f8e5063c9398680583"
+  },
+  "coupon_id": null,
+  "address_id": {
+    "$oid": "6756b13f0dad16005ce8b46f"
+  },
+  "status": "Pending",
+  "tax": 10,
+  "shippingFee": 6,
+  "createdAt": {
+    "$date": "2024-11-09T10:01:46.427Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-09T10:01:46.427Z"
   },
   "deleted": false,
   "__v": 0

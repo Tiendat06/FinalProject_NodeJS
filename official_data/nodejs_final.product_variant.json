@@ -7,7 +7,7 @@
   },
   "product_name": "Redmi 10 Power",
   "product_color": "Power Black",
-  "variant_quantity": 120,
+  "variant_quantity": 119,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732263674/NodeJS_FinalProject/products/phones/sttifuke2fubios76hrf.jpg",
   "retail_price": 550,
   "variant_ROM": "512GB",
@@ -208,6 +208,9 @@
   "variant_cpu": "",
   "variant_weight": "203g"
 },
+
+
+
 {
   "_id": {
     "$oid": "6745d433a409da88028f01bc"
@@ -280,7 +283,7 @@
   },
   "product_name": "Xiaomi Redmi A1",
   "product_color": "Black",
-  "variant_quantity": 20,
+  "variant_quantity": 18,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732378637/NodeJS_FinalProject/products/phones/jxxtveyjbehede2ihsgj.jpg",
   "retail_price": 100,
   "variant_ROM": "32 GB",
@@ -343,7 +346,7 @@
   },
   "product_name": "Xiaomi Redmi 10A",
   "product_color": "Slate Grey",
-  "variant_quantity": 10,
+  "variant_quantity": 7,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732436082/NodeJS_FinalProject/products/phones/gfo9qqinqzugmgedtbwn.jpg",
   "retail_price": 120,
   "variant_ROM": "64 GB",
@@ -406,7 +409,7 @@
   },
   "product_name": "OnePlus 11R 5G",
   "product_color": "Sonic Black",
-  "variant_quantity": 20,
+  "variant_quantity": 19,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732437568/NodeJS_FinalProject/products/phones/hcnqzb8dfp1wv1e8mhbp.jpg",
   "retail_price": 500,
   "variant_ROM": "256 GB",
@@ -418,6 +421,9 @@
   "variant_cpu": "",
   "variant_weight": "108g"
 },
+
+
+
 {
   "_id": {
     "$oid": "6745d433a409da88028f01c6"
@@ -448,7 +454,7 @@
   },
   "product_name": "OnePlus Nord 2T 5G",
   "product_color": "Gray Shadow",
-  "variant_quantity": 25,
+  "variant_quantity": 23,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732438418/NodeJS_FinalProject/products/phones/llbbyhe5bqhgmyyw4ojf.jpg",
   "retail_price": 360,
   "variant_ROM": "256 GB",
@@ -469,7 +475,7 @@
   },
   "product_name": "iQOO Z6 Lite 5G by Vivo",
   "product_color": "Stellar Green",
-  "variant_quantity": 25,
+  "variant_quantity": 24,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732439031/NodeJS_FinalProject/products/phones/vgo6ktcyqknbvhxf47dk.jpg",
   "retail_price": 185,
   "variant_ROM": "64 GB",
@@ -628,6 +634,9 @@
   "variant_cpu": "",
   "variant_weight": "100g"
 },
+
+
+
 {
   "_id": {
     "$oid": "6745d433a409da88028f01d0"
@@ -838,6 +847,9 @@
   "variant_cpu": "",
   "variant_weight": "100g"
 },
+
+
+
 {
   "_id": {
     "$oid": "6745d433a409da88028f01da"
@@ -847,7 +859,7 @@
   },
   "product_name": "Redmi 9A Sport",
   "product_color": "Coral Green",
-  "variant_quantity": 25,
+  "variant_quantity": 24,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732445250/NodeJS_FinalProject/products/phones/necduqfupkpbldmexcmx.jpg",
   "retail_price": 130,
   "variant_ROM": "32 GB",
@@ -868,7 +880,7 @@
   },
   "product_name": "Redmi 9A Sport",
   "product_color": "Carbon Black",
-  "variant_quantity": 25,
+  "variant_quantity": 24,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732445345/NodeJS_FinalProject/products/phones/kguc79mpgzhl8j569bju.jpg",
   "retail_price": 130,
   "variant_ROM": "32 GB",
@@ -910,7 +922,7 @@
   },
   "product_name": "Realme Narzo 50i Prime",
   "product_color": "Mint Green",
-  "variant_quantity": 25,
+  "variant_quantity": 24,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732524825/NodeJS_FinalProject/products/phones/vp465r8y88mj2jdtbuml.jpg",
   "retail_price": 130,
   "variant_ROM": "32 GB",
@@ -1048,6 +1060,9 @@
   "variant_cpu": "",
   "variant_weight": "108g"
 },
+
+
+
 {
   "_id": {
     "$oid": "6745d433a409da88028f01e4"
@@ -1204,7 +1219,7 @@
   },
   "product_name": "Samsung Galaxy S21 FE 5G",
   "product_color": "Olive",
-  "variant_quantity": 25,
+  "variant_quantity": 24,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732616373/NodeJS_FinalProject/products/phones/e9woxfu9dpyafbm6b4yj.jpg",
   "retail_price": 452,
   "variant_ROM": "128 GB",
@@ -1225,7 +1240,7 @@
   },
   "product_name": "Samsung Galaxy A14 5G",
   "product_color": "Dark Red",
-  "variant_quantity": 25,
+  "variant_quantity": 24,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732546896/NodeJS_FinalProject/products/phones/x6hxb7ac3feqvomtb3h6.jpg",
   "retail_price": 176,
   "variant_ROM": "128 GB",
@@ -1258,6 +1273,9 @@
   "variant_cpu": "",
   "variant_weight": "100g"
 },
+
+
+
 {
   "_id": {
     "$oid": "6745d433a409da88028f01ee"
@@ -1288,7 +1306,7 @@
   },
   "product_name": "Samsung Galaxy S23 Ultra 5G",
   "product_color": "Green",
-  "variant_quantity": 25,
+  "variant_quantity": 22,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732547001/NodeJS_FinalProject/products/phones/tpomodemfzf6nqysp809.jpg",
   "retail_price": 642,
   "variant_ROM": "256 GB",
@@ -1468,6 +1486,9 @@
   "variant_cpu": "",
   "variant_weight": "120g"
 },
+
+
+
 {
   "_id": {
     "$oid": "6745d433a409da88028f01f8"
@@ -1519,7 +1540,7 @@
   },
   "product_name": "DELL Latitude 5490 Core i5 7th Gen Laptop",
   "product_color": "Black",
-  "variant_quantity": 25,
+  "variant_quantity": 23,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732547455/NodeJS_FinalProject/products/phones/q0b7prsft9vihgx9fkdw.jpg",
   "retail_price": 310,
   "variant_ROM": "256 GB",
@@ -1540,7 +1561,7 @@
   },
   "product_name": "HP Chromebook C640 10th Gen Intel Core i5 Thin & Light FHD Laptop",
   "product_color": "Silver",
-  "variant_quantity": 25,
+  "variant_quantity": 24,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732547538/NodeJS_FinalProject/products/phones/ndji8gipx3gfj1jsfd3p.jpg",
   "retail_price": 610,
   "variant_ROM": "64GB M.2 PCIe NVMe SSD",
@@ -1561,7 +1582,7 @@
   },
   "product_name": "Lenovo ThinkPad X260 High Performance 12.5 inch IPS Panel 1.5kg Laptop",
   "product_color": "Black",
-  "variant_quantity": 25,
+  "variant_quantity": 24,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732547611/NodeJS_FinalProject/products/phones/npnhzszjcszlohshkotd.jpg",
   "retail_price": 562,
   "variant_ROM": "256 GB",
@@ -1582,7 +1603,7 @@
   },
   "product_name": "Lenovo ThinkPad T450 Intel Core i5-5300U 14 inches Business Laptop Computer",
   "product_color": "Black",
-  "variant_quantity": 25,
+  "variant_quantity": 22,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732547703/NodeJS_FinalProject/products/phones/bkow5o9cw7wrnuoastfs.jpg",
   "retail_price": 193,
   "variant_ROM": "128 GB",
@@ -1624,7 +1645,7 @@
   },
   "product_name": "Acer Aspire 5 Gaming Laptop Intel Core i5 12th gen",
   "product_color": "Black",
-  "variant_quantity": 25,
+  "variant_quantity": 24,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732548020/NodeJS_FinalProject/products/phones/lg5qi5ymyiywplyfulw2.jpg",
   "retail_price": 649,
   "variant_ROM": "512 GB SSD NVMe PCIe",
@@ -1678,6 +1699,9 @@
   "variant_cpu": "AMD Ryzen 5 7535HS (3.3GHz, 19MB Cache, up to 4.55 GHz",
   "variant_weight": "3.1kg"
 },
+
+
+
 {
   "_id": {
     "$oid": "6745d433a409da88028f0202"
@@ -1729,7 +1753,7 @@
   },
   "product_name": "JBL C100SI Wired In Ear Headphones",
   "product_color": "Black",
-  "variant_quantity": 125,
+  "variant_quantity": 124,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732548661/NodeJS_FinalProject/products/phones/metf3trfn55oqzulc388.jpg",
   "retail_price": 45,
   "variant_ROM": "",
@@ -1750,7 +1774,7 @@
   },
   "product_name": "realme TechLife Buds T100 Bluetooth Truly Wireless in Ear Earbuds",
   "product_color": "Black yellow",
-  "variant_quantity": 125,
+  "variant_quantity": 124,
   "product_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732548723/NodeJS_FinalProject/products/phones/v328hxi5okpfjb1y4fpc.jpg",
   "retail_price": 29,
   "variant_ROM": "",

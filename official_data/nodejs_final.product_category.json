@@ -2,17 +2,28 @@
   "_id": {
     "$oid": "673cb3eb652666000535468b"
   },
-  "category_name": "Smartphone"
+  "category_name": "Smartphone",
+  "description": "This category includes modern mobile devices that offer a blend of communication, entertainment, and productivity features. Smartphones come equipped with advanced hardware, high-resolution cameras, and powerful operating systems, making them ideal for browsing, gaming, photography, and staying connected on the go."
 },
 {
   "_id": {
     "$oid": "673cb3eb652666000535468c"
   },
-  "category_name": "Laptop"
+  "category_name": "Laptop",
+  "description": "This category features portable computers designed for productivity and versatility. Laptops combine powerful hardware, sleek designs, and high-resolution displays, making them suitable for work, study, gaming, and entertainment. They offer the convenience of mobility with the functionality of a desktop."
 },
 {
   "_id": {
     "$oid": "673cb3eb652666000535468d"
   },
-  "category_name": "Headphone"
+  "category_name": "Headphone",
+  "description": "This category includes audio devices designed for immersive sound experiences. Headphones offer high-quality sound for music, calls, gaming, and more, with options ranging from wired to wireless and noise-canceling models. They are ideal for both personal entertainment and professional use."
+},
+{
+  "_id": {
+    "$oid": "674e9fb2b5963e58692581d6"
+  },
+  "category_name": "Sound",
+  "description": "This category features audio devices such as speakers, soundbars, and home theater systems designed to deliver rich and immersive audio experiences. Whether for music, movies, or gaming, these products enhance sound quality and provide powerful, clear audio for any setting.",
+  "__v": 0
 }]

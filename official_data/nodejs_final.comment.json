@@ -16,8 +16,7 @@
   "updatedAt": {
     "$date": "2024-11-26T10:39:01.149Z"
   },
-  "__v": 0,
-  "star": 4
+  "__v": 0
 },
 {
   "_id": {
@@ -30,7 +29,6 @@
     "$oid": "674138636c0973f433b151a5"
   },
   "content": "It's time for watch",
-  "star": 4,
   "deleted": false,
   "createdAt": {
     "$date": "2024-11-26T10:52:38.282Z"
@@ -51,7 +49,6 @@
     "$oid": "674138636c0973f433b151a5"
   },
   "content": "nahhh",
-  "star": 2,
   "deleted": false,
   "createdAt": {
     "$date": "2024-11-26T10:54:25.661Z"
@@ -72,7 +69,6 @@
     "$oid": "674138636c0973f433b151a5"
   },
   "content": "nahhh",
-  "star": 2,
   "deleted": false,
   "createdAt": {
     "$date": "2024-11-26T10:54:37.791Z"
@@ -93,7 +89,6 @@
     "$oid": "674138636c0973f433b151a5"
   },
   "content": "nahhh",
-  "star": 2,
   "deleted": false,
   "createdAt": {
     "$date": "2024-11-26T10:54:40.680Z"
@@ -114,7 +109,6 @@
     "$oid": "674138636c0973f433b151a5"
   },
   "content": "yess sir",
-  "star": 5,
   "deleted": false,
   "createdAt": {
     "$date": "2024-11-26T11:01:01.836Z"
@@ -135,7 +129,6 @@
     "$oid": "674138636c0973f433b151a9"
   },
   "content": "oke, gud job bro",
-  "star": 4,
   "deleted": false,
   "createdAt": {
     "$date": "2024-11-27T02:42:05.395Z"
@@ -156,13 +149,777 @@
     "$oid": "674138636c0973f433b151a5"
   },
   "content": "yehh",
-  "star": 0,
   "deleted": false,
   "createdAt": {
     "$date": "2024-11-27T02:57:57.989Z"
   },
   "updatedAt": {
     "$date": "2024-11-27T02:57:57.989Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674ef56b6dacc8b59e4f851b"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151aa"
+  },
+  "content": "ok sir",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-03T12:11:23.510Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-03T12:11:23.510Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674ef5776dacc8b59e4f851d"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151aa"
+  },
+  "content": "gud product",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-03T12:11:35.768Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-03T12:11:35.768Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674fdee442d9564f928845d1"
+  },
+  "user_id": {
+    "$oid": "674067eac35c263bdad6c769"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151a5"
+  },
+  "content": "oke sir",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-04T04:47:32.943Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-04T04:47:32.944Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674fdf4499909f5f022e0e8f"
+  },
+  "user_id": {
+    "$oid": "674067eac35c263bdad6c769"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151a5"
+  },
+  "content": "gud product",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-04T04:49:08.349Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-04T04:49:08.349Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674fdf7199909f5f022e0e9e"
+  },
+  "user_id": {
+    "$oid": "674067eac35c263bdad6c769"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151a5"
+  },
+  "content": "ok",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-04T04:49:53.474Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-04T04:49:53.474Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674fdfa599909f5f022e0eab"
+  },
+  "user_id": {
+    "$oid": "674067eac35c263bdad6c769"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151a5"
+  },
+  "content": "check",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-04T04:50:45.799Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-04T04:50:45.799Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "675481b88c060f60080c67b4"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151a5"
+  },
+  "content": "ok sir",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-07T17:11:20.359Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-07T17:11:20.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "675481d88c060f60080c67c3"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151a5"
+  },
+  "content": "ok",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-07T17:11:52.865Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-07T17:11:52.865Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "675482d394940a4b7fd0ec93"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151a5"
+  },
+  "content": "gud product",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-07T17:16:03.753Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-07T17:16:03.753Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6754832394940a4b7fd0eca8"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151a5"
+  },
+  "content": "ok perfect",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-07T17:17:23.589Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-07T17:17:23.589Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6754838c0e58b2db0ac6feb4"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151a5"
+  },
+  "content": "gudddd",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-07T17:19:08.095Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-07T17:19:08.095Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "675483c763f6d3f15fd94aed"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151a5"
+  },
+  "content": "that's great !",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-07T17:20:07.465Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-07T17:20:07.466Z"
+  },
+  "__v": 0
+},
+
+
+
+{
+  "_id": {
+    "$oid": "675483cd63f6d3f15fd94af9"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151a5"
+  },
+  "content": "that's great !",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-07T17:20:13.749Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-07T17:20:13.749Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67548453dd77929dbe88f4b5"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151a5"
+  },
+  "content": "ok sirrrr",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-07T17:22:27.035Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-07T17:22:27.036Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "675484b018defbbb85016e5f"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151a5"
+  },
+  "content": "oke sirrrrrr",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-07T17:24:00.412Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-07T17:24:00.412Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "675488cd0d29ad8cbf52b19c"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151a5"
+  },
+  "content": "ok",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-07T17:41:33.558Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-07T17:41:33.558Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "675488d20d29ad8cbf52b1a1"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151a5"
+  },
+  "content": "oke",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-07T17:41:38.470Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-07T17:41:38.470Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "675488e40d29ad8cbf52b1bd"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151a5"
+  },
+  "content": "yehh",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-07T17:41:56.372Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-07T17:41:56.372Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "675489c805fc1b88d5f2cecd"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151a5"
+  },
+  "content": "oke",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-07T17:45:44.792Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-07T17:45:44.792Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67548a5405fc1b88d5f2cf0f"
+  },
+  "user_id": {
+    "$oid": "674067eac35c263bdad6c769"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151a6"
+  },
+  "content": "oke",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-07T17:48:04.691Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-07T17:48:04.691Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67569721f552000b2bae3e77"
+  },
+  "user_id": {
+    "$oid": "674067eac35c263bdad6c769"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151a9"
+  },
+  "content": "it's oke bro",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T07:07:13.262Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T07:07:13.262Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67569fcdb4a7648736a80dfd"
+  },
+  "user_id": {
+    "$oid": "674067eac35c263bdad6c769"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151ac"
+  },
+  "content": "noice yo !!",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T07:44:13.527Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T07:44:13.527Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756a005b4a7648736a80e27"
+  },
+  "user_id": {
+    "$oid": "674067eac35c263bdad6c769"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151c3"
+  },
+  "content": "Oh dear, fantastic !",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T07:45:09.615Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T07:45:09.615Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756a0ffb4a7648736a80e7c"
+  },
+  "user_id": {
+    "$oid": "6741a61d4ccb29381f082384"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151cf"
+  },
+  "content": "oh my god, that's so awesome, yo !",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T07:49:19.124Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T07:49:19.124Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756a1b6b4a7648736a80e91"
+  },
+  "user_id": {
+    "$oid": "6741a61d4ccb29381f082384"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151cf"
+  },
+  "content": "noice yo !!!!",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T07:52:22.951Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T07:52:22.951Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756a3af5b0ba3712239a530"
+  },
+  "user_id": {
+    "$oid": "6741a61d4ccb29381f082384"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151c7"
+  },
+  "content": "ohhh, goddd, it's soo fantastic",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T08:00:47.582Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T08:00:47.582Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756a4df5b0ba3712239a54a"
+  },
+  "user_id": {
+    "$oid": "6741a61d4ccb29381f082384"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151ab"
+  },
+  "content": "good products",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T08:05:51.165Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T08:05:51.166Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756a7310dad16005ce8b28b"
+  },
+  "user_id": {
+    "$oid": "6741a61d4ccb29381f082384"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151c5"
+  },
+  "content": "oh dearrrr",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T08:15:45.915Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T08:15:45.915Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756aab10dad16005ce8b32d"
+  },
+  "user_id": {
+    "$oid": "674c64f8e5063c9398680583"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151c9"
+  },
+  "content": "WOWWW, COOL",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T08:30:41.580Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T08:30:41.580Z"
+  },
+  "__v": 0
+},
+
+
+{
+  "_id": {
+    "$oid": "6756abe50dad16005ce8b370"
+  },
+  "user_id": {
+    "$oid": "674c64f8e5063c9398680583"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151c6"
+  },
+  "content": "yahhh",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T08:35:49.055Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T08:35:49.055Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756ac400dad16005ce8b3bc"
+  },
+  "user_id": {
+    "$oid": "674c64f8e5063c9398680583"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151b5"
+  },
+  "content": "ohhh sirrr, that's good",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T08:37:20.038Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T08:37:20.038Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756ad0a0dad16005ce8b3fd"
+  },
+  "user_id": {
+    "$oid": "674c64f8e5063c9398680583"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151c4"
+  },
+  "content": "yesss, i need that laptop",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T08:40:42.465Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T08:40:42.465Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756ad380dad16005ce8b41e"
+  },
+  "user_id": {
+    "$oid": "674c64f8e5063c9398680583"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151aa"
+  },
+  "content": "oke",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T08:41:28.090Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T08:41:28.090Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b4e90dad16005ce8b5e3"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151ce"
+  },
+  "content": "coollll",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T09:14:17.331Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T09:14:17.331Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b56b0dad16005ce8b631"
+  },
+  "user_id": {
+    "$oid": "6741a5294ccb29381f082373"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151bf"
+  },
+  "content": "yesssss sir",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T09:16:27.130Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T09:16:27.130Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756bef9204903ae7dc1cfbc"
+  },
+  "user_id": {
+    "$oid": "674067eac35c263bdad6c769"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151bd"
+  },
+  "content": "cool yo !!",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T09:57:13.711Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T09:57:13.711Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756bf87204903ae7dc1cffc"
+  },
+  "user_id": {
+    "$oid": "674067eac35c263bdad6c769"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151b5"
+  },
+  "content": "great yo !",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T09:59:35.190Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T09:59:35.190Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756bfee204903ae7dc1d043"
+  },
+  "user_id": {
+    "$oid": "674c64f8e5063c9398680583"
+  },
+  "product_id": {
+    "$oid": "674138636c0973f433b151b6"
+  },
+  "content": "great bro",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T10:01:18.940Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T10:01:18.940Z"
   },
   "__v": 0
 }]

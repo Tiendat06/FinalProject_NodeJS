@@ -188,7 +188,7 @@ class LogService {
     }
 
     signInGoogle = async (req, res) => {
-        res.header('Access-Control-Allow-Origin', 'http://localhost:5000');
+        res.header('Access-Control-Allow-Origin', `http://localhost:${process.env.FE_PORT}`);
         res.header('Referrer-Policy', 'no-referrer-when-downgrade');
 
         const redirectUrl = `http://localhost:${process.env.PORT}/log/googleOAuth`;

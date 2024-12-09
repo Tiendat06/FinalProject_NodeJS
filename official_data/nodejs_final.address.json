@@ -47,7 +47,7 @@
   "fullName": "Bob Johnson",
   "address": "12 district",
   "phone_number": "0369852147",
-  "is_default": true,
+  "is_default": false,
   "__v": 0
 },
 {
@@ -91,45 +91,6 @@
 },
 {
   "_id": {
-    "$oid": "674c5ae2da1095fa0e0626d2"
-  },
-  "user_id": {
-    "$oid": "6741a5294ccb29381f082373"
-  },
-  "fullName": "Tạ Tiến Đạt",
-  "address": "52/8, đường HT31",
-  "phone_number": "0356779197",
-  "is_default": false,
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "674c635ce5063c9398680534"
-  },
-  "user_id": {
-    "$oid": "6741a5294ccb29381f082373"
-  },
-  "fullName": "Tạ Tiến Đạt",
-  "address": "52/8, đường HT31",
-  "phone_number": "0356779197",
-  "is_default": false,
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "674c63ede5063c939868054c"
-  },
-  "user_id": {
-    "$oid": "6741a5294ccb29381f082373"
-  },
-  "fullName": "Tạ Tiến Đạt",
-  "address": "52/8, đường HT31",
-  "phone_number": "0356779197",
-  "is_default": false,
-  "__v": 0
-},
-{
-  "_id": {
     "$oid": "674c64f8e5063c9398680587"
   },
   "user_id": {
@@ -148,9 +109,113 @@
   "user_id": {
     "$oid": "674c6f1b135a45393ac3826c"
   },
-  "fullName": "Jack John",
+  "fullName": "Jack Johnson",
   "address": "HT15 district 12",
   "phone_number": "0356779199",
+  "is_default": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "675691557d962d327ba194f1"
+  },
+  "user_id": {
+    "$oid": "675691557d962d327ba194ed"
+  },
+  "fullName": "Tran Minh Quoc",
+  "address": "Ho Chi Minh City, district 7, Tan Phong",
+  "phone_number": "0258963147",
+  "is_default": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "675692477d962d327ba194fa"
+  },
+  "user_id": {
+    "$oid": "675692477d962d327ba194f6"
+  },
+  "fullName": "Quoc Minh Tran",
+  "address": "19, Tan Phong, district 7",
+  "phone_number": "0369852741",
+  "is_default": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "675692847d962d327ba19503"
+  },
+  "user_id": {
+    "$oid": "675692847d962d327ba194ff"
+  },
+  "fullName": "Tang Thieu Phong",
+  "address": "19, Hoang Hoa Tham, district 5",
+  "phone_number": "0147896523",
+  "is_default": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67569904f29ff44f35f902da"
+  },
+  "user_id": {
+    "$oid": "674067eac35c263bdad6c769"
+  },
+  "fullName": "Thao Nhi",
+  "address": "19, Tan Thoi Hiep, 12 district",
+  "phone_number": "0365896417",
+  "is_default": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756b13f0dad16005ce8b46f"
+  },
+  "user_id": {
+    "$oid": "674c64f8e5063c9398680583"
+  },
+  "fullName": "Tạ Tiến Đạt",
+  "address": "12 district",
+  "phone_number": "0356779198",
+  "is_default": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756c064204903ae7dc1d086"
+  },
+  "user_id": {
+    "$oid": "6756c064204903ae7dc1d082"
+  },
+  "fullName": "Maria Nguyen",
+  "address": "20, district Binh Thanh",
+  "phone_number": "0258796413",
+  "is_default": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756c364204903ae7dc1d112"
+  },
+  "user_id": {
+    "$oid": "6756c364204903ae7dc1d10e"
+  },
+  "fullName": "Speed Nguyen",
+  "address": "50, GreenLand, New York City",
+  "phone_number": "0258314697",
+  "is_default": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756c394204903ae7dc1d11b"
+  },
+  "user_id": {
+    "$oid": "6756c394204903ae7dc1d117"
+  },
+  "fullName": "Marry Dan",
+  "address": "20, Wonderland, London",
+  "phone_number": "0369741582",
   "is_default": true,
   "__v": 0
 }]

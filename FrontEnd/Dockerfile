@@ -1,13 +1,15 @@
 FROM node:20.11.1-alpine
-WORKDIR /src/app
+WORKDIR /app
 
 COPY package*.json ./
-RUN npm install --production
+RUN npm ci
 
 COPY . .
+
+RUN npm run build
+
+RUN npm install -g serve
+
 EXPOSE 5000
-ENV PORT=5000
-ENV REACT_APP_API_URL="http://localhost:3000"
-ENV REACT_APP_CLIENT_ID=${REACT_APP_CLIENT_ID}
 
 CMD ["npm", "start"]

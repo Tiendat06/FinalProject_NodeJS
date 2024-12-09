@@ -2,11 +2,11 @@
   "_id": {
     "$oid": "674067eac35c263bdad6c769"
   },
-  "fullName": "Nhi Thảo",
+  "fullName": "Nhi Thảoo",
   "email": "ryannguyen1905@gmail.com",
   "gender": "Female",
-  "phone": "0147896325",
-  "profile_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1732275174/NodeJS_FinalProject/user/peyklnj1sbaiygqr4c5k.png",
+  "phone": "0147896328",
+  "profile_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1733595019/NodeJS_FinalProject/user/llybuekiax5dktj7lxqu.jpg",
   "deleted": false,
   "birthday": {
     "$date": "2024-11-22T00:00:00.000Z"
@@ -15,10 +15,10 @@
     "$date": "2024-11-22T11:15:54.284Z"
   },
   "updatedAt": {
-    "$date": "2024-11-22T11:32:54.558Z"
+    "$date": "2024-12-07T18:10:21.378Z"
   },
   "__v": 0,
-  "point": 0
+  "point": 93
 },
 {
   "_id": {
@@ -31,16 +31,16 @@
     "$date": "2024-10-28T00:00:00.000Z"
   },
   "phone": "0356779197",
-  "profile_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1709054146/cl0hmsqdjl1lwnahek0i.png",
+  "profile_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1733196676/NodeJS_FinalProject/user/ojtcn4serx1xdppzqrzs.png",
   "deleted": false,
   "createdAt": {
     "$date": "2024-11-23T09:49:29.457Z"
   },
   "updatedAt": {
-    "$date": "2024-11-23T09:49:29.457Z"
+    "$date": "2024-12-03T03:31:16.391Z"
   },
   "__v": 0,
-  "point": 499950
+  "point": 499605
 },
 {
   "_id": {
@@ -62,17 +62,17 @@
     "$date": "2024-11-23T09:53:33.868Z"
   },
   "__v": 0,
-  "point": 0
+  "point": 61
 },
 {
   "_id": {
     "$oid": "674c64f8e5063c9398680583"
   },
   "fullName": "Jacky Style",
-  "email": "tadat290903@gmail.com",
+  "email": "jakejohn3004@gmail.com",
   "gender": "Male",
   "phone": "0356779198",
-  "point": 0,
+  "point": 136,
   "profile_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1709054146/cl0hmsqdjl1lwnahek0i.png",
   "deleted": false,
   "birthday": {
@@ -88,23 +88,133 @@
 },
 {
   "_id": {
-    "$oid": "674c6f1b135a45393ac3826c"
+    "$oid": "675691557d962d327ba194ed"
   },
-  "fullName": "Jack John",
-  "email": "tadat290903@gmail.com",
+  "fullName": "Tran Minh Quoc",
+  "email": "trannquocphong2k3@gmail.com",
   "gender": "Male",
-  "phone": "0356779199",
-  "point": 31,
+  "birthday": {
+    "$date": "2004-11-01T00:00:00.000Z"
+  },
+  "phone": "0258963147",
+  "point": 0,
   "profile_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1709054146/cl0hmsqdjl1lwnahek0i.png",
   "deleted": false,
-  "birthday": {
-    "$date": "2024-12-01T14:13:47.651Z"
-  },
   "createdAt": {
-    "$date": "2024-12-01T14:13:47.651Z"
+    "$date": "2024-12-09T06:42:29.297Z"
   },
   "updatedAt": {
-    "$date": "2024-12-01T14:13:47.651Z"
+    "$date": "2024-12-09T06:42:29.297Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "675692477d962d327ba194f6"
+  },
+  "fullName": "Quoc Minh Tran",
+  "email": "quocminhtran24032004@gmail.com",
+  "gender": "Male",
+  "birthday": {
+    "$date": "2004-12-06T00:00:00.000Z"
+  },
+  "phone": "0369852741",
+  "point": 0,
+  "profile_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1709054146/cl0hmsqdjl1lwnahek0i.png",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T06:46:31.851Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T06:46:31.851Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "675692847d962d327ba194ff"
+  },
+  "fullName": "Tang Thieu Phong",
+  "email": "tangthieuphong888@gmail.com",
+  "gender": "Male",
+  "birthday": {
+    "$date": "2003-12-27T00:00:00.000Z"
+  },
+  "phone": "0147896523",
+  "point": 0,
+  "profile_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1709054146/cl0hmsqdjl1lwnahek0i.png",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T06:47:32.769Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T06:47:32.769Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756c064204903ae7dc1d082"
+  },
+  "fullName": "Maria Nguyen",
+  "email": "marianguyen@gmail.com",
+  "gender": "Female",
+  "birthday": {
+    "$date": "2000-11-14T00:00:00.000Z"
+  },
+  "phone": "0258796413",
+  "point": 0,
+  "profile_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1709054146/cl0hmsqdjl1lwnahek0i.png",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T10:03:16.114Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T10:03:16.114Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756c364204903ae7dc1d10e"
+  },
+  "fullName": "Speed Nguyen",
+  "email": "speednguyen@gmail.com",
+  "gender": "Male",
+  "birthday": {
+    "$date": "2000-10-30T00:00:00.000Z"
+  },
+  "phone": "0258314697",
+  "point": 0,
+  "profile_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1709054146/cl0hmsqdjl1lwnahek0i.png",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T10:16:04.991Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T10:16:04.991Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6756c394204903ae7dc1d117"
+  },
+  "fullName": "Marry Dan",
+  "email": "marrydan@gmail.com",
+  "gender": "Female",
+  "birthday": {
+    "$date": "2002-12-04T00:00:00.000Z"
+  },
+  "phone": "0369741582",
+  "point": 0,
+  "profile_image": "https://res.cloudinary.com/dervs0fx5/image/upload/v1709054146/cl0hmsqdjl1lwnahek0i.png",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-12-09T10:16:52.969Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T10:16:52.969Z"
   },
   "__v": 0
 }]

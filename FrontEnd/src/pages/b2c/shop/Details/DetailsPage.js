@@ -172,7 +172,7 @@ function DetailsPage(){
                 .catch(err => console.log(err));
         } else{
             let cartItems = JSON.parse(localStorage.getItem('carts'))
-            if(cartItems.length === 0){
+            if(cartItems?.length === 0 || !JSON.parse(localStorage.getItem('carts'))){
                 localStorage.setItem('carts', JSON.stringify([]));
                 cartItems = JSON.parse(localStorage.getItem('carts'));
             }

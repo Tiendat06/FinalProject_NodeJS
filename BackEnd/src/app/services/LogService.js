@@ -6,6 +6,9 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const mailer = require('nodemailer');
 const {OAuth2Client} = require("google-auth-library");
+const dotenv = require("dotenv");
+dotenv.config();
+
 
 class LogService {
 
@@ -191,7 +194,7 @@ class LogService {
         res.header('Access-Control-Allow-Origin', `${process.env.FE_URL}`);
         res.header('Referrer-Policy', 'no-referrer-when-downgrade');
 
-        const redirectUrl = `${process.env.FE_URL}/log/googleOAuth`;
+        const redirectUrl = `${process.env.BE_URL}/log/googleOAuth`;
 
         const oAuth2Client = new OAuth2Client(
             process.env.CLIENT_ID,
@@ -219,7 +222,7 @@ class LogService {
         const code = req.query.code;
 
         try {
-            const redirectUrl = `${process.env.FE_URL}/log/googleOAuth`;
+            const redirectUrl = `${process.env.BE_URL}/log/googleOAuth`;
             const oAuth2Client = new OAuth2Client(
                 process.env.CLIENT_ID,
                 process.env.CLIENT_SECRET,
@@ -302,7 +305,7 @@ class LogService {
             const role = await roleRepository.getRoleByRoleId(account.role_id);
             req.session.returnObject = {...user.toObject(), role_name: role.role_name};
 
-            return res.redirect(`${process.env.FE_URL}/`);
+            return res.redirect(`${process.env.FE_URL}`);
 
         } catch (e) {
             return res.status(400).json({

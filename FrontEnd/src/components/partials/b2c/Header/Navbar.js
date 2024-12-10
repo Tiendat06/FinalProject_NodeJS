@@ -9,9 +9,11 @@ import {useShoppingContext} from "~/context/ShoppingContext";
 import {Loading} from "~/components/elements";
 import $ from "jquery";
 import {toast} from 'react-toastify';
+import {BottomNavigation} from "~/components";
 
 function Navbar() {
     // let [search, setSearch] = useState('');
+    const [isClickedMobileBar, setIsClickedMobileBar] = useState(false);
     let [isLogin, setIsLogin] = useState(true);
     const [isCategoryClicked, setIsCategoryClicked] = useState(false);
     const [logInformation, setLogInformation] = useState({});
@@ -214,9 +216,18 @@ function Navbar() {
                         </div>
                         <div className="col-lg-4 col-sm-6 col-md-1 d-flex">
                             <div className={clsx(styles['header-bottom__mobile'], 'col-md-0 col-lg-0')}>
-                                <i className={clsx('fa-solid fa-bars', styles['header-bottom__mobile-icon'])}></i>
+                                {!isClickedMobileBar &&
+                                <i onClick={() => setIsClickedMobileBar(true)}
+                                   className={clsx('fa-solid fa-bars', styles['header-bottom__mobile-icon'])}></i>
+                                }
+                                {isClickedMobileBar &&
+                                <i onClick={() => setIsClickedMobileBar(false)}
+                                   className={clsx("fa-solid fa-x", styles['header-bottom__mobile-icon'])}></i>
+                                }
                             </div>
-
+                            {isClickedMobileBar &&
+                            <BottomNavigation />
+                            }
                             {/*{userData?._id &&*/}
                             <Link to='/shop/cart' className="header-bottom__icon col-sm-0 position-relative d-flex justify-content-center align-items-center col-lg-4 col-md-4 col-sm-4">
                                 <i className={clsx("fa-solid fa-basket-shopping")}
@@ -269,7 +280,7 @@ function Navbar() {
                                 <Button label="SEARCH"
                                         className={clsx('btn btn-danger col-lg-2 col-md-3 col-sm-3', styles['header-search__middle-btn'])}/>
                             </div>
-                            <div className={clsx(styles['header-search__recommend'], (search === '' && 'd-none'), "col-lg-10 col-md-9 col-sm-9 position-absolute")}>
+                            <div style={{zIndex: 10}} className={clsx(styles['header-search__recommend'], (search === '' && 'd-none'), "col-lg-10 col-md-9 col-sm-9 position-absolute")}>
                                 {productData.map((item, index) => (
                                     <Link key={`search-p-${index}`} onClick={() => setSearch('')} to={`/shop/details/${item._id}`}>{item.product_name}</Link>
                                 ))}

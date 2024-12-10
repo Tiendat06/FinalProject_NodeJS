@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 import './App.css';
-import {Header, Body, Footer} from './components';
+import {Header, Body, Footer, BottomNavigation} from './components';
 import {useDashboardContext} from "~/context/DashboardContext";
 import {Toast} from "~/components/elements";
 import {PayPalScriptProvider} from '@paypal/react-paypal-js'
@@ -22,6 +22,7 @@ function App() {
               {!currentLocation.startsWith('/dashboard') && <Header />}
               <Body />
               {!currentLocation.startsWith('/dashboard') && <Footer />}
+              {/*{!currentLocation.startsWith('/dashboard') && }*/}
               <Toast />
           </PayPalScriptProvider>
       </>

@@ -188,10 +188,10 @@ class LogService {
     }
 
     signInGoogle = async (req, res) => {
-        res.header('Access-Control-Allow-Origin', `http://localhost:${process.env.FE_PORT}`);
+        res.header('Access-Control-Allow-Origin', `${process.env.FE_URL}`);
         res.header('Referrer-Policy', 'no-referrer-when-downgrade');
 
-        const redirectUrl = `http://localhost:${process.env.PORT}/log/googleOAuth`;
+        const redirectUrl = `${process.env.FE_URL}/log/googleOAuth`;
 
         const oAuth2Client = new OAuth2Client(
             process.env.CLIENT_ID,
@@ -219,7 +219,7 @@ class LogService {
         const code = req.query.code;
 
         try {
-            const redirectUrl = `http://localhost:${process.env.PORT}/log/googleOAuth`;
+            const redirectUrl = `${process.env.FE_URL}/log/googleOAuth`;
             const oAuth2Client = new OAuth2Client(
                 process.env.CLIENT_ID,
                 process.env.CLIENT_SECRET,
@@ -302,7 +302,7 @@ class LogService {
             const role = await roleRepository.getRoleByRoleId(account.role_id);
             req.session.returnObject = {...user.toObject(), role_name: role.role_name};
 
-            return res.redirect('http://localhost:5000/');
+            return res.redirect(`${process.env.FE_URL}/`);
 
         } catch (e) {
             return res.status(400).json({

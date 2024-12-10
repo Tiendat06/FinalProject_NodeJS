@@ -17,7 +17,7 @@ const {rateLimit} = require('express-rate-limit');
 const cookieParser = require("cookie-parser");
 const cors = require('cors');
 const corsOptions = {
-    origin: `http://localhost:${process.env.FE_PORT}`,
+    origin: `${process.env.FE_URL}`,
     credentials: true, // Allows cookies and authentication header
 };
 

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const cartController = require('../app/controllers/CartController');
-const cartMiddleware = require('../app/middlewares/CartMiddleware');
+const cartMiddleware = require('../app/middlewares/CartMiddleWare');
 const cartValidator = require('../app/validators/CartValidator');
 
 router.get('/', cartMiddleware.index, cartController.getCart);

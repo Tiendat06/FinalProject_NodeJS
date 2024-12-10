@@ -175,7 +175,7 @@ function DashboardManageProductPage() {
                 if(data.status){
                     dispatch(deleteProduct(product));
                     $('.loading-spinner').addClass('d-none');
-                    $('.loading-add').html('Delete')
+                    $('.loading-add').html('Save')
                     toast.success(data.msg);
                 } else{
                     toast.error(data.msg);
@@ -271,7 +271,7 @@ function DashboardManageProductPage() {
                     toast.success(data.msg);
                 } else toast.error(data.msg);
                 $('.loading-spinner').addClass('d-none');
-                $('.loading-add').html('Delete')
+                $('.loading-add').html('Save')
             })
             .catch(err => console.log(err));
     }, [productVariant, imgFile]);
@@ -704,7 +704,7 @@ function DashboardManageProductPage() {
                                className={clsx(styles['edit-modal__inp'], 'form-control')}/>
                     </div>
                     <div className="form-group">
-                        <label className={clsx(styles['edit-modal__label'])} htmlFor="weight-variant-add">CPU</label>
+                        <label className={clsx(styles['edit-modal__label'])} htmlFor="weight-variant-add">WEIGHT</label>
                         <input onChange={e => variantDispatch(onChangeVariantData({variant_weight: e.target.value}))}
                                type="text"
                                id='weight-variant-add'
@@ -913,7 +913,7 @@ function DashboardManageProductPage() {
                                className={clsx(styles['edit-modal__inp'], 'form-control')}/>
                     </div>
                     <div className="form-group">
-                        <label className={clsx(styles['edit-modal__label'])} htmlFor="weight-add">CPU</label>
+                        <label className={clsx(styles['edit-modal__label'])} htmlFor="weight-add">WEIGHT</label>
                         <input onChange={e => dispatch(onChangeData({variant_weight: e.target.value}))}
                                type="text"
                                id='weight-add'

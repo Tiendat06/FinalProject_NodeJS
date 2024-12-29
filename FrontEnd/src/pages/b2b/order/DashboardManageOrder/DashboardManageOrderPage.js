@@ -330,10 +330,13 @@ function DashboardManageOrderPage() {
                             <div className={clsx(styles["order-tracking__details-info"], 'mt-3')}>
                                 <h6 className='mb-0 text-center'>{item?.status_id?.status}</h6>
                                 {item?.createdAt &&
-                                <p className='mb-0 text-center'>{ConvertTime(item?.createdAt)}</p>
+                                    <>
+                                        <p className='mb-0 text-center'>{ConvertTime(item?.createdAt, 2)}</p>
+                                        <p className='mb-0 text-center'>{ConvertTime(item?.createdAt)}</p>
+                                    </>
                                 }
                                 <div className={clsx(styles['order-tracking__details-btn'], 'mt-3')}>
-                                    {!item?.is_check &&
+                                {!item?.is_check &&
                                     <button onClick={() => updateStatusDetails(item)}>Confirm</button>
                                     }
                                 </div>

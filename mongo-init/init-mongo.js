@@ -1490,7 +1490,7 @@ db.order_status_details.insertMany(
             _id: ObjectId("674c1ff2a50614d7a28b4594"),
             order_id: ObjectId("674c1fe8a50614d7a28b4583"),
             status_id: ObjectId("6741b3abfebecf90784bc244"),
-            createdAt: new Date("2024-12-01T08:36:02.716Z"),
+            createdAt: new Date("2024-11-11T08:36:02.716Z"),
             is_check: true,
             __v: 0
         },
@@ -1498,7 +1498,7 @@ db.order_status_details.insertMany(
             _id: ObjectId("674c1ff2a50614d7a28b4595"),
             order_id: ObjectId("674c1fe8a50614d7a28b4583"),
             status_id: ObjectId("6741b3abfebecf90784bc245"),
-            createdAt: new Date("2024-12-02T16:19:23.600Z"),
+            createdAt: new Date("2024-11-12T16:19:23.600Z"),
             is_check: true,
             __v: 0
         },
@@ -1506,7 +1506,7 @@ db.order_status_details.insertMany(
             _id: ObjectId("674c1ff2a50614d7a28b4596"),
             order_id: ObjectId("674c1fe8a50614d7a28b4583"),
             status_id: ObjectId("6741b3abfebecf90784bc246"),
-            createdAt: new Date("2024-12-02T16:20:38.869Z"),
+            createdAt: new Date("2024-11-12T16:20:38.869Z"),
             is_check: true,
             __v: 0
         },
@@ -1518,11 +1518,12 @@ db.order_status_details.insertMany(
             is_check: false,
             __v: 0
         },
+    //
         {
             _id: ObjectId("674c20a8a50614d7a28b45d2"),
             order_id: ObjectId("674c2082a50614d7a28b45c1"),
             status_id: ObjectId("6741b3abfebecf90784bc244"),
-            createdAt: new Date("2024-12-01T08:39:04.038Z"),
+            createdAt: new Date("2024-10-29T08:39:04.038Z"),
             is_check: true,
             __v: 0
         },
@@ -1530,7 +1531,7 @@ db.order_status_details.insertMany(
             _id: ObjectId("674c20a8a50614d7a28b45d3"),
             order_id: ObjectId("674c2082a50614d7a28b45c1"),
             status_id: ObjectId("6741b3abfebecf90784bc245"),
-            createdAt: new Date("2024-12-02T16:14:10.452Z"),
+            createdAt: new Date("2024-10-30T16:14:10.452Z"),
             is_check: true,
             __v: 0
         },
@@ -1542,7 +1543,6 @@ db.order_status_details.insertMany(
             is_check: false,
             __v: 0
         },
-    //
         {
             _id: ObjectId("674c20a8a50614d7a28b45d5"),
             order_id: ObjectId("674c2082a50614d7a28b45c1"),
@@ -1555,7 +1555,7 @@ db.order_status_details.insertMany(
             _id: ObjectId("674c544c1b90b0d7e35c72d5"),
             order_id: ObjectId("674c54411b90b0d7e35c72c6"),
             status_id: ObjectId("6741b3abfebecf90784bc244"),
-            createdAt: new Date("2024-12-01T12:19:24.555Z"),
+            createdAt: new Date("2024-11-01T12:19:24.555Z"),
             is_check: true,
             __v: 0
         },
@@ -1563,7 +1563,7 @@ db.order_status_details.insertMany(
             _id: ObjectId("674c544c1b90b0d7e35c72d6"),
             order_id: ObjectId("674c54411b90b0d7e35c72c6"),
             status_id: ObjectId("6741b3abfebecf90784bc245"),
-            createdAt: new Date("2024-12-02T16:01:23.301Z"),
+            createdAt: new Date("2024-11-02T16:01:23.301Z"),
             is_check: true,
             __v: 0
         },
@@ -1587,7 +1587,7 @@ db.order_status_details.insertMany(
             _id: ObjectId("674c635ce5063c9398680541"),
             order_id: ObjectId("674c635ce5063c9398680536"),
             status_id: ObjectId("6741b3abfebecf90784bc244"),
-            createdAt: new Date("2024-12-01T13:23:40.731Z"),
+            createdAt: new Date("2024-10-21T13:23:40.731Z"),
             is_check: true,
             __v: 0
         },
@@ -1619,7 +1619,7 @@ db.order_status_details.insertMany(
             _id: ObjectId("674c63ede5063c9398680559"),
             order_id: ObjectId("674c63ede5063c939868054e"),
             status_id: ObjectId("6741b3abfebecf90784bc244"),
-            createdAt: new Date("2024-12-01T13:26:05.115Z"),
+            createdAt: new Date("2024-10-01T13:26:05.115Z"),
             is_check: true,
             __v: 0
         },
@@ -1647,135 +1647,136 @@ db.order_status_details.insertMany(
             is_check: false,
             __v: 0
         },
-        {
-            _id: ObjectId("674c64f8e5063c9398680593"),
-            order_id: ObjectId("674c64f8e5063c9398680589"),
-            status_id: ObjectId("6741b3abfebecf90784bc244"),
-            createdAt: new Date("2024-12-01T13:30:32.432Z"),
-            is_check: true,
-            __v: 0
-        },
-        {
-            _id: ObjectId("674c64f8e5063c9398680594"),
-            order_id: ObjectId("674c64f8e5063c9398680589"),
-            status_id: ObjectId("6741b3abfebecf90784bc245"),
-            createdAt: new Date("2024-12-02T15:51:41.158Z"),
-            is_check: true,
-            __v: 0
-        },
-        {
-            _id: ObjectId("674c64f8e5063c9398680595"),
-            order_id: ObjectId("674c64f8e5063c9398680589"),
-            status_id: ObjectId("6741b3abfebecf90784bc246"),
-            createdAt: new Date("2024-12-03T13:37:21.211Z"),
-            is_check: true,
-            __v: 0
-        },
-        {
-            _id: ObjectId("674c64f8e5063c9398680596"),
-            order_id: ObjectId("674c64f8e5063c9398680589"),
-            status_id: ObjectId("6741b3abfebecf90784bc247"),
-            createdAt: null,
-            is_check: false,
-            __v: 0
-        },
-        {
-            _id: ObjectId("674c6f1b135a45393ac3827c"),
-            order_id: ObjectId("674c6f1b135a45393ac38272"),
-            status_id: ObjectId("6741b3abfebecf90784bc244"),
-            createdAt: new Date("2024-12-01T14:13:47.748Z"),
-            is_check: true,
-            __v: 0
-        },
-        {
-            _id: ObjectId("674c6f1b135a45393ac3827d"),
-            order_id: ObjectId("674c6f1b135a45393ac38272"),
-            status_id: ObjectId("6741b3abfebecf90784bc245"),
-            createdAt: new Date("2024-12-03T13:33:44.601Z"),
-            is_check: true,
-            __v: 0
-        },
-        {
-            _id: ObjectId("674c6f1b135a45393ac3827e"),
-            order_id: ObjectId("674c6f1b135a45393ac38272"),
-            status_id: ObjectId("6741b3abfebecf90784bc246"),
-            createdAt: null,
-            is_check: false,
-            __v: 0
-        },
     //
         {
-            _id: ObjectId("674c6f1b135a45393ac3827f"),
-            order_id: ObjectId("674c6f1b135a45393ac38272"),
-            status_id: ObjectId("6741b3abfebecf90784bc247"),
-            createdAt: null,
-            is_check: false,
-            __v: 0
+            "_id": ObjectId("674c64f8e5063c9398680593"),
+            "order_id": ObjectId("674c64f8e5063c9398680589"),
+            "status_id": ObjectId("6741b3abfebecf90784bc244"),
+            "createdAt": new Date("2024-11-15T13:30:32.432Z"),
+            "is_check": true,
+            "__v": 0
         },
         {
-            _id: ObjectId("674efc6ae6ca0e50af3e4f55"),
-            order_id: ObjectId("674efc3fe6ca0e50af3e4f46"),
-            status_id: ObjectId("6741b3abfebecf90784bc244"),
-            createdAt: new Date("2024-12-03T12:41:14.539Z"),
-            is_check: true,
-            __v: 0
+            "_id": ObjectId("674c64f8e5063c9398680594"),
+            "order_id": ObjectId("674c64f8e5063c9398680589"),
+            "status_id": ObjectId("6741b3abfebecf90784bc245"),
+            "createdAt": new Date("2024-11-16T15:51:41.158Z"),
+            "is_check": true,
+            "__v": 0
         },
         {
-            _id: ObjectId("674efc6ae6ca0e50af3e4f56"),
-            order_id: ObjectId("674efc3fe6ca0e50af3e4f46"),
-            status_id: ObjectId("6741b3abfebecf90784bc245"),
-            createdAt: new Date("2024-12-03T13:29:52.751Z"),
-            is_check: true,
-            __v: 0
+            "_id": ObjectId("674c64f8e5063c9398680595"),
+            "order_id": ObjectId("674c64f8e5063c9398680589"),
+            "status_id": ObjectId("6741b3abfebecf90784bc246"),
+            "createdAt": new Date("2024-11-17T13:37:21.211Z"),
+            "is_check": true,
+            "__v": 0
         },
         {
-            _id: ObjectId("674efc6ae6ca0e50af3e4f57"),
-            order_id: ObjectId("674efc3fe6ca0e50af3e4f46"),
-            status_id: ObjectId("6741b3abfebecf90784bc246"),
-            createdAt: null,
-            is_check: false,
-            __v: 0
+            "_id": ObjectId("674c64f8e5063c9398680596"),
+            "order_id": ObjectId("674c64f8e5063c9398680589"),
+            "status_id": ObjectId("6741b3abfebecf90784bc247"),
+            "createdAt": null,
+            "is_check": false,
+            "__v": 0
         },
         {
-            _id: ObjectId("674efc6ae6ca0e50af3e4f58"),
-            order_id: ObjectId("674efc3fe6ca0e50af3e4f46"),
-            status_id: ObjectId("6741b3abfebecf90784bc247"),
-            createdAt: null,
-            is_check: false,
-            __v: 0
+            "_id": ObjectId("674c6f1b135a45393ac3827c"),
+            "order_id": ObjectId("674c6f1b135a45393ac38272"),
+            "status_id": ObjectId("6741b3abfebecf90784bc244"),
+            "createdAt": new Date("2024-12-01T14:13:47.748Z"),
+            "is_check": true,
+            "__v": 0
         },
         {
-            _id: ObjectId("67569a5cadea324424515176"),
-            order_id: ObjectId("6756975bf552000b2bae3e86"),
-            status_id: ObjectId("6741b3abfebecf90784bc244"),
-            createdAt: new Date("2024-12-09T07:21:00.512Z"),
-            is_check: true,
-            __v: 0
+            "_id": ObjectId("674c6f1b135a45393ac3827d"),
+            "order_id": ObjectId("674c6f1b135a45393ac38272"),
+            "status_id": ObjectId("6741b3abfebecf90784bc245"),
+            "createdAt": new Date("2024-12-03T13:33:44.601Z"),
+            "is_check": true,
+            "__v": 0
         },
         {
-            _id: ObjectId("67569a5cadea324424515177"),
-            order_id: ObjectId("6756975bf552000b2bae3e86"),
-            status_id: ObjectId("6741b3abfebecf90784bc245"),
-            createdAt: null,
-            is_check: false,
-            __v: 0
+            "_id": ObjectId("674c6f1b135a45393ac3827e"),
+            "order_id": ObjectId("674c6f1b135a45393ac38272"),
+            "status_id": ObjectId("6741b3abfebecf90784bc246"),
+            "createdAt": null,
+            "is_check": false,
+            "__v": 0
         },
         {
-            _id: ObjectId("67569a5cadea324424515178"),
-            order_id: ObjectId("6756975bf552000b2bae3e86"),
-            status_id: ObjectId("6741b3abfebecf90784bc246"),
-            createdAt: null,
-            is_check: false,
-            __v: 0
+            "_id": ObjectId("674c6f1b135a45393ac3827f"),
+            "order_id": ObjectId("674c6f1b135a45393ac38272"),
+            "status_id": ObjectId("6741b3abfebecf90784bc247"),
+            "createdAt": null,
+            "is_check": false,
+            "__v": 0
         },
         {
-            _id: ObjectId("67569a5cadea324424515179"),
-            order_id: ObjectId("6756975bf552000b2bae3e86"),
-            status_id: ObjectId("6741b3abfebecf90784bc247"),
-            createdAt: null,
-            is_check: false,
-            __v: 0
+            "_id": ObjectId("674efc6ae6ca0e50af3e4f55"),
+            "order_id": ObjectId("674efc3fe6ca0e50af3e4f46"),
+            "status_id": ObjectId("6741b3abfebecf90784bc244"),
+            "createdAt": new Date("2024-12-03T12:41:14.539Z"),
+            "is_check": true,
+            "__v": 0
         },
+        {
+            "_id": ObjectId("674efc6ae6ca0e50af3e4f56"),
+            "order_id": ObjectId("674efc3fe6ca0e50af3e4f46"),
+            "status_id": ObjectId("6741b3abfebecf90784bc245"),
+            "createdAt": new Date("2024-12-03T13:29:52.751Z"),
+            "is_check": true,
+            "__v": 0
+        },
+        {
+            "_id": ObjectId("674efc6ae6ca0e50af3e4f57"),
+            "order_id": ObjectId("674efc3fe6ca0e50af3e4f46"),
+            "status_id": ObjectId("6741b3abfebecf90784bc246"),
+            "createdAt": null,
+            "is_check": false,
+            "__v": 0
+        },
+        {
+            "_id": ObjectId("674efc6ae6ca0e50af3e4f58"),
+            "order_id": ObjectId("674efc3fe6ca0e50af3e4f46"),
+            "status_id": ObjectId("6741b3abfebecf90784bc247"),
+            "createdAt": null,
+            "is_check": false,
+            "__v": 0
+        },
+        {
+            "_id": ObjectId("67569a5cadea324424515176"),
+            "order_id": ObjectId("6756975bf552000b2bae3e86"),
+            "status_id": ObjectId("6741b3abfebecf90784bc244"),
+            "createdAt": new Date("2024-12-07T07:21:00.512Z"),
+            "is_check": true,
+            "__v": 0
+        },
+        {
+            "_id": ObjectId("67569a5cadea324424515177"),
+            "order_id": ObjectId("6756975bf552000b2bae3e86"),
+            "status_id": ObjectId("6741b3abfebecf90784bc245"),
+            "createdAt": null,
+            "is_check": false,
+            "__v": 0
+        },
+        {
+            "_id": ObjectId("67569a5cadea324424515178"),
+            "order_id": ObjectId("6756975bf552000b2bae3e86"),
+            "status_id": ObjectId("6741b3abfebecf90784bc246"),
+            "createdAt": null,
+            "is_check": false,
+            "__v": 0
+        },
+        {
+            "_id": ObjectId("67569a5cadea324424515179"),
+            "order_id": ObjectId("6756975bf552000b2bae3e86"),
+            "status_id": ObjectId("6741b3abfebecf90784bc247"),
+            "createdAt": null,
+            "is_check": false,
+            "__v": 0
+        },
+    //     
         {
             _id: ObjectId("6756a08fb4a7648736a80e47"),
             order_id: ObjectId("6756a03db4a7648736a80e37"),
@@ -1812,7 +1813,7 @@ db.order_status_details.insertMany(
             _id: ObjectId("6756a1f7b4a7648736a80eae"),
             order_id: ObjectId("6756a1dab4a7648736a80e9e"),
             status_id: ObjectId("6741b3abfebecf90784bc244"),
-            createdAt: new Date("2024-12-09T07:53:27.987Z"),
+            createdAt: new Date("2024-11-19T07:53:27.987Z"),
             is_check: true,
             __v: 0
         },
@@ -1844,7 +1845,7 @@ db.order_status_details.insertMany(
             _id: ObjectId("6756a4f65b0ba3712239a566"),
             order_id: ObjectId("6756a4eb5b0ba3712239a556"),
             status_id: ObjectId("6741b3abfebecf90784bc244"),
-            createdAt: new Date("2024-12-09T08:06:14.017Z"),
+            createdAt: new Date("2024-12-02T08:06:14.017Z"),
             is_check: true,
             __v: 0
         },
@@ -1872,7 +1873,6 @@ db.order_status_details.insertMany(
             is_check: false,
             __v: 0
         },
-    //
         {
             _id: ObjectId("6756a7560dad16005ce8b2aa"),
             order_id: ObjectId("6756a7450dad16005ce8b29a"),
@@ -1905,13 +1905,14 @@ db.order_status_details.insertMany(
             is_check: false,
             __v: 0
         },
+    //
         {
             _id: ObjectId("6756abd10dad16005ce8b34e"),
             order_id: ObjectId("6756aac30dad16005ce8b33c"),
             status_id: ObjectId("6741b3abfebecf90784bc244"),
-            createdAt: new Date("2024-12-09T08:35:29.504Z"),
+            createdAt: new Date("2024-11-25T08:35:29.504Z"),
             is_check: true,
-            __v: 0
+            __v: 0,
         },
         {
             _id: ObjectId("6756abd10dad16005ce8b34f"),
@@ -1919,7 +1920,7 @@ db.order_status_details.insertMany(
             status_id: ObjectId("6741b3abfebecf90784bc245"),
             createdAt: null,
             is_check: false,
-            __v: 0
+            __v: 0,
         },
         {
             _id: ObjectId("6756abd10dad16005ce8b350"),
@@ -1927,7 +1928,7 @@ db.order_status_details.insertMany(
             status_id: ObjectId("6741b3abfebecf90784bc246"),
             createdAt: null,
             is_check: false,
-            __v: 0
+            __v: 0,
         },
         {
             _id: ObjectId("6756abd10dad16005ce8b351"),
@@ -1935,7 +1936,7 @@ db.order_status_details.insertMany(
             status_id: ObjectId("6741b3abfebecf90784bc247"),
             createdAt: null,
             is_check: false,
-            __v: 0
+            __v: 0,
         },
         {
             _id: ObjectId("6756ac020dad16005ce8b390"),
@@ -1943,7 +1944,7 @@ db.order_status_details.insertMany(
             status_id: ObjectId("6741b3abfebecf90784bc244"),
             createdAt: new Date("2024-12-09T08:36:18.519Z"),
             is_check: true,
-            __v: 0
+            __v: 0,
         },
         {
             _id: ObjectId("6756ac020dad16005ce8b391"),
@@ -1951,7 +1952,7 @@ db.order_status_details.insertMany(
             status_id: ObjectId("6741b3abfebecf90784bc245"),
             createdAt: new Date("2024-12-09T09:48:08.910Z"),
             is_check: true,
-            __v: 0
+            __v: 0,
         },
         {
             _id: ObjectId("6756ac020dad16005ce8b392"),
@@ -1959,7 +1960,7 @@ db.order_status_details.insertMany(
             status_id: ObjectId("6741b3abfebecf90784bc246"),
             createdAt: null,
             is_check: false,
-            __v: 0
+            __v: 0,
         },
         {
             _id: ObjectId("6756ac020dad16005ce8b393"),
@@ -1967,15 +1968,15 @@ db.order_status_details.insertMany(
             status_id: ObjectId("6741b3abfebecf90784bc247"),
             createdAt: null,
             is_check: false,
-            __v: 0
+            __v: 0,
         },
         {
             _id: ObjectId("6756ac5b0dad16005ce8b3db"),
             order_id: ObjectId("6756ac520dad16005ce8b3cb"),
             status_id: ObjectId("6741b3abfebecf90784bc244"),
-            createdAt: new Date("2024-12-09T08:37:47.677Z"),
+            createdAt: new Date("2024-12-05T08:37:47.677Z"),
             is_check: true,
-            __v: 0
+            __v: 0,
         },
         {
             _id: ObjectId("6756ac5b0dad16005ce8b3dc"),
@@ -1983,7 +1984,7 @@ db.order_status_details.insertMany(
             status_id: ObjectId("6741b3abfebecf90784bc245"),
             createdAt: new Date("2024-12-09T09:51:22.959Z"),
             is_check: true,
-            __v: 0
+            __v: 0,
         },
         {
             _id: ObjectId("6756ac5b0dad16005ce8b3dd"),
@@ -1991,7 +1992,7 @@ db.order_status_details.insertMany(
             status_id: ObjectId("6741b3abfebecf90784bc246"),
             createdAt: null,
             is_check: false,
-            __v: 0
+            __v: 0,
         },
         {
             _id: ObjectId("6756ac5b0dad16005ce8b3de"),
@@ -1999,15 +2000,15 @@ db.order_status_details.insertMany(
             status_id: ObjectId("6741b3abfebecf90784bc247"),
             createdAt: null,
             is_check: false,
-            __v: 0
+            __v: 0,
         },
         {
             _id: ObjectId("6756ad4b0dad16005ce8b43c"),
             order_id: ObjectId("6756ad430dad16005ce8b42a"),
             status_id: ObjectId("6741b3abfebecf90784bc244"),
-            createdAt: new Date("2024-12-09T08:41:47.582Z"),
+            createdAt: new Date("2024-12-06T08:41:47.582Z"),
             is_check: true,
-            __v: 0
+            __v: 0,
         },
         {
             _id: ObjectId("6756ad4b0dad16005ce8b43d"),
@@ -2015,7 +2016,7 @@ db.order_status_details.insertMany(
             status_id: ObjectId("6741b3abfebecf90784bc245"),
             createdAt: null,
             is_check: false,
-            __v: 0
+            __v: 0,
         },
         {
             _id: ObjectId("6756ad4b0dad16005ce8b43e"),
@@ -2023,7 +2024,7 @@ db.order_status_details.insertMany(
             status_id: ObjectId("6741b3abfebecf90784bc246"),
             createdAt: null,
             is_check: false,
-            __v: 0
+            __v: 0,
         },
         {
             _id: ObjectId("6756ad4b0dad16005ce8b43f"),
@@ -2031,14 +2032,14 @@ db.order_status_details.insertMany(
             status_id: ObjectId("6741b3abfebecf90784bc247"),
             createdAt: null,
             is_check: false,
-            __v: 0
+            __v: 0,
         },
     //
         {
             _id: ObjectId("6756b13f0dad16005ce8b47b"),
             order_id: ObjectId("6756b13f0dad16005ce8b471"),
             status_id: ObjectId("6741b3abfebecf90784bc244"),
-            createdAt: new Date("2024-12-09T08:58:39.568Z"),
+            createdAt: new Date("2024-11-19T08:58:39.565Z"),
             is_check: true,
             __v: 0
         },
@@ -2070,7 +2071,7 @@ db.order_status_details.insertMany(
             _id: ObjectId("6756b3410dad16005ce8b51d"),
             order_id: ObjectId("6756b3330dad16005ce8b506"),
             status_id: ObjectId("6741b3abfebecf90784bc244"),
-            createdAt: new Date("2024-12-09T09:07:13.857Z"),
+            createdAt: new Date("2024-12-05T09:07:13.853Z"),
             is_check: true,
             __v: 0
         },
@@ -2102,7 +2103,7 @@ db.order_status_details.insertMany(
             _id: ObjectId("6756b3770dad16005ce8b563"),
             order_id: ObjectId("6756b36c0dad16005ce8b54f"),
             status_id: ObjectId("6741b3abfebecf90784bc244"),
-            createdAt: new Date("2024-12-09T09:08:07.160Z"),
+            createdAt: new Date("2024-12-04T09:08:07.158Z"),
             is_check: true,
             __v: 0
         },
@@ -2134,7 +2135,7 @@ db.order_status_details.insertMany(
             _id: ObjectId("6756b5140dad16005ce8b609"),
             order_id: ObjectId("6756b5000dad16005ce8b5f5"),
             status_id: ObjectId("6741b3abfebecf90784bc244"),
-            createdAt: new Date("2024-12-09T09:15:00.275Z"),
+            createdAt: new Date("2024-11-23T09:15:00.273Z"),
             is_check: true,
             __v: 0
         },
@@ -2162,11 +2163,12 @@ db.order_status_details.insertMany(
             is_check: false,
             __v: 0
         },
+    //
         {
             _id: ObjectId("6756b57f0dad16005ce8b64d"),
             order_id: ObjectId("6756b5770dad16005ce8b63d"),
             status_id: ObjectId("6741b3abfebecf90784bc244"),
-            createdAt: new Date("2024-12-09T09:16:47.701Z"),
+            createdAt: new Date("2024-10-12T09:16:47.697Z"),
             is_check: true,
             __v: 0
         },
@@ -2198,11 +2200,10 @@ db.order_status_details.insertMany(
             _id: ObjectId("6756b9fb0dad16005ce8b68d"),
             order_id: ObjectId("6756b9ed0dad16005ce8b679"),
             status_id: ObjectId("6741b3abfebecf90784bc244"),
-            createdAt: new Date("2024-12-09T09:35:55.859Z"),
+            createdAt: new Date("2024-12-06T09:35:55.856Z"),
             is_check: true,
             __v: 0
         },
-    //
         {
             _id: ObjectId("6756b9fb0dad16005ce8b68e"),
             order_id: ObjectId("6756b9ed0dad16005ce8b679"),
@@ -2231,7 +2232,7 @@ db.order_status_details.insertMany(
             _id: ObjectId("6756bf6a204903ae7dc1cfd8"),
             order_id: ObjectId("6756bf00204903ae7dc1cfc8"),
             status_id: ObjectId("6741b3abfebecf90784bc244"),
-            createdAt: new Date("2024-12-09T09:59:06.079Z"),
+            createdAt: new Date("2024-10-23T09:59:06.076Z"),
             is_check: true,
             __v: 0
         },
@@ -2263,7 +2264,7 @@ db.order_status_details.insertMany(
             _id: ObjectId("6756bf9b204903ae7dc1d01b"),
             order_id: ObjectId("6756bf95204903ae7dc1d00b"),
             status_id: ObjectId("6741b3abfebecf90784bc244"),
-            createdAt: new Date("2024-12-09T09:59:55.074Z"),
+            createdAt: new Date("2024-10-16T09:59:55.071Z"),
             is_check: true,
             __v: 0
         },
@@ -2291,11 +2292,12 @@ db.order_status_details.insertMany(
             is_check: false,
             __v: 0
         },
+    //     
         {
             _id: ObjectId("6756c00a204903ae7dc1d061"),
             order_id: ObjectId("6756c001204903ae7dc1d04f"),
             status_id: ObjectId("6741b3abfebecf90784bc244"),
-            createdAt: new Date("2024-12-09T10:01:46.430Z"),
+            createdAt: new Date("2024-11-09T10:01:46.427Z"),
             is_check: true,
             __v: 0
         },
@@ -2322,7 +2324,7 @@ db.order_status_details.insertMany(
             createdAt: null,
             is_check: false,
             __v: 0
-        },
+        }
     ]
 )
 

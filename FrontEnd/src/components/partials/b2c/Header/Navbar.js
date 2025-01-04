@@ -13,6 +13,8 @@ import {BottomNavigation} from "~/components";
 
 function Navbar() {
     // let [search, setSearch] = useState('');
+    const api_url = process.env.REACT_APP_API_URL;
+
     const [isClickedMobileBar, setIsClickedMobileBar] = useState(false);
     let [isLogin, setIsLogin] = useState(true);
     const [isCategoryClicked, setIsCategoryClicked] = useState(false);
@@ -23,6 +25,8 @@ function Navbar() {
         registerPassword: true,
     });
     const {userData, setUserData, productData, setProductData, search, setSearch} = useShoppingContext();
+
+    const [categoryList, setCategoryList] = useState([]);
 
     let handleIsLogin = (data) => {
        setIsLogin(data);
@@ -45,7 +49,6 @@ function Navbar() {
 
     // BE
     let onClickLoginOrRegister = (route) => {
-        const api_url = process.env.REACT_APP_API_URL;
         fetch(`${api_url}/log/${route}`, {
             method: 'POST',
             body: JSON.stringify(logInformation),
@@ -73,7 +76,6 @@ function Navbar() {
 
     let onClickLogout = () => {
         localStorage.removeItem("userData");
-        const api_url = process.env.REACT_APP_API_URL;
         fetch(`${api_url}/log/logout`, {
             method: 'POST',
             headers: {
@@ -93,7 +95,6 @@ function Navbar() {
     let onClickForgotPassword = () => {
         $('.spinner-load').removeClass('d-none');
         $('.btn-save').html('Loading...');
-        const api_url = process.env.REACT_APP_API_URL;
         console.log(logInformation.email)
 
         fetch(`${api_url}/log/forgot-password`, {
@@ -120,7 +121,6 @@ function Navbar() {
     }
 
     let auth = async () => {
-        const api_url = process.env.REACT_APP_API_URL;
         fetch(`${api_url}/log/googleOAuth`, {
             method: 'POST',
             headers: {
@@ -133,6 +133,17 @@ function Navbar() {
             })
             .catch(e => console.error(e));
     }
+
+    useEffect(() => {
+        fetch(`${api_url}/`, {
+            method: 'GET',
+            credentials: 'include'
+        })
+            .then(response => response.json())
+            .then(data => {
+                setCategoryList(data.category);
+            })
+    }, []);
 
     return (
         <nav className="">
@@ -262,11 +273,9 @@ function Navbar() {
                             </div>
                             <div style={{zIndex: 3}} className={clsx("position-absolute header-search__left-list", styles['header-search__left-list'])}>
                                 <div className={clsx(styles['header-search__left-list--inner'], isCategoryClicked ? styles['header-search__left-list--down']: undefined)}>
-                                    <div className={clsx(styles['header-search__left-item'])}>Laptop</div>
-                                    <div className={clsx(styles['header-search__left-item'])}>Mobile</div>
-                                    <div className={clsx(styles['header-search__left-item'])}>Headphone</div>
-                                    {/*<div className={clsx(styles['header-search__left-item'])}>Mouse</div>*/}
-                                    {/*<div className={clsx(styles['header-search__left-item'])}>Keyboard</div>*/}
+                                    {categoryList?.map((item, index) => (
+                                        <div className={clsx(styles['header-search__left-item'])}>{item?.category_name}</div>
+                                    ))}
                                 </div>
                             </div>
                         </div>

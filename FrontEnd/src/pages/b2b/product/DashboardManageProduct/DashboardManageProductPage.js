@@ -14,8 +14,9 @@ import {
     setProductsVariant,
     updateVariantData
 } from './actions/variant_actions';
-import ProductVariantModal from "./ProductVariantModal/ProductVariantModal";
 import $ from 'jquery';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
 
 import {toast} from 'react-toastify'
 import {useCallback, useEffect, useLayoutEffect, useReducer, useState} from "react";
@@ -28,6 +29,8 @@ function DashboardManageProductPage() {
 
     const [variantState, variantDispatch] = useReducer(variant_reducer, initVariantState);
     const {productVariant, productVariantData} = variantState;
+
+    const [categoryList, setCategoryList] = useState([]);
 
     const itemsPerPage = 10;
     const [currentPage, setCurrentPage] = useState(0);
@@ -60,8 +63,11 @@ function DashboardManageProductPage() {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data)
-                if(data.status) dispatch(getProducts(data.data));
+                // console.log(data)
+                if(data.status) {
+                    dispatch(getProducts(data.data));
+                    setCategoryList(data.category);
+                }
 
             })
             .catch(error => console.log(error));
@@ -275,7 +281,7 @@ function DashboardManageProductPage() {
             })
             .catch(err => console.log(err));
     }, [productVariant, imgFile]);
-    // console.log(product);
+    console.log(productData);
 
     return (
         <>
@@ -311,7 +317,9 @@ function DashboardManageProductPage() {
                         <div className={clsx(styles['user-table'])}>
                             <h5 className='mb-0'>Product Management</h5>
                             <div className={clsx(styles['user-table__btn'])}>
-                                <button data-bs-toggle='modal' data-bs-target='#add-modal' className={clsx("btn")}><i
+                                <button
+                                    onClick={() => dispatch(setProduct(''))}
+                                    data-bs-toggle='modal' data-bs-target='#add-modal' className={clsx("btn")}><i
                                     className="fa-brands fa-product-hunt"></i> Add Product
                                 </button>
                             </div>
@@ -369,9 +377,6 @@ function DashboardManageProductPage() {
                 </div>
             </div>
 
-            {/*product variant*/}
-            {/*<ProductVariantModal productVariant={productVariant} productVariantData={productVariantData} />*/}
-
             <Modal
                 id='view-product-variant'
                 modalHeaderClassName='d-none'
@@ -407,7 +412,7 @@ function DashboardManageProductPage() {
                     </tr>
                     </thead>
                     <tbody>
-                    {productVariantData.map((item, index) => (
+                    {productVariantData?.map((item, index) => (
                         <tr key={`variant-p-${index}`}>
                             <td>
                                 <p className={clsx(styles['user-table__text'])}>{index + 1}</p>
@@ -498,7 +503,7 @@ function DashboardManageProductPage() {
                                id='retail_price-v-edit'
                                placeholder='Enter retail price'
                                className={clsx(styles['edit-modal__inp'], 'form-control')}
-                               value={productVariant.retail_price || 0}/>
+                               value={productVariant?.retail_price || 0}/>
                     </div>
                     <div className="form-group">
                         <label className={clsx(styles['edit-modal__label'])} htmlFor="quantity-v-edit">QUANTITY</label>
@@ -507,7 +512,7 @@ function DashboardManageProductPage() {
                                id='quantity-v-edit'
                                placeholder='Enter quantity'
                                className={clsx(styles['edit-modal__inp'], 'form-control')}
-                               value={productVariant.variant_quantity || 0}/>
+                               value={productVariant?.variant_quantity || 0}/>
                     </div>
                     <div className="form-group">
                         <label className={clsx(styles['edit-modal__label'])} htmlFor="ram-v-edit">RAM</label>
@@ -725,8 +730,8 @@ function DashboardManageProductPage() {
 
             <Modal
                 id='delete-variant-modal'
-                title='Delete Product'
-                labelBtnSave='Delete'
+                title='Delete Product Variant'
+                labelBtnSave='Save'
                 closeClassName='d-none'
                 loadingClassName='loading-spinner'
                 onClickLabelSave={fetchDeleteProductVariant}
@@ -755,7 +760,7 @@ function DashboardManageProductPage() {
                                id='name-edit'
                                placeholder='Enter full name'
                                className={clsx(styles['edit-modal__inp'], 'form-control')}
-                               value={product.product_name || ''}/>
+                               value={product?.product_name || ''}/>
                     </div>
                     <div className="form-group">
                         <label className={clsx(styles['edit-modal__label'])} htmlFor="type-edit">CATEGORY</label>
@@ -850,9 +855,10 @@ function DashboardManageProductPage() {
                                 name="" id="type-add"
                                 value={product?.category_id?.category_name || ''}
                                 className={clsx(styles['edit-modal__inp'], 'form-select')}>
-                            <option value="Laptop">Laptop</option>
-                            <option value="Smartphone">Mobile</option>
-                            <option value="Headphone">Headphone</option>
+                            {categoryList?.map((category, index) => (
+                                <option key={category?.category_id} value={category?.category_name}>{category?.category_name}</option>
+                            ))}
+
                         </select>
                     </div>
                     <div className="form-group">

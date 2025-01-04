@@ -1,10 +1,11 @@
 import clsx from "clsx";
 import styles from './ShippingAddress.module.css';
 import {Modal} from "~/components/elements";
-import {useCallback, useEffect, useLayoutEffect, useReducer, useState} from "react";
+import {useCallback, useEffect, useReducer} from "react";
 import {useShoppingContext} from "~/context/ShoppingContext";
 import reducer, {initialState} from "./reducers/reducers";
 import {setAddress, getAddresses, addAddress, updateAddress, deleteAddress, onChangeData} from './actions/actions';
+import {toast} from "react-toastify";
 
 function ShippingAddress() {
     const api_url = process.env.REACT_APP_API_URL;
@@ -12,7 +13,7 @@ function ShippingAddress() {
     const user_id = userData._id;
     const [state, dispatch] = useReducer(reducer, initialState);
     const {address, addresses} = state;
-    const [logMessage, setLogMessage] = useState('');
+    // const [logMessage, setLogMessage] = useState('');
 
     // BE
     useEffect(() => {
@@ -55,9 +56,12 @@ function ShippingAddress() {
                         ...address,
                         // is_default: address.is_default === 'true',
                     }));
+                    toast.success(msg);
+                } else{
+                    toast.error(msg);
                 }
                 dispatch(setAddress({}));
-                setLogMessage(msg);
+                // setLogMessage(msg);
 
             })
             .catch(err => console.log(err));
@@ -79,9 +83,14 @@ function ShippingAddress() {
         })
             .then(response => response.json())
             .then(data => {
-                if(data.status) dispatch(addAddress(data.data));
+                if(data.status) {
+                    dispatch(addAddress(data.data));
+                    toast.success(data.msg);
+                } else{
+                    toast.error(data.msg);
+                }
                 dispatch(setAddress({}));
-                setLogMessage(data.msg);
+                // setLogMessage(data.msg);
             })
             .catch(err => console.log(err));
     }, [addresses, address])
@@ -96,8 +105,13 @@ function ShippingAddress() {
         })
             .then(response => response.json())
             .then(data => {
-                if (data.status) dispatch(deleteAddress(address));
-                setLogMessage(data.msg);
+                if (data.status) {
+                    dispatch(deleteAddress(address));
+                    toast.success(data.msg);
+                } else{
+                    toast.error(data.msg);
+                }
+                // setLogMessage(data.msg);
             })
             .catch(err => console.log(err));
     }, [address, addresses]);
@@ -106,36 +120,30 @@ function ShippingAddress() {
         <>
             <div className="profile-address mb-5">
                 <h5 style={{fontWeight: "normal"}}>Shipping Information</h5>
-                <button onClick={() => setLogMessage('')} data-bs-toggle='modal' data-bs-target='#add-shipping-address' className={clsx(styles["profile-address__add"])}>
+                <button data-bs-toggle='modal' data-bs-target='#add-shipping-address' className={clsx(styles["profile-address__add"])}>
                     <i className="fa-solid fa-plus"></i>
                     <p className={clsx(styles['profile-address__add-text'])}>Add Shipping Address</p>
                 </button>
 
                 <ul className={clsx(styles["profile-address__list"])}>
                     {addresses.map((item, index) => (
-                        <li key={index} className={clsx(styles["profile-address__item"])}>
+                        <li key={`ship-address${index}`} className={clsx(styles["profile-address__item"])}>
                             <div className={clsx(styles["profile-address__item-info"])}>
                                 <div
                                     className={clsx(styles["profile-address__item-name"], 'col-lg-12 col-md-12 col-sm-12')}>
-                                    <p>{item.fullName}</p>
-                                    <span className={clsx('badge rounded-pill bg-danger', (!item.is_default && 'd-none'))}><i
+                                    <p>{item?.fullName}</p>
+                                    <span className={clsx('badge rounded-pill bg-danger', (!item?.is_default && 'd-none'))}><i
                                         className="fa-regular fa-circle-check"></i> Default address</span>
                                 </div>
                                 <p className={clsx(styles['profile-address__item-text'], 'col-lg-12 col-md-12 col-sm-12')}>Address: {item.address}</p>
                                 <p className={clsx(styles['profile-address__item-text'], 'col-lg-12 col-md-12 col-sm-12')}>Phone
-                                    number: {item.phone_number}</p>
+                                    number: {item?.phone_number}</p>
                             </div>
                             <div className={clsx(styles["profile-address__item-btn"])}>
                                 <span data-bs-toggle='modal' data-bs-target='#update-shipping-address'
-                                      onClick={() => {
-                                          dispatch(setAddress(item))
-                                          setLogMessage('')
-                                      }}>Update</span>
+                                      onClick={() => dispatch(setAddress(item))}>Update</span>
                                 <button data-bs-toggle='modal' data-bs-target='#delete-shipping-address'
-                                        onClick={() => {
-                                            dispatch(setAddress(item))
-                                            setLogMessage('')
-                                        }}>Remove</button>
+                                        onClick={() => dispatch(setAddress(item))}>Remove</button>
                             </div>
                         </li>
                     ))}
@@ -180,9 +188,9 @@ function ShippingAddress() {
                                htmlFor="check-add">Set default address</label>
                     </div>
                 </div>
-                <div className={clsx('alert alert-danger p-2 mt-2 mb-2', (!logMessage && 'd-none'))}>
-                    <p className='mb-0 text-center'>{logMessage}</p>
-                </div>
+                {/*<div className={clsx('alert alert-danger p-2 mt-2 mb-2', (!logMessage && 'd-none'))}>*/}
+                {/*    <p className='mb-0 text-center'>{logMessage}</p>*/}
+                {/*</div>*/}
             </Modal>
 
             <Modal
@@ -229,9 +237,9 @@ function ShippingAddress() {
                                htmlFor="check-update">Set default address</label>
                     </div>
                 </div>
-                <div className={clsx('alert alert-danger p-2 mt-2 mb-2', (!logMessage && 'd-none'))}>
-                    <p className='mb-0 text-center'>{logMessage}</p>
-                </div>
+                {/*<div className={clsx('alert alert-danger p-2 mt-2 mb-2', (!logMessage && 'd-none'))}>*/}
+                {/*    <p className='mb-0 text-center'>{logMessage}</p>*/}
+                {/*</div>*/}
             </Modal>
 
             <Modal
@@ -246,9 +254,9 @@ function ShippingAddress() {
                 <div className="form-group">
                     <p className='mb-0'>Are you sure to remove '{address.fullName}'?</p>
                 </div>
-                <div className={clsx('alert alert-danger p-2 mt-2 mb-2', (!logMessage && 'd-none'))}>
-                    <p className='mb-0 text-center'>{logMessage}</p>
-                </div>
+                {/*<div className={clsx('alert alert-danger p-2 mt-2 mb-2', (!logMessage && 'd-none'))}>*/}
+                {/*    <p className='mb-0 text-center'>{logMessage}</p>*/}
+                {/*</div>*/}
             </Modal>
         </>
     );

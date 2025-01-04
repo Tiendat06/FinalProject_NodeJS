@@ -48,7 +48,8 @@ class UserService {
             if(filePath) {
                 const cloudinaryResult = await cloudinary.uploader.upload(filePath, {
                     folder: cloudinaryFolderName,
-                    resource_type: 'image'
+                    resource_type: 'image',
+                    chunk_size: 6000000
                 })
                 image_link = cloudinaryResult.secure_url;
 

@@ -17,6 +17,7 @@
     "js-cookie": "^3.0.5",
     "mixitup": "^3.3.1",
     "my-app": "file:",
+    "primereact": "^10.9.1",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.5",

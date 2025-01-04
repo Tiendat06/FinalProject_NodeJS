@@ -37,7 +37,7 @@ class LogService {
 
                         res.cookie('token', token, {
                             httpOnly: true,
-                            secure: true,
+                            secure: process.env.IS_SECURE === 'true',
                             sameSite: 'strict',
                             maxAge: 24 * 60 * 60 * 1000 // 1 day
                         });
@@ -297,7 +297,7 @@ class LogService {
 
             res.cookie('token', token, {
                 httpOnly: true,
-                secure: true,
+                secure: process.env.IS_SECURE === 'true',
                 sameSite: 'strict',
                 maxAge: 24 * 60 * 60 * 1000 // 1 day
             });

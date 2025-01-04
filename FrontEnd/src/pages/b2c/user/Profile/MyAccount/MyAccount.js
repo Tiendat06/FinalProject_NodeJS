@@ -1,7 +1,7 @@
 import styles from './MyAccount.module.css';
 import styleGrid from './MyAccountGrid.module.css';
 import clsx from "clsx";
-import {useState, useReducer, useLayoutEffect, useEffect, useCallback} from "react";
+import {useState, useReducer, useEffect, useCallback} from "react";
 import reducer, {initState} from "./reducers/reducer";
 import {setDay} from './actions/actions';
 import {Loading, Modal} from "~/components/elements";
@@ -30,7 +30,7 @@ function MyAccount() {
         profile_image: userData.profile_image,
         img_file: ''
     });
-    const [logMessage, setLogMessage] = useState('');
+    // const [logMessage, setLogMessage] = useState('');
 
     const [password, setPassword] = useState({
         currentPassword: "",
@@ -356,9 +356,9 @@ function MyAccount() {
                         </div>
                     </div>
                 </div>
-                <div className={clsx('alert alert-danger p-2 mt-2 mb-2', (!logMessage && 'd-none'))}>
-                    <p className='mb-0 text-center'>{logMessage}</p>
-                </div>
+                {/*<div className={clsx('alert alert-danger p-2 mt-2 mb-2', (!logMessage && 'd-none'))}>*/}
+                {/*    <p className='mb-0 text-center'>{logMessage}</p>*/}
+                {/*</div>*/}
             </Modal>
 
             <Modal

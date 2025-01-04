@@ -16,9 +16,11 @@ class ProductService {
 
     getAllProducts = async (req, res) => {
         const products = await productRepository.getAllProducts();
+        const category = await productCategoryRepository.getAllCategory();
         return res.status(200).json({
             status: true,
             data: products,
+            category,
             msg: 'Load products successfully',
         });
     }
@@ -164,6 +166,7 @@ class ProductService {
                 try {
                     const cloudinaryResult = await cloudinary.uploader.upload(filePath, {
                         folder: cloudinaryFolderName,
+                        chunk_size: 6000000,
                         // resource_type: 'image'
                     });
                     image_link = cloudinaryResult.secure_url;
@@ -344,7 +347,8 @@ class ProductService {
                 try {
                     const cloudinaryResult = await cloudinary.uploader.upload(filePath, {
                         folder: cloudinaryFolderName,
-                        resource_type: 'image'
+                        resource_type: 'image',
+                        chunk_size: 6000000
                     });
                     image_link = cloudinaryResult.secure_url;
                 } catch (cloudError) {
@@ -426,6 +430,7 @@ class ProductService {
                     const cloudinaryResult = await cloudinary.uploader.upload(filePath, {
                         folder: cloudinaryFolderName,
                         resource_type: 'image',
+                        chunk_size: 6000000
                     });
 
                     newImageLink = cloudinaryResult.secure_url;
@@ -556,7 +561,8 @@ class ProductService {
                 try {
                     const cloudinaryResult = await cloudinary.uploader.upload(filePath, {
                         folder: cloudinaryFolderName,
-                        resource_type: 'image'
+                        resource_type: 'image',
+                        chunk_size: 6000000
                     });
                     image_link = cloudinaryResult.secure_url;
                 } catch (cloudError) {
@@ -613,6 +619,7 @@ class ProductService {
                     const cloudinaryResult = await cloudinary.uploader.upload(filePath, {
                         folder: cloudinaryFolderName,
                         resource_type: 'image',
+                        chunk_size: 6000000
                     });
 
                     newImageLink = cloudinaryResult.secure_url;

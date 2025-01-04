@@ -5,7 +5,7 @@ import {useShoppingContext} from "~/context/ShoppingContext";
 
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
-import {useCallback, useEffect, useLayoutEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
 import {toast} from "react-toastify";
@@ -21,26 +21,25 @@ function ShopPage() {
         { value: 'product_price', label: 'Price' },
         { value: 'product_name', label: 'Name' },
     ];
+    const [categoryList, setCategoryList] = useState([]);
 
     const [data, setData] = useState(productData);
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [priceRange, setPriceRange] = useState(10);
     const [isAscending, setIsAscending] = useState(true);
-    const [filteredData, setFilteredData] = useState(data);
+    const [filteredData, setFilteredData] = useState(productData);
     const [itemType, setItemType] = useState("all");
 
     useEffect(() => {
-        if(data && data.length > 0) {
-            let filtered = data.filter(item => (item['product_price'] >= priceRange));
-            console.log({filtered});
-            if(itemType !== 'all'){
-                filtered = filtered.filter(item => item['category_id']['category_name'] === itemType);
-            }
-            setFilteredData(filtered);
-            setPageCount(Math.ceil(filtered.length / itemsPerPage));
-            setCurrentItems(filtered.slice(0, itemsPerPage));
+        let filtered = data.filter(item => (item['product_price'] >= priceRange));
+        // console.log({filtered});
+        if(itemType !== 'all'){
+            filtered = filtered.filter(item => item['category_id']['category_name'] === itemType);
         }
+        setFilteredData(filtered);
+        setPageCount(Math.ceil(filtered.length / itemsPerPage));
+        setCurrentItems(filtered.slice(0, itemsPerPage));
     }, [priceRange, data, itemType]);
 
     const handlePageChange = useCallback((event) => {
@@ -51,7 +50,7 @@ function ShopPage() {
     const [selectedOption, setSelectedOption] = useState('_id');
 
     useEffect(() => {
-        const sortedDataSelect = [...data].sort((a, b) => {
+        const sortedDataSelect = [...filteredData].sort((a, b) => {
             if (typeof a[selectedOption] === 'string') {
                 return isAscending
                     ? a[selectedOption].localeCompare(b[selectedOption])
@@ -62,12 +61,11 @@ function ShopPage() {
                     : b[selectedOption] - a[selectedOption];
             }
         });
-        setData(sortedDataSelect);
-    }, [selectedOption, isAscending]);
 
-    useEffect(() => {
-        setData(productData);
-    }, [productData]);
+        setFilteredData(sortedDataSelect);
+        setPageCount(Math.ceil(sortedDataSelect.length / itemsPerPage));
+        setCurrentItems(sortedDataSelect.slice(0, itemsPerPage));
+    }, [selectedOption, isAscending]);
 
     // BE
     useEffect(() => {
@@ -81,6 +79,7 @@ function ShopPage() {
             .then(response => response.json())
             .then(data => {
                 if(data.status) {
+                    setCategoryList(data.category);
                     setData(data.data);
                     setFilteredData(data.data);
                     setPageCount(Math.ceil(data.data.length / itemsPerPage));
@@ -89,7 +88,7 @@ function ShopPage() {
                 else window.location.href = '/';
             })
             .catch(error => console.log(error));
-    }, [itemsPerPage]);
+    }, []);
 
     // toast
     const handleAddWishList = (item) => {
@@ -123,21 +122,14 @@ function ShopPage() {
                                onClick={() => setItemType('all')}
                                className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'all' && styles['link-department']}`)}>All</div>
                         </li>
-                        <li data-filter=".laptop" className="shop-filter__department-item d-flex">
-                            <div
-                               onClick={() => setItemType('Laptop')}
-                               className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'Laptop' && styles['link-department']}`)}>Laptop</div>
-                        </li>
-                        <li data-filter=".mobile" className="shop-filter__department-item d-flex">
-                            <div
-                               onClick={() => setItemType('Smartphone')}
-                               className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'Smartphone' && styles['link-department']}`)}>Mobile</div>
-                        </li>
-                        <li data-filter=".sound" className="shop-filter__department-item d-flex">
-                            <div
-                               onClick={() => setItemType('Headphone')}
-                               className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === 'Headphone' && styles['link-department']}`)}>Headphone</div>
-                        </li>
+                        {categoryList?.map((category, index) => (
+                            <li key={`p-category-${index}`} data-filter={`.${category?.category_name}`} className="shop-filter__department-item d-flex">
+                                <div
+                                    onClick={() => setItemType(category?.category_name)}
+                                    className={clsx(styles['shop-filter__department-item__para'], 'link-underline', `${itemType === category?.category_name && styles['link-department']}`)}>{category?.category_name}
+                                </div>
+                            </li>
+                        ))}
                     </ul>
                 </div>
 
@@ -176,7 +168,7 @@ function ShopPage() {
                             <div className={clsx(styles['shop-list__item--inner'])}>
                                 <div className={clsx(styles['shop-list__item-img--outer'])}>
                                     <img className={clsx(styles['shop-list__item-img'])}
-                                         src={`${item.product_img}`} alt=""/>
+                                         src={`${item?.product_img || ''}`} alt=""/>
                                     <ul className={clsx(styles['shop-list__item-list'], 'd-flex w-100 p-0')}>
                                         <li className={clsx(styles['shop-list__item-list--icon'])}>
                                             <Link className="text-dark" to={`/shop/details/${item._id}`}>

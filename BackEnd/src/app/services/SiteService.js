@@ -5,6 +5,7 @@ const commentRepository = require('../repository/CommentRepository');
 const userRepository = require('../repository/UserRepository');
 const productVariantRepository = require('../repository/ProductVariantRepository');
 const paymentRepository = require('../repository/PaymentRepository');
+const productCategoryRepository = require('../repository/ProductCategoryRepository');
 
 class SiteService {
     index = async (req, res) => {
@@ -14,6 +15,7 @@ class SiteService {
         const topWishList = await wishListRepository.getTopWishListedProducts(3);
         const topSelling = await OrderRepository.getTopSellingProducts(3);
         const topReview = await commentRepository.getTopReviewedProducts(3);
+        const category = await productCategoryRepository.getAllCategory();
 
         return res.status(200).json({
             status: true,
@@ -23,6 +25,7 @@ class SiteService {
             topWishList,
             topSelling,
             topReview,
+            category,
         })
     }
     // Get top wishlisted products

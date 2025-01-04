@@ -1,13 +1,10 @@
 import clsx from "clsx";
 import {Link} from "react-router-dom";
-import 'owl.carousel/dist/assets/owl.carousel.css';
-import 'owl.carousel/dist/assets/owl.theme.default.css';
-import OwlCarousel from 'react-owl-carousel';
 import mixitup from 'mixitup';
 import {useEffect, useRef, useState} from "react";
-import 'react-bootstrap'
 
-import Slider from "react-slick";
+import { Carousel } from 'primereact/carousel';
+
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import SlickCarousel from "~/components/elements/SlickCarousel/SlickCarousel";
@@ -28,6 +25,7 @@ function HomePage(){
         topSelling: [],
         topReview: [],
     });
+    const [categoryList, setCategoryList] = useState([]);
     const {userData} = useShoppingContext();
     const user_id = userData._id;
 
@@ -56,6 +54,7 @@ function HomePage(){
                 const topWishList = data.topWishList;
                 const topSelling = data.topSelling;
                 const topReview = data.topReview;
+                setCategoryList(data.category);
                 setDataList({...dataList, top5Products, top8Products, top3Products, topWishList, topSelling, topReview});
             })
             .catch(error => console.log(error));
@@ -82,49 +81,33 @@ function HomePage(){
             .catch(error => console.log(error));
     }
 
+    const bannerList = [
+        {id: 1, image: '/img/customer/home/laptop-1-slider.png'},
+        {id: 2, image: '/img/customer/home/laptop-2-slider.jpg'},
+        {id: 3, image: '/img/customer/home/laptop-3-slider.jpg'},
+        {id: 4, image: '/img/customer/home/laptop-4-slider.jpg'},
+    ];
+
+    const bannerTemplate = banner => {
+        return (
+            <img key={`banner-${banner.id}`} src={banner.image}
+                 className={clsx("d-block w-100", styles['home-banner__img'])}/>
+        )
+    }
+
     return (
         <>
             <section className={clsx(styles["home-banner"])}>
-                <div id="carouselExampleIndicators" className="carousel h-100 slide" data-bs-ride="carousel">
-                    <div className="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                                className="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                                aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                                aria-label="Slide 3"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
-                                aria-label="Slide 4"></button>
-                    </div>
-                    <div className="carousel-inner h-100">
-                        <div className={clsx("carousel-item h-100 active", styles['header-banner__item'])}>
-                        <img src="/img/customer/home/laptop-1-slider.png"
-                                 className={clsx("d-block w-100", styles['home-banner__img'])} alt="..."/>
-                        </div>
-                        <div className={clsx("carousel-item h-100 active", styles['header-banner__item'])}>
-                            <img src="/img/customer/home/laptop-2-slider.jpg"
-                                 className={clsx("d-block w-100", styles['home-banner__img'])} alt="..."/>
-                        </div>
-                        <div className={clsx("carousel-item h-100 active", styles['header-banner__item'])}>
-                            <img src="/img/customer/home/laptop-3-slider.jpg"
-                                 className={clsx("d-block w-100", styles['home-banner__img'])} alt="..."/>
-                        </div>
-                        <div className={clsx("carousel-item h-100 active", styles['header-banner__item'])}>
-                            <img src="/img/customer/home/laptop-4-slider.jpg"
-                                 className={clsx("d-block w-100", styles['home-banner__img'])} alt="..."/>
-                        </div>
-                    </div>
-                    <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide="prev">
-                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span className="visually-hidden">Previous</span>
-                    </button>
-                    <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide="next">
-                        <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span className="visually-hidden">Next</span>
-                    </button>
-                </div>
+                <Carousel value={bannerList}
+                          numVisible={1}
+                          numScroll={1}
+                          className="custom-carousel"
+                          circular
+                          showIndicators={true}
+                          autoplayInterval={3000}
+                          prevIcon={<img src="/img/icon/previous-icon-1.png" alt="Previous" style={{width: "40px", height: "40px", marginRight: 20}}/>}
+                          nextIcon={<img src="/img/icon/next-icon-1.png" alt="Next" style={{width: "40px", height: "40px", marginLeft: 20}}/>}
+                          itemTemplate={bannerTemplate} />
             </section>
 
             <section className={clsx(styles["home-new"], 'carousel-wrapper mb-70')}>
@@ -150,10 +133,10 @@ function HomePage(){
                 <h2 className={clsx('text-center')}>Typical Product</h2>
                 <div className={clsx(styles['home-new__middle'])}></div>
                 <ul className={clsx(styles["home-featured__category"], 'flex-wrap')}>
-                    <Link data-filter="*" className={clsx(styles["home-featured__category-item"],'link-underline')}>All</Link>
-                    <Link data-filter=".Laptop" className={clsx(styles["home-featured__category-item"],'link-underline')}>Laptop</Link>
-                    <Link data-filter=".Smartphone" className={clsx(styles["home-featured__category-item"],'link-underline')}>Mobile</Link>
-                    <Link data-filter=".Headphone" className={clsx(styles["home-featured__category-item"],'link-underline')}>Headphone</Link>
+                    <Link to="/" data-filter="*" className={clsx(styles["home-featured__category-item"],'link-underline')}>All</Link>
+                    {categoryList?.map((item, index) => (
+                        <Link to="/" data-filter={`.${item?.category_name}`} className={clsx(styles["home-featured__category-item"],'link-underline')}>{item?.category_name}</Link>
+                    ))}
                 </ul>
                 <ul className={clsx(styles['home-featured__list'], 'd-flex flex-wrap')} ref={containerRef}>
                         {dataList?.top8Products?.map((item, index) => (

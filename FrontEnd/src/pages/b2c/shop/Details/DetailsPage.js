@@ -9,9 +9,13 @@ import {Link, useParams} from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import clsx from "clsx";
-import {Fragment, useEffect, useLayoutEffect, useState} from "react";
+import {Fragment, useCallback, useEffect, useLayoutEffect, useMemo, useReducer, useState} from "react";
 import {useShoppingContext} from "~/context/ShoppingContext";
 import {toast} from "react-toastify";
+import { Accordion, AccordionTab } from 'primereact/accordion';
+
+import reducer, {initialState} from './reducers/reducers';
+import {addSubComment, setSubComment, getSubComments} from './actions/actions';
 
 function DetailsPage(){
     const {id} = useParams();
@@ -23,9 +27,15 @@ function DetailsPage(){
         retails_price: 0,
         variant_quantity: 0,
     });
+
     const [productVariantInfo, setProductVariantInfo] = useState([]);
     const [relatedProduct, setRelatedProduct] = useState([]);
     const [comments, setComments] = useState([]);
+    const [commentsList, setCommentsList] = useState([]);
+
+    const [state, dispatch] = useReducer(reducer, initialState);
+    const {subComment, subCommentsList} = state;
+
     const [detailsImg, setDetailsImg] = useState('');
     const [countStar, setCountStar] = useState({
         fiveStarDoc: 0,
@@ -39,7 +49,7 @@ function DetailsPage(){
     const [commentInfo, setCommentInfo] = useState({
         fullName: "",
         email: "",
-        content: ""
+        content: "",
     });
     const [quantity, setQuantity] = useState(1);
     const [navTabItem, setNavTabItem] = useState(1);
@@ -78,10 +88,11 @@ function DetailsPage(){
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.status) {
                     const newComment = comments || [];
                     setComments([...newComment, data.data]);
+                    setCommentsList(data.commentList);
                     setCommentInfo({
                         ...commentInfo,
                         content: ''
@@ -121,6 +132,7 @@ function DetailsPage(){
                 setRelatedProduct(data.top4Products);
                 setRating(data.starAvg);
                 setComments(data.comment || []);
+                setCommentsList(data.commentList);
                 if(data.countStar.totalRating !== 0) {
                     setCountStar(data.countStar);
                 }
@@ -203,6 +215,54 @@ function DetailsPage(){
                 })
                 .catch(err => console.log(err));
         }
+    }
+
+    const handleSubComment = useCallback((comment_id) => {
+        // console.log(comment_id);
+        const newSubComments = commentsList.filter(item => item.parent_id === comment_id);
+        // console.log(newSubComments);
+        // setSubComments(newSubComments);
+        dispatch(getSubComments(newSubComments));
+    }, [comments]);
+
+    const handleKeyDownSubComment = (e, parentComment) => {
+        const content = e.target.value;
+        if(e.key === 'Enter') {
+            fetch(`${api_url}/product/comment`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    user_id,
+                    product_id: id,
+                    star: 0,
+                    content,
+                    parent_id: parentComment._id,
+                }),
+                credentials: "include",
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // console.log(data);
+
+                    if(data.status){
+                        // const subCommentsList = data.subComments;
+                        // console.log(subCommentsList)
+                        // setSubComments(subCommentsList);
+                        console.log(data.previousComment)
+                        dispatch(addSubComment(data.previousComment));
+                        toast.success(data.msg);
+                    } else toast.error(data.msg);
+                    dispatch(setSubComment(''));
+
+                })
+                .catch(err => console.log(err));
+        }
+    }
+
+    const handleSubCommentReplies = (tagged_user) => {
+        dispatch(setSubComment(`@${tagged_user} `));
     }
 
     return (
@@ -305,9 +365,9 @@ function DetailsPage(){
                 <div className={clsx(styles["details-more__header"])}>
                     <div className={clsx(styles["details-more__line"], 'col-lg-4 col-md-3 col-sm-2')}></div>
                     <div className={clsx(styles["details-more__title"], 'col-lg-4 col-md-6 col-sm-8')}>
-                        <a onClick={() => setNavTabItem(1)} href='javascript:void(0)' className={clsx(styles['details-more__title-text'], `link-underline ${navTabItem === 1 && clsx(styles['details-click'])}`)}>Description</a>
-                        <a onClick={() => setNavTabItem(2)} href='javascript:void(0)' className={clsx(styles['details-more__title-text'], `link-underline ${navTabItem === 2 && clsx(styles['details-click'])}`)}>Details</a>
-                        <a onClick={() => setNavTabItem(3)} href='javascript:void(0)' className={clsx(styles['details-more__title-text'], `link-underline ${navTabItem === 3 && clsx(styles['details-click'])}`)}>Review</a>
+                        <a onClick={() => setNavTabItem(1)} href='#' className={clsx(styles['details-more__title-text'], `link-underline ${navTabItem === 1 && clsx(styles['details-click'])}`)}>Description</a>
+                        <a onClick={() => setNavTabItem(2)} href='#' className={clsx(styles['details-more__title-text'], `link-underline ${navTabItem === 2 && clsx(styles['details-click'])}`)}>Details</a>
+                        <a onClick={() => setNavTabItem(3)} href='#' className={clsx(styles['details-more__title-text'], `link-underline ${navTabItem === 3 && clsx(styles['details-click'])}`)}>Review</a>
                     </div>
                     <div className={clsx(styles["details-more__line"], 'col-lg-4 col-md-3 col-sm-2')}></div>
                 </div>
@@ -444,34 +504,82 @@ function DetailsPage(){
                             </div>
                             <div className={clsx(styles["details-more__item-cmt"], 'col-lg-12 col-md-12 col-sm-12')}>
                                 <div className={clsx(styles["details-more__item-cmt__list"], 'p-3')}>
-                                    {comments.map((item, index) => (
-                                        <div key={item._id}
-                                            className={clsx(styles["details-more__item-cmt__item"], 'd-flex flex-wrap justify-content-between mb-1')}>
-                                            <div
-                                                className={clsx(styles["details-more__item-cmt__info"], 'col-lg-12 col-md-12 col-sm-12')}>
-                                                <h6 className='mb-0'>{item.user_id.fullName}</h6>
-                                                {/*<div className={clsx(styles["details-more__item-cmt__icon"])}>*/}
-                                                {/*    {(() => {*/}
-                                                {/*        const li = [];*/}
-                                                {/*        for (let i = 0; i < item.star; i++) {*/}
-                                                {/*            li.push(<i key={`item-star1-${i}`} style={{fontSize: 12}}*/}
-                                                {/*                       className={clsx("fa-solid fa-star", styles['details-info__star'])}></i>);*/}
-                                                {/*        }*/}
-                                                {/*        return li;*/}
-                                                {/*    })()}*/}
-                                                {/*    {(() => {*/}
-                                                {/*        const li = [];*/}
-                                                {/*        for (let i = 0; i < 5 - item.star; i++) {*/}
-                                                {/*            li.push(<i key={`item-star2-${i}`} style={{fontSize: 12}}*/}
-                                                {/*                       className={clsx("fa-regular fa-star", styles['details-info__star'])}></i>);*/}
-                                                {/*        }*/}
-                                                {/*        return li;*/}
-                                                {/*    })()}*/}
-                                                {/*</div>*/}
+                                    {comments?.map((item, index) => (
+                                        <div key={`comments-${index}`}
+                                            className={clsx(styles["details-more__item-cmt__item"], 'mb-1')}>
+                                            <div className={clsx(styles["details-more__item-cmt__img"])}>
+                                                <img src={item?.user_id?.profile_image} alt=""/>
                                             </div>
-                                            <div
-                                                className={clsx(styles["details-more__item-cmt__review"], 'col-lg-12 col-md-12 col-sm-12')}>
-                                                <p style={{fontSize: 16}} className={clsx(styles['details-more__item-cmt__para'], 'mb-0')}>{item.content}</p>
+                                            <div className={clsx(styles['details-more__item-cmt__comment'])}>
+                                                <div
+                                                    className={clsx(styles["details-more__item-cmt__review"])}>
+                                                    <h6 className='mb-0'>{item?.user_id?.fullName}</h6>
+                                                    <p style={{fontSize: 16}}
+                                                       className={clsx(styles['details-more__item-cmt__para'], 'mb-0')}>{item?.content}</p>
+                                                </div>
+                                                <div
+                                                    className={clsx(styles['details-more__item-cmt__rep'], 'col-lg-12 col-md-12 col-sm-12')}>
+                                                    <Accordion multiple={false}>
+                                                        <AccordionTab style={{fontSize: 12}} header={
+                                                            <div
+                                                                style={{
+                                                                    display: 'flex',
+                                                                    alignItems: 'center',
+                                                                    cursor: 'pointer'
+                                                                }}
+                                                                onClick={() => handleSubComment(item?._id)}
+                                                            >
+                                                                <span onClick={() => handleSubCommentReplies(item?.user_id?.fullName)}>Reply</span>
+                                                            </div>
+                                                        }>
+                                                            <div
+                                                                className={clsx(styles['details-more__item-cmt__replied'])}>
+                                                                <div key={`comments-${item._id}`}
+                                                                     className={clsx(styles["details-more__item-cmt__item"], 'mb-1 flex-wrap')}>
+                                                                    {subCommentsList?.map((subItem, index) => (
+                                                                        <div key={`sub-cmt-${index}`}
+                                                                             className={clsx(styles['details-more__item-cmt__item--inner'], 'mb-15 d-flex col-lg-12 col-md-12 col-sm-12')}>
+                                                                            <div style={{
+                                                                                width: 40,
+                                                                                height: 40,
+                                                                                marginRight: 15
+                                                                            }}
+                                                                                 className={clsx(styles["details-more__item-cmt__img"])}>
+                                                                                <img style={{width: "100%"}}
+                                                                                     src={subItem?.user_id?.profile_image}
+                                                                                     alt=""/>
+                                                                            </div>
+                                                                            <div
+                                                                                className={clsx(styles['details-more__item-cmt__comment'])}>
+                                                                                <div
+                                                                                    className={clsx(styles["details-more__item-cmt__review"])}>
+                                                                                    <h6 className='mb-0'>{subItem?.user_id?.fullName}</h6>
+                                                                                    <p style={{fontSize: 16}}
+                                                                                       className={clsx(styles['details-more__item-cmt__para'], 'mb-0')}>{subItem?.content}</p>
+                                                                                </div>
+                                                                                <span
+                                                                                    onClick={() => handleSubCommentReplies(subItem?.user_id?.fullName)}
+                                                                                    className={clsx(styles['details-more__item-cmt__comment-span'])}>Reply</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    ))}
+                                                                </div>
+                                                                <div className="form-group col-lg-12 col-md-12 col-sm-12 mt-3">
+                                                                    <div className="form-group mb-3">
+                                                                            <textarea
+                                                                                value={subComment}
+                                                                                onKeyDown={(e) => handleKeyDownSubComment(e, item)}
+                                                                                onChange={e => dispatch(setSubComment(e.target.value))}
+                                                                                placeholder='Your Comment'
+                                                                                className={clsx(styles['details-more__item-submit__cmt'], 'form-control sub-comment-inp')}
+                                                                                name="review-cmt" id="" cols="60"
+                                                                                rows="5"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </AccordionTab>
+                                                    </Accordion>
+                                                </div>
                                             </div>
                                         </div>
                                     ))}
@@ -479,42 +587,30 @@ function DetailsPage(){
                             </div>
                             <div className={clsx(styles["details-more__item-submit"], 'col-lg-12 col-md-12 col-sm-12')}>
                                 <div className="form-group">
-                                    {/*<div className="form-group mb-3">*/}
-                                    {/*    <input value={commentInfo.fullName}*/}
-                                    {/*           onChange={e => setCommentInfo({...commentInfo, fullName: e.target.value})}*/}
-                                    {/*           placeholder='Your Name' id='review-name' type="text"*/}
-                                    {/*           className={clsx(styles["details-more__item-submit__name"], 'form-control')}/>*/}
-                                    {/*</div>*/}
-                                    {/*<div className="form-group mb-3">*/}
-                                    {/*    <input value={commentInfo.email}*/}
-                                    {/*           onChange={e => setCommentInfo({...commentInfo, email: e.target.value})}*/}
-                                    {/*        placeholder='Your Email' id='review-email' type="text"*/}
-                                    {/*           className={clsx(styles["details-more__item-submit__email"], 'form-control')}/>*/}
-                                    {/*</div>*/}
                                     <div className="form-group mb-3">
                                         <textarea
                                             value={commentInfo.content}
                                             onChange={e => setCommentInfo({...commentInfo, content: e.target.value})}
                                             placeholder='Your Comment'
-                                                  className={clsx(styles['details-more__item-submit__cmt'], 'form-control')}
-                                                  name="review-cmt" id="" cols="60" rows="5"></textarea>
+                                            className={clsx(styles['details-more__item-submit__cmt'], 'form-control')}
+                                            name="review-cmt" id="" cols="60" rows="5"></textarea>
                                     </div>
                                     <div className={clsx("alert alert-danger p-2", (!logMessage && 'd-none'))}>
                                         <p className='mb-0 text-center'>{logMessage}</p>
                                     </div>
                                     {userData?._id &&
-                                    <div className={clsx(styles['details-more__item-submit__rating'], 'd-flex')}>
-                                        {[5, 4, 3, 2, 1].map((value) => (
-                                            <Fragment key={value}>
-                                                <input
-                                                    type="radio"
-                                                    id={`star${value}`}
-                                                    name="rating"
-                                                    value={star}
-                                                    checked={star === value}
-                                                    onChange={() => setStar(value)}
-                                                />
-                                                <label htmlFor={`star${value}`} title={`${value} stars`}>
+                                        <div className={clsx(styles['details-more__item-submit__rating'], 'd-flex')}>
+                                            {[5, 4, 3, 2, 1].map((value) => (
+                                                <Fragment key={value}>
+                                                    <input
+                                                        type="radio"
+                                                        id={`star${value}`}
+                                                        name="rating"
+                                                        value={star}
+                                                        checked={star === value}
+                                                        onChange={() => setStar(value)}
+                                                    />
+                                                    <label htmlFor={`star${value}`} title={`${value} stars`}>
                                                     <i className={clsx("fa-solid fa-star", styles[''])}></i>
                                                 </label>
                                             </Fragment>
@@ -532,17 +628,17 @@ function DetailsPage(){
                 <h4 className="text-center">Related Product</h4>
                 <div className={clsx(styles["details-related__middle"])}></div>
                 <ul className={clsx(styles['details-related__list'], 'd-flex flex-wrap p-0')}>
-                    {relatedProduct.map((item, index) => (
-                        <li title={item.product_description}
+                    {relatedProduct?.map((item, index) => (
+                        <li title={item?.product_description}
                             key={`related-${index}`}
                             className={clsx(styles['details-related__item'], `mix col-lg-3 col-md-3 col-sm-6`)}>
                             <div className={clsx(styles['details-related__item--inner'])}>
                                 <div className={clsx(styles['details-related__item-img--outer'])}>
                                     <img className={clsx(styles['details-related__item-img'])}
-                                         src={item.product_img} alt=""/>
+                                         src={item?.product_img} alt=""/>
                                     <ul className={clsx(styles['details-related__item-list'], 'd-flex w-100 p-0')}>
                                         <li className={clsx(styles['details-related__item-list--icon'])}>
-                                            <Link className="text-dark" to={`/shop/details/${item._id}`}>
+                                            <Link className="text-dark" to={`/shop/details/${item?._id}`}>
                                                 <i className="fa-solid fa-eye"></i>
                                             </Link>
                                         </li>
@@ -551,18 +647,12 @@ function DetailsPage(){
                                                 <i className="fa-solid fa-heart"></i>
                                             </Link>
                                         </li>
-
-                                        {/*<li className={clsx(styles['details-related__item-list--icon'])}>*/}
-                                        {/*    <Link to='/' className='text-dark'>*/}
-                                        {/*        <i className="fa-solid fa-cart-shopping"></i>*/}
-                                        {/*    </Link>*/}
-                                        {/*</li>*/}
                                     </ul>
                                 </div>
                                 <div className="details-related__item-info text-center mt-3">
-                                    <p className="mb-0 text-dark">{item.product_name}</p>
+                                    <p className="mb-0 text-dark">{item?.product_name}</p>
                                     <p className="text-dark" style={{fontWeight: "bold"}}><FormatUSDCurrency
-                                        price={item.product_price}/>
+                                        price={item?.product_price}/>
                                     </p>
                                 </div>
                             </div>

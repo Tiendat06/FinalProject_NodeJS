@@ -39,7 +39,8 @@ class ProductService {
             const twoStarDoc = await ratingRepository.getRatingCountByStar(2, id);
             const oneStarDoc = await ratingRepository.getRatingCountByStar(1, id);
 
-            const comment = await commentRepository.getCommentByProductId(product_id);
+            const commentList = await commentRepository.getCommentByProductId(product_id);
+            const comment = commentList.filter(item => item.parent_id === null);
             const rating = await ratingRepository.getRatingByProductId(product_id);
             let totalStar = 0;
             let length = 0;
@@ -53,7 +54,7 @@ class ProductService {
             // console.log(starAvg);
             return res.status(200).json({
                 status: true,
-                product, productVariants, top4Products, starAvg, comment,
+                product, productVariants, top4Products, starAvg, comment, commentList,
                 countStar: {
                     fiveStarDoc,
                     fourStarDoc,
@@ -72,18 +73,28 @@ class ProductService {
     }
 
     commentProduct = async (req, res) => {
-        let { user_id, product_id, star, content } = req.body;
+        let { user_id, product_id, star, content, parent_id } = req.body;
         const error = req.flash('error');
+        // console.log(parent_id);
         const commentData = {
-            user_id, content, product_id,
+            user_id, content, product_id, parent_id: parent_id === ''? null: parent_id
         }
 
         let comment = '';
-        let previousComment = ''
+        let previousComment = '';
+        let subComments = [];
+        let commentList = [];
         if(error.length === 0) {
             comment = await commentRepository.insertComment(commentData);
             const comment_id = comment[0]._id;
             previousComment = await commentRepository.getCommentById(comment_id);
+            commentList = await commentRepository.getCommentByProductId(product_id);
+            // const comment = commentList.filter(item => item.parent_id === null);
+            // console.log('parent id: ', parent_id);
+            if(parent_id !== ''){
+                subComments = await commentRepository.getSubCommentByParentCommentId(parent_id);
+                // console.log(subComments);
+            }
         }
 
         try {
@@ -113,15 +124,20 @@ class ProductService {
             if(Number(star) === 0) {
                 star = 1;
             }
-            const ratingData = {
-                user_id, product_id, star: Number(star)
+            if(parent_id === ''){
+                const ratingData = {
+                    user_id, product_id, star: Number(star)
+                }
+                const rating = await ratingRepository.insertRating(ratingData);
+                if(rating.length === 0) throw new Error('Rating failed !');
             }
-            const rating = await ratingRepository.insertRating(ratingData);
-            if(rating.length === 0) throw new Error('Rating failed !');
 
             return res.status(200).json({
                 status: true,
                 data: previousComment,
+                subComments,
+                commentList,
+                previousComment,
                 msg: 'Thanks for your comment!'
             })
         } catch (e) {

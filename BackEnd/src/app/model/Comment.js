@@ -6,6 +6,7 @@ const User = require('./User');
 const Comment = new Schema({
     user_id: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     product_id: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
+    parent_id: {type: Schema.Types.ObjectId, ref: 'Comment', default: null},
     content: { type: String,},
     // star: { type: Number, default: 1 },
     createdAt: { type: Date, default: Date.now },

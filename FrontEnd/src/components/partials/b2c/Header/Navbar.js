@@ -274,7 +274,7 @@ function Navbar() {
                             <div style={{zIndex: 3}} className={clsx("position-absolute header-search__left-list", styles['header-search__left-list'])}>
                                 <div className={clsx(styles['header-search__left-list--inner'], isCategoryClicked ? styles['header-search__left-list--down']: undefined)}>
                                     {categoryList?.map((item, index) => (
-                                        <div className={clsx(styles['header-search__left-item'])}>{item?.category_name}</div>
+                                        <div key={`category-nav-${index}`} className={clsx(styles['header-search__left-item'])}>{item?.category_name}</div>
                                     ))}
                                 </div>
                             </div>
@@ -290,7 +290,7 @@ function Navbar() {
                                         className={clsx('btn btn-danger col-lg-2 col-md-3 col-sm-3', styles['header-search__middle-btn'])}/>
                             </div>
                             <div style={{zIndex: 10}} className={clsx(styles['header-search__recommend'], (search === '' && 'd-none'), "col-lg-10 col-md-9 col-sm-9 position-absolute")}>
-                                {productData.map((item, index) => (
+                                {productData?.map((item, index) => (
                                     <Link key={`search-p-${index}`} onClick={() => setSearch('')} to={`/shop/details/${item._id}`}>{item.product_name}</Link>
                                 ))}
                             </div>

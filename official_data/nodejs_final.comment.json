@@ -8,6 +8,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151a5"
   },
+  "parent_id": null,
   "content": "ok",
   "deleted": false,
   "createdAt": {
@@ -15,8 +16,7 @@
   },
   "updatedAt": {
     "$date": "2024-11-26T10:39:01.149Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -28,6 +28,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151a5"
   },
+  "parent_id": null,
   "content": "It's time for watch",
   "deleted": false,
   "createdAt": {
@@ -35,8 +36,7 @@
   },
   "updatedAt": {
     "$date": "2024-11-26T10:52:38.282Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -48,6 +48,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151a5"
   },
+  "parent_id": null,
   "content": "nahhh",
   "deleted": false,
   "createdAt": {
@@ -55,8 +56,7 @@
   },
   "updatedAt": {
     "$date": "2024-11-26T10:54:25.661Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -68,6 +68,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151a5"
   },
+  "parent_id": null,
   "content": "nahhh",
   "deleted": false,
   "createdAt": {
@@ -75,8 +76,7 @@
   },
   "updatedAt": {
     "$date": "2024-11-26T10:54:37.791Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -88,6 +88,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151a5"
   },
+  "parent_id": null,
   "content": "nahhh",
   "deleted": false,
   "createdAt": {
@@ -95,8 +96,7 @@
   },
   "updatedAt": {
     "$date": "2024-11-26T10:54:40.680Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -108,6 +108,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151a5"
   },
+  "parent_id": null,
   "content": "yess sir",
   "deleted": false,
   "createdAt": {
@@ -115,8 +116,7 @@
   },
   "updatedAt": {
     "$date": "2024-11-26T11:01:01.836Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -128,6 +128,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151a9"
   },
+  "parent_id": null,
   "content": "oke, gud job bro",
   "deleted": false,
   "createdAt": {
@@ -135,8 +136,7 @@
   },
   "updatedAt": {
     "$date": "2024-11-27T02:42:05.395Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -148,6 +148,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151a5"
   },
+  "parent_id": null,
   "content": "yehh",
   "deleted": false,
   "createdAt": {
@@ -155,8 +156,7 @@
   },
   "updatedAt": {
     "$date": "2024-11-27T02:57:57.989Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -168,6 +168,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151aa"
   },
+  "parent_id": null,
   "content": "ok sir",
   "deleted": false,
   "createdAt": {
@@ -175,8 +176,7 @@
   },
   "updatedAt": {
     "$date": "2024-12-03T12:11:23.510Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -188,6 +188,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151aa"
   },
+  "parent_id": null,
   "content": "gud product",
   "deleted": false,
   "createdAt": {
@@ -195,8 +196,7 @@
   },
   "updatedAt": {
     "$date": "2024-12-03T12:11:35.768Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -208,6 +208,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151a5"
   },
+  "parent_id": null,
   "content": "oke sir",
   "deleted": false,
   "createdAt": {
@@ -215,8 +216,7 @@
   },
   "updatedAt": {
     "$date": "2024-12-04T04:47:32.944Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -228,6 +228,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151a5"
   },
+  "parent_id": null,
   "content": "gud product",
   "deleted": false,
   "createdAt": {
@@ -235,8 +236,7 @@
   },
   "updatedAt": {
     "$date": "2024-12-04T04:49:08.349Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -248,6 +248,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151a5"
   },
+  "parent_id": null,
   "content": "ok",
   "deleted": false,
   "createdAt": {
@@ -255,8 +256,7 @@
   },
   "updatedAt": {
     "$date": "2024-12-04T04:49:53.474Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -268,6 +268,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151a5"
   },
+  "parent_id": null,
   "content": "check",
   "deleted": false,
   "createdAt": {
@@ -275,8 +276,7 @@
   },
   "updatedAt": {
     "$date": "2024-12-04T04:50:45.799Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -288,6 +288,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151a5"
   },
+  "parent_id": null,
   "content": "ok sir",
   "deleted": false,
   "createdAt": {
@@ -295,8 +296,7 @@
   },
   "updatedAt": {
     "$date": "2024-12-07T17:11:20.359Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -308,6 +308,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151a5"
   },
+  "parent_id": null,
   "content": "ok",
   "deleted": false,
   "createdAt": {
@@ -315,8 +316,7 @@
   },
   "updatedAt": {
     "$date": "2024-12-07T17:11:52.865Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -328,6 +328,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151a5"
   },
+  "parent_id": null,
   "content": "gud product",
   "deleted": false,
   "createdAt": {
@@ -335,8 +336,7 @@
   },
   "updatedAt": {
     "$date": "2024-12-07T17:16:03.753Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -348,6 +348,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151a5"
   },
+  "parent_id": null,
   "content": "ok perfect",
   "deleted": false,
   "createdAt": {
@@ -355,8 +356,7 @@
   },
   "updatedAt": {
     "$date": "2024-12-07T17:17:23.589Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -368,6 +368,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151a5"
   },
+  "parent_id": null,
   "content": "gudddd",
   "deleted": false,
   "createdAt": {
@@ -375,8 +376,7 @@
   },
   "updatedAt": {
     "$date": "2024-12-07T17:19:08.095Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -388,6 +388,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151a5"
   },
+  "parent_id": null,
   "content": "that's great !",
   "deleted": false,
   "createdAt": {
@@ -395,12 +396,8 @@
   },
   "updatedAt": {
     "$date": "2024-12-07T17:20:07.466Z"
-  },
-  "__v": 0
+  }
 },
-
-
-
 {
   "_id": {
     "$oid": "675483cd63f6d3f15fd94af9"
@@ -411,6 +408,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151a5"
   },
+  "parent_id": null,
   "content": "that's great !",
   "deleted": false,
   "createdAt": {
@@ -418,8 +416,7 @@
   },
   "updatedAt": {
     "$date": "2024-12-07T17:20:13.749Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -431,6 +428,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151a5"
   },
+  "parent_id": null,
   "content": "ok sirrrr",
   "deleted": false,
   "createdAt": {
@@ -438,8 +436,7 @@
   },
   "updatedAt": {
     "$date": "2024-12-07T17:22:27.036Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -451,6 +448,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151a5"
   },
+  "parent_id": null,
   "content": "oke sirrrrrr",
   "deleted": false,
   "createdAt": {
@@ -458,8 +456,7 @@
   },
   "updatedAt": {
     "$date": "2024-12-07T17:24:00.412Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -471,6 +468,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151a5"
   },
+  "parent_id": null,
   "content": "ok",
   "deleted": false,
   "createdAt": {
@@ -478,8 +476,7 @@
   },
   "updatedAt": {
     "$date": "2024-12-07T17:41:33.558Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -491,6 +488,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151a5"
   },
+  "parent_id": null,
   "content": "oke",
   "deleted": false,
   "createdAt": {
@@ -498,8 +496,7 @@
   },
   "updatedAt": {
     "$date": "2024-12-07T17:41:38.470Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -511,6 +508,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151a5"
   },
+  "parent_id": null,
   "content": "yehh",
   "deleted": false,
   "createdAt": {
@@ -518,8 +516,7 @@
   },
   "updatedAt": {
     "$date": "2024-12-07T17:41:56.372Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -531,6 +528,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151a5"
   },
+  "parent_id": null,
   "content": "oke",
   "deleted": false,
   "createdAt": {
@@ -538,8 +536,7 @@
   },
   "updatedAt": {
     "$date": "2024-12-07T17:45:44.792Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -551,6 +548,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151a6"
   },
+  "parent_id": null,
   "content": "oke",
   "deleted": false,
   "createdAt": {
@@ -558,8 +556,7 @@
   },
   "updatedAt": {
     "$date": "2024-12-07T17:48:04.691Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -571,6 +568,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151a9"
   },
+  "parent_id": null,
   "content": "it's oke bro",
   "deleted": false,
   "createdAt": {
@@ -578,8 +576,7 @@
   },
   "updatedAt": {
     "$date": "2024-12-09T07:07:13.262Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -591,6 +588,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151ac"
   },
+  "parent_id": null,
   "content": "noice yo !!",
   "deleted": false,
   "createdAt": {
@@ -598,8 +596,7 @@
   },
   "updatedAt": {
     "$date": "2024-12-09T07:44:13.527Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -611,6 +608,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151c3"
   },
+  "parent_id": null,
   "content": "Oh dear, fantastic !",
   "deleted": false,
   "createdAt": {
@@ -618,8 +616,7 @@
   },
   "updatedAt": {
     "$date": "2024-12-09T07:45:09.615Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -631,6 +628,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151cf"
   },
+  "parent_id": null,
   "content": "oh my god, that's so awesome, yo !",
   "deleted": false,
   "createdAt": {
@@ -638,8 +636,7 @@
   },
   "updatedAt": {
     "$date": "2024-12-09T07:49:19.124Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -651,6 +648,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151cf"
   },
+  "parent_id": null,
   "content": "noice yo !!!!",
   "deleted": false,
   "createdAt": {
@@ -658,8 +656,7 @@
   },
   "updatedAt": {
     "$date": "2024-12-09T07:52:22.951Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -671,6 +668,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151c7"
   },
+  "parent_id": null,
   "content": "ohhh, goddd, it's soo fantastic",
   "deleted": false,
   "createdAt": {
@@ -678,8 +676,7 @@
   },
   "updatedAt": {
     "$date": "2024-12-09T08:00:47.582Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -691,6 +688,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151ab"
   },
+  "parent_id": null,
   "content": "good products",
   "deleted": false,
   "createdAt": {
@@ -698,8 +696,7 @@
   },
   "updatedAt": {
     "$date": "2024-12-09T08:05:51.166Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -711,6 +708,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151c5"
   },
+  "parent_id": null,
   "content": "oh dearrrr",
   "deleted": false,
   "createdAt": {
@@ -718,8 +716,7 @@
   },
   "updatedAt": {
     "$date": "2024-12-09T08:15:45.915Z"
-  },
-  "__v": 0
+  }
 },
 {
   "_id": {
@@ -731,6 +728,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151c9"
   },
+  "parent_id": null,
   "content": "WOWWW, COOL",
   "deleted": false,
   "createdAt": {
@@ -738,11 +736,8 @@
   },
   "updatedAt": {
     "$date": "2024-12-09T08:30:41.580Z"
-  },
-  "__v": 0
+  }
 },
-
-
 {
   "_id": {
     "$oid": "6756abe50dad16005ce8b370"
@@ -753,6 +748,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151c6"
   },
+  "parent_id": null,
   "content": "yahhh",
   "deleted": false,
   "createdAt": {
@@ -773,6 +769,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151b5"
   },
+  "parent_id": null,
   "content": "ohhh sirrr, that's good",
   "deleted": false,
   "createdAt": {
@@ -793,6 +790,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151c4"
   },
+  "parent_id": null,
   "content": "yesss, i need that laptop",
   "deleted": false,
   "createdAt": {
@@ -813,6 +811,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151aa"
   },
+  "parent_id": null,
   "content": "oke",
   "deleted": false,
   "createdAt": {
@@ -833,6 +832,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151ce"
   },
+  "parent_id": null,
   "content": "coollll",
   "deleted": false,
   "createdAt": {
@@ -853,6 +853,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151bf"
   },
+  "parent_id": null,
   "content": "yesssss sir",
   "deleted": false,
   "createdAt": {
@@ -873,6 +874,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151bd"
   },
+  "parent_id": null,
   "content": "cool yo !!",
   "deleted": false,
   "createdAt": {
@@ -893,6 +895,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151b5"
   },
+  "parent_id": null,
   "content": "great yo !",
   "deleted": false,
   "createdAt": {
@@ -913,6 +916,7 @@
   "product_id": {
     "$oid": "674138636c0973f433b151b6"
   },
+  "parent_id": null,
   "content": "great bro",
   "deleted": false,
   "createdAt": {

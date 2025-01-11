@@ -18,6 +18,14 @@ class CommentRepository{
             .catch(err => console.log(err));
     }
 
+    getSubCommentByParentCommentId = (parent_id) => {
+        return Comment.find({parent_id})
+            .populate('user_id')
+            .populate('product_id')
+            .then(subComments => subComments)
+            .catch(err => console.log(err));
+    }
+
     insertComment = (commentData) => {
         return Comment.insertMany(commentData)
             .then(comment => comment)

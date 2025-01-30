@@ -8,7 +8,19 @@ Customer
 phone: 0369852147  
 password: 1234567890
 
-Run docker:  
+Run docker compose (there is just 3 services include: BackEnd, FrontEnd, MongoDB):  
 Step 1: Open docker desktop  
 Step 2: Run "docker-compose up --build" to build container  
-Step 3: If you want to stop, use "docker compose down"
+Step 3: If you want to stop, use "docker compose down"  
+
+Run docker swarm (there is 5 services include: BackEnd, FrontEnd, MongoDB, Redis, Nginx):  
+Step 1: Run "docker build -t my-backend:latest ./BackEnd" to build BackEnd app  
+Step 2: Run "docker build -t my-frontend:latest ./FrontEnd" to build FrontEnd app  
+Step 3: Run "docker swarm init" to turn on docker swarm mode  
+Step 4: Run "docker stack deploy -c docker-stack.yml my-app" to run all services  
+Step 5: Run "docker stack services my-app" (this command line to check whether our services are on)  
+Step 6: If you want to stop, run "docker swarm leave --force"    
+
+**Note  
+You can scale your app to many replicas by using this: docker service scale my-app_backend={number of replica you want}
+- example: docker service scale my-app_backend=10  

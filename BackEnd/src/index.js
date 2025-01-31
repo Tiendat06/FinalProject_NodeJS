@@ -22,12 +22,12 @@ const os = require("node:os");
 dotenv.config();
 
 const corsOptions = {
-    origin: `${process.env.FE_URL}`,
+    origin: [process.env.FE_URL, process.env.FE_URL_SCALE],
     credentials: true, // Allows cookies and authentication header
 };
 
 const redisClient = createClient({
-    url: `redis://${process.env.REDIS_HOST}:6379`
+    url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`
 });
 redisClient.connect().catch(err => console.log(err));
 

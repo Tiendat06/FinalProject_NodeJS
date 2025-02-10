@@ -75,7 +75,7 @@ class ProductService {
     commentProduct = async (req, res) => {
         let { user_id, product_id, star, content, parent_id } = req.body;
         const error = req.flash('error');
-        // console.log(parent_id);
+        console.log(parent_id);
         const commentData = {
             user_id, content, product_id, parent_id: parent_id === ''? null: parent_id
         }
@@ -93,7 +93,7 @@ class ProductService {
             // console.log('parent id: ', parent_id);
             if(parent_id !== ''){
                 subComments = await commentRepository.getSubCommentByParentCommentId(parent_id);
-                // console.log(subComments);
+                console.log(subComments);
             }
         }
 

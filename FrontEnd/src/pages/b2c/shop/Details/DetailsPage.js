@@ -75,6 +75,7 @@ function DetailsPage(){
     }
 
     const handleSubmitComment = () => {
+        console.log('okeoke')
         fetch(`${api_url}/product/comment`, {
             method: "POST",
             body: JSON.stringify({
@@ -88,7 +89,7 @@ function DetailsPage(){
         })
             .then(response => response.json())
             .then(data => {
-                // console.log(data);
+                // console.log(`oke data: ${data}`);
                 if (data.status) {
                     const newComment = comments || [];
                     setComments([...newComment, data.data]);
@@ -223,7 +224,7 @@ function DetailsPage(){
         // console.log(newSubComments);
         // setSubComments(newSubComments);
         dispatch(getSubComments(newSubComments));
-    }, [comments]);
+    }, [comments, commentsList]);
 
     const handleKeyDownSubComment = (e, parentComment) => {
         const content = e.target.value;
@@ -250,8 +251,9 @@ function DetailsPage(){
                         // const subCommentsList = data.subComments;
                         // console.log(subCommentsList)
                         // setSubComments(subCommentsList);
-                        console.log(data.previousComment)
-                        dispatch(addSubComment(data.previousComment));
+                        console.log(data.data)
+                        dispatch(addSubComment(data.data));
+                        setCommentsList([...commentsList, data.data])
                         toast.success(data.msg);
                     } else toast.error(data.msg);
                     dispatch(setSubComment(''));

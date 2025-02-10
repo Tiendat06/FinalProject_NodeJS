@@ -330,10 +330,13 @@ class OrderService {
       // send invoice
       return this.sendMailConfirmOrder(req, res)
         .then(() => {
-          return res.status(200).json({
-            status: true,
-            msg: 'Please check your email !'
-          })
+          if (!res.headersSent){
+            return res.status(200).json({
+              status: true,
+              msg: 'Please check your email !'
+            })
+          }
+          // return;
         })
         .catch(e => {
           throw new Error(e.message);
@@ -488,10 +491,13 @@ class OrderService {
       // send invoice
       return this.sendMailConfirmOrder(req, res, send_mail_account, phone_number)
         .then(() => {
-          return res.status(200).json({
-            status: true,
-            msg: 'Please check your email !'
-          })
+          if (!res.headersSent){
+            return res.status(200).json({
+              status: true,
+              msg: 'Please check your email !'
+            })
+          }
+          // return;
         })
         .catch(e => {
           throw new Error(e.message);
@@ -571,12 +577,17 @@ class OrderService {
                 </table>`,
       }
       await transporter.sendMail(mailOptions);
-
+      // return res.status(200).json({
+      //   status: true,
+      //   msg: 'Please check your email !'
+      // })
     } catch (e) {
-      return res.status(400).json({
-        status: false,
-        msg: e.message
-      })
+      if(!res.headersSent){
+        return res.status(400).json({
+          status: false,
+          msg: e.message
+        })
+      }
     }
   }
 

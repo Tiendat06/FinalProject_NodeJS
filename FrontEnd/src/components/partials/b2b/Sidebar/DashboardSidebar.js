@@ -20,9 +20,9 @@ function DashboardSidebar() {
     return (
         <>
             <div className={clsx(styles["sidebar-header"])}>
-                <div className={clsx(styles["sidebar-header__logo"])}>
+                <Link to='/' className={clsx(styles["sidebar-header__logo"])}>
                     <img src="/img/logo/logo.png" alt="" srcSet=""/>
-                </div>
+                </Link>
                 <i className="fa-solid fa-angles-left"></i>
             </div>
             <div className={clsx(styles["sidebar-content"])}>

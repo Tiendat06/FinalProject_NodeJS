@@ -23,12 +23,13 @@ function reducer(state, action) {
         case GET_SUB_COMMENT:
             newState = {
                 ...state,
-                subCommentsList: action.payLoad,
+                subCommentsList: [...action.payLoad],
             }
             break;
         default:
             throw new Error(`Unknown action type: ${action.type}`);
     }
+    console.log(newState);
     return newState;
 }
 

@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import {Modal, Pagination} from "~/components/elements";
 
 import reducer, {initState} from './reducers/reducers';
-import {getAccounts, updateAccountBanning} from './actions/actions'
+import {getAccounts, updateAccountBanning, updateAccountRole} from './actions/actions'
 import {toast} from "react-toastify";
 
 function DashboardManageAccountPage() {
@@ -69,6 +69,27 @@ function DashboardManageAccountPage() {
             .catch(error => console.log(error));
     }
 
+    const handleAccountChangeRole = (item, role) => {
+        fetch(`${api_url}/account/change-role/${item._id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                role
+            }),
+            credentials: 'include',
+        })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status) {
+                    dispatch(updateAccountRole(data.data));
+                    toast.success(data.msg);
+                } else toast.error(data.msg);
+            })
+            .catch(error => console.log(error));
+    }
+
     return (
         <>
             <div className="manage-user p-5">
@@ -102,7 +123,8 @@ function DashboardManageAccountPage() {
                                         <th style={{width: 170}} className='text-center'>ADMIN</th>
                                         <th style={{width: 170}} className='text-center'>CUSTOMER</th>
                                         <th style={{width: 170}} className='text-center'>LOCK</th>
-                                        <th style={{width: 170}} className='text-center'>SETTINGS</th>
+                                        <th style={{width: 170}} className='text-center'>SETTINGS BAN</th>
+                                        <th style={{width: 170}} className='text-center'>SETTINGS ROLE</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -158,6 +180,23 @@ function DashboardManageAccountPage() {
                                                         </Link>
                                                         <Link onClick={() => handleAccountActions(item, false)} className="dropdown-item">
                                                             UnBan
+                                                        </Link>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td className='text-center'>
+                                                <div className="dropdown">
+                                                    <button type="button"
+                                                            className={clsx(styles['dropdown-btn'], "btn p-0 hide dropdown-toggle hide-arrow")}
+                                                            data-bs-toggle="dropdown">
+                                                        <i className="fa-solid fa-ellipsis-vertical"></i>
+                                                    </button>
+                                                    <div className="dropdown-menu">
+                                                        <Link onClick={() => handleAccountChangeRole(item, 'Admin')} className="dropdown-item">
+                                                            Admin
+                                                        </Link>
+                                                        <Link onClick={() => handleAccountChangeRole(item, 'Customer')} className="dropdown-item">
+                                                            Customer
                                                         </Link>
                                                     </div>
                                                 </div>

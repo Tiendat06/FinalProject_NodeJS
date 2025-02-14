@@ -9,4 +9,7 @@ router.get('/', accountController.get_accounts);
 router.put('/:id', accountValidator.updateAccountBanningValidator,
     accountMiddleWare.update_account_banning, accountController.update_account_banning);
 
+router.put('/change-role/:id', accountValidator.updateAccountRoleValidator,
+    accountMiddleWare.update_account_role, accountController.update_account_role);
+
 module.exports = router;

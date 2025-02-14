@@ -1,4 +1,4 @@
-import {GET_ACCOUNT, UPDATE_ACCOUNT_BANNING} from '../constansts/constansts';
+import {GET_ACCOUNT, UPDATE_ACCOUNT_BANNING, UPDATE_ACCOUNT_ROLE} from '../constansts/constansts';
 
 export const initState = {
     account: {},
@@ -21,6 +21,15 @@ function reducer(state, action) {
                 accountList: newUpdate.map(item =>
                     item._id ===action.payLoad._id ?
                     {...item, ...action.payLoad} : item)
+            }
+            break;
+        case UPDATE_ACCOUNT_ROLE:
+            let newUpdateRole = [...state.accountList];
+            newState = {
+                ...state,
+                accountList: newUpdateRole.map(item =>
+                    item._id ===action.payLoad._id ?
+                        {...item, ...action.payLoad} : item)
             }
             break;
         default:

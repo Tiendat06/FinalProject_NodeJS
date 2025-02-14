@@ -26,10 +26,10 @@ const corsOptions = {
     credentials: true, // Allows cookies and authentication header
 };
 
-// const redisClient = createClient({
-//     url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`
-// });
-// redisClient.connect().catch(err => console.log(err));
+const redisClient = createClient({
+    url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`
+});
+redisClient.connect().catch(err => console.log(err));
 
 
 // connect to DB, no DB now, do not open the comment below
@@ -54,7 +54,7 @@ app.use(express.json());
 
 // session
 app.use(session({
-    // store: new RedisStore({ client: redisClient }),
+    store: new RedisStore({ client: redisClient }),
     secret: '123456',
     resave: false,
     saveUninitialized: true,

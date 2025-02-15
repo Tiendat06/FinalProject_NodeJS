@@ -123,8 +123,7 @@ function DashboardManageAccountPage() {
                                         <th style={{width: 170}} className='text-center'>ADMIN</th>
                                         <th style={{width: 170}} className='text-center'>CUSTOMER</th>
                                         <th style={{width: 170}} className='text-center'>LOCK</th>
-                                        <th style={{width: 170}} className='text-center'>SETTINGS BAN</th>
-                                        <th style={{width: 170}} className='text-center'>SETTINGS ROLE</th>
+                                        <th style={{width: 170}} className='text-center'>SETTINGS</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -168,36 +167,38 @@ function DashboardManageAccountPage() {
                                                 }
                                             </td>
                                             <td className='text-center'>
-                                                <div className="dropdown">
-                                                    <button type="button"
-                                                            className={clsx(styles['dropdown-btn'], "btn p-0 hide dropdown-toggle hide-arrow")}
-                                                            data-bs-toggle="dropdown">
-                                                        <i className="fa-solid fa-ellipsis-vertical"></i>
-                                                    </button>
-                                                    <div className="dropdown-menu">
-                                                        <Link onClick={() => handleAccountActions(item, true)} className="dropdown-item">
-                                                            Ban
-                                                        </Link>
-                                                        <Link onClick={() => handleAccountActions(item, false)} className="dropdown-item">
-                                                            UnBan
-                                                        </Link>
+                                                <div className="d-flex justify-content-center align-items-center">
+                                                    <div className="dropdown">
+                                                        <button type="button"
+                                                                className={clsx(styles['dropdown-btn'], "btn p-0 hide dropdown-toggle hide-arrow")}
+                                                                data-bs-toggle="dropdown">
+                                                            {/*<i className="fa-solid fa-ellipsis-vertical"></i>*/}
+                                                            <i className="fa-solid fa-lock text-danger"></i>
+                                                        </button>
+                                                        <div className="dropdown-menu">
+                                                            <Link onClick={() => handleAccountActions(item, true)} className="dropdown-item">
+                                                                Ban
+                                                            </Link>
+                                                            <Link onClick={() => handleAccountActions(item, false)} className="dropdown-item">
+                                                                UnBan
+                                                            </Link>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td className='text-center'>
-                                                <div className="dropdown">
-                                                    <button type="button"
-                                                            className={clsx(styles['dropdown-btn'], "btn p-0 hide dropdown-toggle hide-arrow")}
-                                                            data-bs-toggle="dropdown">
-                                                        <i className="fa-solid fa-ellipsis-vertical"></i>
-                                                    </button>
-                                                    <div className="dropdown-menu">
-                                                        <Link onClick={() => handleAccountChangeRole(item, 'Admin')} className="dropdown-item">
-                                                            Admin
-                                                        </Link>
-                                                        <Link onClick={() => handleAccountChangeRole(item, 'Customer')} className="dropdown-item">
-                                                            Customer
-                                                        </Link>
+                                                    <div className="dropdown">
+                                                        <button type="button"
+                                                                className={clsx(styles['dropdown-btn'], "btn p-0 hide dropdown-toggle hide-arrow")}
+                                                                data-bs-toggle="dropdown">
+                                                            {/*<i className="fa-solid fa-ellipsis-vertical"></i>*/}
+                                                            <i className="fa-solid fa-pen text-primary"></i>
+                                                        </button>
+                                                        <div className="dropdown-menu">
+                                                            <Link onClick={() => handleAccountChangeRole(item, 'Admin')} className="dropdown-item">
+                                                                Admin
+                                                            </Link>
+                                                            <Link onClick={() => handleAccountChangeRole(item, 'Customer')} className="dropdown-item">
+                                                                Customer
+                                                            </Link>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </td>
